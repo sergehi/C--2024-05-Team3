@@ -1,4 +1,4 @@
-Это репозиторий комадвы room#3. Курс "C# Developer. Professional". Проект TaskTracker.
+Это репозиторий комады room#3. Курс "C# Developer. Professional". Проект TaskTracker.
 
 Список участников
    - Чугаев Данил
