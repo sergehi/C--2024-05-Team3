@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  authservice:
+    image: authservice:latest
+    build:
+      context: ./AuthService
+      dockerfile: Dockerfile
+    ports:
+      - "5248:5248"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:5248
+      - DOTNET_DataProtection__Path=/app/keys
+    volumes:
+      - ./AuthService/keys:/app/keys
+      - ./AuthService/cert.pfx:/app/cert.pfx
+
+volumes:
+  keys:

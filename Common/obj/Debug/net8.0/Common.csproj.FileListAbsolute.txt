@@ -1,0 +1,12 @@
+S:\TaskTracker\Common\bin\Debug\net8.0\Common.deps.json
+S:\TaskTracker\Common\bin\Debug\net8.0\Common.dll
+S:\TaskTracker\Common\bin\Debug\net8.0\Common.pdb
+S:\TaskTracker\Common\obj\Debug\net8.0\Common.GeneratedMSBuildEditorConfig.editorconfig
+S:\TaskTracker\Common\obj\Debug\net8.0\Common.AssemblyInfoInputs.cache
+S:\TaskTracker\Common\obj\Debug\net8.0\Common.AssemblyInfo.cs
+S:\TaskTracker\Common\obj\Debug\net8.0\Common.csproj.CoreCompileInputs.cache
+S:\TaskTracker\Common\obj\Debug\net8.0\Common.sourcelink.json
+S:\TaskTracker\Common\obj\Debug\net8.0\Common.dll
+S:\TaskTracker\Common\obj\Debug\net8.0\refint\Common.dll
+S:\TaskTracker\Common\obj\Debug\net8.0\Common.pdb
+S:\TaskTracker\Common\obj\Debug\net8.0\ref\Common.dll
