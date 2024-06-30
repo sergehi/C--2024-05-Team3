@@ -9,6 +9,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using System.Security.Cryptography;
+using Microsoft.EntityFrameworkCore;
 
 [ApiController]
 [Route("api/[controller]")]
@@ -30,7 +31,7 @@ public class AuthController : ControllerBase
     [HttpGet("users")]
     public async Task<IActionResult> GetAllUsers()
     {
-        var users = _userManager.Users.ToList();
+        var users = await _userManager.Users.ToListAsync();
         var userList = new List<object>();
 
         foreach (var user in users)
@@ -51,7 +52,7 @@ public class AuthController : ControllerBase
     [HttpGet("roles")]
     public async Task<IActionResult> GetAllRoles()
     {
-        var roles = _roleManager.Roles.ToList();
+        var roles = await _roleManager.Roles.ToListAsync();
         var roleList = roles.Select(role => new
         {
             role.Id,

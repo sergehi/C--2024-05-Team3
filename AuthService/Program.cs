@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
+using Microsoft.AspNetCore.DataProtection;
+using System.Security.Cryptography.X509Certificates;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +14,24 @@ builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSet
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+var dataProtectionPath = builder.Configuration["DOTNET_DataProtection__Path"];
+if (string.IsNullOrWhiteSpace(dataProtectionPath))
+{
+    throw new ArgumentNullException(nameof(dataProtectionPath), "Data Protection path is not configured properly.");
+}
+
+// Determine the path to the certificate based on the environment
+var environment = builder.Environment.EnvironmentName;
+var certificatePath = environment == "Development" ? "cert.pfx" : "/app/cert.pfx";
+
+// Load the X.509 certificate
+var certificate = new X509Certificate2(certificatePath, "CustomCertificate");
+
+// Add Data Protection services
+builder.Services.AddDataProtection()
+    .PersistKeysToFileSystem(new DirectoryInfo(dataProtectionPath))
+    .ProtectKeysWithCertificate(certificate);
 
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<AppDbContext>()
@@ -86,7 +106,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI(c =>
     {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "AuthService API V1");
-        c.RoutePrefix = "swagger";
+        c.RoutePrefix = string.Empty;
     });
 }
 
