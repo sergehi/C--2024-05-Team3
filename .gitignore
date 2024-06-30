@@ -5,6 +5,11 @@
 /AuthService/bin/
 /AuthService/obj/
 
+# AuthService.Tests
+/AuthService.Tests/*.log
+/AuthService.Tests/bin/
+/AuthService.Tests/obj/
+
 /LoggerService/obj/
 
 /Common/obj/

@@ -1,4 +1,7 @@
-public class RoleModel
+namespace AuthService.Models
 {
-    public string RoleName { get; set; } = string.Empty;
+    public class RoleModel
+    {
+        public string RoleName { get; set; } = string.Empty;
+    }
 }

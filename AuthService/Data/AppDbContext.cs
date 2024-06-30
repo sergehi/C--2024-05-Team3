@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using AuthService.Models;
 
 public class AppDbContext : IdentityDbContext<ApplicationUser>
 {
