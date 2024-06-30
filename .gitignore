@@ -1,1 +1,6 @@
 .vs
+
+# AuthService
+/AuthService/*.log
+/AuthService/bin/
+/AuthService/obj/
