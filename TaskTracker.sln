@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Common.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoggerService", "LoggerService\LoggerService.csproj", "{3E215BCD-9D05-43E4-AEE6-F3601C9D94C8}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthService", "AuthService\AuthService.csproj", "{FB54123B-9679-419B-AC90-347C21A66BD3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,10 +23,10 @@ Global
 		{3E215BCD-9D05-43E4-AEE6-F3601C9D94C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E215BCD-9D05-43E4-AEE6-F3601C9D94C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E215BCD-9D05-43E4-AEE6-F3601C9D94C8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3E215BCD-9D05-43E4-AEE6-F3601C9D94C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3E215BCD-9D05-43E4-AEE6-F3601C9D94C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3E215BCD-9D05-43E4-AEE6-F3601C9D94C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3E215BCD-9D05-43E4-AEE6-F3601C9D94C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB54123B-9679-419B-AC90-347C21A66BD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB54123B-9679-419B-AC90-347C21A66BD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB54123B-9679-419B-AC90-347C21A66BD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB54123B-9679-419B-AC90-347C21A66BD3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
