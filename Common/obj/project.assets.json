@@ -8,27 +8,19 @@
     "net8.0": []
   },
   "packageFolders": {
-    "C:\\Users\\furye\\.nuget\\packages\\": {},
-    "D:\\Programms\\DevExpress\\Components\\Offline Packages": {},
-    "D:\\VSComponents\\NuGetPackages": {}
+    "C:\\Users\\Shams\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Common\\Common.csproj",
+      "projectUniqueName": "D:\\Programming lessons\\C#\\OTUS\\Project\\TaskTracker\\Common\\Common.csproj",
       "projectName": "Common",
-      "projectPath": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Common\\Common.csproj",
-      "packagesPath": "C:\\Users\\furye\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Common\\obj\\",
+      "projectPath": "D:\\Programming lessons\\C#\\OTUS\\Project\\TaskTracker\\Common\\Common.csproj",
+      "packagesPath": "C:\\Users\\Shams\\.nuget\\packages\\",
+      "outputPath": "D:\\Programming lessons\\C#\\OTUS\\Project\\TaskTracker\\Common\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "D:\\Programms\\DevExpress\\Components\\Offline Packages",
-        "D:\\VSComponents\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\furye\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 22.2.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\Shams\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -36,8 +28,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
-        "D:\\Programms\\DevExpress\\Components\\System\\Components\\Packages": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -50,11 +40,6 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -71,12 +56,7 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "frameworkReferences": {
-          "Microsoft.NETCore.App": {
-            "privateAssets": "all"
-          }
-        },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.301/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }
