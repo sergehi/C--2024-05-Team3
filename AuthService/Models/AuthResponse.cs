@@ -1,5 +1,9 @@
-public class AuthResponse
+namespace AuthService.Models
 {
-    public string AccessToken { get; set; } = string.Empty;
-    public string RefreshToken { get; set; } = string.Empty;
+    public class AuthResponse
+    {
+        public string AccessToken { get; set; } = string.Empty;
+        public string RefreshToken { get; set; } = string.Empty;
+    }
 }
+
