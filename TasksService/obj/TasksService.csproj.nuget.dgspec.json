@@ -1,24 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "S:\\TaskTracker\\TasksService\\TasksService.csproj": {}
+    "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\TasksService.csproj": {}
   },
   "projects": {
-    "S:\\TaskTracker\\TasksService\\TasksService.csproj": {
+    "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\TasksService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "S:\\TaskTracker\\TasksService\\TasksService.csproj",
+        "projectUniqueName": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\TasksService.csproj",
         "projectName": "TasksService",
-        "projectPath": "S:\\TaskTracker\\TasksService\\TasksService.csproj",
-        "packagesPath": "C:\\Users\\sergey\\.nuget\\packages\\",
-        "outputPath": "S:\\TaskTracker\\TasksService\\obj\\",
+        "projectPath": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\TasksService.csproj",
+        "packagesPath": "C:\\Users\\furye\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\DevExpress 22.2\\Components\\Offline Packages",
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "D:\\Programms\\DevExpress\\Components\\Offline Packages",
+          "D:\\VSComponents\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\sergey\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\furye\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 22.2.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -28,8 +28,8 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\DevExpress 22.2\\Components\\System\\Components\\Packages": {},
           "C:\\Program Files\\dotnet\\library-packs": {},
+          "D:\\Programms\\DevExpress\\Components\\System\\Components\\Packages": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -77,7 +77,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.301/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
