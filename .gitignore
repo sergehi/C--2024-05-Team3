@@ -13,3 +13,9 @@
 /LoggerService/obj/
 
 /Common/obj/
+
+# TasksService
+/TasksService/*.log
+/TasksService/bin/
+/TasksService/obj/
+
