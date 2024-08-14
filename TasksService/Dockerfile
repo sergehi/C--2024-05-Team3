@@ -1,25 +1,48 @@
-#See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
+#ASPNETCORE_ENVIRONMENT=Development
 
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
-USER app
+# Используем официальный образ .NET SDK для сборки
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build-env
 WORKDIR /app
-EXPOSE 8080
-EXPOSE 8081
+EXPOSE 5248
 
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-ARG BUILD_CONFIGURATION=Release
-WORKDIR /src
-COPY ["TasksService/TasksService.csproj", "TasksService/"]
-RUN dotnet restore "./TasksService/TasksService.csproj"
-COPY . .
-WORKDIR "/src/TasksService"
-RUN dotnet build "./TasksService.csproj" -c $BUILD_CONFIGURATION -o /app/build
+# Копируем .csproj и восстанавливаем зависимости
+COPY TasksService/*.csproj ./TasksService/
+COPY CommonNet/*.csproj ./CommmonNet/
 
-FROM build AS publish
-ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./TasksService.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+# Восстанавливаем зависимости
+RUN dotnet restore TasksService/TasksService.csproj #--interactive 
 
-FROM base AS final
+# Копируем остальной код и собираем приложение
+COPY TasksService/. ./TasksService/
+COPY CommonNet/. ./CommonNet/
+
+RUN dotnet publish TasksService/TasksService.csproj -c Release -o out
+
+# Используем официальный образ .NET Runtime для запуска приложения
+FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
-COPY --from=publish /app/publish .
+COPY --from=build-env /app/out .
+
+
+ENV ASPNETCORE_URLS=http://+:5248
+
+# Указываем команду для запуска приложения
 ENTRYPOINT ["dotnet", "TasksService.dll"]
+
+# В командной строке запустить последовательно:
+# docker build -t tasksservice .
+#Если использовать postgresql в контейнере:
+	#// Публикация postgres в докере
+	#docker run --name postgres-container -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=########## -p 5433:5432 -d postgres
+	#// Строка подключения/проверки базы в докере
+	#psql -h 172.17.0.3 -U postgres -d TasksDb
+	#// С этой строкой запускать контейнер tasksservice. 
+	#// Для базы в контейнере
+	#docker run -d -p 5248:5248 -e "ConnectionStrings__TasksDb=Host=172.17.0.3;Port=5433;Database=TasksDb;Username=postgres;Password=##########;Persist Security Info=True" --name tasksservice d9dacce6aca8031f1e860756c1d98bd50890e9a36693e2a20f1f2ebecce3abe9
+#
+#Если использовать postgresql на локальной машине:
+	#// Для подключения к локальной машине
+	#docker run -d -p 5248:5248 -e "ConnectionStrings__TasksDb=Host=192.168.10.83;Port=5432;Database=TasksDb;Username=postgres;Password=##########;Persist Security Info=True" --name tasksservice d9dacce6aca8031f1e860756c1d98bd50890e9a36693e2a20f1f2ebecce3abe9
+#
+#
+
