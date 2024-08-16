@@ -1,7 +1,7 @@
 ﻿namespace Common.Repositories
 {
     public interface IRepository<T>
-        where T : Entity
+        where T : BaseEntity
     {
         IQueryable<T> GetAll(bool noTracking = false);
         Task<List<T>> GetAllAsync(CancellationToken cancellationToken, bool asNoTracking = false);
