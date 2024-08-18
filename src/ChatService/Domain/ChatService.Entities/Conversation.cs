@@ -11,6 +11,7 @@ namespace ChatService.Entities
         public int CreatedBy { get; set; }
         public DateTime UpdatedDate { get; set; }
         public int UpdatedBy { get; set; }
+        public bool IsCancel { get; set; }
 
         public virtual ICollection<Message> Messages { get; set; }
     }

@@ -7,6 +7,10 @@ public class DatabaseContext: DbContext
 {
     public DbSet<Conversation> Conversations { get; set; }
     public DbSet<Message> Messages { get; set; }
+    public DbSet<FileType> FileTypes { get; set; }
+    public DbSet<MediaFile> MediaFiles { get; set; }
+    public DbSet<Reaction> Reactions { get; set; }
+    public DbSet<ReactionType> ReactionTypes { get; set; }
     
     public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
     {
