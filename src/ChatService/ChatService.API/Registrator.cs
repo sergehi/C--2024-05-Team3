@@ -1,6 +1,11 @@
-﻿using ChatService.Infrastructure.EntityFramework;
+﻿using System.Reflection;
+using AutoMapper;
+using ChatService.API.Mappings;
+using ChatService.Infrastructure.EntityFramework;
 using ChatService.API.Settings;
 using ChatService.Infrastructure.Repositories.Implementations;
+using ChatService.Services.Abstractions;
+using ChatService.Services.Implementations;
 using ChatService.Services.Repositories.Abstractions;
 
 namespace ChatService.API;
@@ -12,8 +17,10 @@ public static class Registrator
         var applicationSettings = configuration.Get<ApplicationSettings>();
         services.AddSingleton(applicationSettings)
                 .AddSingleton((IConfigurationRoot)configuration)
+                .AddSingleton<IMapper>(new Mapper(GetMapperConfiguration()))
                 .ConfigureContext(applicationSettings.ConnectionString)
-                .InstallRepositories();
+                .InstallRepositories()
+                .InstallServices();
 
         return services;
     }
@@ -26,5 +33,23 @@ public static class Registrator
             .AddTransient<IMessageRepository, MessageRepository>()
             .AddTransient<IReactionRepository, ReactionRepository>();
         return serviceCollection;
+    }
+    
+    private static IServiceCollection InstallServices(this IServiceCollection serviceCollection)
+    {
+        serviceCollection
+            .AddTransient<IConversationService, ConversationService>();
+        return serviceCollection;
+    }
+        
+    private static MapperConfiguration GetMapperConfiguration()
+    {
+        var configuration = new MapperConfiguration(cfg =>
+        {
+            cfg.AddProfile<ConversationMappingsProfile>();
+            cfg.AddProfile<Services.Implementations.Mapping.ConversationMappingsProfile>(); ;
+        });
+        configuration.AssertConfigurationIsValid();
+        return configuration;
     }
 }

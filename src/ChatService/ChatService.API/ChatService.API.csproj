@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.6">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -15,12 +16,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Infrastructure\ChatService.Infrastructure.EntityFramework\ChatService.Infrastructure.EntityFramework.csproj" />
     <ProjectReference Include="..\Infrastructure\ChatService.Infrastructure.Repositories.Implementations\ChatService.Infrastructure.Repositories.Implementations.csproj" />
+    <ProjectReference Include="..\Services\ChatService.Services.Abstractions\ChatService.Services.Abstractions.csproj" />
+    <ProjectReference Include="..\Services\ChatService.Services.Implementations\ChatService.Services.Implementations.csproj" />
   </ItemGroup>
 
 </Project>

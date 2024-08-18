@@ -6,4 +6,15 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Domain\ChatService.Entities\ChatService.Domain.Entities.csproj" />
+    <ProjectReference Include="..\ChatService.Services.Abstractions\ChatService.Services.Abstractions.csproj" />
+    <ProjectReference Include="..\ChatService.Services.Repositories.Abstractions\ChatService.Services.Repositories.Abstractions.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+  </ItemGroup>
+
 </Project>
