@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Infrastructure\ChatService.Infrastructure.EntityFramework\ChatService.Infrastructure.EntityFramework.csproj" />
+    <ProjectReference Include="..\Infrastructure\ChatService.Infrastructure.Repositories.Implementations\ChatService.Infrastructure.Repositories.Implementations.csproj" />
   </ItemGroup>
 
 </Project>
