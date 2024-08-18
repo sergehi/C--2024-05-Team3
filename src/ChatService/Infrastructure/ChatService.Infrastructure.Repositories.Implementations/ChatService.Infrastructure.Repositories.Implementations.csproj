@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Services\ChatService.Services.Repositories.Abstractions\ChatService.Services.Repositories.Abstractions.csproj" />
+    <ProjectReference Include="..\ChatService.Infrastructure.EntityFramework\ChatService.Infrastructure.EntityFramework.csproj" />
+  </ItemGroup>
+
 </Project>
