@@ -12,8 +12,10 @@ public class MediaFile : BaseEntity
     public int Size { get; set; }
     public DateTime CreatedDate { get; set; }
     public DateTime CreatedBy { get; set; }
-    public bool IsDelete { get; set; }
     
+    [ForeignKey("MessageId")]
     public Message Message { get; set; }
+    
+    [ForeignKey("TypeId")]
     public FileType FileType { get; set; }
 }
