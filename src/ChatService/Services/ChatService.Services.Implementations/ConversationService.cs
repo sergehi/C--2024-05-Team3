@@ -16,7 +16,7 @@ namespace ChatService.Services.Implementations
 
         private readonly IMapper _mapper;
         private readonly IConversationRepository _conversationRepository;
-        public async Task<List<ConversationDto>> GetByTaskId(int taskId)
+        public async Task<List<ConversationDto>> GetAsync(int taskId)
         {
             var conversation = _conversationRepository.GetWhere(x=>x.TaskId== taskId).ToList();
             return _mapper.Map<List<ConversationDto>>(conversation);

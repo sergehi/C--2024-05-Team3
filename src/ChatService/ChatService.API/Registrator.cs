@@ -38,7 +38,8 @@ public static class Registrator
     private static IServiceCollection InstallServices(this IServiceCollection serviceCollection)
     {
         serviceCollection
-            .AddTransient<IConversationService, ConversationService>();
+            .AddTransient<IConversationService, ConversationService>()
+            .AddTransient<IMessageService, MessageService>();
         return serviceCollection;
     }
         
@@ -47,7 +48,9 @@ public static class Registrator
         var configuration = new MapperConfiguration(cfg =>
         {
             cfg.AddProfile<ConversationMappingsProfile>();
-            cfg.AddProfile<Services.Implementations.Mapping.ConversationMappingsProfile>(); ;
+            cfg.AddProfile<MessageMappingsProfile>();
+            cfg.AddProfile<Services.Implementations.Mapping.ConversationMappingsProfile>();
+            cfg.AddProfile<Services.Implementations.Mapping.MessageMappingsProfile>();
         });
         configuration.AssertConfigurationIsValid();
         return configuration;

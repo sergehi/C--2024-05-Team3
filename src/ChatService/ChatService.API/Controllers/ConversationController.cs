@@ -22,7 +22,7 @@ public class ConversationController : ControllerBase
     [HttpGet("{taskId}")]
     public async Task<IActionResult> GetAsync(int taskId)
     {
-        return Ok(_mapper.Map<List<ConversationModel>>(await _service.GetByTaskId(taskId)));
+        return Ok(_mapper.Map<List<ConversationModel>>(await _service.GetAsync(taskId)));
     }
     
     [HttpPost]
