@@ -8,6 +8,7 @@ public class Reaction:BaseEntity
     public int MessageId { get; set; }
     public int TypeId { get; set; }
     public int UserId { get; set; }
+    public bool IsDelete { get; set; }
     
     [ForeignKey("MessageId")]
     public virtual Message Message { get; set; }

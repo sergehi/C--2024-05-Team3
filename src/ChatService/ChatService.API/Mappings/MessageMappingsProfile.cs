@@ -11,5 +11,6 @@ public class MessageMappingsProfile:Profile
         CreateMap<MessageDto, MessageModel>();
         CreateMap<CreatingMessageModel, CreatingMessageDto>()
             .ForMember(d => d.UserId, map => map.Ignore());
+        CreateMap<ReactionDto, ReactionModel>();
     }
 }

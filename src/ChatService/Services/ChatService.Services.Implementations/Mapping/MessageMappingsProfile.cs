@@ -17,5 +17,6 @@ public class MessageMappingsProfile:Profile
             .ForMember(d => d.MessageType, map => map.Ignore())
             .ForMember(d => d.MediaFiles, map => map.Ignore())
             .ForMember(d => d.Id, map => map.Ignore());
+        CreateMap<Reaction, ReactionDto>();
     }
 }
