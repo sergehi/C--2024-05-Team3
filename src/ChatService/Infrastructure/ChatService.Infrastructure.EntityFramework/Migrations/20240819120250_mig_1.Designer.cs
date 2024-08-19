@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ChatService.Infrastructure.EntityFramework.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20240818174547_mig_1")]
+    [Migration("20240819120250_mig_1")]
     partial class mig_1
     {
         /// <inheritdoc />
@@ -72,8 +72,9 @@ namespace ChatService.Infrastructure.EntityFramework.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("Name")
-                        .HasColumnType("integer");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -131,8 +132,8 @@ namespace ChatService.Infrastructure.EntityFramework.Migrations
                     b.Property<int>("ConversationId")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime>("CreatedBy")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<int>("CreatedBy")
+                        .HasColumnType("integer");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("timestamp with time zone");
@@ -176,8 +177,9 @@ namespace ChatService.Infrastructure.EntityFramework.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("Name")
-                        .HasColumnType("integer");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -222,8 +224,9 @@ namespace ChatService.Infrastructure.EntityFramework.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("Name")
-                        .HasColumnType("integer");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
