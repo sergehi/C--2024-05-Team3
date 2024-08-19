@@ -39,4 +39,25 @@ public class MessageController : ControllerBase
         await _service.DeleteAsync(id);
         return Ok();
     }
+    
+    
+    [HttpGet("{id}/Reactions")]
+    public async Task<IActionResult> GetReactionsAsync(int id)
+    {
+        return Ok(_mapper.Map<List<ReactionModel>>(await _service.GetReactionsAsync(id)));
+    }
+    
+    [HttpPost("{id}/Reaction")]
+    public async Task<IActionResult> AddReactionAsync(int id, int reactionTypeId)
+    {
+        await _service.AddReactionAsync(0, id, reactionTypeId);
+        return Ok();
+    }
+    
+    [HttpDelete("Reaction/{id}")]
+    public async Task<IActionResult> RemoveReactionAsync(int id)
+    {
+        await _service.RemoveReactionAsync(id);
+        return Ok();
+    }
 }
