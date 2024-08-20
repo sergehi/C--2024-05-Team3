@@ -1,14 +1,14 @@
 ﻿namespace Common;
 
-public class Entity
+public class BaseEntity
 {
     public int Id { get; set; }
 
-    public Entity()
+    public BaseEntity()
     {
     }
 
-    public Entity(int id) : this()
+    public BaseEntity(int id) : this()
     {
         Id = id;
     }
