@@ -1,4 +1,4 @@
-﻿namespace Logger.Domain.Entities
+﻿namespace Logger.DataAccess.Entities
 {
     public enum ELogAction
     {

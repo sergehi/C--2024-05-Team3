@@ -1,8 +1,6 @@
-﻿using Logger.Domain.Entities;
-
-namespace Logger.Services.Contracts.Log
+﻿namespace Logger.DataAccess.Entities
 {
-    public class LogDto
+    public class Log
     {
         /// <summary>
         /// Идентификатор.
@@ -37,6 +35,6 @@ namespace Logger.Services.Contracts.Log
         /// <summary>
         /// Сущность.
         /// </summary>
-        public object Entity { get; set; } = new object();
+        public string Entity { get; set; } = string.Empty;
     }
 }
