@@ -15,6 +15,12 @@ services:
     volumes:
       - ./AuthService/keys:/app/keys
       - ./AuthService/cert.pfx:/app/cert.pfx
-
-volumes:
-  keys:
+  chatservice:
+    image: chatservice:latest
+    build:
+      dockerfile: src/ChatService/ChatService.API/Dockerfile
+    ports:
+      - "5104:5104"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:5104

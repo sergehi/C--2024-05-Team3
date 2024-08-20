@@ -25,19 +25,19 @@ namespace Logger.DataAccess.Entities
         /// <summary>
         /// Действие над объектом.
         /// </summary>
-        [Required] 
+        [Required]
         public ELogAction Action { get; set; } = ELogAction.LA_None;
 
         /// <summary>
         /// Идентификатор сущности.
         /// </summary>
-        [Required] 
+        [Required]
         public Guid EntityId { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// Первичный ключ.
         /// </summary>
-        [Required] 
+        [Required]
         public Guid EntityPrimaryKey { get; set; } = Guid.NewGuid();
 
         /// <summary>
