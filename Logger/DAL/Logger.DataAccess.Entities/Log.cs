@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Common.Repositories;
+using System.ComponentModel.DataAnnotations;
 
 namespace Logger.DataAccess.Entities
 {
-    public class Log
+    public class Log: IEntity<long>
     {
         /// <summary>
         /// Идентификатор.
