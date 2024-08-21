@@ -6,9 +6,9 @@ namespace Common.Repositories
     public interface IRepository<T, TPrimaryKey>
         where T : IEntity<TPrimaryKey>
     {
-        T Get(TPrimaryKey id);
-        Task<T> GetAsync(TPrimaryKey id);
-        Task<T> GetAsync(Expression<Func<T, bool>> predicate);
+        T? Get(TPrimaryKey id);
+        Task<T?> GetAsync(TPrimaryKey id);
+        Task<T?> GetAsync(Expression<Func<T, bool>> predicate);
         IQueryable<T> GetAll(bool noTracking = false);
         Task<List<T>> GetAllAsync(CancellationToken cancellationToken, bool noTracking = false);
         IQueryable<T> GetWhere(Expression<Func<T, bool>> predicate,

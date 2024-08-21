@@ -8,6 +8,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Common\Common.csproj" />
+    <ProjectReference Include="..\Logger.DataAccess.Entities\Logger.DataAccess.Entities.csproj" />
+    <ProjectReference Include="..\Logger.DataAccess.Repositories.Abstractions\Logger.DataAccess.Repositories.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>

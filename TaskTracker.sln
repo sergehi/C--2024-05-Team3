@@ -47,7 +47,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logger.DataAccess.Repositor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logger.DataAccess.EntityFramework", "Logger\DAL\Logger.DataAccess.EntityFramework\Logger.DataAccess.EntityFramework.csproj", "{14D8DBDB-FB71-4776-B84C-D3DABFF878FC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoggerService", "Logger\LoggerService\LoggerService.csproj", "{2375FC69-D5B9-463E-96AA-376D1A21CFAF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoggerService", "Logger\LoggerService\LoggerService.csproj", "{2375FC69-D5B9-463E-96AA-376D1A21CFAF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logger.DataAccess.Repositories.Implementations", "Logger\DAL\Logger.DataAccess.Repositories.Implementations\Logger.DataAccess.Repositories.Implementations.csproj", "{2D3BE783-D833-413D-84F9-37C091BED521}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -119,6 +121,10 @@ Global
 		{2375FC69-D5B9-463E-96AA-376D1A21CFAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2375FC69-D5B9-463E-96AA-376D1A21CFAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2375FC69-D5B9-463E-96AA-376D1A21CFAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D3BE783-D833-413D-84F9-37C091BED521}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D3BE783-D833-413D-84F9-37C091BED521}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D3BE783-D833-413D-84F9-37C091BED521}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D3BE783-D833-413D-84F9-37C091BED521}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -141,6 +147,7 @@ Global
 		{8CF44006-CD0B-466A-A240-368F434F2FA7} = {A4D7F05F-C649-4F61-A2DE-64712A26D04C}
 		{14D8DBDB-FB71-4776-B84C-D3DABFF878FC} = {A4D7F05F-C649-4F61-A2DE-64712A26D04C}
 		{2375FC69-D5B9-463E-96AA-376D1A21CFAF} = {C3004521-1CF6-4582-A648-EABA05D77DB5}
+		{2D3BE783-D833-413D-84F9-37C091BED521} = {A4D7F05F-C649-4F61-A2DE-64712A26D04C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7C183238-1C39-4D6A-B0C4-41D95D68C458}
