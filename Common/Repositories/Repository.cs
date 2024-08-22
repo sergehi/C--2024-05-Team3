@@ -32,11 +32,11 @@ public abstract class Repository<T, TPrimaryKey>
     {
         return noTracking ? _entitySet.AsNoTracking() : _entitySet;
     }
-    public virtual async Task<List<T>> GetAllAsync(CancellationToken cancellationToken, bool noTracking = false)
+    public virtual async Task<IQueryable<T>> GetAllAsync(CancellationToken cancellationToken, bool noTracking = false)
     {
-        return await GetAll(noTracking).ToListAsync(cancellationToken);
+        return (await GetAll(noTracking).ToListAsync(cancellationToken)).AsQueryable();
     }
-    public IQueryable<T> GetWhere(Expression<Func<T, bool>> predicate,
+    public virtual IQueryable<T> GetWhere(Expression<Func<T, bool>> predicate,
         Func<IQueryable<T>, IIncludableQueryable<T, object>>? includes = null,
         bool noTracking = false)
     {

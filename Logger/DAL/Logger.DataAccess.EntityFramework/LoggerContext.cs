@@ -6,7 +6,7 @@ namespace Logger.DataAccess.EntityFramework
 {
     public class LoggerContext : DbContext
     {
-        private IConfiguration _configuration;
+        private readonly IConfiguration _configuration;
 
         public DbSet<Log> Logs { get; set; }
 
