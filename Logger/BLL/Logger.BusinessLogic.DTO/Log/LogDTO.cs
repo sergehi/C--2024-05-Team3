@@ -1,6 +1,6 @@
 ﻿using Logger.DataAccess.Entities;
 
-namespace Logger.BusinessLogic.DTO
+namespace Logger.BusinessLogic.DTO.Log
 {
     public class LogDTO
     {
