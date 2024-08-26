@@ -1,8 +1,9 @@
 ﻿using AutoMapper;
 using Logger.BusinessLogic.DTO.Log;
 using Logger.DataAccess.Entities;
+using LoggerService.Models.Log;
 
-namespace Logger.BusinessLogic.Services.Implementations.Mapping
+namespace LoggerService.Mapping
 {
     /// <summary>
     /// Профиль автомаппера для сущности Лог.
@@ -11,10 +12,10 @@ namespace Logger.BusinessLogic.Services.Implementations.Mapping
     {
         public LogMappingsProfile()
         {
-            CreateMap<Log, LogDTO>();
-            CreateMap<LogDTO, Log>();
-            CreateMap<CreateLogDTO, Log>()
-                .ForMember(m => m.Id, map => map.Ignore());
+            CreateMap<LogDTO, LogModel>();
+            CreateMap<LogModel, LogDTO>();
+            //CreateMap<CreateLogDTO, Log>()
+            //    .ForMember(m => m.Id, map => map.Ignore());
         }
     }
 }
