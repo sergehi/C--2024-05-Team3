@@ -1,0 +1,53 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "LoggerService";
+
+package Log_v1;
+
+service Log
+{
+	rpc GetLogs(LogId) returns (LogsReply);	
+	rpc CreateLog (CreateLogRequest) returns (LogId);
+}
+
+import "google/protobuf/timestamp.proto";
+
+
+message LogReply
+{
+	int64 id = 1;
+	string user_id = 2;
+	google.protobuf.Timestamp time = 3;
+	ELogAction action = 4;
+	string entity_id = 5;
+	string entity_primary_key = 6;
+	string entity = 7;
+}
+
+message CreateLogRequest
+{
+	string user_id = 1;
+	google.protobuf.Timestamp time = 2;
+	ELogAction action = 3;
+	string entity_id = 4;
+	string entity_primary_key = 5;
+	string entity = 6;
+}
+
+message LogsReply
+{
+	repeated LogReply logs = 1;
+}
+
+message LogId 
+{
+	int64 id = 1;
+}
+
+enum ELogAction 
+{
+  LA_NONE = 0;
+  LA_CREATE = 1;
+  LA_UPDATE = 2;
+  LA_DELETE = 3;
+}

@@ -4,6 +4,9 @@ namespace Logger.BusinessLogic.DTO.Log
 {
     public class LogDTO
     {
+        /// <summary>
+        /// Идентификатор.
+        /// </summary>
         public long Id { get; set; } = 0;
 
         /// <summary>

@@ -1,8 +1,6 @@
-﻿using Logger.DataAccess.Entities;
-
-namespace Logger.BusinessLogic.DTO.Log
+﻿namespace LoggerService.Models.Log
 {
-    public class LogDTO
+    public class LogModel
     {
         /// <summary>
         /// Идентификатор.
@@ -22,8 +20,7 @@ namespace Logger.BusinessLogic.DTO.Log
         /// <summary>
         /// Действие над объектом.
         /// </summary>
-        public ELogAction Action { get; set; } = ELogAction.LA_None;
-
+        public Logger.DataAccess.Entities.ELogAction Action { get; set; } = Logger.DataAccess.Entities.ELogAction.LA_None;
         /// <summary>
         /// Идентификатор сущности.
         /// </summary>
