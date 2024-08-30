@@ -2,9 +2,11 @@
 
 namespace Logger.BusinessLogic.Services.Abstractions
 {
-    public interface ILogServise
+    public interface ILogService
     {
+        Task<IEnumerable<LogDTO>> GetLogsAsync(FilterLogDTO filterLogDTO);
+        Task<IEnumerable<LogDTO>> GetPagedLogsAsync(FilterLogDTO filterLogDTO);
         Task<long> CreateAsync(CreateLogDTO createLogDTO);
-        void DeleteRange(IEnumerable<LogDTO> collectionLogDTO);
+        Task DeleteAsync(DateTime begin, DateTime end );
     }
 }

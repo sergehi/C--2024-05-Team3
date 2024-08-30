@@ -11,10 +11,13 @@ namespace Logger.BusinessLogic.Services.Implementations.Mapping
     {
         public LogMappingsProfile()
         {
-            CreateMap<Log, LogDTO>();
-            CreateMap<LogDTO, Log>();
+            CreateMap<Log, LogDTO>()
+                .ForMember(dest => dest.Time, opt => opt.MapFrom(src => new DateTime(src.Time)));
+            CreateMap<LogDTO, Log>()
+                .ForMember(dest => dest.Time, opt => opt.MapFrom(src => src.Time.Ticks));
             CreateMap<CreateLogDTO, Log>()
-                .ForMember(m => m.Id, map => map.Ignore());
+                .ForMember(m => m.Id, map => map.Ignore())
+                .ForMember(dest => dest.Time, opt => opt.MapFrom(src => src.Time.Ticks));
         }
     }
 }

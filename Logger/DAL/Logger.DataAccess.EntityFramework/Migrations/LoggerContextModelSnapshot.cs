@@ -37,14 +37,14 @@ namespace Logger.DataAccess.EntityFramework.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<Guid>("EntityId")
+                    b.Property<Guid>("EntityPK")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("EntityPrimaryKey")
+                    b.Property<Guid>("EntityType")
                         .HasColumnType("uuid");
 
-                    b.Property<DateTime>("Time")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<long>("Time")
+                        .HasColumnType("bigint");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uuid");
