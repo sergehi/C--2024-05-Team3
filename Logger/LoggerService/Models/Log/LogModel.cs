@@ -24,12 +24,12 @@
         /// <summary>
         /// Идентификатор сущности.
         /// </summary>
-        public Guid EntityId { get; set; } = Guid.NewGuid();
+        public Guid EntityType { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// Первичный ключ.
         /// </summary>
-        public Guid EntityPrimaryKey { get; set; } = Guid.NewGuid();
+        public Guid EntityPK { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// Сущность.

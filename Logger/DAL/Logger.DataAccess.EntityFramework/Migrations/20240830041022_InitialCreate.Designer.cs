@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Logger.DataAccess.EntityFramework.Migrations
 {
     [DbContext(typeof(LoggerContext))]
-    [Migration("20240820154246_ChangeField")]
-    partial class ChangeField
+    [Migration("20240830041022_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -40,16 +40,16 @@ namespace Logger.DataAccess.EntityFramework.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<Guid>("EntityId")
+                    b.Property<Guid>("EntityPK")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("EntityPrimaryKey")
+                    b.Property<Guid>("EntityType")
                         .HasColumnType("uuid");
 
-                    b.Property<DateTime>("Time")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<long>("Time")
+                        .HasColumnType("bigint");
 
-                    b.Property<Guid>("UserIds")
+                    b.Property<Guid>("UserId")
                         .HasColumnType("uuid");
 
                     b.HasKey("Id");

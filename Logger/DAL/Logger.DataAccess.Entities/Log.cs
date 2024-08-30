@@ -1,9 +1,10 @@
 ﻿using Common.Repositories;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Logger.DataAccess.Entities
 {
-    public class Log: IEntity<long>
+    public class Log : IEntity<long>
     {
         /// <summary>
         /// Идентификатор.
@@ -12,16 +13,10 @@ namespace Logger.DataAccess.Entities
         public long Id { get; set; } = 0;
 
         /// <summary>
-        /// Идентификатор пользователя.
-        /// </summary>
-        [Required]
-        public Guid UserId { get; set; } = Guid.NewGuid();
-
-        /// <summary>
         /// Дата и время действия.
         /// </summary>
         [Required]
-        public DateTime Time { get; set; } = DateTime.MinValue;
+        public long Time { get; set; } = 0;
 
         /// <summary>
         /// Действие над объектом.
@@ -30,16 +25,22 @@ namespace Logger.DataAccess.Entities
         public ELogAction Action { get; set; } = ELogAction.LA_None;
 
         /// <summary>
+        /// Идентификатор пользователя.
+        /// </summary>
+        [Required]
+        public Guid UserId { get; set; } = Guid.NewGuid();
+
+        /// <summary>
         /// Идентификатор сущности.
         /// </summary>
         [Required]
-        public Guid EntityId { get; set; } = Guid.NewGuid();
+        public Guid EntityType { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// Первичный ключ.
         /// </summary>
         [Required]
-        public Guid EntityPrimaryKey { get; set; } = Guid.NewGuid();
+        public Guid EntityPK { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// Сущность.

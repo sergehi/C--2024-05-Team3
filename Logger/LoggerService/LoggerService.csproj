@@ -12,9 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Google.Protobuf" Version="3.27.3" />
-    <PackageReference Include="Grpc.AspNetCore" Version="2.57.0" />
-    <PackageReference Include="Grpc.Tools" Version="2.65.0">
+    <PackageReference Include="Grpc.AspNetCore" Version="2.65.0" />
+    <PackageReference Include="Grpc.Tools" Version="2.66.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -27,6 +26,7 @@
   <ItemGroup>
     <ProjectReference Include="..\BLL\Logger.BusinessLogic.Services.Implementations\Logger.BusinessLogic.Services.Implementations.csproj" />
     <ProjectReference Include="..\DAL\Logger.DataAccess.EntityFramework\Logger.DataAccess.EntityFramework.csproj" />
+    <ProjectReference Include="..\DAL\Logger.DataAccess.Repositories.Implementations\Logger.DataAccess.Repositories.Implementations.csproj" />
   </ItemGroup>
 
 </Project>

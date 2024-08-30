@@ -12,9 +12,9 @@ namespace Common.Repositories
         IQueryable<T> GetAll(bool noTracking = false);
         Task<IQueryable<T>> GetAllAsync(CancellationToken cancellationToken, bool noTracking = false);
         IQueryable<T> GetWhere(Expression<Func<T, bool>> predicate,
-            Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null,
-            bool noTracking = false);
-
+            Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null, bool noTracking = false);
+        Task<IQueryable<T>> GetWhereAsync(Expression<Func<T, bool>> predicate, Func<IQueryable<T>,
+            IIncludableQueryable<T, object>>? includes = null, bool noTracking = false);
 
         T Add(T entity);
         Task<T> AddAsync(T entity);
