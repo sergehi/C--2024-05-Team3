@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Common\Common.csproj" />
+    <ProjectReference Include="..\Logger.BusinessLogic.DTO\Logger.BusinessLogic.DTO.csproj" />
   </ItemGroup>
 
 </Project>

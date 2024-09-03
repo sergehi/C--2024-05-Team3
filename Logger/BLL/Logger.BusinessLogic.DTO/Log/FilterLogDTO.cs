@@ -1,51 +1,47 @@
-﻿using Common.Repositories;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using Logger.DataAccess.Entities;
 
-namespace Logger.DataAccess.Entities
+namespace Logger.BusinessLogic.DTO.Log
 {
-    public class Log : IEntity<long>
+    public class FilterLogDTO
     {
         /// <summary>
-        /// Идентификатор.
+        /// Начало диапазона даты и времени действий.
         /// </summary>
-        [Key]
-        public long Id { get; set; } = 0;
-
+        public DateTime BeginTime { get; set; } = DateTime.MinValue;
+        
         /// <summary>
-        /// Дата и время действия.
+        /// Конец диапазона даты и времени действий.
         /// </summary>
-        [Required]
-        public long Time { get; set; } = 0;
+        public DateTime EndTime { get; set; } = DateTime.MinValue;
 
         /// <summary>
         /// Действие над объектом.
         /// </summary>
-        [Required]
         public ELogAction Action { get; set; } = ELogAction.LA_None;
 
         /// <summary>
         /// Идентификатор пользователя.
         /// </summary>
-        [Required]
         public Guid UserId { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// Идентификатор сущности.
         /// </summary>
-        [Required]
         public Guid EntityType { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// Первичный ключ.
         /// </summary>
-        [Required]
         public Guid EntityPK { get; set; } = Guid.NewGuid();
 
         /// <summary>
-        /// Сущность.
+        /// Номер страницы.
         /// </summary>
-        [Required]
-        public string Entity { get; set; } = string.Empty;
+        public int Page { get; set; } = 0;
+
+        /// <summary>
+        /// Количество элементов на странице.
+        /// </summary>
+        public int ItemsPerPage { get; set; } = 0;
     }
 }
