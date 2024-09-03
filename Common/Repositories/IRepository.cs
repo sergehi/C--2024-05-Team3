@@ -3,24 +3,34 @@ using Microsoft.EntityFrameworkCore.Query;
 
 namespace Common.Repositories
 {
-    public interface IRepository<T>
-        where T : BaseEntity
+    public interface IRepository<T, TPrimaryKey>
+        where T : IEntity<TPrimaryKey>
     {
-        IQueryable<T> GetWhere(Expression<Func<T, bool>> method,
-            Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null,
-            bool tracking = true);
+        T? Get(TPrimaryKey id);
+        Task<T?> GetAsync(TPrimaryKey id);
         Task<T?> GetAsync(Expression<Func<T, bool>> predicate);
-        Task<T> GetAsync(int id);
         IQueryable<T> GetAll(bool noTracking = false);
-        T Get(int id);
-        bool Delete(int id);
-        bool Delete(T entity);
-        bool DeleteRange(ICollection<T> entities);
-        void Update(T entity);
+        Task<IQueryable<T>> GetAllAsync(CancellationToken cancellationToken, bool noTracking = false);
+        IQueryable<T> GetWhere(Expression<Func<T, bool>> predicate,
+            Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null, bool noTracking = false);
+        Task<IQueryable<T>> GetWhereAsync(Expression<Func<T, bool>> predicate, Func<IQueryable<T>,
+            IIncludableQueryable<T, object>>? includes = null, bool noTracking = false);
+
         T Add(T entity);
         Task<T> AddAsync(T entity);
-        Task AddRangeAsync(ICollection<T> entities);
-        Task UpdateAsync(T entity);
-        Task UpdateRangeAsync(IEnumerable<T> entities);
+        void AddRange(IEnumerable<T> entities);
+        Task AddRangeAsync(IEnumerable<T> entities);
+
+        void Update(T entity);
+        void UpdateRange(IEnumerable<T> entities);
+
+
+        void Delete(T entity);
+        void Delete(TPrimaryKey id);
+        void DeleteRange(IEnumerable<T> entities);
+
+
+        void SaveChanges();
+        Task SaveChangesAsync(CancellationToken cancellationToken = default);
     }
 }
