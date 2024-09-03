@@ -31,4 +31,4 @@ ENV ASPNETCORE_URLS=http://+:5113
 ENTRYPOINT ["dotnet", "LoggerService.dll"]
 
 #Сборка Docker-образа: docker build -f Logger/LoggerService/Dockerfile -t loggerservice .
-#Запуск контейнера: docker run -d -p 5113:5113 -e "ConnectionStrings__LoggerDB=Server=31.128.43.53;Port=5432;Username=postgres;Database=LoggerService;Password=jomjcpFnXs" --name LoggerService b71f18fa6f2a63110fd768cd879c4c22611cf758fe40d3117422454f961176e3
+#Запуск контейнера: docker run -d -p 5113:5113 -e "ConnectionStrings__LoggerDB=Server=31.128.43.53;Port=5432;Username=postgres;Database=LoggerService;Password=XXXXX" --name LoggerService b71f18fa6f2a63110fd768cd879c4c22611cf758fe40d3117422454f961176e3

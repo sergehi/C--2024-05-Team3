@@ -32,9 +32,9 @@ namespace Logger.DataAccess.EntityFramework
         public LoggerContext(IConfiguration configuration)
         {
             _configuration = configuration;
-            Database.EnsureCreated();
+            //Database.EnsureCreated();
         }
 
-        public LoggerContext(DbContextOptions<LoggerContext> options) : base(options) {}
+        //public LoggerContext(DbContextOptions<LoggerContext> options) : base(options) {}
     }
 }
