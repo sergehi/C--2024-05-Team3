@@ -34,6 +34,23 @@
   "parameters": [],
   "policies": [],
   "queues": [],
-  "exchanges": [],
+    "exchanges": [
+        {
+            "name": "my-exchange1",
+            "type": "direct",
+            "durable": true,
+            "auto_delete": false,
+            "internal": false,
+            "arguments": {}
+        },
+        {
+            "name": "my-exchange2",
+            "type": "direct",
+            "durable": true,
+            "auto_delete": false,
+            "internal": false,
+            "arguments": {}
+        }
+    ],
   "bindings": []
 }

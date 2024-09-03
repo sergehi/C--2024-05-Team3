@@ -60,7 +60,13 @@ namespace LoggerService
                 UserName = configuration["RmqSettings:Login"],
                 Password = configuration["RmqSettings:Password"]
             };
-            return factory.CreateConnection();
+            IConnection connection = factory.CreateConnection();
+
+            IModel channel = connection.CreateModel();
+           // channel.ExchangeDeclare("LogTest", ExchangeType.Direct);
+            channel.QueueDeclare("QueTest", false, false, false, null);
+            channel.QueueBind("QueTest", "LogTest", string.Empty);
+            return connection;
         }
     }
 }
