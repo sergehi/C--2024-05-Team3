@@ -1,6 +1,15 @@
 version: "3.8"
 
 services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=user
+      - RABBITMQ_DEFAULT_PASS=password
   authservice:
     image: authservice:latest
     build:
@@ -12,6 +21,9 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:5248
       - DOTNET_DataProtection__Path=/app/keys
+      - RabbitMQ__Host=rabbitmq
+      - RabbitMQ__User=user
+      - RabbitMQ__Password=password
     volumes:
       - ./AuthService/keys:/app/keys
       - ./AuthService/cert.pfx:/app/cert.pfx
@@ -24,3 +36,6 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:5104
+      - RabbitMQ__Host=rabbitmq
+      - RabbitMQ__User=user
+      - RabbitMQ__Password=password
