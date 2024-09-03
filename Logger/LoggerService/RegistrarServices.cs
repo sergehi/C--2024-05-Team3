@@ -6,6 +6,7 @@ using BLL_Abstr = Logger.BusinessLogic.Services.Abstractions;
 using BLL_Impl = Logger.BusinessLogic.Services.Implementations;
 using DAL_Abstr = Logger.DataAccess.Repositories.Abstractions;
 using DAL_Impl = Logger.DataAccess.Repositories.Implementations;
+using RabbitMQ.Client;
 
 namespace LoggerService
 {
@@ -24,6 +25,8 @@ namespace LoggerService
             services.InstallServices();
             // Зарегистрируйте IMapper
             services.AddSingleton<IMapper>(new Mapper(GetMapperConfiguration()));
+            // Зарегистрируйте IConnection для RabbitMQ
+            services.AddSingleton(RabbitMQConnection(configuration));
             return services;
         }
         private static IServiceCollection InstallRepositories(this IServiceCollection serviceCollection)
@@ -47,6 +50,17 @@ namespace LoggerService
             });
             configuration.AssertConfigurationIsValid();
             return configuration;
+        }
+        private static IConnection RabbitMQConnection(IConfiguration configuration)
+        {
+            ConnectionFactory factory = new ConnectionFactory()
+            {
+                HostName = configuration["RmqSettings:Host"],
+                VirtualHost = configuration["RmqSettings:VHost"],
+                UserName = configuration["RmqSettings:Login"],
+                Password = configuration["RmqSettings:Password"]
+            };
+            return factory.CreateConnection();
         }
     }
 }
