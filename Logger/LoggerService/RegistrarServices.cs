@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
 using Logger.DataAccess.EntityFramework;
 using LoggerService.Mapping;
+using LoggerService.Services;
 using Microsoft.EntityFrameworkCore;
 using BLL_Abstr = Logger.BusinessLogic.Services.Abstractions;
 using BLL_Impl = Logger.BusinessLogic.Services.Implementations;
 using DAL_Abstr = Logger.DataAccess.Repositories.Abstractions;
 using DAL_Impl = Logger.DataAccess.Repositories.Implementations;
-using RabbitMQ.Client;
 
 namespace LoggerService
 {
@@ -25,8 +25,9 @@ namespace LoggerService
             services.InstallServices();
             // Зарегистрируйте IMapper
             services.AddSingleton<IMapper>(new Mapper(GetMapperConfiguration()));
-            // Зарегистрируйте IConnection для RabbitMQ
-            services.AddSingleton(RabbitMQConnection(configuration));
+            // Зарегистрируйте RabbitMq
+            services.AddSingleton<RabbitMqMessageHandler>();
+            services.AddSingleton<RabbitService>();
             return services;
         }
         private static IServiceCollection InstallRepositories(this IServiceCollection serviceCollection)
@@ -50,23 +51,6 @@ namespace LoggerService
             });
             configuration.AssertConfigurationIsValid();
             return configuration;
-        }
-        private static IConnection RabbitMQConnection(IConfiguration configuration)
-        {
-            ConnectionFactory factory = new ConnectionFactory()
-            {
-                HostName = configuration["RmqSettings:Host"],
-                VirtualHost = configuration["RmqSettings:VHost"],
-                UserName = configuration["RmqSettings:Login"],
-                Password = configuration["RmqSettings:Password"]
-            };
-            IConnection connection = factory.CreateConnection();
-
-            IModel channel = connection.CreateModel();
-           // channel.ExchangeDeclare("LogTest", ExchangeType.Direct);
-            channel.QueueDeclare("QueTest", false, false, false, null);
-            channel.QueueBind("QueTest", "LogTest", string.Empty);
-            return connection;
         }
     }
 }

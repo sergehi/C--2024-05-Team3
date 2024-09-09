@@ -67,6 +67,8 @@ namespace LoggerService.Services
             {
                 CreateLogDTO dto = _mapper.Map<CreateLogDTO>(request);
                 res.Id = await _service.CreateAsync(dto);
+
+                await _service.CreateAsync(dto);
             }
             catch (Exception ex)
             {
