@@ -10,7 +10,7 @@ service Log
 {
 	rpc GetLogsAsync(FilterLogModel) returns (LogList);
 	rpc GetPagedLogsAsync(FilterLogModel) returns (LogList);
-	rpc CreateLogAsync (CreatingLogModel) returns (LogId);
+	//rpc CreateLogAsync (CreatingLogModel) returns (LogId);
 	rpc DeleteLogAsync (FilterPeriod) returns (Empty);
 }
 

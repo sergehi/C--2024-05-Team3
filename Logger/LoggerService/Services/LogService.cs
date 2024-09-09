@@ -57,25 +57,25 @@ namespace LoggerService.Services
             return res;
         }
 
-        /// <summary>
-        /// Добавить новый лог.
-        /// </summary>
-        public override async Task<LogId> CreateLogAsync(CreatingLogModel request, ServerCallContext context)
-        {
-            LogId res = new LogId();
-            try
-            {
-                CreateLogDTO dto = _mapper.Map<CreateLogDTO>(request);
-                res.Id = await _service.CreateAsync(dto);
+        ///// <summary>
+        ///// Добавить новый лог.
+        ///// </summary>
+        //public override async Task<LogId> CreateLogAsync(CreatingLogModel request, ServerCallContext context)
+        //{
+        //    LogId res = new LogId();
+        //    try
+        //    {
+        //        CreateLogDTO dto = _mapper.Map<CreateLogDTO>(request);
+        //        res.Id = await _service.CreateAsync(dto);
 
-                await _service.CreateAsync(dto);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "CreateLogAsync: {Request}", request);
-            }
-            return res;
-        }
+        //        await _service.CreateAsync(dto);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        _logger.LogError(ex, "CreateLogAsync: {Request}", request);
+        //    }
+        //    return res;
+        //}
 
         /// <summary>
         /// Удалить логи за период.
