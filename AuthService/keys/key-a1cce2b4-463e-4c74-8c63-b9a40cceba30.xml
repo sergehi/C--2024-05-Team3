@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<key id="a1cce2b4-463e-4c74-8c63-b9a40cceba30" version="1">
+  <creationDate>2024-10-14T18:34:30.9168857Z</creationDate>
+  <activationDate>2024-10-14T18:34:30.9063509Z</activationDate>
+  <expirationDate>2025-01-12T18:34:30.9063509Z</expirationDate>
+  <descriptor deserializerType="Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60">
+    <descriptor>
+      <encryption algorithm="AES_256_CBC" />
+      <validation algorithm="HMACSHA256" />
+      <encryptedSecret decryptorType="Microsoft.AspNetCore.DataProtection.XmlEncryption.EncryptedXmlDecryptor, Microsoft.AspNetCore.DataProtection, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60" xmlns="http://schemas.asp.net/2015/03/dataProtection">
+        <EncryptedData Type="http://www.w3.org/2001/04/xmlenc#Element" xmlns="http://www.w3.org/2001/04/xmlenc#">
+          <EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc" />
+          <KeyInfo xmlns="http://www.w3.org/2000/09/xmldsig#">
+            <EncryptedKey xmlns="http://www.w3.org/2001/04/xmlenc#">
+              <EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#rsa-1_5" />
+              <KeyInfo xmlns="http://www.w3.org/2000/09/xmldsig#">
+                <X509Data>
+                  <X509Certificate>MIIDDDCCAfSgAwIBAgIILkN8fdHtmTwwDQYJKoZIhvcNAQELBQAwFDESMBAGA1UEAxMJbG9jYWxob3N0MB4XDTI0MDgyNDE1NDg0M1oXDTI1MDgyNDE1NDg0M1owFDESMBAGA1UEAxMJbG9jYWxob3N0MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAymxFCNKBwNuNeukUUfrO4Aj7IQSErzHia87fu2D3iZOwZe/uyzTLlkJ3giOB6B2mu8dyRtJ+vUZk8TBuEkFPV/PsIf1sjBcv7/cGMcSxZ8mC4XIehTNiOmzo3qdJEQOQtomRQiOZDMqCFdyLGVF1mpg/5HyL5w2meQ5Bqp33hRvFd1gkLGpenyCD9hKgHo+ng+/VNpbgTi8XkMh+8HnXJUZcqKBMeQvqqot+JBghPYb2E0T1+oSGVI/Ap8g+htM5BLi7rL70e0+hdImlOlALVXdBsjOprmSur3iTP1JHZebeATMPYPPuaeHwc3yZSep7nde6fLotnCn4hVoNqVgxfQIDAQABo2IwYDAMBgNVHRMBAf8EAjAAMA4GA1UdDwEB/wQEAwIFoDAWBgNVHSUBAf8EDDAKBggrBgEFBQcDATAXBgNVHREBAf8EDTALgglsb2NhbGhvc3QwDwYKKwYBBAGCN1QBAQQBAjANBgkqhkiG9w0BAQsFAAOCAQEAJHX0MkDyEWyyPn3T/hC3Fea+rgNqElQhgSYAwh+4AJiJvBM/AiZptT6VpJcvOXASsLf6g3hdYQbbxex3jpiop9iQXEB2F4MCQTATWuxAHIdIJMyXNoRAd327d6YdvJdut71edXut5bTgQmFZZsMEc/tzpUhwokLwa2lRg6daYwtSuZV9B2laciO2Jvzte7M0JL9HWiZs5HTL69qzi1LYyIP81/lpYXRXdDaxmEb6CSK/kxpfXY/WvxXkUTCBhj6UQPFzH8VFDEV3VwEFyE03VJbomQT/PFR8VzmOezJaF9rvVg+jyRL4DvoAZQJYe5D0Vz8O8iXOdfOaDUj1lefBiA==</X509Certificate>
+                </X509Data>
+              </KeyInfo>
+              <CipherData>
+                <CipherValue>tJBehjl6qJ4TXtkV5TKvqnMiGLAfimmvmf55vshv80NXDaSCYDgGoOtpLuuMpvWoG6BnlWNRXXhyr8nweiKUkon/HceAkEACJt0gw0E1prGsaCPwlnsucDeKlcL7Gm9RUAm5rPItD6rfUdoxWR13em3bj3kc5o6HrX1iit+MrkpiXCcExJX/fY4psfi2mW/xWeX7s7FoQctKtiQwBXhqdI8lFbVzBVfoaxfUrvUMXWzYbX3lOJnxpfoIKOKNSIXgXz5je5dmezkBh8r9paOrx/8oSTUzCBfAUNTa8D/gDgHBjPVIgOvpkEafyIsALCC3JlJV/nDAgKgln8fi7cjuQQ==</CipherValue>
+              </CipherData>
+            </EncryptedKey>
+          </KeyInfo>
+          <CipherData>
+            <CipherValue>vYAVLxehQ4xRyubh2pMVy1j7aN9pJPQjZvshKXBOfcYCymP4GGvckJwVo86QVG8f9l5cZRgGqHNoeIQRfMkrj0RNs2yCAr1L8jr/P0cgDvlWod/1emc2XNNDuFjPk4EDo8dnfIwnAg8I+s8bQWzpj9CGlz/zEBGtcaB2z0PeXFjGJsLOdZIKMkHmH4yhGfH72av833WW8fQYEwrFJkvmAfK1YUQcn3Q3GBly6wvcrHctcRkz1JnADJ1APqWNYbNb9+pBqd/n3umwtXgzeLv5cAE851P6Mnfi/GtKL/SxvlwU3N0JTZW4clAMta3LDhtNe9RMOGxRBUmnmSyBNb+XNBuUrVQ2PWFZsoY7cTbbFE22Ejpm1x+dLs8a82vaBsuDseHNyL6x+463AfUEXKyEJQ==</CipherValue>
+          </CipherData>
+        </EncryptedData>
+      </encryptedSecret>
+    </descriptor>
+  </descriptor>
+</key>
