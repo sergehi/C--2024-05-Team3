@@ -30,7 +30,8 @@ message messageNode
   int64 internal_num = 2;
   int64 definition_id = 3;
   string name = 4;	
-  string description = 5;	
+  string description = 5;
+  bool terminator = 8;
 }
 
 
@@ -52,8 +53,9 @@ message TemplateListItem {
 	int64 Id = 1;
 	string name = 2;	
 	string description = 3;	
-	repeated messageNode nodes = 4;
-	repeated messageEdge edges = 5;
+	optional int64 company_id = 4;
+	repeated messageNode nodes = 5;
+	repeated messageEdge edges = 6;
 }
 
 

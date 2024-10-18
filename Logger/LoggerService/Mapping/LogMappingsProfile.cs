@@ -5,7 +5,7 @@ using LoggerService.Models.Log;
 namespace LoggerService.Mapping
 {
     /// <summary>
-    /// Профиль автомаппера для сущности Лог.
+    /// Профиль автомаппера для сущности Лог. (Proto <=> DTO)
     /// </summary>
     public class LogMappingsProfile : Profile
     {

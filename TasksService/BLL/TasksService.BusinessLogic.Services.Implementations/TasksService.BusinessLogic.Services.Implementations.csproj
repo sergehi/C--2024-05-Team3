@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\DAL\TasksService.DataAccess.Entities\TasksService.DataAccess.Entities.csproj" />
+    <ProjectReference Include="..\..\DAL\TasksService.DataAccess.Repositories.Abstractions\TasksService.DataAccess.Repositories.Abstractions.csproj" />
+    <ProjectReference Include="..\TasksService.BusinessLogic.Services.Abstractions\TasksService.BusinessLogic.Services.Abstractions.csproj" />
+    <ProjectReference Include="..\TaslsService.BusinessLogic.DTO\TaslsService.BusinessLogic.DTO.csproj" />
+  </ItemGroup>
+
+</Project>

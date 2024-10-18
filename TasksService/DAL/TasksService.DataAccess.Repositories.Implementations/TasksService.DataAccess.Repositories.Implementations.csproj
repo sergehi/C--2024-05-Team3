@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\Common.csproj" />
+    <ProjectReference Include="..\TasksService.DataAccess.Entities\TasksService.DataAccess.Entities.csproj" />
+    <ProjectReference Include="..\TasksService.DataAccess.EntityFramework\TasksService.DataAccess.EntityFramework.csproj" />
+    <ProjectReference Include="..\TasksService.DataAccess.Repositories.Abstractions\TasksService.DataAccess.Repositories.Abstractions.csproj" />
+  </ItemGroup>
+
+</Project>
