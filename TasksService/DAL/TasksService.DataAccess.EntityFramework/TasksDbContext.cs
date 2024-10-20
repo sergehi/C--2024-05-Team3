@@ -2,13 +2,20 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using TasksService.DataAccess.Entities;
 
-namespace TasksService.Models;
+namespace TasksService.DataAccess.EntityFramework;
 
 public partial class TasksDbContext : DbContext
 {
     private IConfiguration _configuration;
+    public virtual DbSet<TasksCompany> Companies { get; set; }
+    public virtual DbSet<WfDefinitionsTemplate> WfdefinitionsTempls { get; set; }
+    public virtual DbSet<WfEdgesTemplate> WfedgesTempls { get; set; }
+    public virtual DbSet<WfNodesTemplate> WfnodesTempls { get; set; }
+
     public TasksDbContext(IConfiguration configuration)
+        :base()
     {
         _configuration = configuration;
     }
@@ -18,20 +25,10 @@ public partial class TasksDbContext : DbContext
     {
         _configuration = configuration;
     }
-    public virtual DbSet<Company> Companies { get; set; }
-
-    public virtual DbSet<WfdefinitionsTempl> WfdefinitionsTempls { get; set; }
-
-    public virtual DbSet<WfedgesTempl> WfedgesTempls { get; set; }
-
-    public virtual DbSet<WfnodesTempl> WfnodesTempls { get; set; }
-
-
+    
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 	{
-#if RELEASE
-        //var connstr = "Host=localhost;Database=TasksDb;Username=postgres;Password=Gfhjkm_123;Persist Security Info=True";
-        //optionsBuilder.UseNpgsql(connstr);
+#if DEBUG
         var connstr = _configuration.GetConnectionString("TasksDb");
         optionsBuilder.UseNpgsql(_configuration.GetConnectionString("TasksDb")); 
         Console.WriteLine($"++++++optionsBuilder.UseNpgsql({connstr});++++++++");
@@ -39,10 +36,10 @@ public partial class TasksDbContext : DbContext
         optionsBuilder.UseNpgsql(_configuration["ConnectionStrings:TasksDb"]);
 #endif
     }
-        
+      
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Company>(entity =>
+        modelBuilder.Entity<TasksCompany>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("companies_pkey");
 
@@ -57,7 +54,7 @@ public partial class TasksDbContext : DbContext
                 .HasColumnName("name");
         });
 
-        modelBuilder.Entity<WfdefinitionsTempl>(entity =>
+        modelBuilder.Entity<WfDefinitionsTemplate>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("wfdefinitions_templ_pkey");
 
@@ -77,13 +74,16 @@ public partial class TasksDbContext : DbContext
                 .HasConstraintName("FK_wfdefinitionstempl_companies");
         });
 
-        modelBuilder.Entity<WfedgesTempl>(entity =>
+        modelBuilder.Entity<WfEdgesTemplate>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("wfedges_templ_pkey");
 
             entity.ToTable("wfedges_templ");
 
             entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Description)
+                .HasColumnType("character varying")
+                .HasColumnName("description");
             entity.Property(e => e.Name)
                 .HasColumnType("character varying")
                 .HasColumnName("name");
@@ -99,7 +99,7 @@ public partial class TasksDbContext : DbContext
                 .HasConstraintName("FK_wfftedgestempl_nodestempl_to");
         });
 
-        modelBuilder.Entity<WfnodesTempl>(entity =>
+        modelBuilder.Entity<WfNodesTemplate>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("wfnodes_templ_pkey");
 
@@ -113,7 +113,7 @@ public partial class TasksDbContext : DbContext
             entity.Property(e => e.Name)
                 .HasColumnType("character varying")
                 .HasColumnName("name");
-
+            entity.Property(e => e.Terminator).HasColumnName("terminating");
             entity.HasOne(d => d.Definition).WithMany(p => p.WfnodesTempls)
                 .HasForeignKey(d => d.DefinitionId)
                 .HasConstraintName("FK_wfnodestempl_wfdefinitionstempl");
