@@ -9,7 +9,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthService", "AuthService\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthService.Tests", "AuthService.Tests\AuthService.Tests.csproj", "{AF4FB651-320D-4929-8753-9593C8659631}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TasksService", "TasksService\TasksService.csproj", "{F74736AE-D51F-4A74-8000-0C0F98990864}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TasksService", "TasksService\TasksService\TasksService.csproj", "{F74736AE-D51F-4A74-8000-0C0F98990864}"
+	ProjectSection(ProjectDependencies) = postProject
+		{379BE7C2-99FB-48BE-998A-68E03F86BDCB} = {379BE7C2-99FB-48BE-998A-68E03F86BDCB}
+		{38697C5A-F509-4237-826A-5B8D2F714479} = {38697C5A-F509-4237-826A-5B8D2F714479}
+		{5401F528-E37B-41A0-B35E-9A98154CCBFD} = {5401F528-E37B-41A0-B35E-9A98154CCBFD}
+		{86E2026D-C9B4-4A40-A178-E7458092AFDF} = {86E2026D-C9B4-4A40-A178-E7458092AFDF}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0D248EF3-3EFF-46B3-8D66-074DB0A48AA7}"
 EndProject
@@ -53,11 +59,31 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logger.DataAccess.Repositor
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BLL", "BLL", "{F31183E6-901F-49A6-AFCF-97E7B2F6F617}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logger.BusinessLogic.Services.Abstractions", "Logger\BLL\Logger.BusinessLogic.Services.Abstractions\Logger.BusinessLogic.Services.Abstractions.csproj", "{07F2B0BE-0AB2-4891-80FC-CD1193956765}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logger.BusinessLogic.Services.Abstractions", "Logger\BLL\Logger.BusinessLogic.Services.Abstractions\Logger.BusinessLogic.Services.Abstractions.csproj", "{07F2B0BE-0AB2-4891-80FC-CD1193956765}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logger.BusinessLogic.Services.Implementations", "Logger\BLL\Logger.BusinessLogic.Services.Implementations\Logger.BusinessLogic.Services.Implementations.csproj", "{6873D22C-2070-4171-960A-48B4E2F80D6B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logger.BusinessLogic.Services.Implementations", "Logger\BLL\Logger.BusinessLogic.Services.Implementations\Logger.BusinessLogic.Services.Implementations.csproj", "{6873D22C-2070-4171-960A-48B4E2F80D6B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logger.BusinessLogic.DTO", "Logger\BLL\Logger.BusinessLogic.DTO\Logger.BusinessLogic.DTO.csproj", "{6A169A99-8C41-4683-A773-8E14A2265D66}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logger.BusinessLogic.DTO", "Logger\BLL\Logger.BusinessLogic.DTO\Logger.BusinessLogic.DTO.csproj", "{6A169A99-8C41-4683-A773-8E14A2265D66}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TasksService", "TasksService", "{9F540ADD-F89C-439F-8F3D-CBD3E8A07D7B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BLL", "BLL", "{79F47D30-ECE1-4B86-9269-089725774346}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DAL", "DAL", "{6607F7B9-7F90-4E52-AE15-9CCCA1DD3278}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TasksService.DataAccess.EntityFramework", "TasksService\DAL\TasksService.DataAccess.EntityFramework\TasksService.DataAccess.EntityFramework.csproj", "{03F61860-5430-4C4F-AC8D-7E20BB6EAD78}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TasksService.DataAccess.Repositories.Abstractions", "TasksService\DAL\TasksService.DataAccess.Repositories.Abstractions\TasksService.DataAccess.Repositories.Abstractions.csproj", "{379BE7C2-99FB-48BE-998A-68E03F86BDCB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TasksService.DataAccess.Repositories.Implementations", "TasksService\DAL\TasksService.DataAccess.Repositories.Implementations\TasksService.DataAccess.Repositories.Implementations.csproj", "{97229D57-DE9E-4397-9F5B-AAE0AEBB7311}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TasksService.BusinessLogic.Services.Abstractions", "TasksService\BLL\TasksService.BusinessLogic.Services.Abstractions\TasksService.BusinessLogic.Services.Abstractions.csproj", "{38697C5A-F509-4237-826A-5B8D2F714479}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TasksService.BusinessLogic.Services.Implementations", "TasksService\BLL\TasksService.BusinessLogic.Services.Implementations\TasksService.BusinessLogic.Services.Implementations.csproj", "{34CA89A0-A030-47FE-ACFB-30A0E2B41FAA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaslsService.BusinessLogic.DTO", "TasksService\BLL\TaslsService.BusinessLogic.DTO\TaslsService.BusinessLogic.DTO.csproj", "{86E2026D-C9B4-4A40-A178-E7458092AFDF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TasksService.DataAccess.Entities", "TasksService\DAL\TasksService.DataAccess.Entities\TasksService.DataAccess.Entities.csproj", "{5401F528-E37B-41A0-B35E-9A98154CCBFD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -136,11 +162,40 @@ Global
 		{6A169A99-8C41-4683-A773-8E14A2265D66}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6A169A99-8C41-4683-A773-8E14A2265D66}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6A169A99-8C41-4683-A773-8E14A2265D66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03F61860-5430-4C4F-AC8D-7E20BB6EAD78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03F61860-5430-4C4F-AC8D-7E20BB6EAD78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03F61860-5430-4C4F-AC8D-7E20BB6EAD78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03F61860-5430-4C4F-AC8D-7E20BB6EAD78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{379BE7C2-99FB-48BE-998A-68E03F86BDCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{379BE7C2-99FB-48BE-998A-68E03F86BDCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{379BE7C2-99FB-48BE-998A-68E03F86BDCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{379BE7C2-99FB-48BE-998A-68E03F86BDCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97229D57-DE9E-4397-9F5B-AAE0AEBB7311}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97229D57-DE9E-4397-9F5B-AAE0AEBB7311}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97229D57-DE9E-4397-9F5B-AAE0AEBB7311}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97229D57-DE9E-4397-9F5B-AAE0AEBB7311}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38697C5A-F509-4237-826A-5B8D2F714479}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38697C5A-F509-4237-826A-5B8D2F714479}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38697C5A-F509-4237-826A-5B8D2F714479}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38697C5A-F509-4237-826A-5B8D2F714479}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34CA89A0-A030-47FE-ACFB-30A0E2B41FAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34CA89A0-A030-47FE-ACFB-30A0E2B41FAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34CA89A0-A030-47FE-ACFB-30A0E2B41FAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34CA89A0-A030-47FE-ACFB-30A0E2B41FAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86E2026D-C9B4-4A40-A178-E7458092AFDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86E2026D-C9B4-4A40-A178-E7458092AFDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86E2026D-C9B4-4A40-A178-E7458092AFDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86E2026D-C9B4-4A40-A178-E7458092AFDF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5401F528-E37B-41A0-B35E-9A98154CCBFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5401F528-E37B-41A0-B35E-9A98154CCBFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5401F528-E37B-41A0-B35E-9A98154CCBFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5401F528-E37B-41A0-B35E-9A98154CCBFD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{F74736AE-D51F-4A74-8000-0C0F98990864} = {9F540ADD-F89C-439F-8F3D-CBD3E8A07D7B}
 		{1E21F497-2C59-44BD-97E1-C5E6E9B1EE2D} = {0D248EF3-3EFF-46B3-8D66-074DB0A48AA7}
 		{D6881781-427A-41DD-8D0F-5334B292F34C} = {1E21F497-2C59-44BD-97E1-C5E6E9B1EE2D}
 		{9209EB35-4E5A-4804-87F7-BF36E925BA4E} = {1E21F497-2C59-44BD-97E1-C5E6E9B1EE2D}
@@ -163,6 +218,15 @@ Global
 		{07F2B0BE-0AB2-4891-80FC-CD1193956765} = {F31183E6-901F-49A6-AFCF-97E7B2F6F617}
 		{6873D22C-2070-4171-960A-48B4E2F80D6B} = {F31183E6-901F-49A6-AFCF-97E7B2F6F617}
 		{6A169A99-8C41-4683-A773-8E14A2265D66} = {F31183E6-901F-49A6-AFCF-97E7B2F6F617}
+		{79F47D30-ECE1-4B86-9269-089725774346} = {9F540ADD-F89C-439F-8F3D-CBD3E8A07D7B}
+		{6607F7B9-7F90-4E52-AE15-9CCCA1DD3278} = {9F540ADD-F89C-439F-8F3D-CBD3E8A07D7B}
+		{03F61860-5430-4C4F-AC8D-7E20BB6EAD78} = {6607F7B9-7F90-4E52-AE15-9CCCA1DD3278}
+		{379BE7C2-99FB-48BE-998A-68E03F86BDCB} = {6607F7B9-7F90-4E52-AE15-9CCCA1DD3278}
+		{97229D57-DE9E-4397-9F5B-AAE0AEBB7311} = {6607F7B9-7F90-4E52-AE15-9CCCA1DD3278}
+		{38697C5A-F509-4237-826A-5B8D2F714479} = {79F47D30-ECE1-4B86-9269-089725774346}
+		{34CA89A0-A030-47FE-ACFB-30A0E2B41FAA} = {79F47D30-ECE1-4B86-9269-089725774346}
+		{86E2026D-C9B4-4A40-A178-E7458092AFDF} = {79F47D30-ECE1-4B86-9269-089725774346}
+		{5401F528-E37B-41A0-B35E-9A98154CCBFD} = {6607F7B9-7F90-4E52-AE15-9CCCA1DD3278}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7C183238-1C39-4D6A-B0C4-41D95D68C458}
