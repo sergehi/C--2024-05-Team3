@@ -36,11 +36,14 @@ public class Program
             .AddEntityFrameworkStores<AuthDbContext>()
             .AddDefaultTokenProviders();
 
+        builder.Services.Configure<RabbitMQSettings>(builder.Configuration.GetSection("RabbitMQ"));
+
         builder.Services.AddScoped<IAuthService, AuthService>();
         builder.Services.AddScoped<IUserRepository, UserRepository>();
         builder.Services.AddScoped<IEmailService, EmailService>();
         builder.Services.AddScoped<ISettingsService, SettingsService>();
         builder.Services.AddScoped<ITokenService, TokenService>();
+        builder.Services.AddSingleton<IRabbitMQService, RabbitMQService>();
 
         builder.Services.AddGrpc();
 

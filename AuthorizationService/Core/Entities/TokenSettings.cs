@@ -1,6 +1,9 @@
-public class TokenSettings
+namespace AuthorizationService.Core.Entities
 {
-    public int Id { get; set; }
-    public int AccessTokenExpiryMinutes { get; set; }
-    public int RefreshTokenExpiryDays { get; set; }
+    public class TokenSettings
+    {
+        public int Id { get; set; }
+        public int AccessTokenExpiryMinutes { get; set; }
+        public int RefreshTokenExpiryDays { get; set; }
+    }
 }

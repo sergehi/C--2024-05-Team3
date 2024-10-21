@@ -13,6 +13,8 @@
 
 <ItemGroup>
     <ProjectReference Include="..\..\ProtoContracts\ProtoContracts.csproj" />
+    <ProjectReference Include="..\..\Logger\BLL\Logger.BusinessLogic.Services.Abstractions\Logger.BusinessLogic.Services.Abstractions.csproj" />
+    <ProjectReference Include="..\..\Common\Common.csproj" />
   </ItemGroup>
 
 </Project>
