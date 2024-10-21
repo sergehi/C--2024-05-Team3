@@ -6,6 +6,10 @@ using Grpc.Core;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using ProtoContracts.Protos;
+using Logger.BusinessLogic.DTO.Log;
+using Logger.DataAccess.Entities;
+using Newtonsoft.Json;
+using Common.Attributes;
 
 namespace AuthorizationService.Infrastructure.Services
 {
@@ -15,14 +19,16 @@ namespace AuthorizationService.Infrastructure.Services
         private readonly SignInManager<User> _signInManager;
         private readonly ITokenService _tokenService;
         private readonly ISettingsService _settingsService;
+        private readonly IRabbitMQService _rabbitMQService;
 
         public AuthService(UserManager<User> userManager, SignInManager<User> signInManager, ITokenService tokenService,
-            ISettingsService settingsService)
+            ISettingsService settingsService, IRabbitMQService rabbitMQService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _tokenService = tokenService;
             _settingsService = settingsService;
+            _rabbitMQService = rabbitMQService;
         }
 
         public async Task<bool> RegisterAsync(RegisterRequest registerRequest)
@@ -42,6 +48,16 @@ namespace AuthorizationService.Infrastructure.Services
                 var errors = string.Join("; ", result.Errors.Select(e => e.Description));
                 throw new RpcException(new Status(StatusCode.Aborted, $"Registration failed: {errors}."));
             }
+
+            await _rabbitMQService.CreateAsync(new CreateLogDTO
+            {
+                UserId = new Guid(user.Id),
+                Time = DateTime.UtcNow,
+                Action = ELogAction.LA_Create,
+                EntityType = new Guid(((GuidAttribute)Attribute.GetCustomAttribute(typeof(User), typeof(GuidAttribute))!).EntityGuid),
+                EntityPK = new Guid(user.Id),
+                Entity = JsonConvert.SerializeObject(user)
+            });
 
             return true;
         }

@@ -2,6 +2,7 @@ using AuthorizationService.Core.Interfaces;
 using AuthorizationService.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Grpc.Core;
+using AuthorizationService.Core.Entities;
 
 namespace AuthorizationService.Infrastructure.Services
 {
