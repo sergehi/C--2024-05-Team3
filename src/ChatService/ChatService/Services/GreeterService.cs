@@ -1,4 +1,4 @@
-using ChatService;
+using ChatProto;
 using Grpc.Core;
 
 namespace ChatService.Services

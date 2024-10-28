@@ -3,6 +3,6 @@
     public class GrpcServiceConfig
     {
         public string GreeterServiceUrl { get; set; }
-        public string FarewellServiceUrl { get; set; }
+        public string ChatServiceUrl { get; set; }
     }
 }
