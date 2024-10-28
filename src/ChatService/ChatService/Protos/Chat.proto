@@ -1,0 +1,85 @@
+syntax = "proto3";
+
+option csharp_namespace = "ChatProto";
+
+package greet;
+import "google/protobuf/empty.proto";
+// The greeting service definition.
+service Greeter {
+  // Sends a greeting
+  rpc SayHello (HelloRequest) returns (HelloReply);
+}
+
+// The request message containing the user's name.
+message HelloRequest {
+  string name = 1;
+}
+
+// The response message containing the greetings.
+message HelloReply {
+  string message = 1;
+}
+
+service Conversation {
+    // Get conversation by task ID
+    rpc GetConversation(GetConversationRequest) returns (GetConversationResponse);
+
+    // Create a new conversation
+    rpc CreateConversation(CreateConversationRequest) returns (CreateConversationResponse);
+
+    // Update an existing conversation
+    rpc UpdateConversation(UpdateConversationRequest) returns (google.protobuf.Empty);
+
+    // Cancel a conversation
+    rpc CancelConversation(CancelConversationRequest) returns (google.protobuf.Empty);
+}
+// Request message for getting a conversation
+message GetConversationRequest {
+    int32 taskId = 1;
+}
+
+// Response message for getting a conversation (as a list)
+message GetConversationResponse {
+    repeated ConversationModel conversations = 1; // List of conversations
+}
+
+// Request message for creating a conversation
+message CreateConversationRequest {
+    CreatingConversationModel conversationModel = 1;
+}
+
+// Response message for creating a conversation
+message CreateConversationResponse {
+    int32 id = 1;
+}
+
+// Request message for updating a conversation
+message UpdateConversationRequest {
+    int32 id = 1;
+    UpdatingConversationModel conversationModel = 2;
+}
+
+// Request message for canceling a conversation
+message CancelConversationRequest {
+    int32 id = 1;
+}
+
+// Conversation message representing each conversation entry
+message ConversationModel {
+    int32 id = 1;
+    string message = 2;
+    int32 senderId = 3;
+    string timestamp = 4;
+}
+
+// CreatingConversationModel message definition
+message CreatingConversationModel {
+    string message = 1;
+    int32 senderId = 2;
+}
+
+// UpdatingConversationModel message definition
+message UpdatingConversationModel {
+    int32 id = 1;
+    string message = 2;
+}

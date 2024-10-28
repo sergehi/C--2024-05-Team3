@@ -1,3 +1,4 @@
+using ChatProto;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.OpenApi.Models;
 using TaskTracker.Gateway.Configutions;
@@ -18,9 +19,16 @@ namespace TaskTracker.Gateway
             {
                 options.Address = new Uri(grpcConfig.GreeterServiceUrl);
             });
+       
+            builder.Services.AddGrpcClient<Conversation.ConversationClient>(options =>
+            {
+                options.Address = new Uri(grpcConfig.ChatServiceUrl);
+            });
 
 
             var swaggerServices = builder.Configuration.GetSection("SwaggerServices").Get<List<SwaggerServiceConfig>>();
+
+
             builder.Services.AddSwaggerGen(c =>
             {
                 foreach (var service in swaggerServices)
@@ -51,10 +59,13 @@ namespace TaskTracker.Gateway
                     }
                 });
             }
-
+            app.UseRouting();
             app.UseHttpsRedirection();
             app.UseAuthorization();
-            app.MapControllers();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
 
             app.Run();
         }

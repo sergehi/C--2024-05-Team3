@@ -7,6 +7,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <None Remove="Protos\Chat.proto" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<!-- Пакеты для Swagger -->
 		<PackageReference Include="Google.Protobuf" Version="3.28.3" />
 		<PackageReference Include="Grpc.Tools" Version="2.67.0">
@@ -21,6 +25,7 @@
 
 	<ItemGroup>
 		<!-- Настройка для компиляции .proto файлов -->
+		<Protobuf Include="Protos\Chat.proto" GrpcServices="Client" />
 		<Protobuf Include="Protos\Service1.proto" GrpcServices="Client" />
 	</ItemGroup>
 </Project>
