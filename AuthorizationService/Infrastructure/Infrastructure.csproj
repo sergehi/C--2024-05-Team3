@@ -11,6 +11,7 @@
   <ProjectReference Include="..\..\Logger\BLL\Logger.BusinessLogic.DTO\Logger.BusinessLogic.DTO.csproj" />
   <ProjectReference Include="..\..\Logger\DAL\Logger.DataAccess.Entities\Logger.DataAccess.Entities.csproj" />
   <ProjectReference Include="..\..\Common\Common.csproj" />
+  <ProjectReference Include="..\Core\Core.csproj" />
 </ItemGroup>
 
 <ItemGroup>
