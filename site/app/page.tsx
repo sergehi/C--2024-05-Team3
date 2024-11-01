@@ -6,7 +6,6 @@ import { button as buttonStyles } from "@nextui-org/theme";
 import { siteConfig } from "@/config/site";
 import { title, subtitle } from "@/components/primitives";
 import { GithubIcon } from "@/components/icons";
-import SignOut from "@/components/sign-out";
 
 export default function Home() {
   return (
@@ -21,7 +20,6 @@ export default function Home() {
         <div className={subtitle({ class: "mt-4" })}>
           Beautiful, fast and modern React UI library.
         </div>
-        <SignOut />
       </div>
 
       <div className="flex gap-3">

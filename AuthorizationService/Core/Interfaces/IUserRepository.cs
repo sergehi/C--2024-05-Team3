@@ -1,11 +1,12 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using AuthorizationService.Core.Entities;
 
 namespace AuthorizationService.Core.Interfaces
 {
     public interface IUserRepository
     {
-        Task<User?> GetByIdAsync(Guid id);
+        Task CreateAsync(User user);
+        Task<User?> FindByUsernameAsync(string username);
+        Task UpdateAsync(User user);
+        Task<User?> FindByIdAsync(Guid id);
     }
 }

@@ -1,28 +1,38 @@
 using AuthorizationService.Core.Interfaces;
-using AuthorizationService.Infrastructure.Data;
-using Microsoft.EntityFrameworkCore;
-using Grpc.Core;
 using AuthorizationService.Core.Entities;
+using Grpc.Core;
 
 namespace AuthorizationService.Infrastructure.Services
 {
     public class SettingsService : ISettingsService
     {
-        private readonly AuthDbContext _context;
+        private readonly ITokenSettingsRepository _tokenSettingsRepository;
 
-        public SettingsService(AuthDbContext context)
+        public SettingsService(ITokenSettingsRepository tokenSettingsRepository)
         {
-            _context = context;
+            _tokenSettingsRepository = tokenSettingsRepository;
         }
 
         public async Task<TokenSettings> GetTokenSettingsAsync()
         {
-            var tokenSettings = await _context.TokenSettings.OrderBy(x => x.Id).FirstOrDefaultAsync();
-            if (tokenSettings == null)
+            try
             {
-                throw new RpcException(new Status(StatusCode.NotFound, $"Get token settings failed."));
+                var tokenSettings = await _tokenSettingsRepository.FindAsync();
+                if (tokenSettings == null)
+                {
+                    throw new RpcException(new Status(StatusCode.NotFound, "Get token settings failed."));
+                }
+
+                return tokenSettings;
             }
-            return tokenSettings;
+            catch (RpcException)
+            {
+                throw;
+            }
+            catch (Exception ex)
+            {
+                throw new RpcException(new Status(StatusCode.Internal, $"Generate tokens failed: {ex.Message}"));
+            }
         }
     }
 }

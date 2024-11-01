@@ -1,12 +1,11 @@
-using System.Threading.Tasks;
-using ProtoContracts.Protos;
+using AuthorizationService.Shared.DTOs;
 
 namespace AuthorizationService.Core.Interfaces
 {
     public interface IAuthService
     {
-        Task<bool> RegisterAsync(RegisterRequest registerRequest);
-        Task<LoginResponse> LoginAsync(LoginRequest loginRequest);
-        Task<string> RefreshTokensAsync(string accessToken);
+        Task RegisterAsync(RegisterDTO registerDTO);
+        Task<string> LoginAsync(LoginDTO loginDTO);
+        Task<string?> ValidateTokenAsync(ValidateTokenDTO validateTokenDTO);
     }
 }

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["[next]/internal/font/google/fira_code_b79a8a20.module.css"],"sourcesContent":["@font-face {\n    font-family: '__Fira_Code_Fallback_b79a8a';\n    src: local(\"Arial\");\n    ascent-override: 73.56%;\ndescent-override: 23.92%;\nline-gap-override: 0.00%;\nsize-adjust: 134.59%;\n\n}\n.className {\n    font-family: '__Fira_Code_b79a8a', '__Fira_Code_Fallback_b79a8a';\n    font-style: normal;\n\n}\n.variable {\n    --font-mono: '__Fira_Code_b79a8a', '__Fira_Code_Fallback_b79a8a';\n}\n"],"names":[],"mappings":"AAAA;;;;;;;;;AASA;;;;;AAKA"}},
+    {"offset": {"line": 18, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}}]
+}

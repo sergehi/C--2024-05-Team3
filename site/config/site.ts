@@ -1,11 +1,11 @@
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-  name: "TaskService",
-  description: "Created by Team3.",
+  name: "Next.js + NextUI",
+  description: "Make beautiful websites regardless of your design experience.",
   navItems: [
     {
-      label: "Главная",
+      label: "Home",
       href: "/",
     },
     {
@@ -23,10 +23,6 @@ export const siteConfig = {
     {
       label: "About",
       href: "/about",
-    },
-    {
-      label: "Авторизация",
-      href: "/login",
     },
   ],
   navMenuItems: [
