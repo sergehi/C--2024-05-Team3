@@ -1,0 +1,20 @@
+/* [next]/internal/font/google/inter_b35c0a41.module.css [app-client] (css) */
+@font-face {
+  font-family: __Inter_Fallback_b35c0a;
+  src: local(Arial);
+  ascent-override: 90.49%;
+  descent-override: 22.56%;
+  line-gap-override: 0.0%;
+  size-adjust: 107.06%;
+}
+
+.inter_b35c0a41-module__Y0D1la__className {
+  font-family: __Inter_b35c0a, __Inter_Fallback_b35c0a;
+  font-style: normal;
+}
+
+.inter_b35c0a41-module__Y0D1la__variable {
+  --font-sans: "__Inter_b35c0a", "__Inter_Fallback_b35c0a";
+}
+
+/*# sourceMappingURL=%5Bnext%5D_internal_font_google_inter_b35c0a41_module_b52d8e.css.map*/

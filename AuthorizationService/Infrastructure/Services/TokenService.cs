@@ -1,13 +1,12 @@
 using AuthorizationService.Core.Interfaces;
-using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
-using System.Security.Cryptography;
 using AuthorizationService.Core.Entities;
-using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
 using Grpc.Core;
+using System.Security.Claims;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Cryptography;
 
 namespace AuthorizationService.Infrastructure.Services
 {
@@ -15,49 +14,50 @@ namespace AuthorizationService.Infrastructure.Services
     {
         private readonly IConfiguration _configuration;
         private readonly ISettingsService _settingsService;
-        private readonly UserManager<User> _userManager;
+        private readonly IUserRepository _userRepository;
 
-        public TokenService(IConfiguration configuration, ISettingsService settingsService, UserManager<User> userManager)
+        public TokenService(IConfiguration configuration, ISettingsService settingsService, IUserRepository userRepository)
         {
             _configuration = configuration;
             _settingsService = settingsService;
-            _userManager = userManager;
+            _userRepository = userRepository;
         }
 
-        public async Task<string> GenerateTokensAsync(string userName)
+        public async Task<string> GenerateTokensAsync(string username)
         {
-            var user = await _userManager.FindByNameAsync(userName);
-            if (user == null)
+            try
             {
-                throw new RpcException(new Status(StatusCode.NotFound, $"Generate tokens failed: {userName}."));
+                var user = await _userRepository.FindByUsernameAsync(username);
+                if (user == null)
+                {
+                    throw new RpcException(new Status(StatusCode.NotFound, $"Generate tokens failed: {username}."));
+                }
+
+                var tokenSettings = await _settingsService.GetTokenSettingsAsync();
+                var accessToken = await GenerateAccessTokenAsync(user.Id);
+                var refreshToken = GenerateRefreshToken();
+
+                user.RefreshToken = refreshToken;
+                user.RefreshTokenExpiryTime = DateTime.Now.AddDays(tokenSettings.RefreshTokenExpiryDays);
+                await _userRepository.UpdateAsync(user);
+
+                return accessToken;
             }
-
-            var tokenSettings = await _settingsService.GetTokenSettingsAsync();
-            var accessToken = await GenerateAccessTokenAsync(user);
-            var refreshToken = GenerateRefreshToken();
-
-            user.RefreshToken = refreshToken;
-            user.RefreshTokenExpiryTime = DateTime.Now.AddDays(tokenSettings.RefreshTokenExpiryDays);
-            var result = await _userManager.UpdateAsync(user);
-            if (!result.Succeeded)
+            catch (RpcException)
             {
-                var errors = string.Join("; ", result.Errors.Select(e => e.Description));
-                throw new RpcException(new Status(StatusCode.Aborted, $"Generate tokens failed: {errors}."));
+                throw;
             }
-
-            return accessToken;
+            catch (Exception ex)
+            {
+                throw new RpcException(new Status(StatusCode.Internal, $"Generate tokens failed: {ex.Message}"));
+            }
         }
 
-        public async Task<string> GenerateAccessTokenAsync(User user)
+        public async Task<string> GenerateAccessTokenAsync(Guid userId)
         {
-            if (string.IsNullOrEmpty(user.UserName))
-                throw new RpcException(new Status(StatusCode.Internal, $"Generate access token failed: username is null."));
-
             var authClaims = new List<Claim>
             {
-                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                new Claim(ClaimTypes.Name, user.UserName),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+                new Claim(ClaimTypes.NameIdentifier, userId.ToString()),
             };
 
             var jwtKey = _configuration["Jwt:Key"];
@@ -65,11 +65,13 @@ namespace AuthorizationService.Infrastructure.Services
             {
                 throw new RpcException(new Status(StatusCode.Internal, $"Generate access token failed: Jwt:Key is null."));
             }
+
             var jwtIssuer = _configuration["Jwt:Issuer"];
             if (string.IsNullOrEmpty(jwtIssuer))
             {
                 throw new RpcException(new Status(StatusCode.Internal, $"Generate access token failed: Jwt:Issuer is null."));
             }
+
             var jwtAudience = _configuration["Jwt:Audience"];
             if (string.IsNullOrEmpty(jwtAudience))
             {
@@ -77,7 +79,7 @@ namespace AuthorizationService.Infrastructure.Services
             }
 
             var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey));
-            var tokenSettings = await _settingsService.GetTokenSettingsAsync();
+            TokenSettings tokenSettings = await _settingsService.GetTokenSettingsAsync();
             var accessTokenExpiry = tokenSettings.AccessTokenExpiryMinutes;
 
             var token = new JwtSecurityToken(
@@ -91,7 +93,7 @@ namespace AuthorizationService.Infrastructure.Services
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
-        public string GenerateRefreshToken()
+        private string GenerateRefreshToken()
         {
             var randomNumber = new byte[32];
             using (var rng = RandomNumberGenerator.Create())
@@ -120,10 +122,29 @@ namespace AuthorizationService.Infrastructure.Services
                 ValidateAudience = false,
                 ClockSkew = TimeSpan.Zero
             };
-
-            var principal = tokenHandler.ValidateToken(token, validationParameters, out SecurityToken validatedToken);
+            var principal = tokenHandler.ValidateToken(token, validationParameters, out _);
 
             return principal;
+        }
+
+        public bool IsTokenExpired(string accessToken)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+
+            if (tokenHandler.CanReadToken(accessToken))
+            {
+                var jwtToken = tokenHandler.ReadToken(accessToken) as JwtSecurityToken;
+
+                var expiration = jwtToken?.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Exp)?.Value;
+
+                if (expiration != null)
+                {
+                    var expirationTime = DateTimeOffset.FromUnixTimeSeconds(long.Parse(expiration)).UtcDateTime;
+                    return expirationTime <= DateTime.UtcNow;
+                }
+            }
+
+            return true;
         }
     }
 }

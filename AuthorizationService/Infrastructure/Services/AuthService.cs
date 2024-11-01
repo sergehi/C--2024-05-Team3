@@ -1,131 +1,121 @@
 using AuthorizationService.Core.Entities;
 using Microsoft.AspNetCore.Identity;
 using AuthorizationService.Core.Interfaces;
-using Microsoft.AspNetCore.Identity.UI;
 using Grpc.Core;
-using Microsoft.EntityFrameworkCore;
+using AuthorizationService.Shared.DTOs;
+using AutoMapper;
 using System.Security.Claims;
-using ProtoContracts.Protos;
-using Logger.BusinessLogic.DTO.Log;
-using Logger.DataAccess.Entities;
-using Newtonsoft.Json;
-using Common.Attributes;
 
 namespace AuthorizationService.Infrastructure.Services
 {
     public class AuthService : IAuthService
     {
-        private readonly UserManager<User> _userManager;
-        private readonly SignInManager<User> _signInManager;
+        private readonly IMapper _mapper;
+        private readonly IUserRepository _userRepository;
+        private readonly IPasswordHasher<User> _passwordHasher;
         private readonly ITokenService _tokenService;
-        private readonly ISettingsService _settingsService;
-        private readonly IRabbitMQService _rabbitMQService;
 
-        public AuthService(UserManager<User> userManager, SignInManager<User> signInManager, ITokenService tokenService,
-            ISettingsService settingsService, IRabbitMQService rabbitMQService)
+        public AuthService(IMapper mapper, IUserRepository userRepository, IPasswordHasher<User> passwordHasher, ITokenService tokenService)
         {
-            _userManager = userManager;
-            _signInManager = signInManager;
+            _mapper = mapper;
+            _userRepository = userRepository;
+            _passwordHasher = passwordHasher;
             _tokenService = tokenService;
-            _settingsService = settingsService;
-            _rabbitMQService = rabbitMQService;
         }
 
-        public async Task<bool> RegisterAsync(RegisterRequest registerRequest)
+        public async Task RegisterAsync(RegisterDTO registerDTO)
         {
-            var user = new User
+            try
             {
-                UserName = registerRequest.UserName,
-                Email = registerRequest.Email,
-                FirstName = registerRequest.FirstName,
-                LastName = registerRequest.LastName,
-                MiddleName = registerRequest.MiddleName
-            };
+                var existingUser = await _userRepository.FindByUsernameAsync(registerDTO.Username);
+                if (existingUser != null)
+                {
+                    throw new RpcException(new Status(StatusCode.AlreadyExists, "User already exists."));
+                }
 
-            var result = await _userManager.CreateAsync(user, registerRequest.Password);
-            if (!result.Succeeded)
-            {
-                var errors = string.Join("; ", result.Errors.Select(e => e.Description));
-                throw new RpcException(new Status(StatusCode.Aborted, $"Registration failed: {errors}."));
+                User user = _mapper.Map<User>(registerDTO);
+
+                user.PasswordHash = _passwordHasher.HashPassword(user, registerDTO.Password);
+
+                await _userRepository.CreateAsync(user);
             }
-
-            await _rabbitMQService.CreateAsync(new CreateLogDTO
+            catch (RpcException)
             {
-                UserId = new Guid(user.Id),
-                Time = DateTime.UtcNow,
-                Action = ELogAction.LA_Create,
-                EntityType = new Guid(((GuidAttribute)Attribute.GetCustomAttribute(typeof(User), typeof(GuidAttribute))!).EntityGuid),
-                EntityPK = new Guid(user.Id),
-                Entity = JsonConvert.SerializeObject(user)
-            });
-
-            return true;
+                throw;
+            }
+            catch (Exception ex)
+            {
+                throw new RpcException(new Status(StatusCode.Internal, $"Registration failed: {ex.Message}"));
+            }
         }
 
-        public async Task<LoginResponse> LoginAsync(LoginRequest loginRequest)
+        public async Task<string> LoginAsync(LoginDTO loginDTO)
         {
-            var user = await _userManager.FindByNameAsync(loginRequest.UserName);
-            if (user == null)
+            try
             {
-                throw new RpcException(new Status(StatusCode.NotFound, $"Login failed: {loginRequest.UserName}."));
+                var existingUser = await _userRepository.FindByUsernameAsync(loginDTO.Username);
+                if (existingUser == null)
+                {
+                    throw new RpcException(new Status(StatusCode.NotFound, "The user was not found."));
+                }
+
+                var verificationResult = _passwordHasher.VerifyHashedPassword(existingUser, existingUser.PasswordHash, loginDTO.Password);
+                if (verificationResult != PasswordVerificationResult.Success)
+                {
+                    throw new RpcException(new Status(StatusCode.InvalidArgument, "Invalid password."));
+                }
+
+                return await _tokenService.GenerateTokensAsync(existingUser.Username);
             }
-
-            var signInresult = await _signInManager.PasswordSignInAsync(user.UserName!, loginRequest.Password, false, false);
-            if (!signInresult.Succeeded)
+            catch (RpcException)
             {
-                throw new RpcException(new Status(StatusCode.InvalidArgument, $"Login failed: {loginRequest.Password}."));
+                throw;
             }
-
-            var generateTokensResult = await _tokenService.GenerateTokensAsync(loginRequest.UserName);
-
-            return new LoginResponse
+            catch (Exception ex)
             {
-                Id = user.Id,
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                MiddleName = user.MiddleName,
-                Email = user.Email,
-                AccessToken = generateTokensResult
-            };
+                throw new RpcException(new Status(StatusCode.Internal, $"Login failed: {ex.Message}"));
+            }
         }
 
-        public async Task<string> RefreshTokensAsync(string accessToken)
+        public async Task<string?> ValidateTokenAsync(ValidateTokenDTO validateTokenDTO)
         {
-            var claimsPrincipal = _tokenService.ValidateToken(accessToken);
-
-            var userId = claimsPrincipal.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
-
-            if (string.IsNullOrEmpty(userId))
+            try
             {
-                throw new RpcException(new Status(StatusCode.NotFound, $"Refresh tokens failed: NameIdentifier is null."));
-            }
+                var claimsPrincipal = _tokenService.ValidateToken(validateTokenDTO.AccessToken);
 
-            var user = await _userManager.FindByIdAsync(userId);
-            if (user == null)
+                var userId = claimsPrincipal.Claims.SingleOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+
+                if (string.IsNullOrEmpty(userId))
+                {
+                    throw new RpcException(new Status(StatusCode.InvalidArgument, $"Access token doesn't contain a user Id: NameIdentifier is null."));
+                }
+
+                var user = await _userRepository.FindByIdAsync(new Guid(userId));
+                if (user == null)
+                {
+                    throw new RpcException(new Status(StatusCode.NotFound, $"User not found: {userId}."));
+                }
+
+                if (user.RefreshTokenExpiryTime <= DateTime.UtcNow)
+                {
+                    throw new RpcException(new Status(StatusCode.Cancelled, $"Refresh token expired: {user.RefreshTokenExpiryTime}."));
+                }
+
+                if (_tokenService.IsTokenExpired(validateTokenDTO.AccessToken))
+                {
+                    return await _tokenService.GenerateAccessTokenAsync(user.Id);
+                }
+
+                return null;
+            }
+            catch (RpcException)
             {
-                throw new RpcException(new Status(StatusCode.NotFound, $"Refresh tokens failed: {userId}."));
+                throw;
             }
-
-            if (user.RefreshTokenExpiryTime <= DateTime.UtcNow)
+            catch (Exception ex)
             {
-                throw new RpcException(new Status(StatusCode.Cancelled, $"Refresh tokens failed: {user.RefreshTokenExpiryTime}."));
+                throw new RpcException(new Status(StatusCode.Internal, $"Validate token failed: {ex.Message}"));
             }
-
-            var newAccessToken = await _tokenService.GenerateAccessTokenAsync(user);
-            var newRefreshToken = _tokenService.GenerateRefreshToken();
-            var tokenSettings = await _settingsService.GetTokenSettingsAsync();
-
-            user.RefreshToken = newRefreshToken;
-            user.RefreshTokenExpiryTime = DateTime.Now.AddDays(tokenSettings.RefreshTokenExpiryDays);
-
-            var result = await _userManager.UpdateAsync(user);
-            if (!result.Succeeded)
-            {
-                var errors = string.Join("; ", result.Errors.Select(e => e.Description));
-                throw new RpcException(new Status(StatusCode.Aborted, $"Refresh tokens failed: {errors}."));
-            }
-
-            return newAccessToken;
         }
     }
 }

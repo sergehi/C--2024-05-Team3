@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["[next]/internal/font/google/inter_b35c0a41.module.css"],"sourcesContent":["@font-face {\n    font-family: '__Inter_Fallback_b35c0a';\n    src: local(\"Arial\");\n    ascent-override: 90.49%;\ndescent-override: 22.56%;\nline-gap-override: 0.00%;\nsize-adjust: 107.06%;\n\n}\n.className {\n    font-family: '__Inter_b35c0a', '__Inter_Fallback_b35c0a';\n    font-style: normal;\n\n}\n.variable {\n    --font-sans: '__Inter_b35c0a', '__Inter_Fallback_b35c0a';\n}\n"],"names":[],"mappings":"AAAA;;;;;;;;;AASA;;;;;AAKA"}},
+    {"offset": {"line": 18, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}}]
+}

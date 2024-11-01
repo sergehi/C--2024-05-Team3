@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+option csharp_namespace = "AuthorizationService.Shared.Protos";
+
+import "google/protobuf/empty.proto";
+
+package auth;
+
+message RegisterRequest {
+    string username = 1;
+    string password = 2;
+}
+
+message LoginRequest {
+    string username = 1;
+    string password = 2;
+}
+
+message LoginResponse {
+    string accessToken = 1;
+}
+
+message ValidateTokenRequest {
+    string accessToken = 1;
+}
+
+message ValidateTokenResponse {
+    string accessToken = 1;
+}
+
+service AuthService {
+    rpc Register (RegisterRequest) returns (google.protobuf.Empty);
+    rpc Login (LoginRequest) returns (LoginResponse);
+    rpc ValidateToken (ValidateTokenRequest) returns (ValidateTokenResponse);
+}

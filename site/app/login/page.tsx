@@ -1,40 +1,8 @@
-import { signIn, providerMap } from "@/auth"
-
-export default async function SignInPage(props: {
-  searchParams: { callbackUrl: string | undefined }
-}) {
+export default function Login() {
   return (
-    <div className="flex flex-col gap-2">
-      <form
-        action={async (formData) => {
-          "use server"
-          await signIn("credentials", formData)
-        }}
-      >
-        <label htmlFor="email">
-          Почта
-          <input name="email" id="email" />
-        </label>
-        <label htmlFor="password">
-          Пароль
-          <input name="password" id="password" />
-        </label>
-        <input type="submit" value="Войти" />
-      </form>
-      {Object.values(providerMap).map((provider) => (
-        <form
-          action={async () => {
-            "use server"
-            await signIn(provider.id, {
-              redirectTo: props.searchParams?.callbackUrl ?? "",
-            })
-          }}
-        >
-          <button type="submit">
-            <span>Войти с помощью {provider.name}</span>
-          </button>
-        </form>
-      ))}
-    </div>
-  )
+    <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
+      <div className="inline-block max-w-xl text-center justify-center">
+      </div>
+    </section>
+  );
 }

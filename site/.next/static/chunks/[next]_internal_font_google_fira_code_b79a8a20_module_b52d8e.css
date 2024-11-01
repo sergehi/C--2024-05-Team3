@@ -1,0 +1,20 @@
+/* [next]/internal/font/google/fira_code_b79a8a20.module.css [app-client] (css) */
+@font-face {
+  font-family: __Fira_Code_Fallback_b79a8a;
+  src: local(Arial);
+  ascent-override: 73.56%;
+  descent-override: 23.92%;
+  line-gap-override: 0.0%;
+  size-adjust: 134.59%;
+}
+
+.fira_code_b79a8a20-module__-fm2dq__className {
+  font-family: __Fira_Code_b79a8a, __Fira_Code_Fallback_b79a8a;
+  font-style: normal;
+}
+
+.fira_code_b79a8a20-module__-fm2dq__variable {
+  --font-mono: "__Fira_Code_b79a8a", "__Fira_Code_Fallback_b79a8a";
+}
+
+/*# sourceMappingURL=%5Bnext%5D_internal_font_google_fira_code_b79a8a20_module_b52d8e.css.map*/

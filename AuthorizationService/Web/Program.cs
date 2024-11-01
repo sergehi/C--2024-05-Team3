@@ -5,15 +5,14 @@ using AuthorizationService.Infrastructure.Repositories;
 using AuthorizationService.Infrastructure.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using AuthorizationService.Core.Profiles;
+using AuthorizationService.Web.GRPC;
 
 public class Program
 {
     public static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
-
-        builder.Logging.ClearProviders();
-        builder.Logging.AddConsole();
 
         var isTesting = builder.Environment.EnvironmentName == "IntegrationTesting";
 
@@ -29,21 +28,19 @@ public class Program
             builder.Services.AddAuthorization();
         }
 
-        builder.Services.AddDbContext<AuthDbContext>(options =>
-            options.UseNpgsql(builder.Configuration.GetConnectionString("PostgresConnection")));
+        builder.Services.AddDbContext<DataBaseContext>(options =>
+            options.UseNpgsql(builder.Configuration.GetConnectionString("DataBaseConnection")));
 
-        builder.Services.AddIdentity<User, IdentityRole>()
-            .AddEntityFrameworkStores<AuthDbContext>()
-            .AddDefaultTokenProviders();
+        builder.Services.AddScoped<IUserRepository, UserRepository>();
+        builder.Services.AddScoped<ITokenSettingsRepository, TokenSettingsRepository>();
 
-        builder.Services.Configure<RabbitMQSettings>(builder.Configuration.GetSection("RabbitMQ"));
+        builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 
         builder.Services.AddScoped<IAuthService, AuthService>();
-        builder.Services.AddScoped<IUserRepository, UserRepository>();
-        builder.Services.AddScoped<IEmailService, EmailService>();
-        builder.Services.AddScoped<ISettingsService, SettingsService>();
         builder.Services.AddScoped<ITokenService, TokenService>();
-        builder.Services.AddSingleton<IRabbitMQService, RabbitMQService>();
+        builder.Services.AddScoped<ISettingsService, SettingsService>();
+
+        builder.Services.AddAutoMapper(typeof(AuthProfile));
 
         builder.Services.AddGrpc();
 
@@ -57,7 +54,7 @@ public class Program
             app.UseAuthorization();
         }
 
-        app.MapGrpcService<AuthorizationService.Web.gRPC.AuthGrpcService>();
+        app.MapGrpcService<GRPCService>();
 
         app.Use(async (context, next) =>
         {
