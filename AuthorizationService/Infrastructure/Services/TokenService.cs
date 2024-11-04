@@ -7,6 +7,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Cryptography;
+using AuthorizationService.Shared.DTOs;
 
 namespace AuthorizationService.Infrastructure.Services
 {
@@ -23,7 +24,7 @@ namespace AuthorizationService.Infrastructure.Services
             _userRepository = userRepository;
         }
 
-        public async Task<string> GenerateTokensAsync(string username)
+        public async Task<TokensDTO> GenerateTokensAsync(string username)
         {
             try
             {
@@ -38,10 +39,17 @@ namespace AuthorizationService.Infrastructure.Services
                 var refreshToken = GenerateRefreshToken();
 
                 user.RefreshToken = refreshToken;
+                user.AccessToken = accessToken;
                 user.RefreshTokenExpiryTime = DateTime.Now.AddDays(tokenSettings.RefreshTokenExpiryDays);
                 await _userRepository.UpdateAsync(user);
 
-                return accessToken;
+                TokensDTO tokensDTO = new TokensDTO
+                {
+                    AccessToken = accessToken,
+                    RefreshToken = refreshToken,
+                };
+
+                return tokensDTO;
             }
             catch (RpcException)
             {
@@ -90,7 +98,18 @@ namespace AuthorizationService.Infrastructure.Services
                 signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
             );
 
-            return new JwtSecurityTokenHandler().WriteToken(token);
+            string newAccessToken = new JwtSecurityTokenHandler().WriteToken(token);
+
+            var user = await _userRepository.FindByIdAsync(userId);
+            if (user == null)
+            {
+                throw new RpcException(new Status(StatusCode.NotFound, $"Generate access token failed: {userId}."));
+            }
+
+            user.AccessToken = newAccessToken;
+            await _userRepository.UpdateAsync(user);
+
+            return newAccessToken;
         }
 
         private string GenerateRefreshToken()

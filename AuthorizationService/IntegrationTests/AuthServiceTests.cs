@@ -5,21 +5,25 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using ProtoContracts.Protos;
 using System;
 using System.Threading.Tasks;
 using Xunit;
 using Microsoft.Extensions.Configuration;
+using AuthorizationService.Shared.Protos;
+using Grpc.Core;
+using Google.Protobuf.WellKnownTypes;
+using AuthorizationService.Web.GRPC;
 
 namespace AuthorizationService.IntegrationTests
 {
     public class AuthServiceTests : IClassFixture<WebApplicationFactory<Program>>
     {
         private readonly WebApplicationFactory<Program> _factory;
-        private AuthService.AuthServiceClient? _authServiceClient;
+        private AuthProtoService.AuthProtoServiceClient? _gRPCServiceClient;
         private RegisterRequest? _registerRequest;
         private LoginRequest? _loginRequest;
-        private RefreshTokensRequest? _refreshTokensRequest;
+        private ValidateTokenRequest? _validateTokenRequest;
+        private ExtendTokenRequest? _extendTokenRequest;
 
         public AuthServiceTests(WebApplicationFactory<Program> factory)
         {
@@ -42,14 +46,14 @@ namespace AuthorizationService.IntegrationTests
                 builder.ConfigureServices(services =>
                 {
                     var descriptor = services.FirstOrDefault(
-                        d => d.ServiceType == typeof(DbContextOptions<AuthDbContext>));
+                        d => d.ServiceType == typeof(DbContextOptions<DataBaseContext>));
 
                     if (descriptor != null)
                     {
                         services.Remove(descriptor);
                     }
 
-                    services.AddDbContext<AuthDbContext>(options =>
+                    services.AddDbContext<DataBaseContext>(options =>
                     {
                         options.UseInMemoryDatabase("InMemoryAuthService");
                     });
@@ -58,7 +62,7 @@ namespace AuthorizationService.IntegrationTests
                     using (var scope = serviceProvider.CreateScope())
                     {
                         var scopedServices = scope.ServiceProvider;
-                        var db = scopedServices.GetRequiredService<AuthDbContext>();
+                        var db = scopedServices.GetRequiredService<DataBaseContext>();
 
                         db.Database.EnsureCreated();
 
@@ -87,9 +91,9 @@ namespace AuthorizationService.IntegrationTests
                 key);
         }
 
-        private void SeedTokenSettings(AuthDbContext dbContext)
+        private void SeedTokenSettings(DataBaseContext dbContext)
         {
-            dbContext.TokenSettings.Add(new TokenSettings
+            dbContext.TokensSettings.Add(new TokenSettings
             {
                 AccessTokenExpiryMinutes = 30,
                 RefreshTokenExpiryDays = 30
@@ -102,85 +106,101 @@ namespace AuthorizationService.IntegrationTests
             var client = _factory.CreateDefaultClient();
             var baseAddress = client.BaseAddress ?? new Uri("https://localhost:5001");
             var grpcChannel = GrpcChannel.ForAddress(baseAddress, new GrpcChannelOptions { HttpClient = client });
-            _authServiceClient = new AuthService.AuthServiceClient(grpcChannel);
+            _gRPCServiceClient = new AuthProtoService.AuthProtoServiceClient(grpcChannel);
         }
 
-        private async Task<RegisterResponse> RegisterUserAsync()
+        private async Task<Empty> RegisterUserAsync()
         {
-            if (_authServiceClient == null)
+            if (_gRPCServiceClient == null)
             {
                 throw new InvalidOperationException("gRPC client is not initialized.");
             }
-            var result = await _authServiceClient.RegisterAsync(_registerRequest);
+            
             _loginRequest = new LoginRequest
             {
-                UserName = _registerRequest!.UserName,
+                Username = _registerRequest!.Username,
                 Password = _registerRequest.Password,
             };
-            return result;
+
+            return await _gRPCServiceClient.RegisterAsync(_registerRequest);
         }
 
         private async Task<LoginResponse> LoginUserAsync()
         {
-            if (_authServiceClient == null)
+            if (_gRPCServiceClient == null)
             {
                 throw new InvalidOperationException("gRPC client is not initialized.");
             }
-            var result = await _authServiceClient.LoginAsync(_loginRequest);
-            _refreshTokensRequest = new RefreshTokensRequest
+
+            var result = await _gRPCServiceClient.LoginAsync(_loginRequest);
+            _validateTokenRequest = new ValidateTokenRequest
             {
                 AccessToken = result.AccessToken,
             };
+
+            _extendTokenRequest = new ExtendTokenRequest
+            {
+                AccessToken = result.AccessToken,
+                RefreshToken = result.RefreshToken,
+            };
+            
             return result;
         }
 
-        private async Task<RefreshTokensResponse> RefreshTokensAsync()
+        private async Task<Empty> ValidateTokenAsync()
         {
-            if (_authServiceClient == null)
+            if (_gRPCServiceClient == null)
             {
                 throw new InvalidOperationException("gRPC client is not initialized.");
             }
-            return await _authServiceClient.RefreshTokensAsync(_refreshTokensRequest);
+
+            return _gRPCServiceClient.ValidateToken(_validateTokenRequest);
+        }
+
+        private async Task<ExtendTokenResponse> ExtendTokenAsync()
+        {
+            if (_gRPCServiceClient == null)
+            {
+                throw new InvalidOperationException("gRPC client is not initialized.");
+            }
+
+            return _gRPCServiceClient.ExtendToken(_extendTokenRequest);
         }
 
         private void CreateRegisterRequest()
         {
             _registerRequest = new RegisterRequest
             {
-                UserName = "testuserregister",
-                Email = $"testuserregister@example.com",
+                Username = "testuserregister",
                 Password = "Password123!",
-                FirstName = "John",
-                LastName = "Doe",
-                MiddleName = "Middle"
             };
         }
 
         [Fact]
         public async Task Register_StoresUserInDatabase()
         {
+            if (_registerRequest == null)
+            {
+                throw new InvalidOperationException("_registerRequest is not initialized.");
+            }
+
             // Act
             var response = await RegisterUserAsync();
 
             using var scope = _factory.Services.CreateScope();
-            var dbContext = scope.ServiceProvider.GetRequiredService<AuthDbContext>();
-            var user = await dbContext.Users.FirstOrDefaultAsync(u => u.UserName == "testuserregister");
+            var dbContext = scope.ServiceProvider.GetRequiredService<DataBaseContext>();
+            var user = await dbContext.Users.FirstOrDefaultAsync(u => u.Username == _registerRequest.Username);
 
             // Assert
             Assert.NotNull(response);
-            Assert.True(response.Success);
             Assert.NotNull(user);
-            Assert.Equal(_registerRequest!.UserName, user.UserName);
-            Assert.Equal(_registerRequest.Email, user.Email);
-            Assert.Equal(_registerRequest.FirstName, user.FirstName);
-            Assert.Equal(_registerRequest.LastName, user.LastName);
-            Assert.Equal(_registerRequest.MiddleName, user.MiddleName);
-
+            Assert.Equal(_registerRequest!.Username, user.Username);
+            
             CleanupDatabase();
         }
 
         [Fact]
-        public async Task Login_ReturnUserDataWithToken()
+        public async Task Login_ReturnUserTokens()
         {
             await RegisterUserAsync();
 
@@ -190,28 +210,40 @@ namespace AuthorizationService.IntegrationTests
             // Assert
             Assert.NotNull(response);
             Assert.False(string.IsNullOrEmpty(response.AccessToken));
-            Assert.False(string.IsNullOrEmpty(response.Id));
-            Assert.Equal(_registerRequest!.Email, response.Email);
-            Assert.Equal(_registerRequest.FirstName, response.FirstName);
-            Assert.Equal(_registerRequest.LastName, response.LastName);
-            Assert.Equal(_registerRequest.MiddleName, response.MiddleName);
+            Assert.False(string.IsNullOrEmpty(response.RefreshToken));
 
             CleanupDatabase();
         }
 
         [Fact]
-        public async Task RefreshTokens_ReturnsNewAccessToken()
+        public async Task ValidateToken_ReturnsEmpty()
         {
             await RegisterUserAsync();
 
             await LoginUserAsync();
 
             // Act
-            var response = await _authServiceClient!.RefreshTokensAsync(_refreshTokensRequest);
+            var response = await _gRPCServiceClient!.ValidateTokenAsync(_validateTokenRequest);
 
             // Assert
             Assert.NotNull(response);
-            Assert.False(string.IsNullOrEmpty(response.AccessToken));
+
+            CleanupDatabase();
+        }
+
+        [Fact]
+        public async Task ExtendToken_ReturnsNewAccessToken()
+        {
+            await RegisterUserAsync();
+
+            await LoginUserAsync();
+
+            // Act
+            var response = await _gRPCServiceClient!.ExtendTokenAsync(_extendTokenRequest);
+
+            // Assert
+            Assert.NotNull(response);
+            Assert.NotNull(response.AccessToken);
 
             CleanupDatabase();
         }
@@ -219,7 +251,7 @@ namespace AuthorizationService.IntegrationTests
         private void CleanupDatabase()
         {
             using var scope = _factory.Services.CreateScope();
-            var db = scope.ServiceProvider.GetRequiredService<AuthDbContext>();
+            var db = scope.ServiceProvider.GetRequiredService<DataBaseContext>();
             db.Users.RemoveRange(db.Users);
             db.SaveChanges();
         }

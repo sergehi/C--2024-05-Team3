@@ -7,7 +7,7 @@ using AuthorizationService.Shared.Protos;
 
 namespace AuthorizationService.Web.GRPC
 {
-    public class GRPCService : AuthService.AuthServiceBase
+    public class GRPCService : AuthProtoService.AuthProtoServiceBase
     {
         public readonly IAuthService _authService;
         private readonly IMapper _mapper;
@@ -31,23 +31,29 @@ namespace AuthorizationService.Web.GRPC
         {
             LoginDTO loginDTO = _mapper.Map<LoginDTO>(request);
 
-            string accessToken = await _authService.LoginAsync(loginDTO);
+            TokensDTO tokensDTO = await _authService.LoginAsync(loginDTO);
 
-            return new LoginResponse
-            {
-                AccessToken = accessToken
-            };
+            return _mapper.Map<LoginResponse>(tokensDTO);
         }
 
-        public override async Task<ValidateTokenResponse> ValidateToken(ValidateTokenRequest request, ServerCallContext context)
+        public override async Task<Empty> ValidateToken(ValidateTokenRequest request, ServerCallContext context)
         {
             ValidateTokenDTO validateTokenDTO = _mapper.Map<ValidateTokenDTO>(request);
 
-            string? accessToken = await _authService.ValidateTokenAsync(validateTokenDTO);
+            await _authService.ValidateTokenAsync(validateTokenDTO);
 
-            return new ValidateTokenResponse
+            return new Empty();
+        }
+
+        public override async Task<ExtendTokenResponse> ExtendToken(ExtendTokenRequest request, ServerCallContext context)
+        {
+            TokensDTO tokensDTO = _mapper.Map<TokensDTO>(request);
+
+            string newAccessToken = await _authService.ExtendTokenAsync(tokensDTO);
+
+            return new ExtendTokenResponse
             {
-                AccessToken = accessToken ?? string.Empty,
+                AccessToken = newAccessToken
             };
         }
     }

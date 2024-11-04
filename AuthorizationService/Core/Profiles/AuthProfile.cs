@@ -13,6 +13,8 @@ namespace AuthorizationService.Core.Profiles
             CreateMap<RegisterRequest, RegisterDTO>();
             CreateMap<LoginRequest, LoginDTO>();
             CreateMap<ValidateTokenRequest, ValidateTokenDTO>();
+            CreateMap<TokensDTO, LoginResponse>();
+            CreateMap<ExtendTokenRequest, TokensDTO>();
         }
     }
 }

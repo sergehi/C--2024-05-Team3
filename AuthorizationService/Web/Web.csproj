@@ -22,13 +22,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\ProtoContracts\ProtoContracts.csproj" />
     <ProjectReference Include="..\Core\Core.csproj" />
     <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
-<<<<<<< Updated upstream
-=======
     <ProjectReference Include="..\Shared\Shared.csproj" />
->>>>>>> Stashed changes
   </ItemGroup>
 
 </Project>

@@ -49,7 +49,7 @@ namespace AuthorizationService.Infrastructure.Services
             }
         }
 
-        public async Task<string> LoginAsync(LoginDTO loginDTO)
+        public async Task<TokensDTO> LoginAsync(LoginDTO loginDTO)
         {
             try
             {
@@ -77,7 +77,7 @@ namespace AuthorizationService.Infrastructure.Services
             }
         }
 
-        public async Task<string?> ValidateTokenAsync(ValidateTokenDTO validateTokenDTO)
+        public async Task ValidateTokenAsync(ValidateTokenDTO validateTokenDTO)
         {
             try
             {
@@ -101,12 +101,10 @@ namespace AuthorizationService.Infrastructure.Services
                     throw new RpcException(new Status(StatusCode.Cancelled, $"Refresh token expired: {user.RefreshTokenExpiryTime}."));
                 }
 
-                if (_tokenService.IsTokenExpired(validateTokenDTO.AccessToken))
+                if (user.AccessToken != validateTokenDTO.AccessToken)
                 {
-                    return await _tokenService.GenerateAccessTokenAsync(user.Id);
+                    throw new RpcException(new Status(StatusCode.InvalidArgument, $"Wrong access token."));
                 }
-
-                return null;
             }
             catch (RpcException)
             {
@@ -115,6 +113,52 @@ namespace AuthorizationService.Infrastructure.Services
             catch (Exception ex)
             {
                 throw new RpcException(new Status(StatusCode.Internal, $"Validate token failed: {ex.Message}"));
+            }
+        }
+
+        public async Task<string> ExtendTokenAsync(TokensDTO tokensDTO)
+        {
+            try
+            {
+                var claimsPrincipal = _tokenService.ValidateToken(tokensDTO.AccessToken);
+
+                var userId = claimsPrincipal.Claims.SingleOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+
+                if (string.IsNullOrEmpty(userId))
+                {
+                    throw new RpcException(new Status(StatusCode.InvalidArgument, $"Access token doesn't contain a user Id: NameIdentifier is null."));
+                }
+
+                var user = await _userRepository.FindByIdAsync(new Guid(userId));
+                if (user == null)
+                {
+                    throw new RpcException(new Status(StatusCode.NotFound, $"User not found: {userId}."));
+                }
+
+                if (user.RefreshTokenExpiryTime <= DateTime.UtcNow)
+                {
+                    throw new RpcException(new Status(StatusCode.Cancelled, $"Refresh token expired: {user.RefreshTokenExpiryTime}."));
+                }
+
+                if (user.RefreshToken != tokensDTO.RefreshToken)
+                {
+                    throw new RpcException(new Status(StatusCode.InvalidArgument, $"Wrong refresh token."));
+                }
+
+                if (user.AccessToken != tokensDTO.AccessToken)
+                {
+                    throw new RpcException(new Status(StatusCode.InvalidArgument, $"Wrong access token."));
+                }
+
+                return await _tokenService.GenerateAccessTokenAsync(user.Id);
+            }
+            catch (RpcException)
+            {
+                throw;
+            }
+            catch (Exception ex)
+            {
+                throw new RpcException(new Status(StatusCode.Internal, $"Extend token failed: {ex.Message}"));
             }
         }
     }

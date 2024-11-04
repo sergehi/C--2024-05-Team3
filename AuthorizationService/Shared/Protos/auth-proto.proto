@@ -18,18 +18,25 @@ message LoginRequest {
 
 message LoginResponse {
     string accessToken = 1;
+    string refreshToken = 2;
 }
 
 message ValidateTokenRequest {
     string accessToken = 1;
 }
 
-message ValidateTokenResponse {
+message ExtendTokenRequest {
+    string accessToken = 1;
+    string refreshToken = 2;
+}
+
+message ExtendTokenResponse {
     string accessToken = 1;
 }
 
-service AuthService {
+service AuthProtoService {
     rpc Register (RegisterRequest) returns (google.protobuf.Empty);
     rpc Login (LoginRequest) returns (LoginResponse);
-    rpc ValidateToken (ValidateTokenRequest) returns (ValidateTokenResponse);
+    rpc ValidateToken (ValidateTokenRequest) returns (google.protobuf.Empty);
+    rpc ExtendToken (ExtendTokenRequest) returns (ExtendTokenResponse);
 }

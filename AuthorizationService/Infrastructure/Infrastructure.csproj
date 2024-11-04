@@ -10,12 +10,8 @@
   <ProjectReference Include="..\..\Logger\BLL\Logger.BusinessLogic.Services.Abstractions\Logger.BusinessLogic.Services.Abstractions.csproj" />
   <ProjectReference Include="..\..\Logger\BLL\Logger.BusinessLogic.DTO\Logger.BusinessLogic.DTO.csproj" />
   <ProjectReference Include="..\..\Logger\DAL\Logger.DataAccess.Entities\Logger.DataAccess.Entities.csproj" />
-<<<<<<< Updated upstream
-  <ProjectReference Include="..\..\Common\Common.csproj" />
-  <ProjectReference Include="..\Core\Core.csproj" />
-=======
   <ProjectReference Include="..\Shared\Shared.csproj" />
->>>>>>> Stashed changes
+  <ProjectReference Include="..\Core\Core.csproj" />
 </ItemGroup>
 
 <ItemGroup>

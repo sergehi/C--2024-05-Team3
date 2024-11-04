@@ -5,7 +5,8 @@ namespace AuthorizationService.Core.Interfaces
     public interface IAuthService
     {
         Task RegisterAsync(RegisterDTO registerDTO);
-        Task<string> LoginAsync(LoginDTO loginDTO);
-        Task<string?> ValidateTokenAsync(ValidateTokenDTO validateTokenDTO);
+        Task<TokensDTO> LoginAsync(LoginDTO loginDTO);
+        Task ValidateTokenAsync(ValidateTokenDTO validateTokenDTO);
+        Task<string> ExtendTokenAsync(TokensDTO tokensDTO);
     }
 }
