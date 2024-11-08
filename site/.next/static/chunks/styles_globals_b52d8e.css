@@ -1,4 +1,4 @@
-/* [project]/styles/globals.css [app-client] (css) */
+/* [project]/site/styles/globals.css [app-client] (css) */
 *, :before, :after {
   box-sizing: border-box;
   border-width: 0;
@@ -1538,6 +1538,10 @@ img, video {
 
 .gap-4 {
   gap: 1rem;
+}
+
+.gap-10 {
+  gap: 2.5rem;
 }
 
 .gap-x-0 {

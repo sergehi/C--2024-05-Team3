@@ -50,11 +50,11 @@ export default function RootLayout({
               <Link
                 isExternal
                 className="flex items-center gap-1 text-current"
-                href="https://github.com/sergehi/C--2024-05-Team3"
-                title="Team 3 repository"
+                href={siteConfig.links.github}
+                title="Command 3 GitHub"
               >
                 <span className="text-default-600">Powered by</span>
-                <p className="text-primary">Team 3</p>
+                <p className="text-primary">Command 3</p>
               </Link>
             </footer>
           </div>
