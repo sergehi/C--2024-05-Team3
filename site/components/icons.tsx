@@ -2,6 +2,24 @@ import * as React from "react";
 
 import { IconSvgProps } from "@/types";
 
+export const LogoutIcon: React.FC<{ size?: number }> = ({ size = 24 }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5m0 0l-5-5m5 5H9"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
 export const Logo: React.FC<IconSvgProps> = ({
   size = 36,
   width,

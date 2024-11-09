@@ -1,8 +1,9 @@
+using AuthorizationService.Shared.Protos;
 using ChatProto;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.OpenApi.Models;
 using TaskTracker.Gateway.Configutions;
-using TestGrpcService1; // Подключаем пространство имен gRPC для Service1
+using TestGrpcService1; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ gRPC пїЅпїЅпїЅ Service1
 
 namespace TaskTracker.Gateway
 {
@@ -12,22 +13,63 @@ namespace TaskTracker.Gateway
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            builder.WebHost.ConfigureKestrel(options =>
+            {
+                options.ConfigureHttpsDefaults(httpsOptions =>
+                {
+                    httpsOptions.SslProtocols = System.Security.Authentication.SslProtocols.Tls12;
+                });
+            });
+
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowSpecificOrigins",
+                    policy =>
+                    {
+                        policy.WithOrigins("https://localhost:3000")
+                              .AllowAnyHeader()
+                              .AllowAnyMethod()
+                              .AllowCredentials();
+                    });
+            });
+
             var grpcConfig = builder.Configuration.GetSection("GrpcServices").Get<GrpcServiceConfig>();
 
             //gRpC services registration
             builder.Services.AddGrpcClient<Greeter.GreeterClient>(options =>
             {
                 options.Address = new Uri(grpcConfig.GreeterServiceUrl);
+            })
+            .ConfigurePrimaryHttpMessageHandler(() =>
+            {
+                var handler = new HttpClientHandler();
+                handler.ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
+                return handler;
             });
-       
+
             builder.Services.AddGrpcClient<Conversation.ConversationClient>(options =>
             {
                 options.Address = new Uri(grpcConfig.ChatServiceUrl);
+            })
+            .ConfigurePrimaryHttpMessageHandler(() =>
+            {
+                var handler = new HttpClientHandler();
+                handler.ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
+                return handler;
             });
 
+            builder.Services.AddGrpcClient<AuthProtoService.AuthProtoServiceClient>(options =>
+            {
+                options.Address = new Uri(grpcConfig.AuthorizationServiceUrl);
+            })
+            .ConfigurePrimaryHttpMessageHandler(() =>
+            {
+                var handler = new HttpClientHandler();
+                handler.ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
+                return handler;
+            });
 
             var swaggerServices = builder.Configuration.GetSection("SwaggerServices").Get<List<SwaggerServiceConfig>>();
-
 
             builder.Services.AddSwaggerGen(c =>
             {
@@ -59,8 +101,9 @@ namespace TaskTracker.Gateway
                     }
                 });
             }
-            app.UseRouting();
             app.UseHttpsRedirection();
+            app.UseRouting();
+            app.UseCors("AllowSpecificOrigins");
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {

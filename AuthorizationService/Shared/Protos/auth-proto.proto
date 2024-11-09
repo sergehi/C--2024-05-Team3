@@ -19,6 +19,7 @@ message LoginRequest {
 message LoginResponse {
     string accessToken = 1;
     string refreshToken = 2;
+    string id = 3;
 }
 
 message ValidateTokenRequest {

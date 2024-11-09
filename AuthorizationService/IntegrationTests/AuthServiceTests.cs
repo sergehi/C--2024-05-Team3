@@ -115,7 +115,7 @@ namespace AuthorizationService.IntegrationTests
             {
                 throw new InvalidOperationException("gRPC client is not initialized.");
             }
-            
+
             _loginRequest = new LoginRequest
             {
                 Username = _registerRequest!.Username,
@@ -143,11 +143,11 @@ namespace AuthorizationService.IntegrationTests
                 AccessToken = result.AccessToken,
                 RefreshToken = result.RefreshToken,
             };
-            
+
             return result;
         }
 
-        private async Task<Empty> ValidateTokenAsync()
+        private Empty ValidateToken()
         {
             if (_gRPCServiceClient == null)
             {
@@ -157,7 +157,7 @@ namespace AuthorizationService.IntegrationTests
             return _gRPCServiceClient.ValidateToken(_validateTokenRequest);
         }
 
-        private async Task<ExtendTokenResponse> ExtendTokenAsync()
+        private ExtendTokenResponse ExtendToken()
         {
             if (_gRPCServiceClient == null)
             {
@@ -195,7 +195,7 @@ namespace AuthorizationService.IntegrationTests
             Assert.NotNull(response);
             Assert.NotNull(user);
             Assert.Equal(_registerRequest!.Username, user.Username);
-            
+
             CleanupDatabase();
         }
 

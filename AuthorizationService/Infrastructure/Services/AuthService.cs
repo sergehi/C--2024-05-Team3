@@ -2,9 +2,10 @@ using AuthorizationService.Core.Entities;
 using Microsoft.AspNetCore.Identity;
 using AuthorizationService.Core.Interfaces;
 using Grpc.Core;
-using AuthorizationService.Shared.DTOs;
 using AutoMapper;
 using System.Security.Claims;
+using AuthorizationService.Shared.Protos;
+using AuthorizationService.Shared.DTOs;
 
 namespace AuthorizationService.Infrastructure.Services
 {
@@ -23,19 +24,19 @@ namespace AuthorizationService.Infrastructure.Services
             _tokenService = tokenService;
         }
 
-        public async Task RegisterAsync(RegisterDTO registerDTO)
+        public async Task RegisterAsync(RegisterRequest registerRequest)
         {
             try
             {
-                var existingUser = await _userRepository.FindByUsernameAsync(registerDTO.Username);
+                var existingUser = await _userRepository.FindByUsernameAsync(registerRequest.Username);
                 if (existingUser != null)
                 {
                     throw new RpcException(new Status(StatusCode.AlreadyExists, "User already exists."));
                 }
 
-                User user = _mapper.Map<User>(registerDTO);
+                User user = _mapper.Map<User>(registerRequest);
 
-                user.PasswordHash = _passwordHasher.HashPassword(user, registerDTO.Password);
+                user.PasswordHash = _passwordHasher.HashPassword(user, registerRequest.Password);
 
                 await _userRepository.CreateAsync(user);
             }
@@ -49,23 +50,30 @@ namespace AuthorizationService.Infrastructure.Services
             }
         }
 
-        public async Task<TokensDTO> LoginAsync(LoginDTO loginDTO)
+        public async Task<LoginResponse> LoginAsync(LoginRequest loginRequest)
         {
             try
             {
-                var existingUser = await _userRepository.FindByUsernameAsync(loginDTO.Username);
+                var existingUser = await _userRepository.FindByUsernameAsync(loginRequest.Username);
                 if (existingUser == null)
                 {
                     throw new RpcException(new Status(StatusCode.NotFound, "The user was not found."));
                 }
 
-                var verificationResult = _passwordHasher.VerifyHashedPassword(existingUser, existingUser.PasswordHash, loginDTO.Password);
+                var verificationResult = _passwordHasher.VerifyHashedPassword(existingUser, existingUser.PasswordHash, loginRequest.Password);
                 if (verificationResult != PasswordVerificationResult.Success)
                 {
                     throw new RpcException(new Status(StatusCode.InvalidArgument, "Invalid password."));
                 }
 
-                return await _tokenService.GenerateTokensAsync(existingUser.Username);
+                TokensDTO tokensDTO = await _tokenService.GenerateTokensAsync(existingUser.Username);
+
+                return new LoginResponse
+                {
+                    AccessToken = tokensDTO.AccessToken,
+                    RefreshToken = tokensDTO.RefreshToken,
+                    Id = existingUser.Id.ToString(),
+                };
             }
             catch (RpcException)
             {
@@ -77,11 +85,11 @@ namespace AuthorizationService.Infrastructure.Services
             }
         }
 
-        public async Task ValidateTokenAsync(ValidateTokenDTO validateTokenDTO)
+        public async Task ValidateTokenAsync(ValidateTokenRequest validateTokenRequest)
         {
             try
             {
-                var claimsPrincipal = _tokenService.ValidateToken(validateTokenDTO.AccessToken);
+                var claimsPrincipal = _tokenService.ValidateToken(validateTokenRequest.AccessToken);
 
                 var userId = claimsPrincipal.Claims.SingleOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
 
@@ -101,7 +109,7 @@ namespace AuthorizationService.Infrastructure.Services
                     throw new RpcException(new Status(StatusCode.Cancelled, $"Refresh token expired: {user.RefreshTokenExpiryTime}."));
                 }
 
-                if (user.AccessToken != validateTokenDTO.AccessToken)
+                if (user.AccessToken != validateTokenRequest.AccessToken)
                 {
                     throw new RpcException(new Status(StatusCode.InvalidArgument, $"Wrong access token."));
                 }
@@ -116,11 +124,11 @@ namespace AuthorizationService.Infrastructure.Services
             }
         }
 
-        public async Task<string> ExtendTokenAsync(TokensDTO tokensDTO)
+        public async Task<ExtendTokenResponse> ExtendTokenAsync(ExtendTokenRequest extendTokenRequest)
         {
             try
             {
-                var claimsPrincipal = _tokenService.ValidateToken(tokensDTO.AccessToken);
+                var claimsPrincipal = _tokenService.ValidateToken(extendTokenRequest.AccessToken);
 
                 var userId = claimsPrincipal.Claims.SingleOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
 
@@ -140,17 +148,20 @@ namespace AuthorizationService.Infrastructure.Services
                     throw new RpcException(new Status(StatusCode.Cancelled, $"Refresh token expired: {user.RefreshTokenExpiryTime}."));
                 }
 
-                if (user.RefreshToken != tokensDTO.RefreshToken)
+                if (user.RefreshToken != extendTokenRequest.RefreshToken)
                 {
                     throw new RpcException(new Status(StatusCode.InvalidArgument, $"Wrong refresh token."));
                 }
 
-                if (user.AccessToken != tokensDTO.AccessToken)
+                if (user.AccessToken != extendTokenRequest.AccessToken)
                 {
                     throw new RpcException(new Status(StatusCode.InvalidArgument, $"Wrong access token."));
                 }
 
-                return await _tokenService.GenerateAccessTokenAsync(user.Id);
+                return new ExtendTokenResponse
+                {
+                    AccessToken = await _tokenService.GenerateAccessTokenAsync(user.Id),
+                };
             }
             catch (RpcException)
             {

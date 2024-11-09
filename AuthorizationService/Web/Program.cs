@@ -5,8 +5,8 @@ using AuthorizationService.Infrastructure.Repositories;
 using AuthorizationService.Infrastructure.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using AuthorizationService.Core.Profiles;
 using AuthorizationService.Web.GRPC;
+using AuthorizationService.Core.Profiles;
 
 public class Program
 {

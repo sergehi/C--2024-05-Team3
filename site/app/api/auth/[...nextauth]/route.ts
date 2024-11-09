@@ -1,52 +1,74 @@
-import NextAuth, { NextAuthOptions, User as NextAuthUser } from "next-auth";
+import NextAuth, { NextAuthOptions, User } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import API_URLS from "@/config/api-urls";
+import ApiUrls from "@/config/api-urls";
 
-interface ExtendedUser extends NextAuthUser {
-    accessToken: string;
+interface ExtendedSession {
+    accessToken?: unknown;
+    refreshToken?: unknown;
 }
 
-const options: NextAuthOptions = {
+interface ExtendedUser extends User {
+    accessToken?: string;
+    refreshToken?: string;
+}
+
+const authOptions: NextAuthOptions = {
     providers: [
         CredentialsProvider({
-            name: "Credentials",
+            name: 'Credentials',
             credentials: {
-                login: { label: "Login", type: "text" },
-                password: { label: "Password", type: "password" },
+                username: { label: 'Username', type: 'text' },
+                password: { label: 'Password', type: 'password' },
             },
-            async authorize(credentials) {
-                const res = await fetch(API_URLS.authLogin, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        login: credentials?.login,
-                        password: credentials?.password,
-                    }),
-                });
+            authorize: async (credentials) => {
+                try {
+                    const response = await fetch(ApiUrls.authorizationService.login, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            username: credentials?.username,
+                            password: credentials?.password,
+                        }),
+                    });
 
-                const user = await res.json();
+                    const data = await response.json();
 
-                if (res.ok && user) {
-                    return { ...user, accessToken: user.token } as ExtendedUser;
+                    console.log(data);
+
+                    if (response.ok) {
+                        return data;
+                    }
+
+                    throw new Error(JSON.stringify({ status: response.status, message: data.message }));
+                } catch (error) {
+                    return Promise.reject(error);
                 }
-
-                return null;
             },
         }),
     ],
+    session: {
+        strategy: "jwt",
+    },
     callbacks: {
         async jwt({ token, user }) {
             if (user) {
-                token.accessToken = (user as ExtendedUser).accessToken;
+                const extendedUser = user as ExtendedUser;
+                token.accessToken = extendedUser.accessToken;
+                token.refreshToken = extendedUser.refreshToken;
             }
             return token;
         },
         async session({ session, token }) {
-            session.accessToken = token.accessToken;
+            const extendedSession = session as ExtendedSession;
+            extendedSession.accessToken = token.accessToken;
+            extendedSession.refreshToken = token.refreshToken;
             return session;
         },
     },
-    secret: process.env.NEXTAUTH_SECRET
+    pages: {
+        signIn: '/login',
+    },
 };
 
-export default NextAuth(options);
+export const GET = NextAuth(authOptions);
+export const POST = NextAuth(authOptions);
