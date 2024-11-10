@@ -14,7 +14,7 @@
     <ProjectReference Include="..\..\DAL\TasksService.DataAccess.Entities\TasksService.DataAccess.Entities.csproj" />
     <ProjectReference Include="..\..\DAL\TasksService.DataAccess.Repositories.Abstractions\TasksService.DataAccess.Repositories.Abstractions.csproj" />
     <ProjectReference Include="..\TasksService.BusinessLogic.Services.Abstractions\TasksService.BusinessLogic.Services.Abstractions.csproj" />
-    <ProjectReference Include="..\TaslsService.BusinessLogic.DTO\TaslsService.BusinessLogic.DTO.csproj" />
+    <ProjectReference Include="..\TasksService.BusinessLogic.DTO\TasksService.BusinessLogic.DTO.csproj" />
   </ItemGroup>
 
 </Project>

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TaslsService.BusinessLogic.DTO
+namespace TasksService.BusinessLogic.DTO
 {
     public class CompanyDTO
     {

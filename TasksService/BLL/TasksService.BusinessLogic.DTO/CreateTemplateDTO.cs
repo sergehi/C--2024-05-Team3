@@ -4,15 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TaslsService.BusinessLogic.DTO
+namespace TasksService.BusinessLogic.DTO
 {
-    public class TemplateItemDTO
+    public class CreateTemplateDTO
     {
-        public long Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public string? Description { get; set; }
         public long? CompanyId { get; set; }
-        public List<NodeDTO> Nodes { get; set; } = new List<NodeDTO>();
-        public List<EdgeDTO> Edges { get; set; } = new List<EdgeDTO>();
+        public List<TemplateNodeDTO> Nodes { get; set; } = new List<TemplateNodeDTO>();
+        public List<TemplateEdgeDTO> Edges { get; set; } = new List<TemplateEdgeDTO>();
     }
 }

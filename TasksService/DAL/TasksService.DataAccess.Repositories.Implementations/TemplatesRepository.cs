@@ -11,13 +11,15 @@ using Common.Repositories;
 
 namespace TasksService.DataAccess.Repositories.Implementations
 {
-    public class TemplatesRepository : ITasksRepository
+    public class TemplatesRepository : ITaskTemplatesRepository
     {
         private readonly IConfiguration _configuration;
+        private readonly IHistoryRepository _historyRepo;
 
-        public TemplatesRepository(IConfiguration configuration)
+        public TemplatesRepository(IConfiguration configuration, IHistoryRepository historyRepo)
         {
             _configuration = configuration;
+            _historyRepo = historyRepo;
         }
 
         public async Task<List<WfDefinitionsTemplate>> GetTemplateList(long Id, long CompanyId)
@@ -55,14 +57,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
         {
             try
             {
-                WfDefinitionsTemplate newRec = new WfDefinitionsTemplate()
-                {
-                    Id = Id,
-                    CompanyId = CompanyId,
-                    Description = Description ?? "",
-                    Name = Name ?? "",
-                };
-                long id = await createOrUpdateTempl(newRec, Nodes, Edges);
+                long id = await updateTemplate(Id, Name, Description, CompanyId, Nodes, Edges);
                 return id != 0;
             }
             catch (Exception ex)
@@ -76,14 +71,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
         {
             try
             {
-                WfDefinitionsTemplate newRec = new WfDefinitionsTemplate()
-                {
-                    Id = 0,
-                    CompanyId = CompanyId,
-                    Description = Description ?? "",
-                    Name = Name ?? "",
-                };
-                long id = await createOrUpdateTempl(newRec, Nodes, Edges);
+                long id = await createTemplate(Name, Description, CompanyId, Nodes, Edges);
                 return id;
             }
             catch (Exception ex)
@@ -112,9 +100,8 @@ namespace TasksService.DataAccess.Repositories.Implementations
         }
 
 
-        private async Task<long> createOrUpdateTempl(WfDefinitionsTemplate rec, List<WfNodesTemplate> Nodes, List<WfEdgesTemplate> Edges)
+        private async Task<long> createTemplate(string Name, string Description, long CompanyId, List<WfNodesTemplate> Nodes, List<WfEdgesTemplate> Edges)
         {
-            var result = 0L;
             try
             {
                 using (var dbContext = new TasksDbContext(_configuration))
@@ -122,17 +109,135 @@ namespace TasksService.DataAccess.Repositories.Implementations
                     using var transaction = dbContext.Database.BeginTransaction();
                     try
                     {
-                        if (rec.Id != 0)
+                        var templateRecord = new WfDefinitionsTemplate()
                         {
-                            dbContext.WfdefinitionsTempls.Attach(rec);
-                            dbContext.Entry(rec).State = EntityState.Modified;
+                            CompanyId = CompanyId,
+                            Description = Description ?? "",
+                            Name = Name ?? ""
+                        };
+                        foreach (var node in Nodes) 
+                        {
+                            var  edges_from = Edges.Where(x => x.NodeFrom == node.InternalNum);
+                            var edges_to = Edges.Where(x => x.NodeTo == node.InternalNum);
+                            foreach(var edge in edges_from)
+                                node.WfedgesTemplNodeFromNavigations.Add(edge);
+                            foreach (var edge in edges_to)
+                                node.WfedgesTemplNodeToNavigations.Add(edge);
+
+                            templateRecord.WfnodesTempls.Add(node);
+                        }
+                        dbContext.WfdefinitionsTempls.Add(templateRecord);
+                        await dbContext.SaveChangesAsync();
+                        transaction.Commit();
+                        return templateRecord.Id;
+
+                    }
+                    catch (Exception)
+                    {
+                        transaction.Rollback();
+                        throw;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+        }
+
+
+        private async Task<long> updateTemplate(long Id, string Name, string Description, long CompanyId, List<WfNodesTemplate> Nodes, List<WfEdgesTemplate> Edges)
+        {
+            try
+            {
+                using (var dbContext = new TasksDbContext(_configuration))
+                {
+                    using var transaction = dbContext.Database.BeginTransaction();
+                    try
+                    {
+                        var templateRecord = new WfDefinitionsTemplate()
+                        {
+                            Id = Id,
+                            CompanyId = CompanyId,
+                            Description = Description ?? "",
+                            Name = Name ?? ""
+                        };
+                        templateRecord.WfnodesTempls.Clear();
+                        foreach (var node in Nodes)
+                        {
+                            var edges_from = Edges.Where(x => x.NodeFrom == node.InternalNum);
+                            var edges_to = Edges.Where(x => x.NodeTo == node.InternalNum);
+                            foreach (var edge in edges_from)
+                                node.WfedgesTemplNodeFromNavigations.Add(edge);
+                            foreach (var edge in edges_to)
+                                node.WfedgesTemplNodeToNavigations.Add(edge);
+
+                            templateRecord.WfnodesTempls.Add(node);
+                        }
+
+                        dbContext.WfdefinitionsTempls.Update(templateRecord);
+                        await dbContext.SaveChangesAsync();
+                        transaction.Commit();
+                        return templateRecord.Id;
+
+                    }
+                    catch (Exception)
+                    {
+                        transaction.Rollback();
+                        throw;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+        }
+
+
+
+        private async Task<long> createOrUpdateTempl(long Id, string Name, string Description, long CompanyId, List<WfNodesTemplate> Nodes, List<WfEdgesTemplate> Edges)
+        {
+            var result = 0L;
+            var templateRecord = new WfDefinitionsTemplate()
+            {
+                Id = Id,
+                CompanyId = CompanyId,
+                Description = Description ?? "",
+                Name = Name ?? "",
+            };
+
+            try
+            {
+                using (var dbContext = new TasksDbContext(_configuration))
+                {
+                    using var transaction = dbContext.Database.BeginTransaction();
+                    try
+                    {
+                        if (templateRecord.Id != 0)
+                        {
+                            templateRecord = await dbContext.WfdefinitionsTempls.FirstOrDefaultAsync(x => x.Id == Id);
+                            if (null == templateRecord)
+                                throw new Exception($"Обновляемая запись шаблона с идентификатором {Id} в базе не найдена");
+
+                            templateRecord.CompanyId = CompanyId;
+                            templateRecord.Name = Name;
+                            templateRecord.Description = Description;
+
+                            dbContext.WfdefinitionsTempls.Update(templateRecord);
+                            //dbContext.WfdefinitionsTempls.Attach(rec);
+                            //dbContext.Entry(rec).State = EntityState.Modified;
                         }
                         else
-                            dbContext.WfdefinitionsTempls.Add(rec);
+                        {
 
-
+                            dbContext.WfdefinitionsTempls.Add(templateRecord);
+                        }
                         await dbContext.SaveChangesAsync();
-                        result = rec.Id;
+                        result = templateRecord.Id;
+
 
                         List<WfNodesTemplate> temp_nodes = new List<WfNodesTemplate>();
                         foreach (var wfNode in Nodes)
@@ -140,12 +245,13 @@ namespace TasksService.DataAccess.Repositories.Implementations
                             //var wfNode = WfMapper.messageNodeToWfnodesTempl(node);
                             if (null != wfNode)
                             {
-                                wfNode.DefinitionId = rec.Id;
+                                wfNode.DefinitionId = templateRecord.Id;
 
                                 if (wfNode.Id != 0)
                                 {
-                                    dbContext.WfnodesTempls.Attach(wfNode);
-                                    dbContext.Entry(wfNode).State = EntityState.Modified;
+                                    dbContext.WfnodesTempls.Update(wfNode);
+                                    //dbContext.WfnodesTempls.Attach(wfNode);
+                                    //dbContext.Entry(wfNode).State = EntityState.Modified;
                                 }
                                 else
                                     dbContext.WfnodesTempls.Add(wfNode);
@@ -169,8 +275,10 @@ namespace TasksService.DataAccess.Repositories.Implementations
                                     fwEdge.NodeTo = foundTo.Id;
                                     if (fwEdge.Id != 0)
                                     {
-                                        dbContext.WfedgesTempls.Attach(fwEdge);
-                                        dbContext.Entry(fwEdge).State = EntityState.Modified;
+                                        //dbContext.WfedgesTempls.Attach(fwEdge);
+                                        //dbContext.Entry(fwEdge).State = EntityState.Modified;
+                                        dbContext.WfedgesTempls.Update(fwEdge);
+
                                     }
                                     else
                                         dbContext.WfedgesTempls.Add(fwEdge);

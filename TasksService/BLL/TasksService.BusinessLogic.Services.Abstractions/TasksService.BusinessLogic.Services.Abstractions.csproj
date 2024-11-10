@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TaslsService.BusinessLogic.DTO\TaslsService.BusinessLogic.DTO.csproj" />
+    <ProjectReference Include="..\TasksService.BusinessLogic.DTO\TasksService.BusinessLogic.DTO.csproj" />
   </ItemGroup>
 
 </Project>
