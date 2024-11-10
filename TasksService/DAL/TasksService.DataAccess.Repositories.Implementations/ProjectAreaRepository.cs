@@ -56,7 +56,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
             }
         }
 
-        public async Task<bool> ModifyProjectArea(long userId, long changeFlags, ProjectArea area)
+        public async Task<bool> ModifyProjectArea(Guid userId, long changeFlags, ProjectArea area)
         {
             try
             {
@@ -74,7 +74,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
             }
         }
 
-        public async Task<long> CreateProjectArea(long userId, ProjectArea area)
+        public async Task<long> CreateProjectArea(Guid userId, ProjectArea area)
         {
             try
             {
@@ -93,7 +93,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
 
         }
 
-        public async Task<bool> DeleteProjectArea(long userId, long areaId)
+        public async Task<bool> DeleteProjectArea(Guid userId, long areaId)
         {
             try
             {

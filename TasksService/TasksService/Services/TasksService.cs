@@ -87,7 +87,7 @@ namespace TasksService.Services
             try
             {
                 var res = new TasksListReply();
-                var templateItems = await _service.GetTasksList(request.UserId, request.CompanyId, request.ProjectId, request.AreaId);
+                var templateItems = await _service.GetTasksList(_mapper.Map<Guid>(request.UserId), request.CompanyId, request.ProjectId, request.AreaId);
                 res.Tasks.AddRange(templateItems.Select(item => _mapper.Map<TaskModel>(item)));
                 return res;
             }
@@ -114,7 +114,7 @@ namespace TasksService.Services
         {
             try
             {
-                var id = await _service.CreateTask(request.UserId, _mapper.Map<CreateTaskDTO>(request.Task));
+                var id = await _service.CreateTask(_mapper.Map<Guid>(request.UserId), _mapper.Map<CreateTaskDTO>(request.Task));
                 return _mapper.Map<PkMessage>(id);
             }
             catch (Exception)
@@ -127,7 +127,7 @@ namespace TasksService.Services
         {
             try
             {
-                var succes = await _service.DeleteTask(request.UserId, request.TaskId);
+                var succes = await _service.DeleteTask(_mapper.Map<Guid>(request.UserId), request.TaskId);
                 return _mapper.Map<BoolReply>(succes);
             }
             catch (Exception)
@@ -158,7 +158,7 @@ namespace TasksService.Services
         {
             try
             {
-                var succes = await _service.ModifyTaskUrgency(request.UserId, request.TaskId, request.LongValue );
+                var succes = await _service.ModifyTaskUrgency(_mapper.Map<Guid>(request.UserId), request.TaskId, request.LongValue );
                 return _mapper.Map<BoolReply>(succes);
             }
             catch (Exception)
@@ -171,7 +171,7 @@ namespace TasksService.Services
         {
             try
             {
-                var succes = await _service.ModifyTaskState(request.UserId, request.TaskId, request.LongValue);
+                var succes = await _service.ModifyTaskState(_mapper.Map<Guid>(request.UserId), request.TaskId, request.LongValue);
                 return _mapper.Map<BoolReply>(succes);
             }
             catch (Exception)
@@ -184,7 +184,7 @@ namespace TasksService.Services
         {
             try
             {
-                var succes = await _service.ModifyTaskName(request.UserId, request.TaskId, request.StrValue);
+                var succes = await _service.ModifyTaskName(_mapper.Map<Guid>(request.UserId), request.TaskId, request.StrValue);
                 return _mapper.Map<BoolReply>(succes);
             }
             catch (Exception)
@@ -196,7 +196,7 @@ namespace TasksService.Services
         {
             try
             {
-                var succes = await _service.ModifyTaskDescription(request.UserId, request.TaskId, request.StrValue);
+                var succes = await _service.ModifyTaskDescription(_mapper.Map<Guid>(request.UserId), request.TaskId, request.StrValue);
                 return _mapper.Map<BoolReply>(succes);
             }
             catch (Exception)
@@ -208,7 +208,7 @@ namespace TasksService.Services
         {
             try
             {
-                var succes = await _service.ModifyTaskNodeDeadline(request.UserId, request.TaskId, request.NodeId, _mapper.Map<DateTime>(request.DateValue));
+                var succes = await _service.ModifyTaskNodeDeadline(_mapper.Map<Guid>(request.UserId), request.TaskId, request.NodeId, _mapper.Map<DateTime>(request.DateValue));
                 return _mapper.Map<BoolReply>(succes);
             }
             catch (Exception)
@@ -265,7 +265,7 @@ namespace TasksService.Services
         {
             try
             {
-                bool succes = await _service.AppointNodeDoers(request.UserId, request.NodeId, _mapper.Map<List<long>>(request.Doers));
+                bool succes = await _service.AppointNodeDoers(_mapper.Map<Guid>(request.UserId), request.NodeId, _mapper.Map<List<Guid>>(request.Doers));
                 return _mapper.Map<BoolReply>(succes);
             }
             catch (Exception)
@@ -297,7 +297,7 @@ namespace TasksService.Services
             try
             {
                 
-                long newId = await _service.CreateUrgency(request.UserId, request.Name, request.Description);
+                long newId = await _service.CreateUrgency(_mapper.Map<Guid>(request.UserId), request.Name, request.Description);
                 return _mapper.Map<CreateUrgencyReply>(newId);
             }
             catch (Exception)
@@ -310,7 +310,7 @@ namespace TasksService.Services
             try
             {
 
-                bool succes = await _service.ModifyUrgency(request.UserId, request.ChangeFlags, _mapper.Map<UrgencyDTO>(request.Urgency));
+                bool succes = await _service.ModifyUrgency(_mapper.Map<Guid>(request.UserId), request.ChangeFlags, _mapper.Map<UrgencyDTO>(request.Urgency));
                 return _mapper.Map<BoolReply>(succes);
             }
             catch (Exception)
@@ -322,7 +322,7 @@ namespace TasksService.Services
         {
             try
             {
-                bool succes = await _service.DeleteUrgency(request.UserId, request.UrgencyId);
+                bool succes = await _service.DeleteUrgency(_mapper.Map<Guid>(request.UserId), request.UrgencyId);
                 return _mapper.Map<BoolReply>(succes);
             }
             catch (Exception)
@@ -353,7 +353,7 @@ namespace TasksService.Services
             try
             {
 
-                long newId = await _service.CreateProjectArea(request.UserId, _mapper.Map<ProjectAreaDTO>(request.Area));
+                long newId = await _service.CreateProjectArea(_mapper.Map<Guid>(request.UserId), _mapper.Map<ProjectAreaDTO>(request.Area));
                 return _mapper.Map<PkMessage>(newId);
             }
             catch (Exception)
@@ -367,7 +367,7 @@ namespace TasksService.Services
             try
             {
 
-                bool succes = await _service.ModifyProjectArea(request.UserId, request.ChangeFlags, _mapper.Map<ProjectAreaDTO>(request.Area));
+                bool succes = await _service.ModifyProjectArea(_mapper.Map<Guid>(request.UserId), request.ChangeFlags, _mapper.Map<ProjectAreaDTO>(request.Area));
                 return _mapper.Map<BoolReply>(succes);
             }
             catch (Exception)
@@ -379,7 +379,7 @@ namespace TasksService.Services
         {
             try
             {
-                bool succes = await _service.DeleteProjectArea(request.UserId, request.AreaId);
+                bool succes = await _service.DeleteProjectArea(_mapper.Map<Guid>(request.UserId), request.AreaId);
                 return _mapper.Map<BoolReply>(succes);
             }
             catch (Exception)
@@ -411,7 +411,7 @@ namespace TasksService.Services
             try
             {
 
-                long newId = await _service.CreateCompanyProject(request.UserId, _mapper.Map<CompanyProjectDTO>(request.Project));
+                long newId = await _service.CreateCompanyProject(_mapper.Map<Guid>(request.UserId), _mapper.Map<CompanyProjectDTO>(request.Project));
                 return _mapper.Map<PkMessage>(newId);
             }
             catch (Exception)
@@ -424,7 +424,7 @@ namespace TasksService.Services
             try
             {
 
-                bool succes = await _service.ModifyCompanyProject(request.UserId, request.ChangeFlags, _mapper.Map<CompanyProjectDTO>(request.Project));
+                bool succes = await _service.ModifyCompanyProject(_mapper.Map<Guid>(request.UserId), request.ChangeFlags, _mapper.Map<CompanyProjectDTO>(request.Project));
                 return _mapper.Map<BoolReply>(succes);
             }
             catch (Exception)
@@ -436,7 +436,7 @@ namespace TasksService.Services
         {
             try
             {
-                bool succes = await _service.DeleteCompanyProject(request.UserId, request.ProjectId);
+                bool succes = await _service.DeleteCompanyProject(_mapper.Map<Guid>(request.UserId), request.ProjectId);
                 return _mapper.Map<BoolReply>(succes);
             }
             catch (Exception)
@@ -469,7 +469,7 @@ namespace TasksService.Services
             try
             {
 
-                long newId = await _service.CreateCompany(request.CreatorId, request.Name, request.Description);
+                long newId = await _service.CreateCompany(_mapper.Map<Guid>(request.CreatorId), request.Name, request.Description);
                 return _mapper.Map<PkMessage>(newId);
             }
             catch (Exception)
@@ -483,7 +483,7 @@ namespace TasksService.Services
             try
             {
 
-                bool succes = await _service.ModifyCompany(request.UserId, request.ChangeFlags, request.Id, request.Name, request.Description);
+                bool succes = await _service.ModifyCompany(_mapper.Map<Guid>(request.UserId), request.ChangeFlags, request.Id, request.Name, request.Description);
                 return _mapper.Map<BoolReply>(succes);
             }
             catch (Exception)
@@ -495,7 +495,7 @@ namespace TasksService.Services
         {
             try
             {
-                bool succes = await _service.DeleteCompany(request.UserId, request.CompanyId);
+                bool succes = await _service.DeleteCompany(_mapper.Map<Guid>(request.UserId), request.CompanyId);
                 return _mapper.Map<BoolReply>(succes);
             }
             catch (Exception)
@@ -512,9 +512,9 @@ namespace TasksService.Services
             try
             {
                 var result = new EmployeesReply();
-                List<long> employees = await _service.GetEmployees(request.CompanyId);
+                var employees = await _service.GetEmployees(request.CompanyId);
                 if (null != employees)
-                    result.EmployeeIds.AddRange(employees);
+                    result.EmployeeIds.AddRange(_mapper.Map<List<string>>(employees));
                 return result;
             }
             catch (Exception)
@@ -528,7 +528,7 @@ namespace TasksService.Services
             try
             {
 
-                bool succes = await _service.AddEmployee(request.CreatorId, request.CompanyId, request.NewUserId);
+                bool succes = await _service.AddEmployee(_mapper.Map<Guid>(request.CreatorId), request.CompanyId, _mapper.Map<Guid>(request.NewUserId));
                 return _mapper.Map<BoolReply>(succes);
             }
             catch (Exception)
@@ -541,7 +541,7 @@ namespace TasksService.Services
         {
             try
             {
-                bool succes = await _service.RemoveEmployee(request.DeleterId, request.CompanyId, request.UserToDelId);
+                bool succes = await _service.RemoveEmployee(_mapper.Map<Guid>(request.DeleterId), request.CompanyId, _mapper.Map<Guid>(request.UserToDelId));
                 return _mapper.Map<BoolReply>(succes);
             }
             catch (Exception)

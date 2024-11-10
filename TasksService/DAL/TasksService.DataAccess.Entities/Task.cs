@@ -13,7 +13,7 @@ public partial class Task
 
     public string? Description { get; set; }
 
-    public long CreatorId { get; set; }
+    public Guid CreatorId { get; set; }
 
     public DateTime CreationDate { get; set; }
 

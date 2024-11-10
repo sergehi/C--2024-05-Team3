@@ -24,7 +24,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
             _historyRepo = historyRepo;
         }
 
-        public async Task<long> CreateTask(long userId, Entities.Task taskToCreate)
+        public async Task<long> CreateTask(Guid userId, Entities.Task taskToCreate)
         {
             try
             {
@@ -104,7 +104,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
             }
         }
 
-        public async Task<bool> DeleteTask(long userId, long taskId)
+        public async Task<bool> DeleteTask(Guid userId, long taskId)
         {
             try
             {
@@ -225,7 +225,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
             }
         }
 
-        public async  Task<List<Entities.Task>> GetTasksList(long userId, long companyId, long projectId, long areaId)
+        public async  Task<List<Entities.Task>> GetTasksList(Guid userId, long companyId, long projectId, long areaId)
         {
             try
             {
@@ -270,7 +270,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
 
         }
 
-        public async Task<bool> ModifyTaskUrgency(long userId, long taskId, long urgId)
+        public async Task<bool> ModifyTaskUrgency(Guid userId, long taskId, long urgId)
         {
             try
             {
@@ -301,7 +301,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
             }
         }
 
-        public async  Task<bool> ModifyTaskState(long userId, long taskId, long toNodeId)
+        public async  Task<bool> ModifyTaskState(Guid userId, long taskId, long toNodeId)
         {
             try
             {
@@ -332,7 +332,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
             }
         }
 
-        public async  Task<bool> ModifyTaskName(long userId, long taskId, string newName)
+        public async  Task<bool> ModifyTaskName(Guid userId, long taskId, string newName)
         {
             try
             {
@@ -363,7 +363,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
             }
         }
 
-        public async  Task<bool> ModifyTaskDescription(long userId, long taskId, string newDescription)
+        public async  Task<bool> ModifyTaskDescription(Guid userId, long taskId, string newDescription)
         {
             try
             {
@@ -394,7 +394,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
             }
         }
 
-        public async  Task<bool> ModifyTaskNodeDeadline(long userId, long taskId, long nodeId, DateTime newDeadline)
+        public async  Task<bool> ModifyTaskNodeDeadline(Guid userId, long taskId, long nodeId, DateTime newDeadline)
         {
             try
             {
@@ -425,7 +425,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
             }
         }
 
-        public async Task<bool> AppointNodeDoers(long userId, long nodeId, List<long> list)
+        public async Task<bool> AppointNodeDoers(Guid userId, long nodeId, List<Guid> list)
         {
             try
             {

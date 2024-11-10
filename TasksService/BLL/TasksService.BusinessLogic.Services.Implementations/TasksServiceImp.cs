@@ -89,16 +89,16 @@ namespace TasksService.BusinessLogic.Services.Implementations
                 return _mapper.Map<List<CompanyDTO>>(comps);
             return new List<CompanyDTO>();
         }
-        public async Task<long> CreateCompany(long creatorId, string name, string description)
+        public async Task<long> CreateCompany(Guid creatorId, string name, string description)
         {
             return await _companyRepository.CreateCompany(creatorId, name, description);
         }
-        public async Task<bool> ModifyCompany(long userId, long changeFlags, long id, string name, string description)
+        public async Task<bool> ModifyCompany(Guid userId, long changeFlags, long id, string name, string description)
         {
             return await _companyRepository.ModifyCompany(userId, changeFlags, id, name, description);
         }
 
-        public async Task<bool> DeleteCompany(long userId, long companyId)
+        public async Task<bool> DeleteCompany(Guid userId, long companyId)
         {
             return await _companyRepository.DeleteCompany(userId, companyId);
         }
@@ -107,17 +107,17 @@ namespace TasksService.BusinessLogic.Services.Implementations
 
 
         #region Employees
-        public async Task<List<long>> GetEmployees(long companyId)
+        public async Task<List<Guid>> GetEmployees(long companyId)
         {
             return await _employeesRepository.GetEmployees(companyId);
         }
 
-        public async Task<bool> AddEmployee(long creatorId, long companyId, long newUserId)
+        public async Task<bool> AddEmployee(Guid creatorId, long companyId, Guid newUserId)
         {
             return await _employeesRepository.AddEmployee(creatorId, companyId, newUserId);
         }
 
-        public async Task<bool> RemoveEmployee(long deleterId, long companyId, long userToDelId)
+        public async Task<bool> RemoveEmployee(Guid deleterId, long companyId, Guid userToDelId)
         {
             return await _employeesRepository.RemoveEmployee(deleterId, companyId, userToDelId);
         }
@@ -137,7 +137,7 @@ namespace TasksService.BusinessLogic.Services.Implementations
 
         }
 
-        public async Task<long> CreateCompanyProject(long userId, CompanyProjectDTO companyProjectDTO)
+        public async Task<long> CreateCompanyProject(Guid userId, CompanyProjectDTO companyProjectDTO)
         {
             try
             {
@@ -149,7 +149,7 @@ namespace TasksService.BusinessLogic.Services.Implementations
             }
         }
 
-        public async Task<bool> ModifyCompanyProject(long userId, long changeFlags, CompanyProjectDTO projectDTO)
+        public async Task<bool> ModifyCompanyProject(Guid userId, long changeFlags, CompanyProjectDTO projectDTO)
         {
             try
             {
@@ -161,7 +161,7 @@ namespace TasksService.BusinessLogic.Services.Implementations
             }
         }
 
-        public async Task<bool> DeleteCompanyProject(long userId, long projectId)
+        public async Task<bool> DeleteCompanyProject(Guid userId, long projectId)
         {
             try
             {
@@ -181,17 +181,17 @@ namespace TasksService.BusinessLogic.Services.Implementations
             return _mapper.Map<List<ProjectAreaDTO>>(await _projectAreaRepository.GetProjectAreas(projectId, areaId));
         }
 
-        public async Task<long> CreateProjectArea(long userId, ProjectAreaDTO projectAreaDTO)
+        public async Task<long> CreateProjectArea(Guid userId, ProjectAreaDTO projectAreaDTO)
         {
             return await _projectAreaRepository.CreateProjectArea(userId, _mapper.Map<ProjectArea>(projectAreaDTO));
         }
 
-        public async Task<bool> DeleteProjectArea(long userId, long areaId)
+        public async Task<bool> DeleteProjectArea(Guid userId, long areaId)
         {
             return await _projectAreaRepository.DeleteProjectArea(userId, areaId);
         }
 
-        public async Task<bool> ModifyProjectArea(long userId, long changeFlags, ProjectAreaDTO projectAreaDTO)
+        public async Task<bool> ModifyProjectArea(Guid userId, long changeFlags, ProjectAreaDTO projectAreaDTO)
         {
             return await _projectAreaRepository.ModifyProjectArea(userId, changeFlags, _mapper.Map<ProjectArea>(projectAreaDTO));   
         }
@@ -217,7 +217,7 @@ namespace TasksService.BusinessLogic.Services.Implementations
                 throw;
             }
         }
-        public async Task<bool> ModifyUrgency(long userId, long changeFlags, UrgencyDTO urgencyDTO)
+        public async Task<bool> ModifyUrgency(Guid userId, long changeFlags, UrgencyDTO urgencyDTO)
         {
             try
             {
@@ -229,7 +229,7 @@ namespace TasksService.BusinessLogic.Services.Implementations
                 throw;
             }
         }
-        public async Task<long> CreateUrgency(long userId, string name, string description)
+        public async Task<long> CreateUrgency(Guid userId, string name, string description)
         {
             try
             {
@@ -241,7 +241,7 @@ namespace TasksService.BusinessLogic.Services.Implementations
                 throw;
             }
         }
-        public async Task<bool> DeleteUrgency(long userId, long urgencyId)
+        public async Task<bool> DeleteUrgency(Guid userId, long urgencyId)
         {
             try
             {
@@ -306,7 +306,7 @@ namespace TasksService.BusinessLogic.Services.Implementations
             }
         }
 
-        public async Task<bool> AppointNodeDoers(long userId, long nodeId, List<long> list)
+        public async Task<bool> AppointNodeDoers(Guid userId, long nodeId, List<Guid> list)
         {
             try
             {
@@ -318,7 +318,7 @@ namespace TasksService.BusinessLogic.Services.Implementations
             }
         }
 
-        public async Task<long> CreateTask(long userId, CreateTaskDTO taskToCreate)
+        public async Task<long> CreateTask(Guid userId, CreateTaskDTO taskToCreate)
         {
             try
             {
@@ -330,7 +330,7 @@ namespace TasksService.BusinessLogic.Services.Implementations
             }
         }
 
-        public async Task<List<TaskDTO>> GetTasksList(long userId, long companyId, long projectId, long areaId)
+        public async Task<List<TaskDTO>> GetTasksList(Guid userId, long companyId, long projectId, long areaId)
         {
             try
             {
@@ -375,7 +375,7 @@ namespace TasksService.BusinessLogic.Services.Implementations
             }
         }
         */
-        public async Task<bool> ModifyTaskUrgency(long userId, long taskId, long urgId)
+        public async Task<bool> ModifyTaskUrgency(Guid userId, long taskId, long urgId)
         {
             try
             {
@@ -386,7 +386,7 @@ namespace TasksService.BusinessLogic.Services.Implementations
                 throw;
             }
         }
-        public async Task<bool> ModifyTaskState(long userId, long taskId, long toNodeId)
+        public async Task<bool> ModifyTaskState(Guid userId, long taskId, long toNodeId)
         {
             try
             {
@@ -397,7 +397,7 @@ namespace TasksService.BusinessLogic.Services.Implementations
                 throw;
             }
         }
-        public async Task<bool> ModifyTaskName(long userId, long taskId, string newName)
+        public async Task<bool> ModifyTaskName(Guid userId, long taskId, string newName)
         {
             try
             {
@@ -408,7 +408,7 @@ namespace TasksService.BusinessLogic.Services.Implementations
                 throw;
             }
         }
-        public async Task<bool> ModifyTaskDescription(long userId, long taskId, string newDescription)
+        public async Task<bool> ModifyTaskDescription(Guid userId, long taskId, string newDescription)
         {
             {
                 try
@@ -421,7 +421,7 @@ namespace TasksService.BusinessLogic.Services.Implementations
                 }
             }
         }
-        public async Task<bool> ModifyTaskNodeDeadline(long userId, long taskId, long NodeId, DateTime newDeadline)
+        public async Task<bool> ModifyTaskNodeDeadline(Guid userId, long taskId, long NodeId, DateTime newDeadline)
         {
             {
                 try
@@ -438,7 +438,7 @@ namespace TasksService.BusinessLogic.Services.Implementations
 
 
 
-        public async Task<bool> DeleteTask(long userId, long taskId)
+        public async Task<bool> DeleteTask(Guid userId, long taskId)
         {
             try
             {

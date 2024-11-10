@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel.Design;
 using Castle.Core.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -9,6 +10,8 @@ using TasksService.DataAccess.Entities;
 using TasksService.DataAccess.EntityFramework;
 using TasksService.DataAccess.Repositories.Abstractions;
 using TasksService.DataAccess.Repositories.Implementations;
+using TasksServiceTasks = TasksService.DataAccess.Entities;
+
 
 namespace TasksTests
 {
@@ -81,11 +84,11 @@ namespace TasksTests
         /// </summary>
         /// <param name="userId"></param>
         /// <returns>companyId</returns>
-        private async Task<long> createTestCompanyEmployeeAsync(long userId)
+        private async Task<long> createTestCompanyEmployeeAsync(Guid userId)
         {
             try
             {
-                long companyId = await createTestCompanyAsync();
+                var companyId = await createTestCompanyAsync();
                 if (0 == companyId)
                     return 0;
                 
@@ -110,8 +113,33 @@ namespace TasksTests
             var historyRepo = GetMockHistoryRepository();
             var repo = new CompanyProjectsRepository(_context.Configuration, historyRepo.Object);
             Exception? exception = null;
-            return await repo.CreateCompanyProject(1L, new CompanyProject() { CompanyId = companyId, Name = "Test", Description = "Test project" });
+            return await repo.CreateCompanyProject(Guid.Empty, new CompanyProject() { CompanyId = companyId, Name = "Test", Description = "Test project" });
         }
+
+        private async Task<long> createTestTemplate(long companyId)
+        {
+            var historyRepo = GetMockHistoryRepository();
+            var repo = new TemplatesRepository(_context.Configuration, historyRepo.Object);
+
+            // Act & Assert
+            var nodes = new List<WfNodesTemplate>()
+                {
+                    new WfNodesTemplate() { InternalNum = 1, Name = "FirstNode", Description = "First node description", Terminating = false, IconId = 0 },
+                    new WfNodesTemplate() { InternalNum = 2, Name = "SecondNode", Description = "Second node description", Terminating = false, IconId = 0 },
+                    new WfNodesTemplate() { InternalNum = 3, Name = "ThirdNode", Description = "Third node description", Terminating = true, IconId = 0 }
+                };
+            var edges = new List<WfEdgesTemplate>()
+                {
+                    new WfEdgesTemplate(){ Name = "FromFirstToSecond", InternalNum = 1, NodeFrom = 1, NodeTo = 2 },
+                    new WfEdgesTemplate(){ Name = "FromSecondToThird", InternalNum = 2, NodeFrom = 2, NodeTo = 3 },
+                    new WfEdgesTemplate(){ Name = "FromSecondToFirst", InternalNum = 3, NodeFrom = 2, NodeTo = 1 },
+                    new WfEdgesTemplate(){ Name = "FromFirstToThird",  InternalNum = 4, NodeFrom = 1, NodeTo = 3 }
+                };
+
+            var long_res = await repo.CreateTemplate("TestTemplate", "Test Template Description", companyId, nodes, edges);
+            return long_res;
+        }
+
 
 
         [Fact]
@@ -125,17 +153,17 @@ namespace TasksTests
             try
             {
                 // Act & Assert
-                var long_res = await repo.CreateUrgency(1L, "Test", "TestTest");
+                var long_res = await repo.CreateUrgency(Guid.Empty, "Test", "TestTest");
                 Assert.True(long_res > 0);
                 var found = await _context.Urgencies.FirstOrDefaultAsync(x => x.Id == long_res);
                 Assert.NotNull(found);
                 found.Name = "TestModified";
                 found.Description = "TestTestModified";
-                var bool_res = await repo.ModifyUrgency(1L, 0, found);
+                var bool_res = await repo.ModifyUrgency(Guid.Empty, 0, found);
                 Assert.True(bool_res);
                 var mov_val = await _context.Urgencies.Where(x => x.Name == found.Name && x.Description == found.Description).ToListAsync();
                 Assert.True(mov_val.Any());
-                bool_res = await repo.DeleteUrgency(1L, found.Id);
+                bool_res = await repo.DeleteUrgency(Guid.Empty, found.Id);
                 Assert.True(bool_res);
 
             }
@@ -158,17 +186,17 @@ namespace TasksTests
 
 
                 // Act & Assert
-                var long_res = await repo.CreateCompany(1L, "Horns & Hooves", "Donut's Hole");
+                var long_res = await repo.CreateCompany(Guid.Empty, "Horns & Hooves", "Donut's Hole");
                 Assert.True(long_res > 0);
                 var found = await _context.Companies.FirstOrDefaultAsync(x => x.Id == long_res);
                 Assert.NotNull(found);
                 found.Name = "TestModified";
                 found.Description = "TestTestModified";
-                var bool_res = await repo.ModifyCompany(1L, 0, found.Id, found.Name, found.Description);
+                var bool_res = await repo.ModifyCompany(Guid.Empty, 0, found.Id, found.Name, found.Description);
                 Assert.True(bool_res);
                 var mov_val = await _context.Companies.Where(x => x.Name == found.Name && x.Description == found.Description).ToListAsync();
                 Assert.True(mov_val.Any());
-                bool_res = await repo.DeleteCompany(1L, found.Id);
+                bool_res = await repo.DeleteCompany(Guid.Empty, found.Id);
                 Assert.True(bool_res);
             }
             catch (Exception ex)
@@ -196,11 +224,11 @@ namespace TasksTests
                 Assert.NotNull(found);
                 found.Name = "TestModified";
                 found.Description = "Test project Modified";
-                var bool_res = await repo.ModifyCompanyProject(1L, 0, found);
+                var bool_res = await repo.ModifyCompanyProject(Guid.Empty, 0, found);
                 Assert.True(bool_res);
                 var mov_val = await _context.CompanyProjects.Where(x => x.Name == found.Name && x.Description == found.Description).ToListAsync();
                 Assert.True(mov_val.Any());
-                bool_res = await repo.DeleteCompanyProject(1L, found.Id);
+                bool_res = await repo.DeleteCompanyProject(Guid.Empty, found.Id);
                 Assert.True(bool_res);
             }
             catch (Exception ex)
@@ -223,11 +251,8 @@ namespace TasksTests
 
             try
             {
-                
-
-
                 // Act & Assert
-                var long_res = await repo.CreateProjectArea(1L, new ProjectArea() { Name = "Test", Description = "Test area", ProjectId = projectId });
+                var long_res = await repo.CreateProjectArea(Guid.Empty, new ProjectArea() { Name = "Test", Description = "Test area", ProjectId = projectId });
                 Assert.True(long_res > 0);
 
                 var areas = await repo.GetProjectAreas(projectId, long_res);
@@ -236,11 +261,11 @@ namespace TasksTests
 
                 area.Name = "TestModified";
                 area.Description = "Project area Modified";
-                var bool_res = await repo.ModifyProjectArea(1L, 0, area);
+                var bool_res = await repo.ModifyProjectArea(Guid.Empty, 0, area);
                 Assert.True(bool_res);
                 var mov_val = await _context.ProjectAreas.Where(x => x.Name == area.Name && x.Description == areas[0].Description).ToListAsync();
                 Assert.True(mov_val.Any());
-                bool_res = await repo.DeleteProjectArea(1L, area.Id);
+                bool_res = await repo.DeleteProjectArea(Guid.Empty, area.Id);
                 Assert.True(bool_res);
             }
             catch (Exception ex)
@@ -250,7 +275,6 @@ namespace TasksTests
             Assert.Null(exception);
 
         }
-
 
         [Fact]
         public async void TemplatesRepo_CanCRUD()
@@ -263,8 +287,9 @@ namespace TasksTests
             try
             {
                 var companyId = await createTestCompanyAsync();
-
+                long long_res = await createTestTemplate(companyId);
                 // Act & Assert
+                /*
                 var nodes = new List<WfNodesTemplate>()
                 {
                     new WfNodesTemplate() { InternalNum = 1, Name = "FirstNode", Description = "First node description", Terminating = false, IconId = 0 },
@@ -280,6 +305,8 @@ namespace TasksTests
                 };
 
                 var long_res = await repo.CreateTemplate("TestTemplate", "Test Template Description", companyId, nodes, edges);
+                */
+
                 Assert.True(long_res > 0);
 
                 var query = _context.WfdefinitionsTempls
@@ -296,8 +323,8 @@ namespace TasksTests
                 found.Name = "TestModified";
                 found.Description = "TestTestModofied";
 
-                edges.Clear();
-                edges = found.WfnodesTempls.SelectMany(b => b.WfedgesTemplNodeFromNavigations)
+                //var edges = new List<WfNodesTemplate>();
+                var edges = found.WfnodesTempls.SelectMany(b => b.WfedgesTemplNodeFromNavigations)
                           .Concat(found.WfnodesTempls.SelectMany(b => b.WfedgesTemplNodeToNavigations))
                            .GroupBy(a => a.Id) // Группируем по id
                             .Select(g => g.First()) // Берем первый элемент из 
@@ -322,8 +349,54 @@ namespace TasksTests
             Assert.Null(exception);
         }
 
+        [Fact]
+        public async void TasksRepo_CanCRUD()
+        {
+            // Arrange
+            var historyRepo = GetMockHistoryRepository();
+            var repo = new TasksRepository(_context.Configuration, historyRepo.Object);
+            var urgRepo = new UrgenciesRepository(_context.Configuration, historyRepo.Object);
+            var areaRepo = new ProjectAreaRepository(_context.Configuration, historyRepo.Object);
+            Exception? exception = null;
+            try
+            {
+                var companyId = await createTestCompanyAsync();
+                var testTemplateId = await createTestTemplate(companyId);
+                var projectId = await createTestProjectAsync(companyId);
+                var urgencyId = await urgRepo.CreateUrgency(Guid.Empty, "Test", "TestTest");
+                var areaId = await areaRepo.CreateProjectArea(Guid.Empty, new ProjectArea() { Name = "Test", Description = "Test area", ProjectId = projectId });
+                // Create task
+                TasksServiceTasks.Task taskToCreate = new TasksServiceTasks.Task()
+                {
+                    Name = "TestTask"
+                    , Description = "Test Task"
+                    , CreatorId = Guid.Empty
+                    , DeadlineDate = DateTime.Now.AddDays(1) 
+                    , TemplateId = testTemplateId
+                    , Urgency  = urgencyId
+                    , CompanyId = companyId
+                    , ProjectId  = projectId
+                    , AreaId  = areaId
+                    , CurrentNode = 0
+                };
+                var taskId = await repo.CreateTask(Guid.Empty, taskToCreate);
+                Assert.True(taskId != 0);
+                TasksServiceTasks.Task task = await repo.GetTask(taskId);
+                Assert.NotNull(task);
 
 
+                var tasksList = await repo.GetTasksList(Guid.Empty, companyId, projectId, areaId);
+                Assert.NotNull(task);
+                Assert.True(!tasksList.Any());
+
+
+            }
+            catch (Exception ex)
+            {
+                exception = ex;
+            }
+            Assert.Null(exception);
+        }
 
     }
 }

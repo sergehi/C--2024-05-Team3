@@ -42,51 +42,51 @@ namespace TasksService.DataAccess.Repositories.Implementations
             }
         }
 
-        public async Task<bool> RegisterTaskUrgencyChanged(long UserId, long TaskId, string OldValue, string NewValue)
+        public async Task<bool> RegisterTaskUrgencyChanged(Guid UserId, long TaskId, string OldValue, string NewValue)
         {
             return await registerTaskChange(UserId, TaskId, 0, ETaskModifyFlags.TMF_MODIFY_URGENCY, OldValue, NewValue);
         }
-        public async Task<bool> RegisterTaskTypeChanged(long UserId, long TaskId, string OldValue, string NewValue)
+        public async Task<bool> RegisterTaskTypeChanged(Guid UserId, long TaskId, string OldValue, string NewValue)
         {
             return await registerTaskChange(UserId, TaskId, 0, ETaskModifyFlags.TMF_MODIFY_TYPE, OldValue, NewValue);
         }
 
-        public async Task<bool> RegisterTaskStateChanged(long UserId, long TaskId, string OldValue, string NewValue)
+        public async Task<bool> RegisterTaskStateChanged(Guid UserId, long TaskId, string OldValue, string NewValue)
         {
             return await registerTaskChange(UserId, TaskId, 0, ETaskModifyFlags.TMF_MODIFY_STATE, OldValue, NewValue);
         }
 
-        public async Task<bool> RegisterTaskNameChanged(long UserId, long TaskId, string OldValue, string NewValue)
+        public async Task<bool> RegisterTaskNameChanged(Guid UserId, long TaskId, string OldValue, string NewValue)
         {
             return await registerTaskChange(UserId, TaskId, 0, ETaskModifyFlags.TMF_MODIFY_NAME, OldValue, NewValue);
         }
 
-        public async Task<bool> RegisterTaskDescriptionChanged(long UserId, long TaskId, string OldValue, string NewValue)
+        public async Task<bool> RegisterTaskDescriptionChanged(Guid UserId, long TaskId, string OldValue, string NewValue)
         {
             return await registerTaskChange(UserId, TaskId, 0, ETaskModifyFlags.TMF_MODIFY_DESCRIPTION, OldValue, NewValue);
         }
 
-        public async Task<bool> RegisterTaskDeadlineChanged(long UserId, long TaskId, long NodeId, string OldValue, string NewValue)
+        public async Task<bool> RegisterTaskDeadlineChanged(Guid UserId, long TaskId, long NodeId, string OldValue, string NewValue)
         {
             return await registerTaskChange(UserId, TaskId, NodeId, ETaskModifyFlags.TMF_MODIFY_DEADLINE, OldValue, NewValue);
         }
 
-        public async Task<bool> RegisterTaskDoersAppointed(long UserId, long TaskId, long NodeId, string OldValue, string NewValue)
+        public async Task<bool> RegisterTaskDoersAppointed(Guid UserId, long TaskId, long NodeId, string OldValue, string NewValue)
         {
             return await registerTaskChange(UserId, TaskId, NodeId, ETaskModifyFlags.TMF_REC_DOERS, OldValue, NewValue);
         }
 
-        public async Task<bool> RegisterDeleteTask(long UserId, long TaskId, string OldValue, string NewValue)
+        public async Task<bool> RegisterDeleteTask(Guid UserId, long TaskId, string OldValue, string NewValue)
         {
             return await registerTaskChange(UserId, TaskId, 0, ETaskModifyFlags.TMF_REC_DELETE, OldValue, NewValue);
         }
 
-        public async Task<bool> RegisterCreateTask(long UserId, long TaskId, string NewValue)
+        public async Task<bool> RegisterCreateTask(Guid UserId, long TaskId, string NewValue)
         {
             return await registerTaskChange(UserId, TaskId, 0, ETaskModifyFlags.TMF_REC_CREATE, string.Empty, NewValue);
         }
 
-        public async Task<bool> registerTaskChange(long UserId, long TaskId, long NodeId, ETaskModifyFlags ChangeFlag, string OldValue, string NewValue)
+        public async Task<bool> registerTaskChange(Guid UserId, long TaskId, long NodeId, ETaskModifyFlags ChangeFlag, string OldValue, string NewValue)
         {
             try
             {

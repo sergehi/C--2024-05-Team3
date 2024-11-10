@@ -11,6 +11,12 @@ namespace TasksService.Mapping
 
         public TasksControllerMappingProfile()
         {
+
+            CreateMap<string, Guid>()
+                       .ConvertUsing(str => Guid.Parse(str)); // Convert string to Guid
+            CreateMap<Guid, string>()
+                .ConvertUsing(guid => guid.ToString()); // Convert Guid to string
+
             CreateMap<TemplateNodeDTO, TemplateNode>()
                 .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description ?? ""))
                 .ForMember(dest => dest.Terminating, opt => opt.MapFrom(src => src.Terminating));
