@@ -1,7 +1,7 @@
 using AuthorizationService.Shared.Protos;
 using ChatProto;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.OpenApi.Models;
+using TasksTemplatesService;
 using TaskTracker.Gateway.Configutions;
 using TestGrpcService1; // ���������� ������������ ���� gRPC ��� Service1
 
@@ -61,6 +61,17 @@ namespace TaskTracker.Gateway
             builder.Services.AddGrpcClient<AuthProtoService.AuthProtoServiceClient>(options =>
             {
                 options.Address = new Uri(grpcConfig.AuthorizationServiceUrl);
+            })
+            .ConfigurePrimaryHttpMessageHandler(() =>
+            {
+                var handler = new HttpClientHandler();
+                handler.ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
+                return handler;
+            });
+
+            builder.Services.AddGrpcClient<TaskTemplates.TaskTemplatesBase>(options =>
+            {
+                options.Address = new Uri(grpcConfig.TasksServiceUrl);
             })
             .ConfigurePrimaryHttpMessageHandler(() =>
             {

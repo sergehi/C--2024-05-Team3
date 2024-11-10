@@ -32,7 +32,7 @@ export default function LoginPage() {
     };
 
     return (
-        <div className="flex items-center justify-center min-h-screen dark:bg-gray-950 bg-gray-50">
+        <div className="flex items-center justify-center min-h-screen dark:bg-gray-950">
             <div className="fixed top-4 right-4">
                 <ThemeSwitch />
             </div>
@@ -51,7 +51,7 @@ export default function LoginPage() {
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
                             required
-                            className="w-full px-3 py-2 border rounded focus:outline-none focus:ring"
+                            className="w-full shadow px-3 py-2 border rounded focus:outline-none focus:ring"
                         />
                     </div>
                     <div>
@@ -64,13 +64,13 @@ export default function LoginPage() {
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             required
-                            className="w-full px-3 py-2 border rounded focus:outline-none focus:ring"
+                            className="w-full shadow px-3 py-2 border rounded focus:outline-none focus:ring"
                         />
                     </div>
                     {error && <p className="text-red-500 text-sm">{error}</p>}
                     <button
                         type="submit"
-                        className="w-full py-2 text-white bg-indigo-600 rounded hover:bg-indigo-700 focus:outline-none focus:ring"
+                        className="w-full py-2 text-white bg-indigo-600 rounded shadow hover:bg-indigo-700 focus:outline-none focus:ring"
                     >
                         Войти
                     </button>
