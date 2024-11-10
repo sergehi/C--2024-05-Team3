@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\src\\TaskTracker.Gateway\\TaskTracker.Gateway.csproj": {}
+    "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\src\\TaskTracker.Gateway\\TaskTracker.Gateway.csproj": {}
   },
   "projects": {
-    "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\src\\TaskTracker.Gateway\\TaskTracker.Gateway.csproj": {
+    "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\src\\TaskTracker.Gateway\\TaskTracker.Gateway.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\src\\TaskTracker.Gateway\\TaskTracker.Gateway.csproj",
+        "projectUniqueName": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\src\\TaskTracker.Gateway\\TaskTracker.Gateway.csproj",
         "projectName": "TaskTracker.Gateway",
-        "projectPath": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\src\\TaskTracker.Gateway\\TaskTracker.Gateway.csproj",
+        "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\src\\TaskTracker.Gateway\\TaskTracker.Gateway.csproj",
         "packagesPath": "C:\\Users\\furye\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\src\\TaskTracker.Gateway\\obj\\",
+        "outputPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\src\\TaskTracker.Gateway\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\Programms\\DevExpress\\Components\\Offline Packages",

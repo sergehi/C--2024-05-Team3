@@ -743,11 +743,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.DTO\\Logger.BusinessLogic.DTO.csproj",
+      "projectUniqueName": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.DTO\\Logger.BusinessLogic.DTO.csproj",
       "projectName": "Logger.BusinessLogic.DTO",
-      "projectPath": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.DTO\\Logger.BusinessLogic.DTO.csproj",
+      "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.DTO\\Logger.BusinessLogic.DTO.csproj",
       "packagesPath": "C:\\Users\\furye\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.DTO\\obj\\",
+      "outputPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.DTO\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "D:\\Programms\\DevExpress\\Components\\Offline Packages",
