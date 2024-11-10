@@ -26,7 +26,6 @@ x86/
 [Aa][Rr][Mm]64/
 bld/
 [Bb]in/
-[Ll]og/
 [Oo]bj/
 [Dd]ebug/
 
@@ -83,7 +82,6 @@ StyleCopReport.xml
 *.tmp
 *.tmp_proj
 *_wpftmp.csproj
-*.log
 *.vspscc
 *.vssscc
 .builds
