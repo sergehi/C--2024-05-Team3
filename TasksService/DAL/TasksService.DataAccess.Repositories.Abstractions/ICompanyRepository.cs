@@ -10,8 +10,8 @@ namespace TasksService.DataAccess.Repositories.Abstractions
     public interface ICompanyRepository
     {
         Task<List<TasksCompany>> GetCompanies(long id);
-        Task<long> CreateCompany(long creatorId, string name, string description);
-        Task<bool> ModifyCompany(long userId, long changeFlags, long id, string name, string description);
-        Task<bool> DeleteCompany(long userId, long companyId);
+        Task<long> CreateCompany(Guid creatorId, string name, string description);
+        Task<bool> ModifyCompany(Guid userId, long changeFlags, long id, string name, string description);
+        Task<bool> DeleteCompany(Guid userId, long companyId);
     }
 }

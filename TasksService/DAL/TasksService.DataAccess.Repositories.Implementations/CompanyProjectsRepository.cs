@@ -53,7 +53,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
             }
         }
 
-        public async Task<bool> ModifyCompanyProject(long userId, long changeFlags, CompanyProject project)
+        public async Task<bool> ModifyCompanyProject(Guid userId, long changeFlags, CompanyProject project)
         {
             try
             {
@@ -71,7 +71,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
             }
         }
 
-        public async Task<long> CreateCompanyProject(long userId, CompanyProject companyProject)
+        public async Task<long> CreateCompanyProject(Guid userId, CompanyProject companyProject)
         {
             try
             {
@@ -90,7 +90,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
 
         }
 
-        public async Task<bool> DeleteCompanyProject(long userId, long projectId)
+        public async Task<bool> DeleteCompanyProject(Guid userId, long projectId)
         {
             try
             {
