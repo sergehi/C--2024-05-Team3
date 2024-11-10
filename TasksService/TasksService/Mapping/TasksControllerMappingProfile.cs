@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
-using TasksTemplatesService;
-using TaslsService.BusinessLogic.DTO;
+using TasksService.BusinessLogic.DTO;
+using TasksService;
+using TasksServiceProto;
+using Google.Protobuf.WellKnownTypes;
 
 namespace TasksService.Mapping
 {
@@ -9,13 +11,13 @@ namespace TasksService.Mapping
 
         public TasksControllerMappingProfile()
         {
-            CreateMap<NodeDTO, messageNode>()
+            CreateMap<TemplateNodeDTO, TemplateNode>()
                 .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description ?? ""))
-                .ForMember(dest => dest.Terminator, opt => opt.MapFrom(src => src.Terminator));
-            CreateMap<messageNode, NodeDTO>();
+                .ForMember(dest => dest.Terminating, opt => opt.MapFrom(src => src.Terminating));
+            CreateMap<TemplateNode, TemplateNodeDTO>();
 
-            CreateMap<EdgeDTO, messageEdge>();
-            CreateMap<messageEdge, EdgeDTO>();
+            CreateMap<TemplateEdgeDTO, TemplateEdge>();
+            CreateMap<TemplateEdge, TemplateEdgeDTO>();
 
             CreateMap<TemplateListItem, TemplateItemDTO>();
 
@@ -23,7 +25,6 @@ namespace TasksService.Mapping
                 .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description ?? ""))
                 .ForMember(dest => dest.Nodes, opt => opt.MapFrom(src => src.Nodes))
                 .ForMember(dest => dest.Edges, opt => opt.MapFrom(src => src.Edges));
-
 
             CreateMap<CreateTemplateReply, long>()
                 .ConvertUsing(src => src.Id);
@@ -35,7 +36,61 @@ namespace TasksService.Mapping
             CreateMap<bool, BoolReply>()
                 .ConvertUsing(src => new BoolReply { Success = src });
 
+
+            CreateMap<TaskDTO, TaskModel>();
+            CreateMap<TaskModel, TaskDTO>()
+                .ForMember(dest => dest.RowVersion, opt => opt.Ignore());
+
+            CreateMap<CreateTaskDTO, CreateTaskModel>();
+            CreateMap<CreateTaskModel, CreateTaskDTO>();
+
+            CreateMap<TaskNodeDTO, TaskNode>();
+            CreateMap<TaskNode, TaskNodeDTO>();
+
+            CreateMap<TaskEdgeDTO, TaskEdge>();
+            CreateMap<TaskEdge, TaskEdgeDTO>();
+
+
+            CreateMap<TaskFullReply, FullTaskInfoDTO>();
+            CreateMap<FullTaskInfoDTO, TaskFullReply>();
+
+
+            CreateMap<PkMessage, long>()
+                .ConvertUsing(src => src.Id);
+            CreateMap<long, PkMessage>()
+                .ConvertUsing(src => new PkMessage { Id = src });
+
+            CreateMap<List<TaskEdgeDTO>, TransitionListReply>()
+                     .ForMember(dest => dest.Edges, opt => opt.MapFrom(src => src));
+
+
+            CreateMap<UrgencyDTO, UrgencyModel>();
+            CreateMap<UrgencyModel, UrgencyDTO>();
+
+            CreateMap <long, CreateUrgencyReply>()
+                .ConvertUsing(src => new CreateUrgencyReply { Id = src });
+
+            CreateMap<ProjectAreaDTO, ProjectArea>();
+            CreateMap<ProjectArea, ProjectAreaDTO>();
+
+            CreateMap<CompanyProjectDTO, CompanyProject>(); 
+            CreateMap<CompanyProject, CompanyProjectDTO>();
+
+            CreateMap<CompanyModel, CompanyDTO>();
+            CreateMap<CompanyDTO, CompanyModel>();
+
+            CreateMap<TaskHistoryDTO, TaskHistoryModel>();
+            CreateMap<TaskHistoryModel, TaskHistoryDTO>();
+            /*
+            // Datetime and TimeStamp
+            CreateMap<Timestamp?, DateTime?>()
+                .ConvertUsing(ts => ts == null ? (DateTime?)null : ts.ToDateTime());
+            CreateMap<DateTime?, Timestamp?>()
+                .ConvertUsing(dt => dt.HasValue ? Timestamp.FromDateTime(dt.Value.ToUniversalTime()) : (Timestamp?)null);
+            */
         }
+
+
 
     }
 }

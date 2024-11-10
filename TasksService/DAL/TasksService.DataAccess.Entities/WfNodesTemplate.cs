@@ -18,7 +18,8 @@ namespace TasksService.DataAccess.Entities
         public virtual WfDefinitionsTemplate Definition { get; set; } = null!;
         public virtual ICollection<WfEdgesTemplate> WfedgesTemplNodeFromNavigations { get; set; } = new List<WfEdgesTemplate>();
         public virtual ICollection<WfEdgesTemplate> WfedgesTemplNodeToNavigations { get; set; } = new List<WfEdgesTemplate>();
-        public bool Terminator { get; set; }
+        public bool Terminating { get; set; }
+        public long? IconId { get; set; }
 
         [NotMapped]
         public long InternalNum { get; set; } // Внутренний номер для сопоставления объектов приходящих по grpc

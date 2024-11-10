@@ -1,0 +1,522 @@
+syntax = "proto3";
+
+option csharp_namespace = "TasksServiceProto";
+
+package TasksService.v1;
+import "google/protobuf/timestamp.proto";
+
+service TasksServiceProto 
+{
+	// Task templates
+	rpc GetTemplateList(TemplateListRequest) returns (TemplateListReply);
+	rpc CreateTemplate(CreateTemplateRequest) returns (CreateTemplateReply);
+	rpc UpdateTemplate(UpdateTemplateRequest) returns (BoolReply);
+	rpc DeleteTemplate(DeleteTemplateRequest) returns (BoolReply);
+
+    // Tasks
+    rpc GetTasksList(TasksListRequest) returns (TasksListReply);
+    rpc GetTask(TaskRequest) returns (TaskFullReply);
+    rpc CreateTask(CreateTaskRequest) returns (PkMessage);
+    rpc DeleteTask(DeleteTaskRequest) returns (BoolReply);
+    rpc GetTaskHistory(PkMessage) returns (TaskHistoryReply);
+    // Modification
+    rpc ModifyTaskUrgency(ModifyTaskLongFieldRequest) returns (BoolReply);
+    rpc ModifyTaskState(ModifyTaskLongFieldRequest) returns (BoolReply);
+    rpc ModifyTaskName(ModifyTaskTextFieldRequest ) returns (BoolReply);
+    rpc ModifyTaskDescription(ModifyTaskTextFieldRequest) returns (BoolReply);
+    rpc ModifyTaskNodeDeadline(ModifyNodeDeadlineRequest) returns (BoolReply);
+
+    // TaskRoutes
+    rpc GetFromNodeTransitions(PkMessage) returns (TransitionListReply);
+    rpc GetToNodeTransitions(PkMessage) returns (TransitionListReply);
+    rpc GetNode(PkMessage) returns (TaskNode);
+    rpc AppointNodeDoers(AppointDoersRequest) returns (BoolReply);
+
+    // Task urgencies
+    rpc GetUrgencies(TasksUrgenciesListRequest) returns (TasksUrgenciesListReply);
+    rpc CreateUrgency(CreateUrgencyRequest) returns (CreateUrgencyReply);
+    rpc ModifyUrgency(ModifyUrgencyRequest) returns (BoolReply);
+    rpc DeleteUrgency(DeleteUrgencyRequest) returns (BoolReply);
+
+    // Project areas
+    rpc GetProjectAreas(ProjectAreasRequest)  returns (ProjectAreasReply);
+    rpc CreateProjectArea(CreateProjectAreaRequest)  returns (PkMessage);
+    rpc ModifyProjectArea(ModifyProjectAreaRequest)  returns (BoolReply);
+    rpc DeleteProjectArea(DeleteProjectAreaRequest)  returns (BoolReply);
+
+    // Company projects
+    rpc GetCompanyProjects(CompanyProjectsRequest) returns (CompanyProjectsReply);
+    rpc CreateCompanyProject(CreateProjectRequest) returns (PkMessage);
+    rpc ModifyCompanyProject(ModifyProjectRequest) returns (BoolReply);
+    rpc DeleteCompanyProject(DeleteProjectRequest) returns (BoolReply);
+
+    // Companies
+    rpc GetCompanies(CompanyRequest) returns (CompaniesReply);
+    rpc CreateCompany(CreateCompanyRequest) returns (PkMessage);
+    rpc ModifyCompany(ModifyCompanyRequest) returns (BoolReply);
+    rpc DeleteCompany(DeleteCompanyRequest) returns (BoolReply);
+    
+    // Company Employees
+    rpc GetEmployees(EmployeesRequest) returns (EmployeesReply);
+    rpc AddEmployee(AddEmployeeRequest) returns (BoolReply);
+    rpc RemoveEmployee(RemoveEmployeeRequest) returns (BoolReply);
+
+
+}
+////////////////////////////// TEMPLATES ////////////////////////////////
+message TemplateEdge
+{
+	int64 id = 1;
+	int64 internal_num = 2;
+	string name = 3;	
+	string description = 4;	
+	int64 node_from_num = 5;
+	int64 node_to_num = 6;
+}
+
+message TemplateNode	
+{
+  int64 id = 1;
+  int64 internal_num = 2;
+  int64 definition_id = 3;
+  string name = 4;	
+  string description = 5;
+  bool terminating = 8;
+  optional int64 icon_id = 9;
+}
+
+
+
+// GetTemplate
+message TemplateListRequest 
+{
+  int64 id = 1;
+  int64 company_id = 2;
+}
+
+message TemplateListReply 
+{
+	repeated TemplateListItem items = 1;
+}
+
+message TemplateModel
+{
+	int64 Id = 1;
+	string name = 2;	
+	string description = 3;	
+	optional int64 company_id = 4;
+}
+
+message TemplateListItem {
+	int64 Id = 1;
+	string name = 2;	
+	string description = 3;	
+	optional int64 company_id = 4;
+	repeated TemplateNode nodes = 5;
+	repeated TemplateEdge edges = 6;
+}
+
+
+/// Create Template
+message CreateTemplateRequest 
+{
+	string name = 1;	
+	optional string description = 2;	
+	optional int64 company_id = 3;
+	repeated TemplateNode nodes = 4;
+	repeated TemplateEdge edges = 5;
+}
+
+message CreateTemplateReply {
+	int64 id = 1;
+}
+
+// Update
+message UpdateTemplateRequest {
+	TemplateListItem item = 1;
+}
+
+// Delete
+message DeleteTemplateRequest {
+	int64 id = 1;
+}
+
+message BoolReply {
+	bool success = 1;
+}
+
+
+/////////////////////////////////// TASKS ////////////////////////////
+enum eTaskModifyFieldTypes
+{
+    TMFT_NONE = 0;
+    TMFT_STRING = 1;
+    TMFT_LONG = 2;
+    TMFT_BOOL = 3;
+    TMFT_DATETIME = 4;
+}
+
+
+enum eTaskModifyFlags
+{
+    TMF_NONE = 0;
+    TMF_MODIFY_NAME = 1;
+    TMF_MODIFY_DESCRIPTION = 2;
+    TMF_MODIFY_DEADLINE = 4;
+    TMF_MODIFY_TYPE = 8;
+    TMF_MODIFY_URGENCY = 16;
+    TMF_MODIFY_STATE = 32;
+    TMF_REC_CREATE = 64;
+    TMF_REC_DELETE = 128; 
+    TMF_REC_DOERS = 256; 
+}
+
+message PkMessage
+{
+    int64 id = 1;
+}
+
+message TaskModel 
+{
+    int64 id = 1;
+    string name = 2;
+    string description = 3;
+    int64 creator_id = 4;
+    google.protobuf.Timestamp creation_date = 5; // Используем Timestamp для даты
+    optional google.protobuf.Timestamp deadline_date = 6; // Используем Timestamp для даты
+    int64 template_id = 7;
+    int64 urgency_id = 8;
+    int64 company_id = 9;
+    int64 project_id = 10;
+    int64 area_id = 11;
+    optional int64 current_node = 12;
+}
+message CreateTaskModel
+{
+    string name = 1;
+    string description = 2;
+    optional google.protobuf.Timestamp deadline_date = 3; // Используем Timestamp для даты
+    int64 template_id = 4;
+    int64 urgency_id = 5;
+    int64 company_id = 6;
+    int64 project_id = 7;
+    int64 area_id = 8;
+    optional int64 current_node = 9;
+}
+
+
+// Сообщение для представления узла задачи
+message TaskNode 
+{
+    int64 id = 1;
+    string name = 2;
+    string description = 3;
+    repeated int64 node_doers = 4;
+    int64 task_id = 5;
+    bool terminating = 6;
+    int64 icon_id =  7;
+}
+
+// Сообщение для представления ребра задачи
+message TaskEdge 
+{
+    int64 id = 1;
+    string name = 2;
+    int64 node_from = 3;
+    int64 node_to = 4;
+}
+
+message TasksListRequest
+{
+    int64 user_id = 1; // - обязательное поле - пользователь для которого выбираются доступные таски
+    int64 company_id = 2;
+    int64 project_id = 3;
+    int64 area_id = 4;
+}
+
+message TaskRequest
+{
+    int64 user_id = 1;// - обязательное поле - пользователь для которого выбираются доступные таски
+    int64 task_id = 2;
+}
+
+message TasksListReply
+{
+    repeated TaskModel tasks = 1;
+}
+
+message TaskFullReply
+{
+    TaskModel task = 1;
+    repeated TaskNode nodes = 2;
+    repeated TaskEdge edges = 3;
+}
+
+message CreateTaskRequest
+{
+    int64 user_id = 1;// - обязательное поле - пользователь для которого выбираются доступные таски
+    CreateTaskModel task = 2;
+    //repeated TaskNode nodes = 3;
+    //repeated TaskEdge edges = 4;
+}
+
+message ModifyTaskRequest
+{
+    int64 user_id = 1;// - обязательное поле - пользователь отв. за изменения
+    int64 flags = 2;  // комбинация из ETaskModifyFlags
+    TaskModel task = 3;
+}
+message DeleteTaskRequest
+{
+    int64 user_id = 1;// - обязательное поле - пользователь отв. за изменения
+    int64 task_id = 2;  
+}
+
+message TaskHistoryModel
+{
+    int64 user_id = 1; 
+    google.protobuf.Timestamp action_date = 2;
+    optional string new_value = 3;
+    optional string old_value = 4;
+    optional string value_type = 5;
+    string action_name = 6;
+    string action_string = 7;
+}
+
+message TaskHistoryReply
+{
+    repeated TaskHistoryModel history = 1;
+}
+
+
+
+message TransitionListReply
+{
+    repeated TaskEdge edges = 1;
+}
+
+message NodeReply
+{
+    TaskNode node = 1;
+}
+message AppointDoersRequest
+{
+    int64 user_id = 1;
+    int64 node_id = 2;
+    repeated int64 doers = 3;
+}
+
+
+
+
+/// URGENCY
+message UrgencyModel
+{
+    int64 id = 1;
+    string name = 2;
+    string description = 3;
+}
+
+message TasksUrgenciesListRequest
+{
+    int64 id = 1;
+}
+message TasksUrgenciesListReply
+{
+    repeated UrgencyModel urgenicies = 1;
+}
+message CreateUrgencyRequest
+{
+    int64 user_id = 1;
+    string name = 2;
+    string description = 3;
+}
+
+message CreateUrgencyReply
+{
+    int64 id = 1;
+}
+
+message ModifyUrgencyRequest
+{
+    int64 user_id = 1;
+    int64 change_flags = 2; // комбинация из ETaskModifyFlags
+    UrgencyModel urgency = 3;
+}
+
+message DeleteUrgencyRequest
+{
+    int64 user_id = 1;
+    int64 urgency_id = 2;
+}
+
+
+// Project areas
+//
+message ProjectArea 
+{
+    int64 id = 1;
+    string name = 2;
+    int64 project_id = 3;
+    string description = 4;
+}
+
+message ProjectAreasRequest
+{
+    int64 project_id = 1;
+    int64 area_id = 2;
+}
+
+message ProjectAreasReply
+{
+    repeated ProjectArea areas = 1;
+}
+
+message CreateProjectAreaRequest
+{
+    int64 user_id = 1;
+    ProjectArea area = 2;
+}
+
+message ModifyProjectAreaRequest
+{
+    int64 user_id = 1;
+    int64 change_flags = 2; // комбинация из ETaskModifyFlags
+    ProjectArea area = 3;
+}
+message DeleteProjectAreaRequest
+{
+    int64 user_id = 1;
+    int64 area_id = 2;
+}
+
+
+// Company projects
+//
+
+message CompanyProject 
+{
+    int64 id = 1;
+    string name = 2;
+    string description = 3;
+    int64 company_id = 4;
+}
+
+message CompanyProjectsRequest
+{
+    int64 company_id = 1;
+    int64 project_id = 2;
+}
+
+message CompanyProjectsReply
+{
+    repeated CompanyProject projects = 1;
+}
+
+message CreateProjectRequest
+{
+    int64 user_id = 1;
+    CompanyProject project = 2;
+}
+
+message ModifyProjectRequest
+{
+    int64 user_id = 1;
+    int64 change_flags = 2;  // комбинация из ETaskModifyFlags
+    CompanyProject project = 3;
+}
+
+message DeleteProjectRequest
+{
+    int64 user_id = 1;
+    int64 project_id = 2;
+}
+
+
+// Companies
+message CompanyModel
+{
+    int64 id = 1;
+    string name = 2;
+    optional string description = 3;
+}
+
+message CompanyRequest
+{
+    int64 id = 1;
+}
+
+message CompaniesReply
+{
+    repeated CompanyModel companies = 1;
+}
+
+message CreateCompanyRequest
+{
+    int64 creator_id = 1;
+    string name = 2;
+    optional string description = 3;
+}
+
+message ModifyCompanyRequest
+{
+    int64 user_id = 1;
+    int64 change_flags = 2;
+    int64 id = 3;
+    string name = 4;
+    optional string description = 5;
+}
+
+message DeleteCompanyRequest
+{
+    int64 user_id = 1;
+    int64 company_id = 2;
+}
+    
+// Company Employees
+
+message EmployeesRequest
+{
+    int64 company_id = 1;
+}
+
+message EmployeesReply
+{
+    repeated int64 employee_ids = 1;
+}
+
+message AddEmployeeRequest
+{
+    int64 creator_id = 1;
+    int64 company_id = 2;
+    int64 new_user_id = 3;
+}
+
+message RemoveEmployeeRequest
+{
+    int64 deleter_id = 1;
+    int64 company_id = 2;
+    int64 user_to_del_id = 3;
+}
+
+message ModifyTaskLongFieldRequest
+{
+	int64 userId = 1;
+	int64 taskId = 2;
+	int64 longValue = 3;	
+}
+message ModifyTaskTextFieldRequest
+{
+	int64 userId = 1;
+	int64 taskId = 2;
+	string strValue = 3;	
+}
+
+message ModifyNodeDeadlineRequest
+{
+	int64 userId = 1;
+	int64 taskId = 2;
+    int64 nodeId = 3;
+	google.protobuf.Timestamp  dateValue = 4;	
+}
+

@@ -7,7 +7,7 @@ using TasksService.DataAccess.Entities;
 
 namespace TasksService.DataAccess.Repositories.Abstractions
 {
-    public interface ITasksRepository
+    public interface ITaskTemplatesRepository
     {
         Task<List<WfDefinitionsTemplate>> GetTemplateList(long Id, long CompanyId);
         Task<long> CreateTemplate(string Name, string Description, long CompanyId, List<WfNodesTemplate> Nodes, List<WfEdgesTemplate> Edges);

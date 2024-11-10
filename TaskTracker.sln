@@ -79,9 +79,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TasksService.BusinessLogic.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TasksService.BusinessLogic.Services.Implementations", "TasksService\BLL\TasksService.BusinessLogic.Services.Implementations\TasksService.BusinessLogic.Services.Implementations.csproj", "{34CA89A0-A030-47FE-ACFB-30A0E2B41FAA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaslsService.BusinessLogic.DTO", "TasksService\BLL\TaslsService.BusinessLogic.DTO\TaslsService.BusinessLogic.DTO.csproj", "{86E2026D-C9B4-4A40-A178-E7458092AFDF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TasksService.BusinessLogic.DTO", "TasksService\BLL\TasksService.BusinessLogic.DTO\TasksService.BusinessLogic.DTO.csproj", "{86E2026D-C9B4-4A40-A178-E7458092AFDF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TasksService.DataAccess.Entities", "TasksService\DAL\TasksService.DataAccess.Entities\TasksService.DataAccess.Entities.csproj", "{5401F528-E37B-41A0-B35E-9A98154CCBFD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{7A9F77E5-24FE-4A17-B5F1-5D57D93BE54C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TasksTests", "TasksService\Tests\TasksTests\TasksTests.csproj", "{D92EA3BA-6BFC-4C26-89FB-843D4EB90D65}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatService", "src\ChatService\ChatService\ChatService.csproj", "{0026EFE0-F1A3-442C-9E78-4B200CC4090F}"
 EndProject
@@ -226,6 +230,10 @@ Global
 		{B148512F-24EF-4A4A-8304-542700F67114}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B148512F-24EF-4A4A-8304-542700F67114}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B148512F-24EF-4A4A-8304-542700F67114}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D92EA3BA-6BFC-4C26-89FB-843D4EB90D65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D92EA3BA-6BFC-4C26-89FB-843D4EB90D65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D92EA3BA-6BFC-4C26-89FB-843D4EB90D65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D92EA3BA-6BFC-4C26-89FB-843D4EB90D65}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -270,6 +278,8 @@ Global
 		{8544EB41-D73D-4199-9202-D26D1D170A8B} = {FB54123B-9679-419B-AC90-347C21A66BD3}
 		{A079E89E-7018-4132-80EC-9A6EF5D23DB9} = {FB54123B-9679-419B-AC90-347C21A66BD3}
 		{B148512F-24EF-4A4A-8304-542700F67114} = {FB54123B-9679-419B-AC90-347C21A66BD3}
+		{7A9F77E5-24FE-4A17-B5F1-5D57D93BE54C} = {9F540ADD-F89C-439F-8F3D-CBD3E8A07D7B}
+		{D92EA3BA-6BFC-4C26-89FB-843D4EB90D65} = {7A9F77E5-24FE-4A17-B5F1-5D57D93BE54C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7C183238-1C39-4D6A-B0C4-41D95D68C458}
