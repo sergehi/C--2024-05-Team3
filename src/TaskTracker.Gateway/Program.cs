@@ -1,7 +1,6 @@
 using AuthorizationService.Shared.Protos;
 using ChatProto;
 using Microsoft.OpenApi.Models;
-using TasksTemplatesService;
 using TaskTracker.Gateway.Configutions;
 using TestGrpcService1; // ���������� ������������ ���� gRPC ��� Service1
 
@@ -69,7 +68,7 @@ namespace TaskTracker.Gateway
                 return handler;
             });
 
-            builder.Services.AddGrpcClient<TaskTemplates.TaskTemplatesBase>(options =>
+            builder.Services.AddGrpcClient<TasksServiceProto.TasksServiceReflection>(options =>
             {
                 options.Address = new Uri(grpcConfig.TasksServiceUrl);
             })
