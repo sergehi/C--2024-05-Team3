@@ -1,0 +1,13 @@
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\Common\bin\Debug\net8.0\Common.deps.json
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\Common\bin\Debug\net8.0\Common.dll
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\Common\bin\Debug\net8.0\Common.pdb
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\Common\obj\Debug\net8.0\Common.csproj.AssemblyReference.cache
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\Common\obj\Debug\net8.0\Common.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\Common\obj\Debug\net8.0\Common.AssemblyInfoInputs.cache
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\Common\obj\Debug\net8.0\Common.AssemblyInfo.cs
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\Common\obj\Debug\net8.0\Common.csproj.CoreCompileInputs.cache
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\Common\obj\Debug\net8.0\Common.sourcelink.json
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\Common\obj\Debug\net8.0\Common.dll
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\Common\obj\Debug\net8.0\refint\Common.dll
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\Common\obj\Debug\net8.0\Common.pdb
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\Common\obj\Debug\net8.0\ref\Common.dll

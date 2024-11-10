@@ -139,8 +139,8 @@
               "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\AuthorizationService\\Shared\\Shared.csproj": {
                 "projectPath": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\AuthorizationService\\Shared\\Shared.csproj"
               },
-              "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.DTO\\Logger.BusinessLogic.DTO.csproj": {
-                "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.DTO\\Logger.BusinessLogic.DTO.csproj"
+              "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.DTO\\Logger.BusinessLogic.DTO.csproj": {
+                "projectPath": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.DTO\\Logger.BusinessLogic.DTO.csproj"
               },
               "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.Services.Abstractions\\Logger.BusinessLogic.Services.Abstractions.csproj": {
                 "projectPath": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.Services.Abstractions\\Logger.BusinessLogic.Services.Abstractions.csproj"
@@ -388,14 +388,14 @@
         }
       }
     },
-    "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.DTO\\Logger.BusinessLogic.DTO.csproj": {
+    "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.DTO\\Logger.BusinessLogic.DTO.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.DTO\\Logger.BusinessLogic.DTO.csproj",
+        "projectUniqueName": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.DTO\\Logger.BusinessLogic.DTO.csproj",
         "projectName": "Logger.BusinessLogic.DTO",
-        "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.DTO\\Logger.BusinessLogic.DTO.csproj",
+        "projectPath": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.DTO\\Logger.BusinessLogic.DTO.csproj",
         "packagesPath": "C:\\Users\\furye\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.DTO\\obj\\",
+        "outputPath": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.DTO\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\Programms\\DevExpress\\Components\\Offline Packages",
@@ -493,8 +493,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.DTO\\Logger.BusinessLogic.DTO.csproj": {
-                "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.DTO\\Logger.BusinessLogic.DTO.csproj"
+              "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.DTO\\Logger.BusinessLogic.DTO.csproj": {
+                "projectPath": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.DTO\\Logger.BusinessLogic.DTO.csproj"
               }
             }
           }
@@ -566,8 +566,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.DTO\\Logger.BusinessLogic.DTO.csproj": {
-                "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.DTO\\Logger.BusinessLogic.DTO.csproj"
+              "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.DTO\\Logger.BusinessLogic.DTO.csproj": {
+                "projectPath": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.DTO\\Logger.BusinessLogic.DTO.csproj"
               },
               "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.Services.Abstractions\\Logger.BusinessLogic.Services.Abstractions.csproj": {
                 "projectPath": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.Services.Abstractions\\Logger.BusinessLogic.Services.Abstractions.csproj"

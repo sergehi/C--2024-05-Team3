@@ -862,8 +862,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.DTO\\Logger.BusinessLogic.DTO.csproj": {
-              "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.DTO\\Logger.BusinessLogic.DTO.csproj"
+            "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.DTO\\Logger.BusinessLogic.DTO.csproj": {
+              "projectPath": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.DTO\\Logger.BusinessLogic.DTO.csproj"
             },
             "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.Services.Abstractions\\Logger.BusinessLogic.Services.Abstractions.csproj": {
               "projectPath": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.Services.Abstractions\\Logger.BusinessLogic.Services.Abstractions.csproj"

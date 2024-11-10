@@ -46,6 +46,8 @@ TestResult.xml
 
 # Build Results of an ATL Project
 [Dd]ebugPS/
+[Oo]bj/
+[Dd]ebug/
 [Rr]eleasePS/
 dlldata.c
 
