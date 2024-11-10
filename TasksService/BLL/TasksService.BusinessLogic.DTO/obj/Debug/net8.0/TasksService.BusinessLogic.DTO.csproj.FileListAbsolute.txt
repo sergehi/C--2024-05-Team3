@@ -1,0 +1,13 @@
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\TasksService\BLL\TasksService.BusinessLogic.DTO\bin\Debug\net8.0\TasksService.BusinessLogic.DTO.deps.json
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\TasksService\BLL\TasksService.BusinessLogic.DTO\bin\Debug\net8.0\TasksService.BusinessLogic.DTO.dll
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\TasksService\BLL\TasksService.BusinessLogic.DTO\bin\Debug\net8.0\TasksService.BusinessLogic.DTO.pdb
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\TasksService\BLL\TasksService.BusinessLogic.DTO\obj\Debug\net8.0\TasksService.BusinessLogic.DTO.csproj.AssemblyReference.cache
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\TasksService\BLL\TasksService.BusinessLogic.DTO\obj\Debug\net8.0\TasksService.BusinessLogic.DTO.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\TasksService\BLL\TasksService.BusinessLogic.DTO\obj\Debug\net8.0\TasksService.BusinessLogic.DTO.AssemblyInfoInputs.cache
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\TasksService\BLL\TasksService.BusinessLogic.DTO\obj\Debug\net8.0\TasksService.BusinessLogic.DTO.AssemblyInfo.cs
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\TasksService\BLL\TasksService.BusinessLogic.DTO\obj\Debug\net8.0\TasksService.BusinessLogic.DTO.csproj.CoreCompileInputs.cache
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\TasksService\BLL\TasksService.BusinessLogic.DTO\obj\Debug\net8.0\TasksService.BusinessLogic.DTO.sourcelink.json
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\TasksService\BLL\TasksService.BusinessLogic.DTO\obj\Debug\net8.0\TasksService.BusinessLogic.DTO.dll
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\TasksService\BLL\TasksService.BusinessLogic.DTO\obj\Debug\net8.0\refint\TasksService.BusinessLogic.DTO.dll
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\TasksService\BLL\TasksService.BusinessLogic.DTO\obj\Debug\net8.0\TasksService.BusinessLogic.DTO.pdb
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\TasksService\BLL\TasksService.BusinessLogic.DTO\obj\Debug\net8.0\ref\TasksService.BusinessLogic.DTO.dll

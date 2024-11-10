@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\DAL\\TasksService.DataAccess.Repositories.Implementations\\TasksService.DataAccess.Repositories.Implementations.csproj": {}
+    "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\DAL\\TasksService.DataAccess.Repositories.Implementations\\TasksService.DataAccess.Repositories.Implementations.csproj": {}
   },
   "projects": {
-    "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Common\\Common.csproj": {
+    "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Common\\Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Common\\Common.csproj",
+        "projectUniqueName": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Common\\Common.csproj",
         "projectName": "Common",
-        "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Common\\Common.csproj",
+        "projectPath": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Common\\Common.csproj",
         "packagesPath": "C:\\Users\\furye\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Common\\obj\\",
+        "outputPath": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Common\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\Programms\\DevExpress\\Components\\Offline Packages",
@@ -87,14 +87,14 @@
         }
       }
     },
-    "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\DAL\\TasksService.DataAccess.Entities\\TasksService.DataAccess.Entities.csproj": {
+    "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\DAL\\TasksService.DataAccess.Entities\\TasksService.DataAccess.Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\DAL\\TasksService.DataAccess.Entities\\TasksService.DataAccess.Entities.csproj",
+        "projectUniqueName": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\DAL\\TasksService.DataAccess.Entities\\TasksService.DataAccess.Entities.csproj",
         "projectName": "TasksService.DataAccess.Entities",
-        "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\DAL\\TasksService.DataAccess.Entities\\TasksService.DataAccess.Entities.csproj",
+        "projectPath": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\DAL\\TasksService.DataAccess.Entities\\TasksService.DataAccess.Entities.csproj",
         "packagesPath": "C:\\Users\\furye\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\DAL\\TasksService.DataAccess.Entities\\obj\\",
+        "outputPath": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\DAL\\TasksService.DataAccess.Entities\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\Programms\\DevExpress\\Components\\Offline Packages",
@@ -156,14 +156,14 @@
         }
       }
     },
-    "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\DAL\\TasksService.DataAccess.EntityFramework\\TasksService.DataAccess.EntityFramework.csproj": {
+    "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\DAL\\TasksService.DataAccess.EntityFramework\\TasksService.DataAccess.EntityFramework.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\DAL\\TasksService.DataAccess.EntityFramework\\TasksService.DataAccess.EntityFramework.csproj",
+        "projectUniqueName": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\DAL\\TasksService.DataAccess.EntityFramework\\TasksService.DataAccess.EntityFramework.csproj",
         "projectName": "TasksService.DataAccess.EntityFramework",
-        "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\DAL\\TasksService.DataAccess.EntityFramework\\TasksService.DataAccess.EntityFramework.csproj",
+        "projectPath": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\DAL\\TasksService.DataAccess.EntityFramework\\TasksService.DataAccess.EntityFramework.csproj",
         "packagesPath": "C:\\Users\\furye\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\DAL\\TasksService.DataAccess.EntityFramework\\obj\\",
+        "outputPath": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\DAL\\TasksService.DataAccess.EntityFramework\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\Programms\\DevExpress\\Components\\Offline Packages",
@@ -188,8 +188,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\DAL\\TasksService.DataAccess.Entities\\TasksService.DataAccess.Entities.csproj": {
-                "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\DAL\\TasksService.DataAccess.Entities\\TasksService.DataAccess.Entities.csproj"
+              "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\DAL\\TasksService.DataAccess.Entities\\TasksService.DataAccess.Entities.csproj": {
+                "projectPath": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\DAL\\TasksService.DataAccess.Entities\\TasksService.DataAccess.Entities.csproj"
               }
             }
           }
@@ -263,14 +263,14 @@
         }
       }
     },
-    "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\DAL\\TasksService.DataAccess.Repositories.Abstractions\\TasksService.DataAccess.Repositories.Abstractions.csproj": {
+    "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\DAL\\TasksService.DataAccess.Repositories.Abstractions\\TasksService.DataAccess.Repositories.Abstractions.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\DAL\\TasksService.DataAccess.Repositories.Abstractions\\TasksService.DataAccess.Repositories.Abstractions.csproj",
+        "projectUniqueName": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\DAL\\TasksService.DataAccess.Repositories.Abstractions\\TasksService.DataAccess.Repositories.Abstractions.csproj",
         "projectName": "TasksService.DataAccess.Repositories.Abstractions",
-        "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\DAL\\TasksService.DataAccess.Repositories.Abstractions\\TasksService.DataAccess.Repositories.Abstractions.csproj",
+        "projectPath": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\DAL\\TasksService.DataAccess.Repositories.Abstractions\\TasksService.DataAccess.Repositories.Abstractions.csproj",
         "packagesPath": "C:\\Users\\furye\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\DAL\\TasksService.DataAccess.Repositories.Abstractions\\obj\\",
+        "outputPath": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\DAL\\TasksService.DataAccess.Repositories.Abstractions\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\Programms\\DevExpress\\Components\\Offline Packages",
@@ -295,8 +295,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\DAL\\TasksService.DataAccess.Entities\\TasksService.DataAccess.Entities.csproj": {
-                "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\DAL\\TasksService.DataAccess.Entities\\TasksService.DataAccess.Entities.csproj"
+              "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\DAL\\TasksService.DataAccess.Entities\\TasksService.DataAccess.Entities.csproj": {
+                "projectPath": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\DAL\\TasksService.DataAccess.Entities\\TasksService.DataAccess.Entities.csproj"
               }
             }
           }
@@ -336,14 +336,14 @@
         }
       }
     },
-    "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\DAL\\TasksService.DataAccess.Repositories.Implementations\\TasksService.DataAccess.Repositories.Implementations.csproj": {
+    "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\DAL\\TasksService.DataAccess.Repositories.Implementations\\TasksService.DataAccess.Repositories.Implementations.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\DAL\\TasksService.DataAccess.Repositories.Implementations\\TasksService.DataAccess.Repositories.Implementations.csproj",
+        "projectUniqueName": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\DAL\\TasksService.DataAccess.Repositories.Implementations\\TasksService.DataAccess.Repositories.Implementations.csproj",
         "projectName": "TasksService.DataAccess.Repositories.Implementations",
-        "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\DAL\\TasksService.DataAccess.Repositories.Implementations\\TasksService.DataAccess.Repositories.Implementations.csproj",
+        "projectPath": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\DAL\\TasksService.DataAccess.Repositories.Implementations\\TasksService.DataAccess.Repositories.Implementations.csproj",
         "packagesPath": "C:\\Users\\furye\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\DAL\\TasksService.DataAccess.Repositories.Implementations\\obj\\",
+        "outputPath": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\DAL\\TasksService.DataAccess.Repositories.Implementations\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\Programms\\DevExpress\\Components\\Offline Packages",
@@ -368,17 +368,17 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Common\\Common.csproj": {
-                "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Common\\Common.csproj"
+              "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Common\\Common.csproj": {
+                "projectPath": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Common\\Common.csproj"
               },
-              "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\DAL\\TasksService.DataAccess.Entities\\TasksService.DataAccess.Entities.csproj": {
-                "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\DAL\\TasksService.DataAccess.Entities\\TasksService.DataAccess.Entities.csproj"
+              "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\DAL\\TasksService.DataAccess.Entities\\TasksService.DataAccess.Entities.csproj": {
+                "projectPath": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\DAL\\TasksService.DataAccess.Entities\\TasksService.DataAccess.Entities.csproj"
               },
-              "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\DAL\\TasksService.DataAccess.EntityFramework\\TasksService.DataAccess.EntityFramework.csproj": {
-                "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\DAL\\TasksService.DataAccess.EntityFramework\\TasksService.DataAccess.EntityFramework.csproj"
+              "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\DAL\\TasksService.DataAccess.EntityFramework\\TasksService.DataAccess.EntityFramework.csproj": {
+                "projectPath": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\DAL\\TasksService.DataAccess.EntityFramework\\TasksService.DataAccess.EntityFramework.csproj"
               },
-              "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\DAL\\TasksService.DataAccess.Repositories.Abstractions\\TasksService.DataAccess.Repositories.Abstractions.csproj": {
-                "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\DAL\\TasksService.DataAccess.Repositories.Abstractions\\TasksService.DataAccess.Repositories.Abstractions.csproj"
+              "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\DAL\\TasksService.DataAccess.Repositories.Abstractions\\TasksService.DataAccess.Repositories.Abstractions.csproj": {
+                "projectPath": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\DAL\\TasksService.DataAccess.Repositories.Abstractions\\TasksService.DataAccess.Repositories.Abstractions.csproj"
               }
             }
           }

@@ -725,11 +725,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\DAL\\Logger.DataAccess.Entities\\Logger.DataAccess.Entities.csproj",
+      "projectUniqueName": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\DAL\\Logger.DataAccess.Entities\\Logger.DataAccess.Entities.csproj",
       "projectName": "Logger.DataAccess.Entities",
-      "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\DAL\\Logger.DataAccess.Entities\\Logger.DataAccess.Entities.csproj",
+      "projectPath": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\DAL\\Logger.DataAccess.Entities\\Logger.DataAccess.Entities.csproj",
       "packagesPath": "C:\\Users\\furye\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\DAL\\Logger.DataAccess.Entities\\obj\\",
+      "outputPath": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\DAL\\Logger.DataAccess.Entities\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "D:\\Programms\\DevExpress\\Components\\Offline Packages",
@@ -754,8 +754,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Common\\Common.csproj": {
-              "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Common\\Common.csproj"
+            "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Common\\Common.csproj": {
+              "projectPath": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Common\\Common.csproj"
             }
           }
         }

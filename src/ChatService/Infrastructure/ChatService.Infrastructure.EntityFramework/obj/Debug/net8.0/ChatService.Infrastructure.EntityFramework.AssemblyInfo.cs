@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ChatService.Infrastructure.EntityFramework")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+06e02a7c51cd9bf3cf8d15c64a2fd94f04202585")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ad0ca57e4a911bca5591b7c60802bb1eb45a8f00")]
 [assembly: System.Reflection.AssemblyProductAttribute("ChatService.Infrastructure.EntityFramework")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ChatService.Infrastructure.EntityFramework")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

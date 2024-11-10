@@ -690,11 +690,24 @@
           "bin/placeholder/Common.dll": {}
         }
       },
+      "TasksService.BusinessLogic.DTO/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "Google.Protobuf": "3.28.0-rc2"
+        },
+        "compile": {
+          "bin/placeholder/TasksService.BusinessLogic.DTO.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/TasksService.BusinessLogic.DTO.dll": {}
+        }
+      },
       "TasksService.BusinessLogic.Services.Abstractions/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
-          "TaslsService.BusinessLogic.DTO": "1.0.0"
+          "TasksService.BusinessLogic.DTO": "1.0.0"
         },
         "compile": {
           "bin/placeholder/TasksService.BusinessLogic.Services.Abstractions.dll": {}
@@ -708,10 +721,10 @@
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
           "AutoMapper": "13.0.1",
+          "TasksService.BusinessLogic.DTO": "1.0.0",
           "TasksService.BusinessLogic.Services.Abstractions": "1.0.0",
           "TasksService.DataAccess.Entities": "1.0.0",
-          "TasksService.DataAccess.Repositories.Abstractions": "1.0.0",
-          "TaslsService.BusinessLogic.DTO": "1.0.0"
+          "TasksService.DataAccess.Repositories.Abstractions": "1.0.0"
         },
         "compile": {
           "bin/placeholder/TasksService.BusinessLogic.Services.Implementations.dll": {}
@@ -775,16 +788,6 @@
         },
         "runtime": {
           "bin/placeholder/TasksService.DataAccess.Repositories.Implementations.dll": {}
-        }
-      },
-      "TaslsService.BusinessLogic.DTO/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v8.0",
-        "compile": {
-          "bin/placeholder/TaslsService.BusinessLogic.DTO.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/TaslsService.BusinessLogic.DTO.dll": {}
         }
       }
     }
@@ -1874,6 +1877,11 @@
       "path": "../../Common/Common.csproj",
       "msbuildProject": "../../Common/Common.csproj"
     },
+    "TasksService.BusinessLogic.DTO/1.0.0": {
+      "type": "project",
+      "path": "../BLL/TasksService.BusinessLogic.DTO/TasksService.BusinessLogic.DTO.csproj",
+      "msbuildProject": "../BLL/TasksService.BusinessLogic.DTO/TasksService.BusinessLogic.DTO.csproj"
+    },
     "TasksService.BusinessLogic.Services.Abstractions/1.0.0": {
       "type": "project",
       "path": "../BLL/TasksService.BusinessLogic.Services.Abstractions/TasksService.BusinessLogic.Services.Abstractions.csproj",
@@ -1903,11 +1911,6 @@
       "type": "project",
       "path": "../DAL/TasksService.DataAccess.Repositories.Implementations/TasksService.DataAccess.Repositories.Implementations.csproj",
       "msbuildProject": "../DAL/TasksService.DataAccess.Repositories.Implementations/TasksService.DataAccess.Repositories.Implementations.csproj"
-    },
-    "TaslsService.BusinessLogic.DTO/1.0.0": {
-      "type": "project",
-      "path": "../BLL/TaslsService.BusinessLogic.DTO/TaslsService.BusinessLogic.DTO.csproj",
-      "msbuildProject": "../BLL/TaslsService.BusinessLogic.DTO/TaslsService.BusinessLogic.DTO.csproj"
     }
   },
   "projectFileDependencyGroups": {

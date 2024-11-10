@@ -10,9 +10,9 @@ namespace TaskTracker.Gateway.Controllers
     [ApiExplorerSettings(GroupName = "tasksservice")]
     public class TasksServiceController : ControllerBase
     {
-        private readonly TasksServiceReflection _client;
+        private readonly TasksServiceProto.TasksServiceProto.TasksServiceProtoClient _client;
 
-        public TasksServiceController(TasksServiceReflection client)
+        public TasksServiceController(TasksServiceProto.TasksServiceProto.TasksServiceProtoClient client)
         {
             _client = client;
         }

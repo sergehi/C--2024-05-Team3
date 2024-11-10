@@ -4103,11 +4103,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\AuthorizationService\\ModularTests\\ModularTests.csproj",
+      "projectUniqueName": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\AuthorizationService\\ModularTests\\ModularTests.csproj",
       "projectName": "ModularTests",
-      "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\AuthorizationService\\ModularTests\\ModularTests.csproj",
+      "projectPath": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\AuthorizationService\\ModularTests\\ModularTests.csproj",
       "packagesPath": "C:\\Users\\furye\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\AuthorizationService\\ModularTests\\obj\\",
+      "outputPath": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\AuthorizationService\\ModularTests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "D:\\Programms\\DevExpress\\Components\\Offline Packages",
@@ -4132,14 +4132,14 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\AuthorizationService\\Core\\Core.csproj": {
-              "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\AuthorizationService\\Core\\Core.csproj"
+            "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\AuthorizationService\\Core\\Core.csproj": {
+              "projectPath": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\AuthorizationService\\Core\\Core.csproj"
             },
-            "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\AuthorizationService\\Infrastructure\\Infrastructure.csproj": {
-              "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\AuthorizationService\\Infrastructure\\Infrastructure.csproj"
+            "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\AuthorizationService\\Infrastructure\\Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\AuthorizationService\\Infrastructure\\Infrastructure.csproj"
             },
-            "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\AuthorizationService\\Web\\Web.csproj": {
-              "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\AuthorizationService\\Web\\Web.csproj"
+            "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\AuthorizationService\\Web\\Web.csproj": {
+              "projectPath": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\AuthorizationService\\Web\\Web.csproj"
             }
           }
         }

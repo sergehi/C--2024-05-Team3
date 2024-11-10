@@ -744,11 +744,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\DAL\\Logger.DataAccess.Repositories.Abstractions\\Logger.DataAccess.Repositories.Abstractions.csproj",
+      "projectUniqueName": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\DAL\\Logger.DataAccess.Repositories.Abstractions\\Logger.DataAccess.Repositories.Abstractions.csproj",
       "projectName": "Logger.DataAccess.Repositories.Abstractions",
-      "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\DAL\\Logger.DataAccess.Repositories.Abstractions\\Logger.DataAccess.Repositories.Abstractions.csproj",
+      "projectPath": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\DAL\\Logger.DataAccess.Repositories.Abstractions\\Logger.DataAccess.Repositories.Abstractions.csproj",
       "packagesPath": "C:\\Users\\furye\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\DAL\\Logger.DataAccess.Repositories.Abstractions\\obj\\",
+      "outputPath": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\DAL\\Logger.DataAccess.Repositories.Abstractions\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "D:\\Programms\\DevExpress\\Components\\Offline Packages",
@@ -773,11 +773,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Common\\Common.csproj": {
-              "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Common\\Common.csproj"
+            "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Common\\Common.csproj": {
+              "projectPath": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Common\\Common.csproj"
             },
-            "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\DAL\\Logger.DataAccess.Entities\\Logger.DataAccess.Entities.csproj": {
-              "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\DAL\\Logger.DataAccess.Entities\\Logger.DataAccess.Entities.csproj"
+            "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\DAL\\Logger.DataAccess.Entities\\Logger.DataAccess.Entities.csproj": {
+              "projectPath": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\DAL\\Logger.DataAccess.Entities\\Logger.DataAccess.Entities.csproj"
             }
           }
         }

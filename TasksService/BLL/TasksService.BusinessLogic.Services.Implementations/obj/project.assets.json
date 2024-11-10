@@ -323,11 +323,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\BLL\\TasksService.BusinessLogic.Services.Implementations\\TasksService.BusinessLogic.Services.Implementations.csproj",
+      "projectUniqueName": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\BLL\\TasksService.BusinessLogic.Services.Implementations\\TasksService.BusinessLogic.Services.Implementations.csproj",
       "projectName": "TasksService.BusinessLogic.Services.Implementations",
-      "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\BLL\\TasksService.BusinessLogic.Services.Implementations\\TasksService.BusinessLogic.Services.Implementations.csproj",
+      "projectPath": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\BLL\\TasksService.BusinessLogic.Services.Implementations\\TasksService.BusinessLogic.Services.Implementations.csproj",
       "packagesPath": "C:\\Users\\furye\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\BLL\\TasksService.BusinessLogic.Services.Implementations\\obj\\",
+      "outputPath": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\BLL\\TasksService.BusinessLogic.Services.Implementations\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "D:\\Programms\\DevExpress\\Components\\Offline Packages",
@@ -352,17 +352,17 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\BLL\\TasksService.BusinessLogic.DTO\\TasksService.BusinessLogic.DTO.csproj": {
-              "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\BLL\\TasksService.BusinessLogic.DTO\\TasksService.BusinessLogic.DTO.csproj"
+            "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\BLL\\TasksService.BusinessLogic.DTO\\TasksService.BusinessLogic.DTO.csproj": {
+              "projectPath": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\BLL\\TasksService.BusinessLogic.DTO\\TasksService.BusinessLogic.DTO.csproj"
             },
-            "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\BLL\\TasksService.BusinessLogic.Services.Abstractions\\TasksService.BusinessLogic.Services.Abstractions.csproj": {
-              "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\BLL\\TasksService.BusinessLogic.Services.Abstractions\\TasksService.BusinessLogic.Services.Abstractions.csproj"
+            "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\BLL\\TasksService.BusinessLogic.Services.Abstractions\\TasksService.BusinessLogic.Services.Abstractions.csproj": {
+              "projectPath": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\BLL\\TasksService.BusinessLogic.Services.Abstractions\\TasksService.BusinessLogic.Services.Abstractions.csproj"
             },
-            "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\DAL\\TasksService.DataAccess.Entities\\TasksService.DataAccess.Entities.csproj": {
-              "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\DAL\\TasksService.DataAccess.Entities\\TasksService.DataAccess.Entities.csproj"
+            "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\DAL\\TasksService.DataAccess.Entities\\TasksService.DataAccess.Entities.csproj": {
+              "projectPath": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\DAL\\TasksService.DataAccess.Entities\\TasksService.DataAccess.Entities.csproj"
             },
-            "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\DAL\\TasksService.DataAccess.Repositories.Abstractions\\TasksService.DataAccess.Repositories.Abstractions.csproj": {
-              "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\DAL\\TasksService.DataAccess.Repositories.Abstractions\\TasksService.DataAccess.Repositories.Abstractions.csproj"
+            "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\DAL\\TasksService.DataAccess.Repositories.Abstractions\\TasksService.DataAccess.Repositories.Abstractions.csproj": {
+              "projectPath": "C:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\TasksService\\DAL\\TasksService.DataAccess.Repositories.Abstractions\\TasksService.DataAccess.Repositories.Abstractions.csproj"
             }
           }
         }

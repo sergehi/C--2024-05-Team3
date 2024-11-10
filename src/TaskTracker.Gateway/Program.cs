@@ -68,7 +68,7 @@ namespace TaskTracker.Gateway
                 return handler;
             });
 
-            builder.Services.AddGrpcClient<TasksServiceProto.TasksServiceReflection>(options =>
+            builder.Services.AddGrpcClient<TasksServiceProto.TasksServiceProto.TasksServiceProtoClient>(options =>
             {
                 options.Address = new Uri(grpcConfig.TasksServiceUrl);
             })

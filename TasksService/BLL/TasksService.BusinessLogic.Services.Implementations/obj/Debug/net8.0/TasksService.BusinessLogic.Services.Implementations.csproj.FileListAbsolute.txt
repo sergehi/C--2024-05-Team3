@@ -1,14 +1,14 @@
 C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\TasksService\BLL\TasksService.BusinessLogic.Services.Implementations\bin\Debug\net8.0\TasksService.BusinessLogic.Services.Implementations.deps.json
 C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\TasksService\BLL\TasksService.BusinessLogic.Services.Implementations\bin\Debug\net8.0\TasksService.BusinessLogic.Services.Implementations.dll
 C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\TasksService\BLL\TasksService.BusinessLogic.Services.Implementations\bin\Debug\net8.0\TasksService.BusinessLogic.Services.Implementations.pdb
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\TasksService\BLL\TasksService.BusinessLogic.Services.Implementations\bin\Debug\net8.0\TasksService.BusinessLogic.DTO.dll
 C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\TasksService\BLL\TasksService.BusinessLogic.Services.Implementations\bin\Debug\net8.0\TasksService.BusinessLogic.Services.Abstractions.dll
 C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\TasksService\BLL\TasksService.BusinessLogic.Services.Implementations\bin\Debug\net8.0\TasksService.DataAccess.Entities.dll
 C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\TasksService\BLL\TasksService.BusinessLogic.Services.Implementations\bin\Debug\net8.0\TasksService.DataAccess.Repositories.Abstractions.dll
-C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\TasksService\BLL\TasksService.BusinessLogic.Services.Implementations\bin\Debug\net8.0\TaslsService.BusinessLogic.DTO.dll
 C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\TasksService\BLL\TasksService.BusinessLogic.Services.Implementations\bin\Debug\net8.0\TasksService.DataAccess.Entities.pdb
 C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\TasksService\BLL\TasksService.BusinessLogic.Services.Implementations\bin\Debug\net8.0\TasksService.DataAccess.Repositories.Abstractions.pdb
 C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\TasksService\BLL\TasksService.BusinessLogic.Services.Implementations\bin\Debug\net8.0\TasksService.BusinessLogic.Services.Abstractions.pdb
-C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\TasksService\BLL\TasksService.BusinessLogic.Services.Implementations\bin\Debug\net8.0\TaslsService.BusinessLogic.DTO.pdb
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\TasksService\BLL\TasksService.BusinessLogic.Services.Implementations\bin\Debug\net8.0\TasksService.BusinessLogic.DTO.pdb
 C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\TasksService\BLL\TasksService.BusinessLogic.Services.Implementations\obj\Debug\net8.0\TasksService.BusinessLogic.Services.Implementations.csproj.AssemblyReference.cache
 C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\TasksService\BLL\TasksService.BusinessLogic.Services.Implementations\obj\Debug\net8.0\TasksService.BusinessLogic.Services.Implementations.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\TasksService\BLL\TasksService.BusinessLogic.Services.Implementations\obj\Debug\net8.0\TasksService.BusinessLogic.Services.Implementations.AssemblyInfoInputs.cache
