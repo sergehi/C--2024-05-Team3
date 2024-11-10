@@ -1,0 +1,15 @@
+{
+  "Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Common",
+  "Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\AuthorizationService\\Core",
+  "Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\AuthorizationService\\Infrastructure",
+  "Logger.BusinessLogic.DTO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.DTO",
+  "Logger.BusinessLogic.Services.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.Services.Abstractions",
+  "Logger.BusinessLogic.Services.Implementations, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.Services.Implementations",
+  "Logger.DataAccess.Entities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\DAL\\Logger.DataAccess.Entities",
+  "Logger.DataAccess.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\DAL\\Logger.DataAccess.EntityFramework",
+  "Logger.DataAccess.Repositories.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\DAL\\Logger.DataAccess.Repositories.Abstractions",
+  "Logger.DataAccess.Repositories.Implementations, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\DAL\\Logger.DataAccess.Repositories.Implementations",
+  "LoggerService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\LoggerService",
+  "Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\AuthorizationService\\Shared",
+  "Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\AuthorizationService\\Web"
+}

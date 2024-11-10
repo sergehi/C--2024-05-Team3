@@ -1,0 +1,12 @@
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\src\ChatService\Services\ChatService.Services.Contracts\bin\Debug\net8.0\ChatService.Services.Contracts.deps.json
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\src\ChatService\Services\ChatService.Services.Contracts\bin\Debug\net8.0\ChatService.Services.Contracts.dll
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\src\ChatService\Services\ChatService.Services.Contracts\bin\Debug\net8.0\ChatService.Services.Contracts.pdb
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\src\ChatService\Services\ChatService.Services.Contracts\obj\Debug\net8.0\ChatService.Services.Contracts.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\src\ChatService\Services\ChatService.Services.Contracts\obj\Debug\net8.0\ChatService.Services.Contracts.AssemblyInfoInputs.cache
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\src\ChatService\Services\ChatService.Services.Contracts\obj\Debug\net8.0\ChatService.Services.Contracts.AssemblyInfo.cs
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\src\ChatService\Services\ChatService.Services.Contracts\obj\Debug\net8.0\ChatService.Services.Contracts.csproj.CoreCompileInputs.cache
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\src\ChatService\Services\ChatService.Services.Contracts\obj\Debug\net8.0\ChatService.Services.Contracts.sourcelink.json
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\src\ChatService\Services\ChatService.Services.Contracts\obj\Debug\net8.0\ChatService.Services.Contracts.dll
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\src\ChatService\Services\ChatService.Services.Contracts\obj\Debug\net8.0\refint\ChatService.Services.Contracts.dll
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\src\ChatService\Services\ChatService.Services.Contracts\obj\Debug\net8.0\ChatService.Services.Contracts.pdb
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\src\ChatService\Services\ChatService.Services.Contracts\obj\Debug\net8.0\ref\ChatService.Services.Contracts.dll

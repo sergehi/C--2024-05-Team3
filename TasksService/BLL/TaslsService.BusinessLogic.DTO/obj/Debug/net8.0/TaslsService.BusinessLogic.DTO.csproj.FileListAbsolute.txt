@@ -1,0 +1,12 @@
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\TasksService\BLL\TaslsService.BusinessLogic.DTO\bin\Debug\net8.0\TaslsService.BusinessLogic.DTO.deps.json
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\TasksService\BLL\TaslsService.BusinessLogic.DTO\bin\Debug\net8.0\TaslsService.BusinessLogic.DTO.dll
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\TasksService\BLL\TaslsService.BusinessLogic.DTO\bin\Debug\net8.0\TaslsService.BusinessLogic.DTO.pdb
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\TasksService\BLL\TaslsService.BusinessLogic.DTO\obj\Debug\net8.0\TaslsService.BusinessLogic.DTO.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\TasksService\BLL\TaslsService.BusinessLogic.DTO\obj\Debug\net8.0\TaslsService.BusinessLogic.DTO.AssemblyInfoInputs.cache
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\TasksService\BLL\TaslsService.BusinessLogic.DTO\obj\Debug\net8.0\TaslsService.BusinessLogic.DTO.AssemblyInfo.cs
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\TasksService\BLL\TaslsService.BusinessLogic.DTO\obj\Debug\net8.0\TaslsService.BusinessLogic.DTO.csproj.CoreCompileInputs.cache
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\TasksService\BLL\TaslsService.BusinessLogic.DTO\obj\Debug\net8.0\TaslsService.BusinessLogic.DTO.sourcelink.json
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\TasksService\BLL\TaslsService.BusinessLogic.DTO\obj\Debug\net8.0\TaslsService.BusinessLogic.DTO.dll
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\TasksService\BLL\TaslsService.BusinessLogic.DTO\obj\Debug\net8.0\refint\TaslsService.BusinessLogic.DTO.dll
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\TasksService\BLL\TaslsService.BusinessLogic.DTO\obj\Debug\net8.0\TaslsService.BusinessLogic.DTO.pdb
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\TasksService\BLL\TaslsService.BusinessLogic.DTO\obj\Debug\net8.0\ref\TaslsService.BusinessLogic.DTO.dll

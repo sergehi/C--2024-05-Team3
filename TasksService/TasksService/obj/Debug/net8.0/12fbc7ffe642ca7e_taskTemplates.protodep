@@ -1,0 +1,2 @@
+obj\Debug\net8.0\Protos/TaskTemplates.cs \
+obj\Debug\net8.0\Protos/TaskTemplatesGrpc.cs: Protos/taskTemplates.proto

@@ -115,10 +115,7 @@ namespace TaskTracker.Gateway
             app.UseRouting();
             app.UseCors("AllowSpecificOrigins");
             app.UseAuthorization();
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.MapControllers();
 
             app.Run();
         }

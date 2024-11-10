@@ -1,0 +1,16 @@
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\src\ChatService\Domain\ChatService.Entities\bin\Debug\net8.0\ChatService.Domain.Entities.deps.json
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\src\ChatService\Domain\ChatService.Entities\bin\Debug\net8.0\ChatService.Domain.Entities.dll
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\src\ChatService\Domain\ChatService.Entities\bin\Debug\net8.0\ChatService.Domain.Entities.pdb
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\src\ChatService\Domain\ChatService.Entities\bin\Debug\net8.0\Common.dll
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\src\ChatService\Domain\ChatService.Entities\bin\Debug\net8.0\Common.pdb
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\src\ChatService\Domain\ChatService.Entities\obj\Debug\net8.0\ChatService.Domain.Entities.csproj.AssemblyReference.cache
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\src\ChatService\Domain\ChatService.Entities\obj\Debug\net8.0\ChatService.Domain.Entities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\src\ChatService\Domain\ChatService.Entities\obj\Debug\net8.0\ChatService.Domain.Entities.AssemblyInfoInputs.cache
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\src\ChatService\Domain\ChatService.Entities\obj\Debug\net8.0\ChatService.Domain.Entities.AssemblyInfo.cs
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\src\ChatService\Domain\ChatService.Entities\obj\Debug\net8.0\ChatService.Domain.Entities.csproj.CoreCompileInputs.cache
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\src\ChatService\Domain\ChatService.Entities\obj\Debug\net8.0\ChatService.Domain.Entities.sourcelink.json
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\src\ChatService\Domain\ChatService.Entities\obj\Debug\net8.0\ChatServ.3368D8BE.Up2Date
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\src\ChatService\Domain\ChatService.Entities\obj\Debug\net8.0\ChatService.Domain.Entities.dll
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\src\ChatService\Domain\ChatService.Entities\obj\Debug\net8.0\refint\ChatService.Domain.Entities.dll
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\src\ChatService\Domain\ChatService.Entities\obj\Debug\net8.0\ChatService.Domain.Entities.pdb
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\src\ChatService\Domain\ChatService.Entities\obj\Debug\net8.0\ref\ChatService.Domain.Entities.dll

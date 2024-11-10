@@ -1,0 +1,2 @@
+obj\Debug\net9.0\Protos/Service1.cs \
+obj\Debug\net9.0\Protos/Service1Grpc.cs: Protos/Service1.proto

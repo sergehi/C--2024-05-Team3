@@ -1,0 +1,1172 @@
+{
+  "format": 1,
+  "restore": {
+    "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\AuthorizationService\\Web\\Web.csproj": {}
+  },
+  "projects": {
+    "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\AuthorizationService\\Core\\Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\AuthorizationService\\Core\\Core.csproj",
+        "projectName": "Core",
+        "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\AuthorizationService\\Core\\Core.csproj",
+        "packagesPath": "C:\\Users\\furye\\.nuget\\packages\\",
+        "outputPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\AuthorizationService\\Core\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Programms\\DevExpress\\Components\\Offline Packages",
+          "D:\\VSComponents\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\furye\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 22.2.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "D:\\Programms\\DevExpress\\Components\\System\\Components\\Packages": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\AuthorizationService\\Shared\\Shared.csproj": {
+                "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\AuthorizationService\\Shared\\Shared.csproj"
+              },
+              "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Common\\Common.csproj": {
+                "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Common\\Common.csproj"
+              },
+              "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\LoggerService\\LoggerService.csproj": {
+                "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\LoggerService\\LoggerService.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "all"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            },
+            "Microsoft.AspNetCore.Identity": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "System.Security.Cryptography.Xml": {
+              "target": "Package",
+              "version": "[8.0.2, )"
+            },
+            "System.Text.Encodings.Web": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100-rc.2.24474.11/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\AuthorizationService\\Infrastructure\\Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\AuthorizationService\\Infrastructure\\Infrastructure.csproj",
+        "projectName": "Infrastructure",
+        "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\AuthorizationService\\Infrastructure\\Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\furye\\.nuget\\packages\\",
+        "outputPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\AuthorizationService\\Infrastructure\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Programms\\DevExpress\\Components\\Offline Packages",
+          "D:\\VSComponents\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\furye\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 22.2.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "D:\\Programms\\DevExpress\\Components\\System\\Components\\Packages": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\AuthorizationService\\Core\\Core.csproj": {
+                "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\AuthorizationService\\Core\\Core.csproj"
+              },
+              "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\AuthorizationService\\Shared\\Shared.csproj": {
+                "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\AuthorizationService\\Shared\\Shared.csproj"
+              },
+              "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.DTO\\Logger.BusinessLogic.DTO.csproj": {
+                "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.DTO\\Logger.BusinessLogic.DTO.csproj"
+              },
+              "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.Services.Abstractions\\Logger.BusinessLogic.Services.Abstractions.csproj": {
+                "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.Services.Abstractions\\Logger.BusinessLogic.Services.Abstractions.csproj"
+              },
+              "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\DAL\\Logger.DataAccess.Entities\\Logger.DataAccess.Entities.csproj": {
+                "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\DAL\\Logger.DataAccess.Entities\\Logger.DataAccess.Entities.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "all"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "dependencies": {
+            "Grpc.Core": {
+              "target": "Package",
+              "version": "[2.46.6, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.10, )"
+            },
+            "Microsoft.IdentityModel.Tokens": {
+              "target": "Package",
+              "version": "[8.1.2, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[8.0.10, )"
+            },
+            "RabbitMQ.Client": {
+              "target": "Package",
+              "version": "[6.8.1, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[8.1.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100-rc.2.24474.11/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\AuthorizationService\\Shared\\Shared.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\AuthorizationService\\Shared\\Shared.csproj",
+        "projectName": "Shared",
+        "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\AuthorizationService\\Shared\\Shared.csproj",
+        "packagesPath": "C:\\Users\\furye\\.nuget\\packages\\",
+        "outputPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\AuthorizationService\\Shared\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Programms\\DevExpress\\Components\\Offline Packages",
+          "D:\\VSComponents\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\furye\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 22.2.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "D:\\Programms\\DevExpress\\Components\\System\\Components\\Packages": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "all"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "dependencies": {
+            "Google.Protobuf": {
+              "target": "Package",
+              "version": "[3.28.3, )"
+            },
+            "Grpc.AspNetCore": {
+              "target": "Package",
+              "version": "[2.66.0, )"
+            },
+            "Grpc.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.67.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100-rc.2.24474.11/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\AuthorizationService\\Web\\Web.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\AuthorizationService\\Web\\Web.csproj",
+        "projectName": "Web",
+        "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\AuthorizationService\\Web\\Web.csproj",
+        "packagesPath": "C:\\Users\\furye\\.nuget\\packages\\",
+        "outputPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\AuthorizationService\\Web\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Programms\\DevExpress\\Components\\Offline Packages",
+          "D:\\VSComponents\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\furye\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 22.2.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "D:\\Programms\\DevExpress\\Components\\System\\Components\\Packages": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\AuthorizationService\\Core\\Core.csproj": {
+                "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\AuthorizationService\\Core\\Core.csproj"
+              },
+              "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\AuthorizationService\\Infrastructure\\Infrastructure.csproj": {
+                "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\AuthorizationService\\Infrastructure\\Infrastructure.csproj"
+              },
+              "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\AuthorizationService\\Shared\\Shared.csproj": {
+                "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\AuthorizationService\\Shared\\Shared.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "all"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "dependencies": {
+            "Grpc.AspNetCore": {
+              "target": "Package",
+              "version": "[2.66.0, )"
+            },
+            "Grpc.Core": {
+              "target": "Package",
+              "version": "[2.46.6, )"
+            },
+            "Grpc.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.67.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.10, )"
+            },
+            "RabbitMQ.Client": {
+              "target": "Package",
+              "version": "[6.8.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100-rc.2.24474.11/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Common\\Common.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Common\\Common.csproj",
+        "projectName": "Common",
+        "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Common\\Common.csproj",
+        "packagesPath": "C:\\Users\\furye\\.nuget\\packages\\",
+        "outputPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Common\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Programms\\DevExpress\\Components\\Offline Packages",
+          "D:\\VSComponents\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\furye\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 22.2.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "D:\\Programms\\DevExpress\\Components\\System\\Components\\Packages": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "all"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Grpc.Core": {
+              "target": "Package",
+              "version": "[2.46.6, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.8, )"
+            },
+            "Microsoft.Extensions.Caching.Memory": {
+              "target": "Package",
+              "version": "[8.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100-rc.2.24474.11/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.DTO\\Logger.BusinessLogic.DTO.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.DTO\\Logger.BusinessLogic.DTO.csproj",
+        "projectName": "Logger.BusinessLogic.DTO",
+        "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.DTO\\Logger.BusinessLogic.DTO.csproj",
+        "packagesPath": "C:\\Users\\furye\\.nuget\\packages\\",
+        "outputPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.DTO\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Programms\\DevExpress\\Components\\Offline Packages",
+          "D:\\VSComponents\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\furye\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 22.2.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "D:\\Programms\\DevExpress\\Components\\System\\Components\\Packages": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\DAL\\Logger.DataAccess.Entities\\Logger.DataAccess.Entities.csproj": {
+                "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\DAL\\Logger.DataAccess.Entities\\Logger.DataAccess.Entities.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "all"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100-rc.2.24474.11/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.Services.Abstractions\\Logger.BusinessLogic.Services.Abstractions.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.Services.Abstractions\\Logger.BusinessLogic.Services.Abstractions.csproj",
+        "projectName": "Logger.BusinessLogic.Services.Abstractions",
+        "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.Services.Abstractions\\Logger.BusinessLogic.Services.Abstractions.csproj",
+        "packagesPath": "C:\\Users\\furye\\.nuget\\packages\\",
+        "outputPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.Services.Abstractions\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Programms\\DevExpress\\Components\\Offline Packages",
+          "D:\\VSComponents\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\furye\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 22.2.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "D:\\Programms\\DevExpress\\Components\\System\\Components\\Packages": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.DTO\\Logger.BusinessLogic.DTO.csproj": {
+                "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.DTO\\Logger.BusinessLogic.DTO.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "all"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100-rc.2.24474.11/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.Services.Implementations\\Logger.BusinessLogic.Services.Implementations.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.Services.Implementations\\Logger.BusinessLogic.Services.Implementations.csproj",
+        "projectName": "Logger.BusinessLogic.Services.Implementations",
+        "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.Services.Implementations\\Logger.BusinessLogic.Services.Implementations.csproj",
+        "packagesPath": "C:\\Users\\furye\\.nuget\\packages\\",
+        "outputPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.Services.Implementations\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Programms\\DevExpress\\Components\\Offline Packages",
+          "D:\\VSComponents\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\furye\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 22.2.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "D:\\Programms\\DevExpress\\Components\\System\\Components\\Packages": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.DTO\\Logger.BusinessLogic.DTO.csproj": {
+                "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.DTO\\Logger.BusinessLogic.DTO.csproj"
+              },
+              "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.Services.Abstractions\\Logger.BusinessLogic.Services.Abstractions.csproj": {
+                "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.Services.Abstractions\\Logger.BusinessLogic.Services.Abstractions.csproj"
+              },
+              "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\DAL\\Logger.DataAccess.Entities\\Logger.DataAccess.Entities.csproj": {
+                "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\DAL\\Logger.DataAccess.Entities\\Logger.DataAccess.Entities.csproj"
+              },
+              "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\DAL\\Logger.DataAccess.Repositories.Abstractions\\Logger.DataAccess.Repositories.Abstractions.csproj": {
+                "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\DAL\\Logger.DataAccess.Repositories.Abstractions\\Logger.DataAccess.Repositories.Abstractions.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "all"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100-rc.2.24474.11/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\DAL\\Logger.DataAccess.Entities\\Logger.DataAccess.Entities.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\DAL\\Logger.DataAccess.Entities\\Logger.DataAccess.Entities.csproj",
+        "projectName": "Logger.DataAccess.Entities",
+        "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\DAL\\Logger.DataAccess.Entities\\Logger.DataAccess.Entities.csproj",
+        "packagesPath": "C:\\Users\\furye\\.nuget\\packages\\",
+        "outputPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\DAL\\Logger.DataAccess.Entities\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Programms\\DevExpress\\Components\\Offline Packages",
+          "D:\\VSComponents\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\furye\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 22.2.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "D:\\Programms\\DevExpress\\Components\\System\\Components\\Packages": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Common\\Common.csproj": {
+                "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Common\\Common.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "all"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100-rc.2.24474.11/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\DAL\\Logger.DataAccess.EntityFramework\\Logger.DataAccess.EntityFramework.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\DAL\\Logger.DataAccess.EntityFramework\\Logger.DataAccess.EntityFramework.csproj",
+        "projectName": "Logger.DataAccess.EntityFramework",
+        "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\DAL\\Logger.DataAccess.EntityFramework\\Logger.DataAccess.EntityFramework.csproj",
+        "packagesPath": "C:\\Users\\furye\\.nuget\\packages\\",
+        "outputPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\DAL\\Logger.DataAccess.EntityFramework\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Programms\\DevExpress\\Components\\Offline Packages",
+          "D:\\VSComponents\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\furye\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 22.2.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "D:\\Programms\\DevExpress\\Components\\System\\Components\\Packages": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\DAL\\Logger.DataAccess.Entities\\Logger.DataAccess.Entities.csproj": {
+                "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\DAL\\Logger.DataAccess.Entities\\Logger.DataAccess.Entities.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "all"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Google.Protobuf": {
+              "target": "Package",
+              "version": "[3.28.0, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.8, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.8, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.8, )"
+            },
+            "Npgsql": {
+              "target": "Package",
+              "version": "[8.0.3, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[8.0.4, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100-rc.2.24474.11/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\DAL\\Logger.DataAccess.Repositories.Abstractions\\Logger.DataAccess.Repositories.Abstractions.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\DAL\\Logger.DataAccess.Repositories.Abstractions\\Logger.DataAccess.Repositories.Abstractions.csproj",
+        "projectName": "Logger.DataAccess.Repositories.Abstractions",
+        "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\DAL\\Logger.DataAccess.Repositories.Abstractions\\Logger.DataAccess.Repositories.Abstractions.csproj",
+        "packagesPath": "C:\\Users\\furye\\.nuget\\packages\\",
+        "outputPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\DAL\\Logger.DataAccess.Repositories.Abstractions\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Programms\\DevExpress\\Components\\Offline Packages",
+          "D:\\VSComponents\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\furye\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 22.2.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "D:\\Programms\\DevExpress\\Components\\System\\Components\\Packages": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Common\\Common.csproj": {
+                "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Common\\Common.csproj"
+              },
+              "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\DAL\\Logger.DataAccess.Entities\\Logger.DataAccess.Entities.csproj": {
+                "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\DAL\\Logger.DataAccess.Entities\\Logger.DataAccess.Entities.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "all"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100-rc.2.24474.11/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\DAL\\Logger.DataAccess.Repositories.Implementations\\Logger.DataAccess.Repositories.Implementations.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\DAL\\Logger.DataAccess.Repositories.Implementations\\Logger.DataAccess.Repositories.Implementations.csproj",
+        "projectName": "Logger.DataAccess.Repositories.Implementations",
+        "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\DAL\\Logger.DataAccess.Repositories.Implementations\\Logger.DataAccess.Repositories.Implementations.csproj",
+        "packagesPath": "C:\\Users\\furye\\.nuget\\packages\\",
+        "outputPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\DAL\\Logger.DataAccess.Repositories.Implementations\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Programms\\DevExpress\\Components\\Offline Packages",
+          "D:\\VSComponents\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\furye\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 22.2.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "D:\\Programms\\DevExpress\\Components\\System\\Components\\Packages": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Common\\Common.csproj": {
+                "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Common\\Common.csproj"
+              },
+              "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\DAL\\Logger.DataAccess.Entities\\Logger.DataAccess.Entities.csproj": {
+                "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\DAL\\Logger.DataAccess.Entities\\Logger.DataAccess.Entities.csproj"
+              },
+              "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\DAL\\Logger.DataAccess.EntityFramework\\Logger.DataAccess.EntityFramework.csproj": {
+                "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\DAL\\Logger.DataAccess.EntityFramework\\Logger.DataAccess.EntityFramework.csproj"
+              },
+              "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\DAL\\Logger.DataAccess.Repositories.Abstractions\\Logger.DataAccess.Repositories.Abstractions.csproj": {
+                "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\DAL\\Logger.DataAccess.Repositories.Abstractions\\Logger.DataAccess.Repositories.Abstractions.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "all"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100-rc.2.24474.11/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\LoggerService\\LoggerService.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\LoggerService\\LoggerService.csproj",
+        "projectName": "LoggerService",
+        "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\LoggerService\\LoggerService.csproj",
+        "packagesPath": "C:\\Users\\furye\\.nuget\\packages\\",
+        "outputPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\LoggerService\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Programms\\DevExpress\\Components\\Offline Packages",
+          "D:\\VSComponents\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\furye\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 22.2.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "D:\\Programms\\DevExpress\\Components\\System\\Components\\Packages": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.Services.Implementations\\Logger.BusinessLogic.Services.Implementations.csproj": {
+                "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\BLL\\Logger.BusinessLogic.Services.Implementations\\Logger.BusinessLogic.Services.Implementations.csproj"
+              },
+              "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\DAL\\Logger.DataAccess.EntityFramework\\Logger.DataAccess.EntityFramework.csproj": {
+                "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\DAL\\Logger.DataAccess.EntityFramework\\Logger.DataAccess.EntityFramework.csproj"
+              },
+              "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\DAL\\Logger.DataAccess.Repositories.Implementations\\Logger.DataAccess.Repositories.Implementations.csproj": {
+                "projectPath": "c:\\Users\\furye\\OneDrive\\Документы\\GitHub\\C--2024-05-Team3\\Logger\\DAL\\Logger.DataAccess.Repositories.Implementations\\Logger.DataAccess.Repositories.Implementations.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "all"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Grpc.AspNetCore": {
+              "target": "Package",
+              "version": "[2.65.0, )"
+            },
+            "Grpc.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.66.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.8, )"
+            },
+            "RabbitMQ.Client": {
+              "target": "Package",
+              "version": "[6.8.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100-rc.2.24474.11/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

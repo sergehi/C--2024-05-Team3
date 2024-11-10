@@ -1,0 +1,16 @@
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\TasksService\BLL\TasksService.BusinessLogic.Services.Abstractions\bin\Debug\net8.0\TasksService.BusinessLogic.Services.Abstractions.deps.json
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\TasksService\BLL\TasksService.BusinessLogic.Services.Abstractions\bin\Debug\net8.0\TasksService.BusinessLogic.Services.Abstractions.dll
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\TasksService\BLL\TasksService.BusinessLogic.Services.Abstractions\bin\Debug\net8.0\TasksService.BusinessLogic.Services.Abstractions.pdb
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\TasksService\BLL\TasksService.BusinessLogic.Services.Abstractions\bin\Debug\net8.0\TaslsService.BusinessLogic.DTO.dll
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\TasksService\BLL\TasksService.BusinessLogic.Services.Abstractions\bin\Debug\net8.0\TaslsService.BusinessLogic.DTO.pdb
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\TasksService\BLL\TasksService.BusinessLogic.Services.Abstractions\obj\Debug\net8.0\TasksService.BusinessLogic.Services.Abstractions.csproj.AssemblyReference.cache
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\TasksService\BLL\TasksService.BusinessLogic.Services.Abstractions\obj\Debug\net8.0\TasksService.BusinessLogic.Services.Abstractions.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\TasksService\BLL\TasksService.BusinessLogic.Services.Abstractions\obj\Debug\net8.0\TasksService.BusinessLogic.Services.Abstractions.AssemblyInfoInputs.cache
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\TasksService\BLL\TasksService.BusinessLogic.Services.Abstractions\obj\Debug\net8.0\TasksService.BusinessLogic.Services.Abstractions.AssemblyInfo.cs
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\TasksService\BLL\TasksService.BusinessLogic.Services.Abstractions\obj\Debug\net8.0\TasksService.BusinessLogic.Services.Abstractions.csproj.CoreCompileInputs.cache
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\TasksService\BLL\TasksService.BusinessLogic.Services.Abstractions\obj\Debug\net8.0\TasksService.BusinessLogic.Services.Abstractions.sourcelink.json
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\TasksService\BLL\TasksService.BusinessLogic.Services.Abstractions\obj\Debug\net8.0\TasksSer.4B4DC175.Up2Date
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\TasksService\BLL\TasksService.BusinessLogic.Services.Abstractions\obj\Debug\net8.0\TasksService.BusinessLogic.Services.Abstractions.dll
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\TasksService\BLL\TasksService.BusinessLogic.Services.Abstractions\obj\Debug\net8.0\refint\TasksService.BusinessLogic.Services.Abstractions.dll
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\TasksService\BLL\TasksService.BusinessLogic.Services.Abstractions\obj\Debug\net8.0\TasksService.BusinessLogic.Services.Abstractions.pdb
+C:\Users\furye\OneDrive\Документы\GitHub\C--2024-05-Team3\TasksService\BLL\TasksService.BusinessLogic.Services.Abstractions\obj\Debug\net8.0\ref\TasksService.BusinessLogic.Services.Abstractions.dll

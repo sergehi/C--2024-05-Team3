@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "ycI3h3wCYxefwOtoeaZEV7Kieg5KDIG7MpWZ5SCT9bM=",
+  "Source": "TasksService",
+  "BasePath": "_content/TasksService",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

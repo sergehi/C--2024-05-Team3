@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "MAbWC/JRNBN4a+9+YwwxHmSGTG4ENXKWgYOPbNA86Yk=",
+  "Source": "TaskTracker.Gateway",
+  "BasePath": "_content/TaskTracker.Gateway",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
