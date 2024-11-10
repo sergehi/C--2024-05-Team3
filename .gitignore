@@ -27,6 +27,8 @@ x86/
 bld/
 [Bb]in/
 [Ll]og/
+[Oo]bj/
+[Dd]ebug/
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
@@ -46,8 +48,6 @@ TestResult.xml
 
 # Build Results of an ATL Project
 [Dd]ebugPS/
-[Oo]bj/
-[Dd]ebug/
 [Rr]eleasePS/
 dlldata.c
 

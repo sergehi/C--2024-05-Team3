@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 5, "column": 0}, "map": {"version":3,"sources":["/turbopack/[project]/site/app/providers.tsx"],"sourcesContent":["\"use client\";\n\nimport * as React from \"react\";\nimport { NextUIProvider } from \"@nextui-org/system\";\nimport { useRouter } from \"next/navigation\";\nimport { ThemeProvider as NextThemesProvider } from \"next-themes\";\nimport { ThemeProviderProps } from \"next-themes\";\n\nexport interface ProvidersProps {\n  children: React.ReactNode;\n  themeProps?: ThemeProviderProps;\n}\n\nexport function Providers({ children, themeProps }: ProvidersProps) {\n  const router = useRouter();\n\n  return (\n    <NextUIProvider navigate={router.push}>\n      <NextThemesProvider {...themeProps}>\n        {children}\n      </NextThemesProvider>\n    </NextUIProvider>\n  );\n}\n"],"names":[],"mappings":";;;;;;;;AAAA;;;;;AAaO,SAAS,UAAU,EAAE,QAAQ,EAAE,UAAU,EAAkB;IAChE,MAAM,SAAS,CAAA,GAAA,0IAAA,CAAA,YAAS,AAAD;IAEvB,qBACE,gQAAC,+KAAA,CAAA,iBAAc;QAAC,UAAU,OAAO,IAAI;kBACnC,cAAA,gQAAC,wJAAA,CAAA,gBAAkB;YAAE,GAAG,UAAU;sBAC/B;;;;;;;;;;;AAIT"}},
-    {"offset": {"line": 36, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}}]
-}
