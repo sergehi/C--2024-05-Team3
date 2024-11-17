@@ -211,7 +211,7 @@ message TaskNode
     int64 id = 1;
     string name = 2;
     string description = 3;
-    repeated int64 node_doers = 4;
+    repeated string node_doers = 4;
     int64 task_id = 5;
     bool terminating = 6;
     int64 icon_id =  7;

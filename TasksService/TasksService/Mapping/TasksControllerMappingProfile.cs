@@ -3,6 +3,7 @@ using TasksService.BusinessLogic.DTO;
 using TasksService;
 using TasksServiceProto;
 using Google.Protobuf.WellKnownTypes;
+using Microsoft.EntityFrameworkCore.Update.Internal;
 
 namespace TasksService.Mapping
 {
@@ -45,13 +46,16 @@ namespace TasksService.Mapping
 
             CreateMap<TaskDTO, TaskModel>();
             CreateMap<TaskModel, TaskDTO>()
-                .ForMember(dest => dest.RowVersion, opt => opt.Ignore());
+                .ForMember(dest => dest.RowVersion, opt => opt.Ignore())
+                .ForMember(dest => dest.DeadlineDate, opt=> opt.MapFrom(t => t== null ? (DateTime?)null : t.DeadlineDate.ToDateTime().ToUniversalTime()));
 
             CreateMap<CreateTaskDTO, CreateTaskModel>();
             CreateMap<CreateTaskModel, CreateTaskDTO>();
 
-            CreateMap<TaskNodeDTO, TaskNode>();
-            CreateMap<TaskNode, TaskNodeDTO>();
+            CreateMap<TaskNodeDTO, TaskNode>()
+                 .ForMember(dest => dest.NodeDoers, opt => opt.MapFrom(src => src.NodeDoers));
+            CreateMap<TaskNode, TaskNodeDTO>()
+                .ForMember(dest => dest.NodeDoers, opt => opt.MapFrom(src => src.NodeDoers));
 
             CreateMap<TaskEdgeDTO, TaskEdge>();
             CreateMap<TaskEdge, TaskEdgeDTO>();
@@ -87,10 +91,11 @@ namespace TasksService.Mapping
 
             CreateMap<TaskHistoryDTO, TaskHistoryModel>();
             CreateMap<TaskHistoryModel, TaskHistoryDTO>();
-            /*
+            
             // Datetime and TimeStamp
+            /*
             CreateMap<Timestamp?, DateTime?>()
-                .ConvertUsing(ts => ts == null ? (DateTime?)null : ts.ToDateTime());
+                .ConvertUsing(ts => ts == null ? (DateTime?)null : ts.ToDateTime().ToUniversalTime());
             CreateMap<DateTime?, Timestamp?>()
                 .ConvertUsing(dt => dt.HasValue ? Timestamp.FromDateTime(dt.Value.ToUniversalTime()) : (Timestamp?)null);
             */

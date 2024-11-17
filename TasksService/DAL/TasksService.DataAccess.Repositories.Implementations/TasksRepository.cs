@@ -35,7 +35,15 @@ namespace TasksService.DataAccess.Repositories.Implementations
                         try
                         {
                             // GetTemplate
-                            var template = await dbContext.WfdefinitionsTempls.FirstOrDefaultAsync(x => x.Id == taskToCreate.TemplateId);
+                            //var template = await dbContext.WfdefinitionsTempls.FirstOrDefaultAsync(x => x.Id == taskToCreate.TemplateId);
+                            var template = await dbContext.WfdefinitionsTempls
+                                                .Include(x => x.WfnodesTempls)
+                                                .ThenInclude(y => y.WfedgesTemplNodeFromNavigations)
+                                                .Include(x => x.WfnodesTempls)
+                                                .ThenInclude(node => node.WfedgesTemplNodeToNavigations)
+                                                .AsQueryable().FirstOrDefaultAsync(x => x.Id == taskToCreate.TemplateId);
+
+
                             if (null == template)
                                 throw new Exception($"Не найден шаблон с идентификатором {taskToCreate.TemplateId}");
                             
@@ -43,45 +51,79 @@ namespace TasksService.DataAccess.Repositories.Implementations
                             taskToCreate.CreatorId = userId;
                             dbContext.Tasks.Add(taskToCreate);
                             await dbContext.SaveChangesAsync();
+
+
+
+
+                            var new_nodes = new List<TaskNode>();
                             // Copy nodes from temlate to task
                             foreach (var templNode in template.WfnodesTempls)
                             {
                                 var newNode = new TaskNode() 
                                 {  
                                     Name = templNode.Name 
+                                    , Id = 0
                                     , Description = templNode.Description
-                                    , TaskId = taskToCreate.Id
+                                    , OwnerTaskId = taskToCreate.Id
                                     , Terminating = templNode.Terminating
-                                    , TemplateId = template.Id
+                                    , TemplateId = templNode.Id
 
                                 };
                                 dbContext.TaskNodes.Add(newNode);
+                                new_nodes.Add(newNode);
                             }
                             await dbContext.SaveChangesAsync();
                             // Copy rdges from temlate to task
+                            var newEdges = new List<TaskEdge>();
                             foreach (var templNode in template.WfnodesTempls)
                             {
                                 foreach (var templEdge in templNode.WfedgesTemplNodeFromNavigations)
                                 {
                                     var newEdge = new TaskEdge();
                                     newEdge.Name = templEdge.Name;
-                                    var tn_from = dbContext.TaskNodes.FirstOrDefault(x => x.TemplateId == templEdge.Id);
+                                    var tn_from = new_nodes.FirstOrDefault(x => x.TemplateId == templEdge.NodeFrom);
                                     if (tn_from == null)
                                         throw new Exception($"Не найден начальный узел {templEdge.Name} при построении грани");
                                     newEdge.NodeFrom = tn_from.Id;
 
-                                    var tn_to = dbContext.TaskNodes.FirstOrDefault(x => x.TemplateId == templEdge.Id);
+                                    var tn_to = new_nodes.FirstOrDefault(x => x.TemplateId == templEdge.NodeTo);
                                     if (tn_to == null)
                                         throw new Exception($"Не найден конечный узел {templEdge.Name} при построении грани");
                                     newEdge.NodeTo = tn_to.Id;
-                                    dbContext.TaskEdges.Add(newEdge);
+
+                                    if (!newEdges.Any(p => p.NodeFrom == newEdge.NodeFrom && p.NodeTo == newEdge.NodeTo))
+                                    {
+                                        newEdges.Add(newEdge);
+                                        dbContext.TaskEdges.Add(newEdge);
+
+                                    }
+                                }
+                                foreach (var templEdge in templNode.WfedgesTemplNodeToNavigations)
+                                {
+                                    var newEdge = new TaskEdge();
+                                    newEdge.Name = templEdge.Name;
+                                    var tn_from = new_nodes.FirstOrDefault(x => x.TemplateId == templEdge.NodeFrom);
+                                    if (tn_from == null)
+                                        throw new Exception($"Не найден начальный узел {templEdge.Name} при построении грани");
+                                    newEdge.NodeFrom = tn_from.Id;
+
+                                    var tn_to = new_nodes.FirstOrDefault(x => x.TemplateId == templEdge.NodeTo);
+                                    if (tn_to == null)
+                                        throw new Exception($"Не найден конечный узел {templEdge.Name} при построении грани");
+                                    newEdge.NodeTo = tn_to.Id;
+
+                                    if (!newEdges.Any(p => p.NodeFrom == newEdge.NodeFrom && p.NodeTo == newEdge.NodeTo))
+                                    {
+                                        newEdges.Add(newEdge);
+                                        dbContext.TaskEdges.Add(newEdge);
+                                    }
                                 }
                             }
                             await dbContext.SaveChangesAsync();
                             await _historyRepo.RegisterCreateTask(userId, taskToCreate.Id, taskToCreate.Name);
                             return taskToCreate.Id;
                         }
-                        catch
+                        catch(Exception ex)
                         {
                             transaction.Rollback();
                             throw;
@@ -205,17 +247,30 @@ namespace TasksService.DataAccess.Repositories.Implementations
             }
         }
 
-        public async  Task<Entities.Task> GetTask(long taskId)
+        public async Task<(Entities.Task task, List<TaskNode> nodes, List<TaskEdge> edges)> GetTask(long taskId)
         {
             try
             {
+
                 using (var dbContext = new TasksDbContext(_configuration))
                 {
-                    var task = await dbContext.Tasks.FirstOrDefaultAsync(x => x.Id == taskId);
+                    var nodes = new List<TaskNode>();
+                    var edges = new List<TaskEdge>();
+
+                    var task = await dbContext.Tasks
+                                        .Include(x => x.Nodes)
+                                        .ThenInclude(y => y.TaskEdgeNodeToNavigations)
+                                        .Include(x => x.Nodes)
+                                        .ThenInclude(node => node.TaskEdgeNodeFromNavigations)
+                                        .AsQueryable().FirstOrDefaultAsync(x => x.Id == taskId);
+
+
+//                    var task = await dbContext.Tasks.FirstOrDefaultAsync(x => x.Id == taskId);
                     if (null == task)
                         throw new Exception($"Задача с идентификатором {taskId} не найдена.");
-
-                    return task;
+                    nodes.AddRange(task.Nodes);
+                    edges = nodes.CollectEdges();
+                    return (task, nodes, edges);
                 }
             }
             catch (Exception ex)
@@ -313,10 +368,10 @@ namespace TasksService.DataAccess.Repositories.Implementations
                         if (null == task)
                             throw new Exception($"Задача с идентификатором {taskId} не найдена.");
 
-                        var oldVal = task.CurrentNode;
-                        task.CurrentNode = toNodeId;
+                        var oldVal = task.CurrentNodeId;
+                        task.CurrentNodeId = toNodeId;
                         await dbContext.SaveChangesAsync();
-                        await _historyRepo.RegisterTaskTypeChanged(userId, taskId, oldVal.ToString(), task.CurrentNode.ToString());
+                        await _historyRepo.RegisterTaskTypeChanged(userId, taskId, oldVal.ToString(), task.CurrentNodeId.ToString());
                         return true;
                     }
                 }
@@ -451,7 +506,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
                             else
                                 return false;
 
-                            await _historyRepo.RegisterTaskDoersAppointed(userId, node.TaskId, nodeId, oldValue, newValue);
+                            //await _historyRepo.RegisterTaskDoersAppointed(userId, node.TaskId, nodeId, oldValue, newValue);
                             return true;
                         }
                         catch (Exception)
