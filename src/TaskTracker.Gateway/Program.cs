@@ -2,6 +2,7 @@ using AuthorizationService.Shared.Protos;
 using ChatProto;
 using Microsoft.OpenApi.Models;
 using TaskTracker.Gateway.Configutions;
+using TaskTracker.Gateway.Controllers;
 using TestGrpcService1; // ���������� ������������ ���� gRPC ��� Service1
 
 namespace TaskTracker.Gateway
@@ -95,6 +96,10 @@ namespace TaskTracker.Gateway
                 });
             });
 
+            // Добавление SignalR
+            builder.Services.AddSignalR();
+
+
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
 
@@ -116,6 +121,8 @@ namespace TaskTracker.Gateway
             app.UseCors("AllowSpecificOrigins");
             app.UseAuthorization();
             app.MapControllers();
+            // Настройка маршрутов для SignalR Hub
+            app.MapHub<SignalHub>("/notifyhub");
 
             app.Run();
         }
