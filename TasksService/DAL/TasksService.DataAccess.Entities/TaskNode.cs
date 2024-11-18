@@ -12,13 +12,13 @@ public partial class TaskNode
 
     public string? Description { get; set; }
 
-    public long TaskId { get; set; }
+    public long? OwnerTaskId { get; set; }
 
     public bool? Terminating { get; set; }
 
     public long? IconId { get; set; }
 
-    public virtual Task IdNavigation { get; set; } = null!;
+    public virtual Task OwnerTask { get; set; } = null!;
     public virtual ICollection<TaskDoer> TaskDoers { get; set; } = new List<TaskDoer>();
 
     public virtual ICollection<TaskEdge> TaskEdgeNodeFromNavigations { get; set; } = new List<TaskEdge>();

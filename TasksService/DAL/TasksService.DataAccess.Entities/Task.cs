@@ -13,7 +13,7 @@ public partial class Task
 
     public string? Description { get; set; }
 
-    public Guid CreatorId { get; set; }
+    public Guid CreatorId { get; set; } = Guid.Empty;
 
     public DateTime CreationDate { get; set; }
 
@@ -29,7 +29,7 @@ public partial class Task
 
     public long? AreaId { get; set; }
 
-    public long CurrentNode { get; set; }
+    public long? CurrentNodeId { get; set; }
 
     [Timestamp]
     public byte[]? RowVersion { get; set; }
@@ -40,9 +40,12 @@ public partial class Task
 
     public virtual CompanyProject? Project { get; set; }
 
-    public virtual TaskNode? TaskNode { get; set; }
+   // public virtual TaskNode? CurrentNode { get; set; }
 
     public virtual WfDefinitionsTemplate Template { get; set; } = null!;
 
     public virtual Urgency UrgencyNavigation { get; set; } = null!;
+
+    public virtual ICollection<TaskNode> Nodes { get; set; } = new List<TaskNode>();
+
 }

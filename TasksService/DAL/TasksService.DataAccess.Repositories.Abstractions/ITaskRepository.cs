@@ -11,7 +11,7 @@ namespace TasksService.DataAccess.Repositories.Abstractions
     {
         Task<List<Entities.Task>> GetTasksList(Guid userId, long companyId, long projectId, long areaId);
         // Получить полную информацию о задаче
-        Task<Entities.Task> GetTask(long taskId);
+        Task<(Entities.Task task, List<TaskNode> nodes, List<TaskEdge> edges)> GetTask(long taskId);
         // Создать задачу
         Task<long> CreateTask(Guid userId, Entities.Task taskToCreate);
         // Удалить задачу

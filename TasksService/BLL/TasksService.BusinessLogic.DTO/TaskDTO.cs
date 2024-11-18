@@ -12,7 +12,7 @@ namespace TasksService.BusinessLogic.DTO
         public long Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
-        public long CreatorId { get; set; }
+        public Guid CreatorId { get; set; } = Guid.Empty;
         public Timestamp CreationDate { get; set; } = new Timestamp();
         public Timestamp? DeadlineDate { get; set; }
         public long TemplateId { get; set; }

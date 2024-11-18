@@ -350,10 +350,14 @@ namespace TasksService.BusinessLogic.Services.Implementations
             try
             {
                 var res = await _tasksRepo.GetTask(taskId);
-                if (null == res)
+                if (null == res.nodes)
                     throw new Exception($"Ошибка при получении списка задач из базы");
-
-                return _mapper.Map<FullTaskInfoDTO>(res);
+                var nodes = _mapper.Map<List<TaskNodeDTO>>(res.nodes);
+                var edges = _mapper.Map<List<TaskEdgeDTO>>(res.edges);
+                var dtoTask = _mapper.Map<FullTaskInfoDTO>(res);
+                dtoTask.Nodes = _mapper.Map <List<TaskNodeDTO>> (nodes);
+                dtoTask.Edges = _mapper.Map<List<TaskEdgeDTO>>(edges); ;
+                return dtoTask;
             }
             catch (Exception)
             {
@@ -361,20 +365,6 @@ namespace TasksService.BusinessLogic.Services.Implementations
             }
         }
 
-
-        /*
-        public async Task<bool> ModifyTask(long userId, long flags, TaskDTO taskDTO)
-        {
-            try
-            {
-                return await _tasksRepo.ModifyTask(userId, flags, _mapper.Map<DataAccess.Entities.Task>(taskDTO));
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-        */
         public async Task<bool> ModifyTaskUrgency(Guid userId, long taskId, long urgId)
         {
             try

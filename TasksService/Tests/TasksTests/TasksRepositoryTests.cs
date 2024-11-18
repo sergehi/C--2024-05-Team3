@@ -371,23 +371,29 @@ namespace TasksTests
                     Name = "TestTask"
                     , Description = "Test Task"
                     , CreatorId = Guid.Empty
-                    , DeadlineDate = DateTime.Now.AddDays(1) 
+                    , DeadlineDate = DateTime.Now.AddDays(1).ToUniversalTime() 
                     , TemplateId = testTemplateId
                     , Urgency  = urgencyId
                     , CompanyId = companyId
                     , ProjectId  = projectId
                     , AreaId  = areaId
-                    , CurrentNode = 0
+                    , CurrentNodeId = 0
                 };
+                // Create
                 var taskId = await repo.CreateTask(Guid.Empty, taskToCreate);
                 Assert.True(taskId != 0);
-                TasksServiceTasks.Task task = await repo.GetTask(taskId);
-                Assert.NotNull(task);
-
-
+                // Get list
                 var tasksList = await repo.GetTasksList(Guid.Empty, companyId, projectId, areaId);
-                Assert.NotNull(task);
-                Assert.True(!tasksList.Any());
+                Assert.True(tasksList.Any());
+
+                // Get full task info
+                var task = await repo.GetTask(taskId);
+                Assert.NotNull(task.task);
+                Assert.NotNull(task.nodes);
+                Assert.NotNull(task.edges);
+
+                Assert.True(task.nodes.Count != 0);
+                Assert.True(task.edges.Count != 0);
 
 
             }
