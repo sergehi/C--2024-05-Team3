@@ -49,7 +49,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
             }
         }
 
-        public async Task<long> CreateCompany(long creatorId, string name, string description)
+        public async Task<long> CreateCompany(Guid creatorId, string name, string description)
         {
             try
             {
@@ -68,7 +68,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
             }
 
         }
-        public async Task<bool> ModifyCompany(long userId, long changeFlags, long id, string name, string description)
+        public async Task<bool> ModifyCompany(Guid userId, long changeFlags, long id, string name, string description)
         {
             try
             {
@@ -88,7 +88,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
 
         }
 
-        public async Task<bool> DeleteCompany(long userId, long companyId)
+        public async Task<bool> DeleteCompany(Guid userId, long companyId)
         {
             try
             {

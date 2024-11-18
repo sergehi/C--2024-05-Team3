@@ -9,13 +9,13 @@ namespace TasksService.DataAccess.Repositories.Abstractions
 {
     public interface ITasksRepository
     {
-        Task<List<Entities.Task>> GetTasksList(long userId, long companyId, long projectId, long areaId);
+        Task<List<Entities.Task>> GetTasksList(Guid userId, long companyId, long projectId, long areaId);
         // Получить полную информацию о задаче
-        Task<Entities.Task> GetTask(long taskId);
+        Task<(Entities.Task task, List<TaskNode> nodes, List<TaskEdge> edges)> GetTask(long taskId);
         // Создать задачу
-        Task<long> CreateTask(long userId, Entities.Task taskToCreate);
+        Task<long> CreateTask(Guid userId, Entities.Task taskToCreate);
         // Удалить задачу
-        Task<bool> DeleteTask(long userId, long taskId);
+        Task<bool> DeleteTask(Guid userId, long taskId);
 
         // TaskRoutes
         // Получить все пути из/в нод с указанным Id 
@@ -25,14 +25,13 @@ namespace TasksService.DataAccess.Repositories.Abstractions
         Task<TaskNode> GetNode(long id);
 
         // Modifications
-        Task<bool> ModifyTaskUrgency(long userId, long taskId, long urgId);
-        //Task<bool> ModifyTaskType(long userId, long taskId, long typeId);
-        Task<bool> ModifyTaskState(long userId, long taskId, long toNodeId);
-        Task<bool> ModifyTaskName(long userId, long taskId, string newName);
-        Task<bool> ModifyTaskDescription(long userId, long taskId, string newDescription);
-        Task<bool> ModifyTaskNodeDeadline(long userId, long taskId, long NodeId, DateTime newDeadline);
+        Task<bool> ModifyTaskUrgency(Guid userId, long taskId, long urgId);
+        Task<bool> ModifyTaskState(Guid userId, long taskId, long toNodeId);
+        Task<bool> ModifyTaskName(Guid userId, long taskId, string newName);
+        Task<bool> ModifyTaskDescription(Guid userId, long taskId, string newDescription);
+        Task<bool> ModifyTaskNodeDeadline(Guid userId, long taskId, long NodeId, DateTime newDeadline);
         // Назначить исполнителей на узел с идентификатором nodeId
-        Task<bool> AppointNodeDoers(long userId, long nodeId, List<long> list);
+        Task<bool> AppointNodeDoers(Guid userId, long nodeId, List<Guid> list);
 
 
     }

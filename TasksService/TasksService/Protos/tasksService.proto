@@ -181,7 +181,7 @@ message TaskModel
     int64 id = 1;
     string name = 2;
     string description = 3;
-    int64 creator_id = 4;
+    string creator_id = 4;
     google.protobuf.Timestamp creation_date = 5; // Используем Timestamp для даты
     optional google.protobuf.Timestamp deadline_date = 6; // Используем Timestamp для даты
     int64 template_id = 7;
@@ -211,7 +211,7 @@ message TaskNode
     int64 id = 1;
     string name = 2;
     string description = 3;
-    repeated int64 node_doers = 4;
+    repeated string node_doers = 4;
     int64 task_id = 5;
     bool terminating = 6;
     int64 icon_id =  7;
@@ -228,7 +228,7 @@ message TaskEdge
 
 message TasksListRequest
 {
-    int64 user_id = 1; // - обязательное поле - пользователь для которого выбираются доступные таски
+    string user_id = 1; // - обязательное поле - пользователь для которого выбираются доступные таски
     int64 company_id = 2;
     int64 project_id = 3;
     int64 area_id = 4;
@@ -236,7 +236,7 @@ message TasksListRequest
 
 message TaskRequest
 {
-    int64 user_id = 1;// - обязательное поле - пользователь для которого выбираются доступные таски
+    string user_id = 1;// - обязательное поле - пользователь для которого выбираются доступные таски
     int64 task_id = 2;
 }
 
@@ -254,27 +254,25 @@ message TaskFullReply
 
 message CreateTaskRequest
 {
-    int64 user_id = 1;// - обязательное поле - пользователь для которого выбираются доступные таски
+    string user_id = 1;// - обязательное поле - пользователь для которого выбираются доступные таски
     CreateTaskModel task = 2;
-    //repeated TaskNode nodes = 3;
-    //repeated TaskEdge edges = 4;
 }
 
 message ModifyTaskRequest
 {
-    int64 user_id = 1;// - обязательное поле - пользователь отв. за изменения
+    string user_id = 1;// - обязательное поле - пользователь отв. за изменения
     int64 flags = 2;  // комбинация из ETaskModifyFlags
     TaskModel task = 3;
 }
 message DeleteTaskRequest
 {
-    int64 user_id = 1;// - обязательное поле - пользователь отв. за изменения
+    string user_id = 1;// - обязательное поле - пользователь отв. за изменения
     int64 task_id = 2;  
 }
 
 message TaskHistoryModel
 {
-    int64 user_id = 1; 
+    string user_id = 1; 
     google.protobuf.Timestamp action_date = 2;
     optional string new_value = 3;
     optional string old_value = 4;
@@ -301,9 +299,9 @@ message NodeReply
 }
 message AppointDoersRequest
 {
-    int64 user_id = 1;
+    string user_id = 1;
     int64 node_id = 2;
-    repeated int64 doers = 3;
+    repeated string doers = 3;
 }
 
 
@@ -327,7 +325,7 @@ message TasksUrgenciesListReply
 }
 message CreateUrgencyRequest
 {
-    int64 user_id = 1;
+    string user_id = 1;
     string name = 2;
     string description = 3;
 }
@@ -339,14 +337,14 @@ message CreateUrgencyReply
 
 message ModifyUrgencyRequest
 {
-    int64 user_id = 1;
+    string user_id = 1;
     int64 change_flags = 2; // комбинация из ETaskModifyFlags
     UrgencyModel urgency = 3;
 }
 
 message DeleteUrgencyRequest
 {
-    int64 user_id = 1;
+    string user_id = 1;
     int64 urgency_id = 2;
 }
 
@@ -374,19 +372,19 @@ message ProjectAreasReply
 
 message CreateProjectAreaRequest
 {
-    int64 user_id = 1;
+    string user_id = 1;
     ProjectArea area = 2;
 }
 
 message ModifyProjectAreaRequest
 {
-    int64 user_id = 1;
+    string user_id = 1;
     int64 change_flags = 2; // комбинация из ETaskModifyFlags
     ProjectArea area = 3;
 }
 message DeleteProjectAreaRequest
 {
-    int64 user_id = 1;
+    string user_id = 1;
     int64 area_id = 2;
 }
 
@@ -415,20 +413,20 @@ message CompanyProjectsReply
 
 message CreateProjectRequest
 {
-    int64 user_id = 1;
+    string user_id = 1;
     CompanyProject project = 2;
 }
 
 message ModifyProjectRequest
 {
-    int64 user_id = 1;
+    string user_id = 1;
     int64 change_flags = 2;  // комбинация из ETaskModifyFlags
     CompanyProject project = 3;
 }
 
 message DeleteProjectRequest
 {
-    int64 user_id = 1;
+    string user_id = 1;
     int64 project_id = 2;
 }
 
@@ -453,14 +451,14 @@ message CompaniesReply
 
 message CreateCompanyRequest
 {
-    int64 creator_id = 1;
+    string creator_id = 1;
     string name = 2;
     optional string description = 3;
 }
 
 message ModifyCompanyRequest
 {
-    int64 user_id = 1;
+    string user_id = 1;
     int64 change_flags = 2;
     int64 id = 3;
     string name = 4;
@@ -469,7 +467,7 @@ message ModifyCompanyRequest
 
 message DeleteCompanyRequest
 {
-    int64 user_id = 1;
+    string user_id = 1;
     int64 company_id = 2;
 }
     
@@ -482,39 +480,39 @@ message EmployeesRequest
 
 message EmployeesReply
 {
-    repeated int64 employee_ids = 1;
+    repeated string employee_ids = 1;
 }
 
 message AddEmployeeRequest
 {
-    int64 creator_id = 1;
+    string creator_id = 1;
     int64 company_id = 2;
-    int64 new_user_id = 3;
+    string new_user_id = 3;
 }
 
 message RemoveEmployeeRequest
 {
-    int64 deleter_id = 1;
+    string deleter_id = 1;
     int64 company_id = 2;
-    int64 user_to_del_id = 3;
+    string user_to_del_id = 3;
 }
 
 message ModifyTaskLongFieldRequest
 {
-	int64 userId = 1;
+	string userId = 1;
 	int64 taskId = 2;
 	int64 longValue = 3;	
 }
 message ModifyTaskTextFieldRequest
 {
-	int64 userId = 1;
+	string userId = 1;
 	int64 taskId = 2;
 	string strValue = 3;	
 }
 
 message ModifyNodeDeadlineRequest
 {
-	int64 userId = 1;
+	string userId = 1;
 	int64 taskId = 2;
     int64 nodeId = 3;
 	google.protobuf.Timestamp  dateValue = 4;	

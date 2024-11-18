@@ -66,36 +66,46 @@ namespace TasksService.BusinessLogic.Services.Implementations.Mapping
                 .ForMember(dest => dest.Area, opt => opt.Ignore())
                 .ForMember(dest => dest.Company, opt => opt.Ignore())
                 .ForMember(dest => dest.Project, opt => opt.Ignore())
-                .ForMember(dest => dest.TaskNode, opt => opt.Ignore())
+                //.ForMember(dest => dest.CurrentNode, opt => opt.Ignore())
                 .ForMember(dest => dest.Template, opt => opt.Ignore())
                 //.ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
                 .ForMember(dest => dest.Urgency, opt => opt.MapFrom(src => src.UrgencyId))
                 .ForMember(dest => dest.CreationDate, opt => opt.MapFrom(src => ConvertTimestampToDateTime(src.CreationDate)))
-                .ForMember(dest => dest.UrgencyNavigation, opt => opt.Ignore());
+                .ForMember(dest => dest.DeadlineDate, opt => opt.MapFrom(src => ConvertTimestampToDateTime(src.DeadlineDate)))
+                .ForMember(dest => dest.UrgencyNavigation, opt => opt.Ignore())
+                .ForMember(dest => dest.CreatorId, opt => opt.MapFrom(src => src.CreatorId))
+                .ForMember(dest => dest.CurrentNodeId, opt => opt.MapFrom(src => src.CurrentNode))
+                .ForMember(dest => dest.Nodes, opt => opt.Ignore());
 
             CreateMap<DataAccess.Entities.Task, TaskDTO>()
                 .ForMember(dest => dest.UrgencyId, opt => opt.MapFrom(src => src.Urgency))
-                .ForMember(dest => dest.RowVersion, opt => opt.MapFrom(src => src.RowVersion));
+                .ForMember(dest => dest.RowVersion, opt => opt.MapFrom(src => src.RowVersion))
+                .ForMember(dest => dest.CreatorId, opt => opt.MapFrom(src => src.CreatorId))
+                .ForMember(dest => dest.CurrentNode, opt => opt.MapFrom(src => src.CurrentNodeId));
 
 
             CreateMap<FullTaskInfoDTO, DataAccess.Entities.Task>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Task.Id))
                 .ForMember(dest => dest.AreaId, opt => opt.MapFrom(src => src.Task.AreaId))
                 .ForMember(dest => dest.CompanyId, opt => opt.MapFrom(src => src.Task.CompanyId))
-                .ForMember(dest => dest.CreationDate, opt => opt.MapFrom(src => src.Task.CreationDate))
                 .ForMember(dest => dest.CreatorId, opt => opt.MapFrom(src => src.Task.CreatorId))
                 .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Task.Description))
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Task.Name))
                 .ForMember(dest => dest.ProjectId, opt => opt.MapFrom(src => src.Task.ProjectId))
                 .ForMember(dest => dest.TemplateId, opt => opt.MapFrom(src => src.Task.TemplateId))
                 .ForMember(dest => dest.Urgency, opt => opt.MapFrom(src => src.Task.UrgencyId))
-                .ForMember(dest => dest.DeadlineDate, opt => opt.MapFrom(src => src.Task.DeadlineDate))
-                .ForMember(dest => dest.CurrentNode, opt => opt.MapFrom(src => src.Task.CurrentNode))
+                //.ForMember(dest => dest.CreationDate, opt => opt.MapFrom(src => src.Task.CreationDate))
+                //.ForMember(dest => dest.DeadlineDate, opt => opt.MapFrom(src => src.Task.DeadlineDate))
+                .ForMember(dest => dest.CreationDate, opt => opt.MapFrom(src => ConvertTimestampToDateTime(src.Task.CreationDate)))
+                .ForMember(dest => dest.DeadlineDate, opt => opt.MapFrom(src => ConvertTimestampToDateTime(src.Task.DeadlineDate)))
+
+
+                .ForMember(dest => dest.CurrentNodeId, opt => opt.MapFrom(src => src.Task.CurrentNode))
                 .ForMember(dest => dest.RowVersion, opt => opt.MapFrom(src => src.Task.RowVersion))
                 .ForMember(dest => dest.Area, opt => opt.Ignore())
                 .ForMember(dest => dest.Company, opt => opt.Ignore())
                 .ForMember(dest => dest.Project, opt => opt.Ignore())
-                .ForMember(dest => dest.TaskNode, opt => opt.Ignore())
+                //.ForMember(dest => dest.CurrentNode, opt => opt.Ignore())
                 .ForMember(dest => dest.Template, opt => opt.Ignore())
                 .ForMember(dest => dest.UrgencyNavigation, opt => opt.Ignore());
 
@@ -112,31 +122,35 @@ namespace TasksService.BusinessLogic.Services.Implementations.Mapping
                 .ForMember(dest => dest.Id, opt => opt.Ignore())
                 .ForMember(dest => dest.CreatorId, opt => opt.Ignore())
                 .ForMember(dest => dest.CreationDate, opt => opt.Ignore())
-                .ForMember(dest => dest.CurrentNode, opt => opt.Ignore())
+                .ForMember(dest => dest.CurrentNodeId, opt => opt.Ignore())
                 .ForMember(dest => dest.Area, opt => opt.Ignore())
                 .ForMember(dest => dest.Company, opt => opt.Ignore())
                 .ForMember(dest => dest.Project, opt => opt.Ignore())
-                .ForMember(dest => dest.TaskNode, opt => opt.Ignore())
+                //.ForMember(dest => dest.CurrentNode, opt => opt.Ignore())
                 .ForMember(dest => dest.Template, opt => opt.Ignore())
                 .ForMember(dest => dest.UrgencyNavigation, opt => opt.Ignore())
                 .ForMember(dest => dest.RowVersion, opt => opt.Ignore())
-                .ForMember(dest => dest.Urgency, opt => opt.MapFrom(src => src.UrgencyId));
+                .ForMember(dest => dest.DeadlineDate, opt => opt.MapFrom(src => ConvertTimestampToDateTime(src.DeadlineDate)))
+                .ForMember(dest => dest.Urgency, opt => opt.MapFrom(src => src.UrgencyId))
+                .ForMember(dest => dest.Nodes, opt => opt.Ignore());
 
             CreateMap<UrgencyDTO, Urgency>()
                 .ForMember(dest => dest.Tasks, opt => opt.Ignore()); 
             CreateMap<Urgency, UrgencyDTO>();
 
             CreateMap<DataAccess.Entities.Task, CreateTaskDTO>()
-                .ForMember(dest => dest.UrgencyId, opt => opt.MapFrom(src => src.Urgency));
+                .ForMember(dest => dest.UrgencyId, opt => opt.MapFrom(src => src.Urgency))
+                .ForMember(dest => dest.CurrentNode, opt => opt.MapFrom(src => src.CurrentNodeId));
 
             //CreateMap<TaskNode, TaskNodeDTO>();
             
             CreateMap<TaskNodeDTO, TaskNode>()
-                .ForMember(x => x.IdNavigation, opt => opt.Ignore())
+                .ForMember(x => x.OwnerTask, opt => opt.Ignore())
                 .ForMember(x => x.TaskDoers, opt => opt.Ignore())
                 .ForMember(x => x.TaskEdgeNodeFromNavigations, opt => opt.Ignore())
                 .ForMember(x => x.TaskEdgeNodeToNavigations, opt => opt.Ignore())
-                .ForMember(x => x.TemplateId, opt => opt.Ignore());
+                .ForMember(x => x.TemplateId, opt => opt.Ignore())
+                .ForMember(dest => dest.OwnerTaskId, opt => opt.MapFrom(src => src.TaskId));
 
 
             CreateMap< TaskEdgeDTO, TaskEdge>()
@@ -148,9 +162,11 @@ namespace TasksService.BusinessLogic.Services.Implementations.Mapping
 
         }
 
-        private DateTime ConvertTimestampToDateTime(Timestamp timestamp)
+        private DateTime? ConvertTimestampToDateTime(Timestamp? timestamp)
         {
-            return timestamp.ToDateTime();
+            if (null == timestamp)
+                return null;
+            return timestamp.ToDateTime().ToUniversalTime();
         }
 
     }

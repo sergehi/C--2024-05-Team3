@@ -26,7 +26,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
             _historyRepo = historyRepo;
         }
 
-        public async Task<bool> AddEmployee(long creatorId, long companyId, long newUserId)
+        public async Task<bool> AddEmployee(Guid creatorId, long companyId, Guid newUserId)
         {
             try
             {
@@ -48,11 +48,11 @@ namespace TasksService.DataAccess.Repositories.Implementations
             }
         }
 
-        public async Task<List<long>> GetEmployees(long companyId)
+        public async Task<List<Guid>> GetEmployees(long companyId)
         {
             try
             {
-                var emps = new List<long>();
+                var emps = new List<Guid>();
                 using (var dbContext = new TasksDbContext(_configuration))
                 {
                     if (companyId == 0)
@@ -73,7 +73,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
 
         }
 
-        public async Task<bool> RemoveEmployee(long deleterId, long companyId, long userToDelId)
+        public async Task<bool> RemoveEmployee(Guid deleterId, long companyId, Guid userToDelId)
         {
             try
             {

@@ -26,7 +26,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
             _historyRepo = historyRepo;
         }
 
-        public async Task<long> CreateUrgency(long userId, string name, string description)
+        public async Task<long> CreateUrgency(Guid userId, string name, string description)
         {
             try
             {
@@ -45,7 +45,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
             }
         }
 
-        public async Task<bool> DeleteUrgency(long userId, long urgencyId)
+        public async Task<bool> DeleteUrgency(Guid userId, long urgencyId)
         {
             try
             {
@@ -91,7 +91,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
             }
         }
 
-        public async Task<bool> ModifyUrgency(long userId, long changeFlags, Urgency urgency)
+        public async Task<bool> ModifyUrgency(Guid userId, long changeFlags, Urgency urgency)
         {
             try
             {
