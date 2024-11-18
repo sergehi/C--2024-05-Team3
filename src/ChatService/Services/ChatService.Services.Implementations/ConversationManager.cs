@@ -6,9 +6,9 @@ using ChatService.Services.Repositories.Abstractions;
 
 namespace ChatService.Services.Implementations
 {
-    public class ConversationService: IConversationService
+    public class ConversationManager: IConversationService
     {
-        public ConversationService(IMapper mapper, IConversationRepository conversationRepository)
+        public ConversationManager(IMapper mapper, IConversationRepository conversationRepository)
         {
             _mapper = mapper;
             _conversationRepository = conversationRepository;

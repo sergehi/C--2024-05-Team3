@@ -5,7 +5,7 @@ using Common.Repositories;
 
 namespace ChatService.Infrastructure.Repositories.Implementations;
 
-public class ReactionRepository: Repository<Reaction>, IReactionRepository
+public class ReactionRepository: Repository<Reaction, int>, IReactionRepository
 {
     public ReactionRepository(DatabaseContext context) : base(context)
     {
