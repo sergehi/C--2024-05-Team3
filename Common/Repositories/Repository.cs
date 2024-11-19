@@ -103,7 +103,7 @@ public abstract class Repository<T, TPrimaryKey>
             Context.SaveChanges();
             transaction.Commit();
         }
-        catch (Exception)
+        catch (Exception ex)
         {
             transaction.Rollback();
             throw;
@@ -117,7 +117,7 @@ public abstract class Repository<T, TPrimaryKey>
             await Context.SaveChangesAsync(cancellationToken);
             transaction.Commit();
         }
-        catch (Exception)
+        catch (Exception ex)
         {
             transaction.Rollback();
             throw;

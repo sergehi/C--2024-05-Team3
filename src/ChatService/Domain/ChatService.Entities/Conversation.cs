@@ -1,10 +1,13 @@
-﻿using Common;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Common;
 using Common.Repositories;
 
 namespace ChatService.Entities
 {
     public class Conversation : IEntity<int>
     {
+        [Key]
         public int Id { get; set; }
         public int TaskId { get; set; }
         public string Title { get; set; }

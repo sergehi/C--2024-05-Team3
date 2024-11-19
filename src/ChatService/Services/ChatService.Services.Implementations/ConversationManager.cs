@@ -22,21 +22,27 @@ namespace ChatService.Services.Implementations
             return _mapper.Map<List<ConversationDto>>(conversation);
         }
 
-        public async Task<int> CreateAsync(CreatingConversationDto creatingConversationDto)
+        public Task<int> CreateAsync(CreatingConversationDto creatingConversationDto)
         {
-            var conversation = _mapper.Map<CreatingConversationDto, Conversation>(creatingConversationDto);
-            conversation.CreatedDate = DateTime.UtcNow;
-            conversation.CreatedBy = 0;
-            conversation.UpdatedDate = DateTime.UtcNow;
-            conversation.UpdatedBy = 0;
+                //var conversation = _mapper.Map<CreatingConversationDto, Conversation>(creatingConversationDto);
+                var conversation = new Conversation();
+                conversation.Description = creatingConversationDto.Description;
+                conversation.Title = creatingConversationDto.Title;
+                conversation.TaskId = creatingConversationDto.TaskId;
+                conversation.CreatedDate = DateTime.UtcNow;
+                conversation.CreatedBy = 0;
+                conversation.UpdatedDate = DateTime.UtcNow;
+                conversation.UpdatedBy = 0;
+                conversation.IsCancel = false;
 
-            var createdCourse = await _conversationRepository.AddAsync(conversation);
-            return createdCourse.Id;
+                var createdConversation = _conversationRepository.Add(conversation);
+                _conversationRepository.SaveChanges();
+                return Task.FromResult<int>(createdConversation.Id);
         }
 
-        public async Task UpdateAsync(int id, UpdatingConversationDto updatingConversationDto)
+        public Task UpdateAsync(int id, UpdatingConversationDto updatingConversationDto)
         {
-            var conversation = await _conversationRepository.GetAsync(id);
+            var conversation = _conversationRepository.GetWhere(x=>x.Id == id).FirstOrDefault();
             if (conversation == null)
             {
                 throw new Exception($"Обсуждение с идентификатором {id} не найден");
@@ -47,13 +53,17 @@ namespace ChatService.Services.Implementations
             conversation.UpdatedDate = DateTime.UtcNow;
             conversation.UpdatedBy = 0;
             _conversationRepository.Update(conversation);
+            _conversationRepository.SaveChanges();
+            return Task.FromResult(true);
         }
 
-        public async Task CancelAsync(int id)
+        public Task CancelAsync(int id)
         {
-            var conversation = await _conversationRepository.GetAsync(id);
+            var conversation = _conversationRepository.GetWhere(x=>x.Id == id).FirstOrDefault();
             conversation.IsCancel = true;
             _conversationRepository.Update(conversation);
+            _conversationRepository.SaveChanges();
+            return Task.FromResult(true);
         }
     }
 }

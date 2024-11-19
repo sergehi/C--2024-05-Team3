@@ -3,6 +3,7 @@ using Grpc.Core;
 using ChatProto;
 using ChatService.Services.Abstractions;
 using ChatService.Services.Contracts;
+using Google.Protobuf.WellKnownTypes;
 
 
 namespace ChatService.Services
@@ -19,24 +20,37 @@ namespace ChatService.Services
             _mapper = mapper;
             _conversationService = conversationService;
         }
-        // public override Task<GetConversationResponse> GetConversation(GetConversationRequest request, ServerCallContext context)
-        // {
-        //     // Returning all mock conversations as if they belong to the same task ID
-        //     var getConversationList = _conversationService.GetAsync(request.TaskId);
-        //     var conversations = _mapper.Map<List<ConversationModel>>(getConversationList);
-        //     var response = new GetConversationResponse();
-        //     response.Conversations.AddRange(conversations);
-        //     return Task.FromResult(response);
-        // }
         
-        public async override Task<CreateConversationResponse> CreateConversation(CreateConversationRequest request, ServerCallContext context)
+        public override Task<GetConversationResponse> GetConversation(GetConversationRequest request, ServerCallContext context)
         {
-            var res = new CreateConversationResponse();
-            CreatingConversationDto creatingConversationDto = new CreatingConversationDto();
-            creatingConversationDto.TaskId = request.ConversationModel.TaskId;
-            creatingConversationDto.Title = request.ConversationModel.Title;
-            creatingConversationDto.Description = request.ConversationModel.Description;
-            return _mapper.Map<CreateConversationResponse>(await _conversationService.CreateAsync(creatingConversationDto));
+            // Returning all mock conversations as if they belong to the same task ID
+            var response = new GetConversationResponse();
+            var getConversationList = _conversationService.GetAsync(request.TaskId).Result;
+            foreach (var conversation in getConversationList)
+            {
+                ConversationModel conversationModel = new();
+                conversationModel.Id = conversation.Id;
+                conversationModel.Title = conversation.Title;
+                conversationModel.Description = conversation.Description;
+                response.Conversations.Add(conversationModel);
+            }
+            return Task.FromResult(response);
         }
+        
+        public override Task<CreateConversationResponse> CreateConversation(CreateConversationRequest request, ServerCallContext context)
+        {
+                var res = new CreateConversationResponse();
+                CreatingConversationDto creatingConversationDto =_mapper.Map<CreatingConversationDto>(request);
+                res.Id = _conversationService.CreateAsync(creatingConversationDto).Result;
+                return Task.FromResult(res);
+        }
+        
+        public override Task<Empty> UpdateConversation(UpdateConversationRequest request, ServerCallContext context)
+        {
+            var updatingConversationDto =_mapper.Map<UpdatingConversationDto>(request);
+            _conversationService.UpdateAsync(request.Id,updatingConversationDto);
+            return Task.FromResult(new Empty());
+        }
+        
     }
 }

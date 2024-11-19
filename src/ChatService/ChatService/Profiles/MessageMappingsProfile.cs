@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ChatProto;
 using ChatService.API.Models.Message;
 using ChatService.Services.Contracts.Message;
 
@@ -12,5 +13,7 @@ public class MessageMappingsProfile:Profile
         CreateMap<CreatingMessageModel, CreatingMessageDto>()
             .ForMember(d => d.UserId, map => map.Ignore());
         CreateMap<ReactionDto, ReactionModel>();
+        
+        CreateMap<CreateMessageRequest, CreatingMessageDto>().ReverseMap();
     }
 }

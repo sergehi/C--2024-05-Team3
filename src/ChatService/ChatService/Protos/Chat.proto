@@ -2,7 +2,7 @@ syntax = "proto3";
 
 option csharp_namespace = "ChatProto";
 
-package greet;
+package ChatProto.v1;
 import "google/protobuf/empty.proto";
 // The greeting service definition.
 service Greeter {
@@ -31,8 +31,19 @@ service Conversation {
     rpc UpdateConversation(UpdateConversationRequest) returns (google.protobuf.Empty);
 
     // Cancel a conversation
-    rpc CancelConversation(CancelConversationRequest) returns (google.protobuf.Empty);
+    //rpc CancelConversation(CancelConversationRequest) returns (google.protobuf.Empty);
 }
+
+service MessageProto {
+    rpc GetMessages(GetMessagesRequest) returns (GetMessagesResponse);
+    rpc CreateMessage(CreateMessageRequest) returns (CreateMessageResponse);
+    //rpc UpdateMessage(UpdateMessageRequest) returns (google.protobuf.Empty);
+    rpc DeleteMessage(DeleteMessageRequest) returns (google.protobuf.Empty);
+    //rpc AddReaction(AddReactionRequest) returns (google.protobuf.Empty);
+    //rpc RemoveReactionMessage(RemoveReactionRequest) returns (google.protobuf.Empty);
+}
+
+//Models
 // Request message for getting a conversation
 message GetConversationRequest {
     int32 taskId = 1;
@@ -45,7 +56,9 @@ message GetConversationResponse {
 
 // Request message for creating a conversation
 message CreateConversationRequest {
-    CreatingConversationModel conversationModel = 1;
+    int32 taskId = 1;
+    string title = 2;
+    string description = 3;
 }
 
 // Response message for creating a conversation
@@ -56,7 +69,16 @@ message CreateConversationResponse {
 // Request message for updating a conversation
 message UpdateConversationRequest {
     int32 id = 1;
-    UpdatingConversationModel conversationModel = 2;
+    string title = 2;
+    string description = 3;
+}
+
+// Conversation message representing each conversation entry
+message ConversationModel {
+    int32 id = 1;
+    string title = 2;
+    string description = 3;
+    string createdDate = 4;
 }
 
 // Request message for canceling a conversation
@@ -64,23 +86,34 @@ message CancelConversationRequest {
     int32 id = 1;
 }
 
-// Conversation message representing each conversation entry
-message ConversationModel {
-    int32 id = 1;
-    string message = 2;
-    int32 senderId = 3;
-    string timestamp = 4;
+//Messages request
+message GetMessagesRequest {
+    int32 ConversationId = 1;
+}
+message CreateMessageRequest {
+    int32 ConversationId = 1;
+    int32 ReplyToMessageId = 2;
+    int32 UserId = 3;
+    int32 TypeId = 4;
+    string Text = 5;
 }
 
-// CreatingConversationModel message definition
-message CreatingConversationModel {
-    int32 taskId = 1;
-    string title = 2;
-    string description = 3;
+message DeleteMessageRequest {
+    int32 Id = 1;
 }
 
-// UpdatingConversationModel message definition
-message UpdatingConversationModel {
+//Messages response
+message MessageItem{
+    int32 Id = 1;
+    int32 ReplyToMessageId = 2;
+    int32 UserId = 3;
+    int32 TypeId = 4;
+    string Text = 5;
+}
+message GetMessagesResponse {
+ repeated MessageItem messages = 1;
+}
+
+message CreateMessageResponse {
     int32 id = 1;
-    string message = 2;
 }

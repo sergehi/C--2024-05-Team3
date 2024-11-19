@@ -34,11 +34,28 @@ public class MessageManager : IMessageService
         return createdCourse.Id;
     }
 
+    public int Create(CreatingMessageDto dto)
+    {
+        var conversation = _mapper.Map<CreatingMessageDto, Message>(dto);
+        conversation.CreatedDate = DateTime.UtcNow;
+        conversation.CreatedBy = 0;
+        var createdCourse = _messageRepository.Add(conversation);
+        _messageRepository.SaveChanges();
+        return createdCourse.Id;
+    }
+    
     public async Task DeleteAsync(int id)
     {
         var conversation = await _messageRepository.GetAsync(id);
         conversation.IsDelete = true;
         _messageRepository.Update(conversation);
+    }
+    public void Delete(int id)
+    {
+        var conversation = _messageRepository.GetWhere(x=>x.Id == id).FirstOrDefault();
+        conversation.IsDelete = true;
+        _messageRepository.Update(conversation);
+        _messageRepository.SaveChanges();
     }
 
     public async Task<List<ReactionDto>> GetReactionsAsync(int messageId)
