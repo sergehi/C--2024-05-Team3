@@ -5,7 +5,7 @@ using Common.Repositories;
 
 namespace ChatService.Infrastructure.Repositories.Implementations
 {
-    public class ConversationRepository: Repository<Conversation>, IConversationRepository
+    public class ConversationRepository: Repository<Conversation, int>, IConversationRepository
     {
         public ConversationRepository(DatabaseContext context) : base(context)
         {

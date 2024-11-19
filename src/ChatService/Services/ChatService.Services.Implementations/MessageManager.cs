@@ -6,13 +6,13 @@ using ChatService.Services.Repositories.Abstractions;
 
 namespace ChatService.Services.Implementations;
 
-public class MessageService : IMessageService
+public class MessageManager : IMessageService
 {
     private readonly IMapper _mapper;
     private readonly IMessageRepository _messageRepository;
     private readonly IReactionRepository _reactionRepository;
 
-    public MessageService(IMapper mapper, IMessageRepository messageRepository, IReactionRepository reactionRepository)
+    public MessageManager(IMapper mapper, IMessageRepository messageRepository, IReactionRepository reactionRepository)
     {
         _mapper = mapper;
         _messageRepository = messageRepository;

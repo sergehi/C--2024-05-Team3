@@ -1,9 +1,11 @@
 ﻿using Common;
+using Common.Repositories;
 
 namespace ChatService.Entities
 {
-    public class Conversation : BaseEntity
+    public class Conversation : IEntity<int>
     {
+        public int Id { get; set; }
         public int TaskId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }

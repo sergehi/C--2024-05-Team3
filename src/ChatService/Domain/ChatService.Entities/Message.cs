@@ -1,10 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using Common;
+using Common.Repositories;
 
 namespace ChatService.Entities;
 
-public class Message : BaseEntity
+public class Message : IEntity<int>
 {
+    public int Id { get; set; }
     public int ConversationId { get; set; }
     public int ReplyToMessageId { get; set; }
     public int UserId { get; set; }

@@ -11,7 +11,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
     <PackageReference Include="Grpc.AspNetCore" Version="2.57.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Infrastructure\ChatService.Infrastructure.EntityFramework\ChatService.Infrastructure.EntityFramework.csproj" />
+    <ProjectReference Include="..\Infrastructure\ChatService.Infrastructure.Repositories.Implementations\ChatService.Infrastructure.Repositories.Implementations.csproj" />
+    <ProjectReference Include="..\Services\ChatService.Services.Abstractions\ChatService.Services.Abstractions.csproj" />
+    <ProjectReference Include="..\Services\ChatService.Services.Implementations\ChatService.Services.Implementations.csproj" />
+    <ProjectReference Include="..\Services\ChatService.Services.Repositories.Abstractions\ChatService.Services.Repositories.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>

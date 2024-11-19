@@ -1,14 +1,13 @@
-﻿using System.Reflection;
 using AutoMapper;
-using ChatService.API.Mappings;
 using ChatService.Infrastructure.EntityFramework;
-using ChatService.API.Settings;
 using ChatService.Infrastructure.Repositories.Implementations;
+using ChatService.Profiles;
+using ChatService.Services;
 using ChatService.Services.Abstractions;
 using ChatService.Services.Implementations;
 using ChatService.Services.Repositories.Abstractions;
 
-namespace ChatService.API;
+namespace ChatService;
 
 public static class Registrator
 {
@@ -16,11 +15,11 @@ public static class Registrator
     {
         var applicationSettings = configuration.Get<ApplicationSettings>();
         services.AddSingleton(applicationSettings)
-                .AddSingleton((IConfigurationRoot)configuration)
-                .AddSingleton<IMapper>(new Mapper(GetMapperConfiguration()))
-                .ConfigureContext(applicationSettings.ConnectionString)
-                .InstallRepositories()
-                .InstallServices();
+            .AddSingleton((IConfigurationRoot)configuration)
+            .AddSingleton<IMapper>(new Mapper(GetMapperConfiguration()))
+            .ConfigureContext(applicationSettings.ConnectionString)
+            .InstallRepositories()
+            .InstallServices();
 
         return services;
     }

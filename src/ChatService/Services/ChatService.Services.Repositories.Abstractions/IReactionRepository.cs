@@ -3,6 +3,6 @@ using Common.Repositories;
 
 namespace ChatService.Services.Repositories.Abstractions;
 
-public interface IReactionRepository: IRepository<Reaction>
+public interface IReactionRepository: IRepository<Reaction, int>
 {
 }
