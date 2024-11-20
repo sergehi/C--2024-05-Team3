@@ -353,6 +353,9 @@ namespace TasksTests
         public async void TasksRepo_CanCRUD()
         {
             // Arrange
+            var taskNewName = "Modified name";
+            var taskNewDescription = "Modified description";
+
             var historyRepo = GetMockHistoryRepository();
             var repo = new TasksRepository(_context.Configuration, historyRepo.Object);
             var urgRepo = new UrgenciesRepository(_context.Configuration, historyRepo.Object);
@@ -364,6 +367,8 @@ namespace TasksTests
                 var testTemplateId = await createTestTemplate(companyId);
                 var projectId = await createTestProjectAsync(companyId);
                 var urgencyId = await urgRepo.CreateUrgency(Guid.Empty, "Test", "TestTest");
+                var newUrgencyId = await urgRepo.CreateUrgency(Guid.Empty, "Modified Test", "Modified TestTest");
+
                 var areaId = await areaRepo.CreateProjectArea(Guid.Empty, new ProjectArea() { Name = "Test", Description = "Test area", ProjectId = projectId });
                 // Create task
                 TasksServiceTasks.Task taskToCreate = new TasksServiceTasks.Task()
@@ -385,16 +390,53 @@ namespace TasksTests
                 // Get list
                 var tasksList = await repo.GetTasksList(Guid.Empty, companyId, projectId, areaId);
                 Assert.True(tasksList.Any());
+                // Modify description
+                var suscess = await repo.ModifyTaskDescription(Guid.Empty, taskId, taskNewDescription);
+                Assert.True(suscess);
+                suscess = await repo.ModifyTaskName(Guid.Empty, taskId, taskNewName);
+                Assert.True(suscess);
+                suscess = await repo.ModifyTaskUrgency(Guid.Empty, taskId, newUrgencyId);
+                Assert.True(suscess);
+
 
                 // Get full task info
                 var task = await repo.GetTask(taskId);
                 Assert.NotNull(task.task);
                 Assert.NotNull(task.nodes);
                 Assert.NotNull(task.edges);
+                Assert.True(taskNewDescription == task.task.Description);
+                Assert.True(taskNewName == task.task.Name);
+                Assert.True(newUrgencyId == task.task.Urgency);
 
                 Assert.True(task.nodes.Count != 0);
                 Assert.True(task.edges.Count != 0);
 
+                var foundNode = await repo.GetNode(task.nodes[0].Id);
+                Assert.True(foundNode.Id == task.nodes[0].Id);
+                Assert.True(foundNode.TaskEdgeNodeFromNavigations.Count == task.nodes[0].TaskEdgeNodeFromNavigations.Count);
+
+                var incomingTransitions = await repo.GetToNodeTransitions(foundNode.Id);
+                Assert.NotNull(incomingTransitions);
+                Assert.True(incomingTransitions.Count != 0);
+                var outcomingTransitions = await repo.GetFromNodeTransitions(foundNode.Id);
+                Assert.NotNull(outcomingTransitions);
+                Assert.True(outcomingTransitions.Count != 0);
+
+                suscess = await repo.ModifyTaskState(Guid.Empty, taskId, foundNode.Id);
+                Assert.True(suscess);
+
+                var afterTomorowDate = DateTime.Now.AddDays(2).ToUniversalTime();
+                suscess = await repo.ModifyTaskNodeDeadline(Guid.Empty, taskId, foundNode.Id, afterTomorowDate);
+                Assert.True(suscess);
+                var doers = new List<Guid>() { Guid.NewGuid(), Guid.NewGuid() };
+                suscess = await repo.AppointNodeDoers(Guid.Empty, foundNode.Id, doers);
+                Assert.True(suscess);
+
+                var foundNodeMod = await repo.GetNode(task.nodes[0].Id);
+                Assert.NotNull(foundNodeMod);
+                Assert.True(foundNodeMod.TaskDoers.Count() == 2);
+                var modTask = await repo.GetTask(taskId);
+                Assert.True(modTask.task.DeadlineDate?.Date == afterTomorowDate.Date);
 
             }
             catch (Exception ex)

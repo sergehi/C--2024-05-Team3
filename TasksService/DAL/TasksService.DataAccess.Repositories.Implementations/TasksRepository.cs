@@ -194,7 +194,13 @@ namespace TasksService.DataAccess.Repositories.Implementations
             {
                 using (var dbContext = new TasksDbContext(_configuration))
                 {
-                    var node = await dbContext.TaskNodes.FirstOrDefaultAsync(x=>x.Id == id);
+                    var node = await dbContext.TaskNodes
+                        .Include(x => x.OwnerTask)
+                        .Include(x => x.TaskEdgeNodeFromNavigations)
+                        .Include(x => x.TaskEdgeNodeToNavigations)
+                        .Include(x => x.TaskDoers)
+                        .AsQueryable()
+                        .FirstOrDefaultAsync(x=>x.Id == id);
                     if (null == node)
                         throw new Exception($"Узел с идентификатором {id} не найден.");
 
@@ -214,7 +220,10 @@ namespace TasksService.DataAccess.Repositories.Implementations
             {
                 using (var dbContext = new TasksDbContext(_configuration))
                 {
-                    var node = await dbContext.TaskNodes.FirstOrDefaultAsync(x => x.Id == nodeId);
+                    var node = await dbContext.TaskNodes
+                        .Include(x => x.TaskEdgeNodeFromNavigations)
+                        .AsQueryable()
+                        .FirstOrDefaultAsync(x => x.Id == nodeId);
                     if (null == node)
                         throw new Exception($"Узел с идентификатором {nodeId} не найден.");
 
@@ -233,7 +242,10 @@ namespace TasksService.DataAccess.Repositories.Implementations
             {
                 using (var dbContext = new TasksDbContext(_configuration))
                 {
-                    var node = await dbContext.TaskNodes.FirstOrDefaultAsync(x => x.Id == nodeId);
+                    var node = await dbContext.TaskNodes
+                        .Include(x => x.TaskEdgeNodeToNavigations)
+                        .AsQueryable()
+                        .FirstOrDefaultAsync(x => x.Id == nodeId);
                     if (null == node)
                         throw new Exception($"Узел с идентификатором {nodeId} не найден.");
 
@@ -341,6 +353,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
                         task.Urgency = urgId;
                         await dbContext.SaveChangesAsync();
                         await _historyRepo.RegisterTaskUrgencyChanged(userId, taskId, oldValue.ToString(), urgId.ToString());
+                        await transaction.CommitAsync();
                         return true;
                     }
                 }
@@ -372,6 +385,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
                         task.CurrentNodeId = toNodeId;
                         await dbContext.SaveChangesAsync();
                         await _historyRepo.RegisterTaskTypeChanged(userId, taskId, oldVal.ToString(), task.CurrentNodeId.ToString());
+                        await transaction.CommitAsync();
                         return true;
                     }
                 }
@@ -403,6 +417,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
                         task.Name = newName;
                         await dbContext.SaveChangesAsync();
                         await _historyRepo.RegisterTaskTypeChanged(userId, taskId, oldVal, task.Name);
+                        await transaction.CommitAsync();
                         return true;
                     }
                 }
@@ -434,6 +449,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
                         task.Description = newDescription;
                         await dbContext.SaveChangesAsync();
                         await _historyRepo.RegisterTaskTypeChanged(userId, taskId, oldVal?? "", task.Description);
+                        await transaction.CommitAsync();
                         return true;
                     }
                 }
@@ -465,6 +481,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
                         task.DeadlineDate = newDeadline;
                         await dbContext.SaveChangesAsync();
                         await _historyRepo.RegisterTaskTypeChanged(userId, taskId, oldVal.ToString() ??"", task.DeadlineDate.ToString()??"");
+                        await transaction.CommitAsync();
                         return true;
                     }
                 }

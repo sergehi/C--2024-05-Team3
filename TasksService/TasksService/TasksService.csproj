@@ -13,19 +13,20 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Google.Protobuf" Version="3.28.0-rc2" />
-    <PackageReference Include="Grpc.AspNetCore" Version="2.57.0" />
+    <PackageReference Include="Google.Protobuf" Version="3.29.0-rc3" />
+    <PackageReference Include="Grpc.AspNetCore" Version="2.67.0-pre1" />
     <PackageReference Include="Grpc.Core" Version="2.46.6" />
-    <PackageReference Include="Grpc.Core.Api" Version="2.65.0" />
-    <PackageReference Include="Grpc.Net.Common" Version="2.65.0" />
-    <PackageReference Include="Grpc.Tools" Version="2.65.0">
+    <PackageReference Include="Grpc.Core.Api" Version="2.67.0-pre1" />
+    <PackageReference Include="Grpc.Net.Common" Version="2.67.0-pre1" />
+    <PackageReference Include="Grpc.Tools" Version="2.67.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\Common.csproj" />
     <ProjectReference Include="..\BLL\TasksService.BusinessLogic.Services.Implementations\TasksService.BusinessLogic.Services.Implementations.csproj" />
     <ProjectReference Include="..\DAL\TasksService.DataAccess.EntityFramework\TasksService.DataAccess.EntityFramework.csproj" />
     <ProjectReference Include="..\DAL\TasksService.DataAccess.Repositories.Implementations\TasksService.DataAccess.Repositories.Implementations.csproj" />
