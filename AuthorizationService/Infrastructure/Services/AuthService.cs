@@ -45,7 +45,7 @@ namespace AuthorizationService.Infrastructure.Services
                 await _userRepository.CreateAsync(user);
                 try
                 {
-                    RabbitMQService<User>.SendToRabbit(user, LoggerService.ELogAction.LaCreate, user.Id.ToString());
+                    RabbitMQService.SendToRabbit(user, LoggerService.ELogAction.LaCreate, user.Id.ToString());
                 }
                 catch (Exception ex)
                 {

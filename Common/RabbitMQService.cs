@@ -8,7 +8,7 @@ using Common.Attributes;
 
 namespace Common
 {
-    public static class RabbitMQService<T> where T : class
+    public static class RabbitMQService
     {
         private static ConnectionFactory? _factory;
         private static IConnection? _connection;
@@ -33,7 +33,7 @@ namespace Common
             }
         }
 
-        public static void SendToRabbit(T item, ELogAction action, string logCreatorId)
+        public static void SendToRabbit<T>(T item, ELogAction action, string logCreatorId) where T : class
         {
             PropertyInfo keyProperty = typeof(T).GetProperties()
                                   .FirstOrDefault(prop => prop.GetCustomAttributes(typeof(KeyAttribute), false).Any())!;
@@ -55,24 +55,9 @@ namespace Common
             }
 
             _channel.ExchangeDeclare(exchange: ExchangeName, ExchangeType);
-            string message = JsonConvert.SerializeObject(createLog);
+            string message = JsonConvert.SerializeObject(creatingLogModel);
             var body = Encoding.UTF8.GetBytes(message);
             _channel.BasicPublish(exchange: ExchangeName, routingKey: string.Empty, basicProperties: null, body: body);
-        }
-
-        public static Task SendToRabbitAsync(CreatingLogModel createLog)
-        {
-            if (_connection == null)
-            {
-                _connection = Factory.CreateConnection();
-                _channel = _connection.CreateModel();
-            }
-
-            _channel.ExchangeDeclare(exchange: ExchangeName, ExchangeType);
-            string message = JsonConvert.SerializeObject(createLog);
-            var body = Encoding.UTF8.GetBytes(message);
-            _channel.BasicPublish(exchange: ExchangeName, routingKey: string.Empty, basicProperties: null, body: body);
-            return Task.CompletedTask;
         }
     }
 }
