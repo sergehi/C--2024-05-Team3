@@ -35,18 +35,20 @@ namespace Common
 
         public static void SendToRabbit<T>(T item, ELogAction action, string logCreatorId) where T : class
         {
-            PropertyInfo keyProperty = typeof(T).GetProperties()
-                                  .FirstOrDefault(prop => prop.GetCustomAttributes(typeof(KeyAttribute), false).Any())!;
-
-            CreatingLogModel creatingLogModel = new CreatingLogModel
+            try
             {
-                Action = action,
-                Entity = JsonConvert.SerializeObject(item),
-                EntityPk = Attribute.GetCustomAttribute(typeof(T), typeof(KeyAttribute))!.ToString(),
-                EntityType = Attribute.GetCustomAttribute(typeof(T), typeof(GuidAttribute))!.ToString(),
-                UserId = logCreatorId,
-                Time = DateTime.UtcNow.Ticks
-            };
+                PropertyInfo keyProperty = typeof(T).GetProperties()
+                                      .FirstOrDefault(prop => prop.GetCustomAttributes(typeof(KeyAttribute), false).Any())!;
+
+                CreatingLogModel creatingLogModel = new CreatingLogModel
+                {
+                    Action = action,
+                    Entity = JsonConvert.SerializeObject(item),
+                    EntityPk = Attribute.GetCustomAttribute(typeof(T), typeof(KeyAttribute))!.ToString(),
+                    EntityType = Attribute.GetCustomAttribute(typeof(T), typeof(GuidAttribute))!.ToString(),
+                    UserId = logCreatorId,
+                    Time = DateTime.UtcNow.Ticks
+                };
 
             if (_connection == null)
             {

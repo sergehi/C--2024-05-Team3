@@ -11,6 +11,8 @@ using TasksService.DataAccess.Entities;
 using TasksService.DataAccess.EntityFramework;
 using TasksService.DataAccess.Repositories.Abstractions;
 using Microsoft.EntityFrameworkCore;
+using Common;
+using LoggerService;
 
 namespace TasksService.DataAccess.Repositories.Implementations
 {
@@ -38,6 +40,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
                         dbContext.CompanyEmployees.Add(newItem);  
 
                     await dbContext.SaveChangesAsync();
+                    RabbitMQService<CompanyEmployee>.SendToRabbit(newItem, ELogAction.LaCreate, creatorId.ToString());
                     return true;
                 }
             }
@@ -85,6 +88,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
 
                     dbContext.CompanyEmployees.Remove(foundEmpl);
                     await dbContext.SaveChangesAsync();
+                    RabbitMQService<CompanyEmployee>.SendToRabbit(foundEmpl, ELogAction.LaDelete, deleterId.ToString());
                     return true;
                 }
             }

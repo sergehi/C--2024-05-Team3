@@ -8,6 +8,8 @@ using TasksService.DataAccess.Repositories.Abstractions;
 using Microsoft.EntityFrameworkCore;
 using System.Xml.Linq;
 using Common.Repositories;
+using Common;
+using System.Threading.Tasks;
 
 namespace TasksService.DataAccess.Repositories.Implementations
 {
@@ -53,11 +55,11 @@ namespace TasksService.DataAccess.Repositories.Implementations
 
         }
 
-        public async Task<bool> UpdateTemplate(long Id, string Name, string Description, long CompanyId, List<WfNodesTemplate> Nodes, List<WfEdgesTemplate> Edges)
+        public async Task<bool> UpdateTemplate(long userId, long templId, string Name, string Description, long CompanyId, List<WfNodesTemplate> Nodes, List<WfEdgesTemplate> Edges)
         {
             try
             {
-                long id = await updateTemplate(Id, Name, Description, CompanyId, Nodes, Edges);
+                long id = await updateTemplate(userId, templId, Name, Description, CompanyId, Nodes, Edges);
                 return id != 0;
             }
             catch (Exception ex)
@@ -67,11 +69,11 @@ namespace TasksService.DataAccess.Repositories.Implementations
 
         }
 
-        public async Task<long> CreateTemplate(string Name, string Description, long CompanyId, List<WfNodesTemplate> Nodes, List<WfEdgesTemplate> Edges)
+        public async Task<long> CreateTemplate(long userId, string Name, string Description, long CompanyId, List<WfNodesTemplate> Nodes, List<WfEdgesTemplate> Edges)
         {
             try
             {
-                long id = await createTemplate(Name, Description, CompanyId, Nodes, Edges);
+                long id = await createTemplate(userId, Name, Description, CompanyId, Nodes, Edges);
                 return id;
             }
             catch (Exception ex)
@@ -80,16 +82,18 @@ namespace TasksService.DataAccess.Repositories.Implementations
             }
         }
 
-        public async Task<bool> DeleteTemplate(long Id)
+        public async Task<bool> DeleteTemplate(long userId, long templId)
         {
             try
             {
                 using (var dbContext = new TasksDbContext(_configuration))
                 {
-                    var definition = dbContext.WfdefinitionsTempls.Find(Id);
+                    var definition = dbContext.WfdefinitionsTempls.Find(templId);
                     if (definition != null)
                         dbContext.WfdefinitionsTempls.Remove(definition);
                     await dbContext.SaveChangesAsync();
+                    if (null != definition)
+                        RabbitMQService<WfDefinitionsTemplate>.SendToRabbit(definition, LoggerService.ELogAction.LaDelete, userId.ToString());
                 }
                 return true;
             }
@@ -100,7 +104,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
         }
 
 
-        private async Task<long> createTemplate(string Name, string Description, long CompanyId, List<WfNodesTemplate> Nodes, List<WfEdgesTemplate> Edges)
+        private async Task<long> createTemplate(long userId, string Name, string Description, long CompanyId, List<WfNodesTemplate> Nodes, List<WfEdgesTemplate> Edges)
         {
             try
             {
@@ -129,6 +133,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
                         dbContext.WfdefinitionsTempls.Add(templateRecord);
                         await dbContext.SaveChangesAsync();
                         transaction.Commit();
+                        RabbitMQService<WfDefinitionsTemplate>.SendToRabbit(templateRecord, LoggerService.ELogAction.LaCreate, userId.ToString());
                         return templateRecord.Id;
 
                     }
@@ -147,7 +152,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
         }
 
 
-        private async Task<long> updateTemplate(long Id, string Name, string Description, long CompanyId, List<WfNodesTemplate> Nodes, List<WfEdgesTemplate> Edges)
+        private async Task<long> updateTemplate(long userId, long Id, string Name, string Description, long CompanyId, List<WfNodesTemplate> Nodes, List<WfEdgesTemplate> Edges)
         {
             try
             {
@@ -179,6 +184,8 @@ namespace TasksService.DataAccess.Repositories.Implementations
                         dbContext.WfdefinitionsTempls.Update(templateRecord);
                         await dbContext.SaveChangesAsync();
                         transaction.Commit();
+
+                        RabbitMQService<WfDefinitionsTemplate>.SendToRabbit(templateRecord, LoggerService.ELogAction.LaUpdate, userId.ToString());
                         return templateRecord.Id;
 
                     }

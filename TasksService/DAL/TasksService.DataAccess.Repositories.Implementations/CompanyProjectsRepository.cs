@@ -59,22 +59,14 @@ namespace TasksService.DataAccess.Repositories.Implementations
         {
             try
             {
+
                 using (var dbContext = new TasksDbContext(_configuration))
                 {
                     dbContext.CompanyProjects.Attach(project);
                     dbContext.Entry(project).State = EntityState.Modified;
                     await dbContext.SaveChangesAsync();
                 }
-                /*
-                var logMessage = new CreatingLogModel()
-                {
-                    Action = ELogAction.LaUpdate, 
-                    UserId = userId.ToString(), 
-                    Time = DateTime.UtcNow.Ticks,
-                    Entity = CompanyProject
-                }
-                RabbitMQService.SendToRabbitAsync()
-                */
+                RabbitMQService<CompanyProject>.SendToRabbit(project, ELogAction.LaUpdate, userId.ToString());
                 return true;
             }
             catch (Exception ex)
@@ -91,6 +83,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
                 {
                     dbContext.CompanyProjects.Add(companyProject);
                     await dbContext.SaveChangesAsync();
+                    RabbitMQService<CompanyProject>.SendToRabbit(companyProject, ELogAction.LaCreate, userId.ToString());
                     return companyProject.Id;
                 }
             }
@@ -114,6 +107,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
 
                     dbContext.CompanyProjects.Remove(found);
                     await dbContext.SaveChangesAsync();
+                    RabbitMQService<CompanyProject>.SendToRabbit(found, ELogAction.LaDelete, userId.ToString());
                     return true;
                 }
             }
