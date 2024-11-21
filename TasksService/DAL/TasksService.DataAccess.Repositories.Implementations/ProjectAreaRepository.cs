@@ -8,7 +8,6 @@ using System.Xml.Linq;
 using Common;
 using Common.Rpc;
 using Grpc.Core;
-using LoggerService;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using TasksService.DataAccess.Entities;
@@ -68,7 +67,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
                     dbContext.Entry(area).State = EntityState.Modified;
                     await dbContext.SaveChangesAsync();
                 }
-                RabbitMQService<ProjectArea>.SendToRabbit(area, ELogAction.LaUpdate, userId.ToString());
+                RabbitMQService.SendToRabbit(area, LoggerService.ELogAction.LaUpdate, userId.ToString());
                 return true;
             }
             catch (Exception ex)
@@ -85,7 +84,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
                 {
                     dbContext.ProjectAreas.Add(area);
                     await dbContext.SaveChangesAsync();
-                    RabbitMQService<ProjectArea>.SendToRabbit(area, ELogAction.LaCreate, userId.ToString());
+                    RabbitMQService.SendToRabbit(area, LoggerService.ELogAction.LaCreate, userId.ToString());
                     return area.Id;
                 }
             }
@@ -109,7 +108,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
 
                     dbContext.ProjectAreas.Remove(found);
                     await dbContext.SaveChangesAsync();
-                    RabbitMQService<ProjectArea>.SendToRabbit(found, ELogAction.LaDelete, userId.ToString());
+                    RabbitMQService.SendToRabbit(found, LoggerService.ELogAction.LaDelete, userId.ToString());
                     return true;
                 }
             }

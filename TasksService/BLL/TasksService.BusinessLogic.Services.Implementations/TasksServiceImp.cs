@@ -61,22 +61,22 @@ namespace TasksService.BusinessLogic.Services.Implementations
 
             //return _mapper.Map<List<TemplateItemDTO>>(await _repository.GetTemplateList(Id, CompanyId));
         }
-        public async Task<long> CreateTemplate(string Name, string Description, long CompanyId, List<TemplateNodeDTO> Nodes, List<TemplateEdgeDTO> Edges)
+        public async Task<long> CreateTemplate(Guid userId, string Name, string Description, long CompanyId, List<TemplateNodeDTO> Nodes, List<TemplateEdgeDTO> Edges)
         {
             var fwNodes = _mapper.Map<List<TemplateNodeDTO>, List<WfNodesTemplate>>(Nodes);
             var fwEdges = _mapper.Map<List<TemplateEdgeDTO>, List<WfEdgesTemplate>>(Edges);
-            return await _templatesRepo.CreateTemplate(Name, Description, CompanyId, fwNodes, fwEdges);
+            return await _templatesRepo.CreateTemplate(userId, Name, Description, CompanyId, fwNodes, fwEdges);
         }
-        public async Task<bool> UpdateTemplate(long Id, string Name, string Description, long CompanyId, List<TemplateNodeDTO> Nodes, List<TemplateEdgeDTO> Edges)
+        public async Task<bool> UpdateTemplate(Guid userId, long Id, string Name, string Description, long CompanyId, List<TemplateNodeDTO> Nodes, List<TemplateEdgeDTO> Edges)
         {
             var fwNodes = _mapper.Map<List<TemplateNodeDTO>, List<WfNodesTemplate>>(Nodes);
             var fwEdges = _mapper.Map<List<TemplateEdgeDTO>, List<WfEdgesTemplate>>(Edges);
-            return await _templatesRepo.UpdateTemplate(Id, Name, Description, CompanyId, fwNodes, fwEdges);
+            return await _templatesRepo.UpdateTemplate(userId, Id, Name, Description, CompanyId, fwNodes, fwEdges);
         }
 
-        public async Task<bool> DeleteTemplate(long Id)
+        public async Task<bool> DeleteTemplate(Guid userId, long Id)
         {
-            return await _templatesRepo.DeleteTemplate(Id);
+            return await _templatesRepo.DeleteTemplate(userId, Id);
         }
 
         #endregion Templates

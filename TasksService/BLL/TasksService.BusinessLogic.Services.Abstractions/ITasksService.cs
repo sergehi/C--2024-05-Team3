@@ -13,11 +13,11 @@ namespace TasksService.BusinessLogic.Services.Abstractions
         // Получить список шаблонов
         Task<List<TemplateItemDTO>> GetTemplateList(long Id, long CompanyId);
         // Создать шаблон
-        Task<long> CreateTemplate(string Name, string Description, long CompanyId, List<TemplateNodeDTO> Nodes, List<TemplateEdgeDTO> Edges);
+        Task<long> CreateTemplate(Guid userId, string Name, string Description, long CompanyId, List<TemplateNodeDTO> Nodes, List<TemplateEdgeDTO> Edges);
         // Обновить шаблон
-        Task<bool> UpdateTemplate(long Id, string Name, string Description, long CompanyId, List<TemplateNodeDTO> Nodes, List<TemplateEdgeDTO> Edges);
+        Task<bool> UpdateTemplate(Guid userId, long Id, string Name, string Description, long CompanyId, List<TemplateNodeDTO> Nodes, List<TemplateEdgeDTO> Edges);
         // Удалить шаблон
-        Task<bool> DeleteTemplate(long Id);
+        Task<bool> DeleteTemplate(Guid userId, long Id);
 
         // Tasks
         // Получить список задач для пользователя userId из компании companyId для проекта projectId(если == 0 - все проекты) для направления работ areaId(если == 0 - все )

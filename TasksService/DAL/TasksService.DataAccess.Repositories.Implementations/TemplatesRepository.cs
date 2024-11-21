@@ -55,7 +55,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
 
         }
 
-        public async Task<bool> UpdateTemplate(long userId, long templId, string Name, string Description, long CompanyId, List<WfNodesTemplate> Nodes, List<WfEdgesTemplate> Edges)
+        public async Task<bool> UpdateTemplate(Guid userId, long templId, string Name, string Description, long CompanyId, List<WfNodesTemplate> Nodes, List<WfEdgesTemplate> Edges)
         {
             try
             {
@@ -69,7 +69,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
 
         }
 
-        public async Task<long> CreateTemplate(long userId, string Name, string Description, long CompanyId, List<WfNodesTemplate> Nodes, List<WfEdgesTemplate> Edges)
+        public async Task<long> CreateTemplate(Guid userId, string Name, string Description, long CompanyId, List<WfNodesTemplate> Nodes, List<WfEdgesTemplate> Edges)
         {
             try
             {
@@ -82,7 +82,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
             }
         }
 
-        public async Task<bool> DeleteTemplate(long userId, long templId)
+        public async Task<bool> DeleteTemplate(Guid userId, long templId)
         {
             try
             {
@@ -93,7 +93,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
                         dbContext.WfdefinitionsTempls.Remove(definition);
                     await dbContext.SaveChangesAsync();
                     if (null != definition)
-                        RabbitMQService<WfDefinitionsTemplate>.SendToRabbit(definition, LoggerService.ELogAction.LaDelete, userId.ToString());
+                        RabbitMQService.SendToRabbit(definition, LoggerService.ELogAction.LaDelete, userId.ToString());
                 }
                 return true;
             }
@@ -104,7 +104,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
         }
 
 
-        private async Task<long> createTemplate(long userId, string Name, string Description, long CompanyId, List<WfNodesTemplate> Nodes, List<WfEdgesTemplate> Edges)
+        private async Task<long> createTemplate(Guid userId, string Name, string Description, long CompanyId, List<WfNodesTemplate> Nodes, List<WfEdgesTemplate> Edges)
         {
             try
             {
@@ -133,7 +133,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
                         dbContext.WfdefinitionsTempls.Add(templateRecord);
                         await dbContext.SaveChangesAsync();
                         transaction.Commit();
-                        RabbitMQService<WfDefinitionsTemplate>.SendToRabbit(templateRecord, LoggerService.ELogAction.LaCreate, userId.ToString());
+                        RabbitMQService.SendToRabbit(templateRecord, LoggerService.ELogAction.LaCreate, userId.ToString());
                         return templateRecord.Id;
 
                     }
@@ -152,7 +152,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
         }
 
 
-        private async Task<long> updateTemplate(long userId, long Id, string Name, string Description, long CompanyId, List<WfNodesTemplate> Nodes, List<WfEdgesTemplate> Edges)
+        private async Task<long> updateTemplate(Guid userId, long Id, string Name, string Description, long CompanyId, List<WfNodesTemplate> Nodes, List<WfEdgesTemplate> Edges)
         {
             try
             {
@@ -185,7 +185,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
                         await dbContext.SaveChangesAsync();
                         transaction.Commit();
 
-                        RabbitMQService<WfDefinitionsTemplate>.SendToRabbit(templateRecord, LoggerService.ELogAction.LaUpdate, userId.ToString());
+                        RabbitMQService.SendToRabbit(templateRecord, LoggerService.ELogAction.LaUpdate, userId.ToString());
                         return templateRecord.Id;
 
                     }

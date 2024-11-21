@@ -122,7 +122,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
                             }
                             await dbContext.SaveChangesAsync();
                             await _historyRepo.RegisterCreateTask(userId, taskToCreate.Id, taskToCreate.Name);
-                            RabbitMQService<Entities.Task>.SendToRabbit(taskToCreate, LoggerService.ELogAction.LaCreate, userId.ToString());
+                            RabbitMQService.SendToRabbit(taskToCreate, LoggerService.ELogAction.LaCreate, userId.ToString());
                             return taskToCreate.Id;
                         }
                         catch(Exception ex)
@@ -165,7 +165,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
                             dbContext.Tasks.Remove(task);
                             await dbContext.SaveChangesAsync();
                             await _historyRepo.RegisterDeleteTask(userId, taskId, task.Name, "");
-                            RabbitMQService<Entities.Task>.SendToRabbit(task, LoggerService.ELogAction.LaDelete, userId.ToString());
+                            RabbitMQService.SendToRabbit(task, LoggerService.ELogAction.LaDelete, userId.ToString());
                             return true;
                         }
                         catch
@@ -357,7 +357,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
                         await dbContext.SaveChangesAsync();
                         await _historyRepo.RegisterTaskUrgencyChanged(userId, taskId, oldValue.ToString(), urgId.ToString());
                         await transaction.CommitAsync();
-                        RabbitMQService<Entities.Task>.SendToRabbit(task, LoggerService.ELogAction.LaUpdate, userId.ToString());
+                        RabbitMQService.SendToRabbit(task, LoggerService.ELogAction.LaUpdate, userId.ToString());
                         return true;
                     }
                 }
@@ -390,7 +390,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
                         await dbContext.SaveChangesAsync();
                         await _historyRepo.RegisterTaskTypeChanged(userId, taskId, oldVal.ToString()??"", task.CurrentNodeId.ToString()??"");
                         await transaction.CommitAsync();
-                        RabbitMQService<Entities.Task>.SendToRabbit(task, LoggerService.ELogAction.LaUpdate, userId.ToString());
+                        RabbitMQService.SendToRabbit<Entities.Task>(task, LoggerService.ELogAction.LaUpdate, userId.ToString());
                         return true;
                     }
                 }
@@ -423,7 +423,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
                         await dbContext.SaveChangesAsync();
                         await _historyRepo.RegisterTaskTypeChanged(userId, taskId, oldVal, task.Name);
                         await transaction.CommitAsync();
-                        RabbitMQService<Entities.Task>.SendToRabbit(task, LoggerService.ELogAction.LaUpdate, userId.ToString());
+                        RabbitMQService.SendToRabbit(task, LoggerService.ELogAction.LaUpdate, userId.ToString());
                         return true;
                     }
                 }
@@ -456,7 +456,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
                         await dbContext.SaveChangesAsync();
                         await _historyRepo.RegisterTaskTypeChanged(userId, taskId, oldVal?? "", task.Description);
                         await transaction.CommitAsync();
-                        RabbitMQService<Entities.Task>.SendToRabbit(task, LoggerService.ELogAction.LaUpdate, userId.ToString());
+                        RabbitMQService.SendToRabbit(task, LoggerService.ELogAction.LaUpdate, userId.ToString());
                         return true;
                     }
                 }
@@ -489,7 +489,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
                         await dbContext.SaveChangesAsync();
                         await _historyRepo.RegisterTaskTypeChanged(userId, taskId, oldVal.ToString() ??"", task.DeadlineDate.ToString()??"");
                         await transaction.CommitAsync();
-                        RabbitMQService<Entities.Task>.SendToRabbit(task, LoggerService.ELogAction.LaUpdate, userId.ToString());
+                        RabbitMQService.SendToRabbit(task, LoggerService.ELogAction.LaUpdate, userId.ToString());
                         return true;
                     }
                 }
@@ -531,7 +531,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
                             else
                                 return false;
 
-                            RabbitMQService<Entities.TaskNode>.SendToRabbit(node, LoggerService.ELogAction.LaUpdate, userId.ToString());
+                            RabbitMQService.SendToRabbit(node, LoggerService.ELogAction.LaUpdate, userId.ToString());
                             await _historyRepo.RegisterTaskDoersAppointed(userId, node.OwnerTaskId ?? 0L, nodeId, oldValue, newValue);
                             return true;
                         }

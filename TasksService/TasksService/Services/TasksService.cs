@@ -45,7 +45,8 @@ namespace TasksService.Services
             
             try
             {
-                return _mapper.Map<CreateTemplateReply>(await _service.CreateTemplate(request.Name, request.Description, request.CompanyId, _mapper.Map<List<TemplateNodeDTO>>(request.Nodes), _mapper.Map<List<TemplateEdgeDTO>>(request.Edges)));
+                Guid userId = Guid.Parse(request.UserId);
+                return _mapper.Map<CreateTemplateReply>(await _service.CreateTemplate(userId,  request.Name, request.Description, request.CompanyId, _mapper.Map<List<TemplateNodeDTO>>(request.Nodes), _mapper.Map<List<TemplateEdgeDTO>>(request.Edges)));
 
             }
             catch (Exception ex)
@@ -59,7 +60,8 @@ namespace TasksService.Services
         {
             try
             {
-                return _mapper.Map<BoolReply>(await _service.UpdateTemplate(request.Item.Id, request.Item.Name, request.Item.Description, request.Item.CompanyId, _mapper.Map<List<TemplateNodeDTO>>(request.Item.Nodes), _mapper.Map<List<TemplateEdgeDTO>>(request.Item.Edges)));
+                Guid userId = Guid.Parse(request.UserId);
+                return _mapper.Map<BoolReply>(await _service.UpdateTemplate(userId, request.Item.Id, request.Item.Name, request.Item.Description, request.Item.CompanyId, _mapper.Map<List<TemplateNodeDTO>>(request.Item.Nodes), _mapper.Map<List<TemplateEdgeDTO>>(request.Item.Edges)));
             }
             catch (Exception ex)
             {
@@ -71,7 +73,8 @@ namespace TasksService.Services
         {
             try
             {
-                return _mapper.Map<BoolReply>(await _service.DeleteTemplate(request.Id));
+                Guid userId = Guid.Parse(request.UserId);
+                return _mapper.Map<BoolReply>(await _service.DeleteTemplate(userId, request.Id));
             }
             catch (Exception ex)
             {

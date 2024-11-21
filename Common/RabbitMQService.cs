@@ -5,6 +5,7 @@ using LoggerService;
 using System.Reflection;
 using System.ComponentModel.DataAnnotations;
 using Common.Attributes;
+using System.Linq.Expressions;
 
 namespace Common
 {
@@ -50,16 +51,20 @@ namespace Common
                     Time = DateTime.UtcNow.Ticks
                 };
 
-            if (_connection == null)
-            {
-                _connection = Factory.CreateConnection();
-                _channel = _connection.CreateModel();
-            }
+                if (_connection == null)
+                {
+                    _connection = Factory.CreateConnection();
+                    _channel = _connection.CreateModel();
+                }
 
-            _channel.ExchangeDeclare(exchange: ExchangeName, ExchangeType);
-            string message = JsonConvert.SerializeObject(creatingLogModel);
-            var body = Encoding.UTF8.GetBytes(message);
-            _channel.BasicPublish(exchange: ExchangeName, routingKey: string.Empty, basicProperties: null, body: body);
+                _channel.ExchangeDeclare(exchange: ExchangeName, ExchangeType);
+                string message = JsonConvert.SerializeObject(creatingLogModel);
+                var body = Encoding.UTF8.GetBytes(message);
+                _channel.BasicPublish(exchange: ExchangeName, routingKey: string.Empty, basicProperties: null, body: body);
+            }
+            catch
+            { 
+            }
         }
     }
 }

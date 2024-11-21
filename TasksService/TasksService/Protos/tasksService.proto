@@ -120,11 +120,13 @@ message TemplateListItem {
 /// Create Template
 message CreateTemplateRequest 
 {
+    
 	string name = 1;	
 	optional string description = 2;	
 	optional int64 company_id = 3;
 	repeated TemplateNode nodes = 4;
 	repeated TemplateEdge edges = 5;
+    string userId = 6;
 }
 
 message CreateTemplateReply {
@@ -133,12 +135,14 @@ message CreateTemplateReply {
 
 // Update
 message UpdateTemplateRequest {
-	TemplateListItem item = 1;
+    string userId = 1;
+    TemplateListItem item = 2;
 }
 
 // Delete
 message DeleteTemplateRequest {
-	int64 id = 1;
+    string userId = 1;
+	int64 id = 2;
 }
 
 message BoolReply {

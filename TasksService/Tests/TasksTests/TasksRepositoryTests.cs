@@ -136,7 +136,7 @@ namespace TasksTests
                     new WfEdgesTemplate(){ Name = "FromFirstToThird",  InternalNum = 4, NodeFrom = 1, NodeTo = 3 }
                 };
 
-            var long_res = await repo.CreateTemplate("TestTemplate", "Test Template Description", companyId, nodes, edges);
+            var long_res = await repo.CreateTemplate(Guid.Empty,  "TestTemplate", "Test Template Description", companyId, nodes, edges);
             return long_res;
         }
 
@@ -332,14 +332,14 @@ namespace TasksTests
 
                 found.WfnodesTempls.Add(new WfNodesTemplate() { InternalNum = 4, Name = "FourthNode", Description = "Fourth node description", Terminating = true, IconId = 0 });
                 edges.Add(new WfEdgesTemplate() { Name = "FromFirstToFourth", InternalNum = 5, NodeFrom = 1, NodeTo = 4 });
-                var bool_res = await repo.UpdateTemplate(found.Id, found.Name, found.Description, found.CompanyId, found.WfnodesTempls.ToList(), edges);
+                var bool_res = await repo.UpdateTemplate(Guid.Empty, found.Id, found.Name, found.Description, found.CompanyId, found.WfnodesTempls.ToList(), edges);
                 Assert.True(bool_res);
                 Assert.True(_context.WfnodesTempls.Where(x => x.DefinitionId == long_res).Count() == 4);
                                 
 
                 var mov_val = await _context.WfdefinitionsTempls.Where(x => x.Name == found.Name && x.Description == found.Description).ToListAsync();
                 Assert.True(mov_val.Any());
-                bool_res = await repo.DeleteTemplate(found.Id);
+                bool_res = await repo.DeleteTemplate(Guid.Empty, found.Id);
                 Assert.True(bool_res);
             }
             catch (Exception ex)

@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Common;
 using Common.Rpc;
 using Grpc.Core;
-using LoggerService;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using TasksService.DataAccess.Entities;
@@ -62,7 +61,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
                     var newItem = new TasksCompany() { Name = name, Description = description };
                     dbContext.Companies.Add(newItem);
                     await dbContext.SaveChangesAsync();
-                    RabbitMQService<TasksCompany>.SendToRabbit(newItem, ELogAction.LaCreate, creatorId.ToString());
+                    RabbitMQService.SendToRabbit(newItem, LoggerService.ELogAction.LaCreate, creatorId.ToString());
                     return newItem.Id;
                 }
             }
@@ -83,7 +82,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
                     dbContext.Companies.Attach(company);
                     dbContext.Entry(company).State = EntityState.Modified;
                     await dbContext.SaveChangesAsync();
-                    RabbitMQService<TasksCompany>.SendToRabbit(company, ELogAction.LaUpdate, userId.ToString());
+                    RabbitMQService.SendToRabbit(company, LoggerService.ELogAction.LaUpdate, userId.ToString());
                 }
 
                 return true;
@@ -107,7 +106,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
 
                     dbContext.Companies.Remove(foundComp);
                     await dbContext.SaveChangesAsync();
-                    RabbitMQService<TasksCompany>.SendToRabbit(foundComp, ELogAction.LaDelete, userId.ToString());
+                    RabbitMQService.SendToRabbit(foundComp, LoggerService.ELogAction.LaDelete, userId.ToString());
                     return true;
                 }
             }

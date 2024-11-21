@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Common.Attributes;
 
@@ -7,6 +8,7 @@ namespace TasksService.DataAccess.Entities;
 [Guid("4D10D729-398C-46A6-B861-4DD32D4CC954")]
 public partial class TaskNode
 {
+    [Key]
     public long Id { get; set; }
 
     public string? Name { get; set; }
