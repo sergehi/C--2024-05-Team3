@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using Common;
 using Common.Rpc;
 using Grpc.Core;
+using LoggerService;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using TasksService.DataAccess.Entities;
@@ -63,6 +65,16 @@ namespace TasksService.DataAccess.Repositories.Implementations
                     dbContext.Entry(project).State = EntityState.Modified;
                     await dbContext.SaveChangesAsync();
                 }
+                /*
+                var logMessage = new CreatingLogModel()
+                {
+                    Action = ELogAction.LaUpdate, 
+                    UserId = userId.ToString(), 
+                    Time = DateTime.UtcNow.Ticks,
+                    Entity = CompanyProject
+                }
+                RabbitMQService.SendToRabbitAsync()
+                */
                 return true;
             }
             catch (Exception ex)

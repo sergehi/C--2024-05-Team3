@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using AuthorizationService.Shared.Protos;
 using Grpc.Core;
 using TaskTracker.Gateway.Helpers;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TaskTracker.Gateway.Controllers
 {
@@ -17,6 +18,7 @@ namespace TaskTracker.Gateway.Controllers
             _client = client;
         }
 
+        [AllowAnonymous]
         [HttpPost("login")]
         public async Task<IActionResult> Login(LoginRequest loginRequest)
         {
@@ -36,6 +38,7 @@ namespace TaskTracker.Gateway.Controllers
             }
         }
 
+        [AllowAnonymous]
         [HttpPost("register")]
         public async Task<IActionResult> Register(RegisterRequest registerRequest)
         {

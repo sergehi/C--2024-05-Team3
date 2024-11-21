@@ -1,4 +1,6 @@
-﻿using Grpc.Core;
+﻿using System.Security.Claims;
+using Grpc.Core;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TasksServiceProto;
@@ -7,6 +9,7 @@ using TaskTracker.Gateway.Helpers;
 namespace TaskTracker.Gateway.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("[controller]")]
     [ApiExplorerSettings(GroupName = "tasksservice templates")]
     public class TemplatesController : ControllerBase
@@ -18,11 +21,14 @@ namespace TaskTracker.Gateway.Controllers
             _client = client;
         }
 
-        [HttpGet("request")]
-        public async Task<IActionResult> GetTemplateList(TemplateListRequest request)
+        [HttpGet("{templateId?}/{companyId?}")]
+        public async Task<IActionResult> GetTemplateList(long templateId = 0, long companyId = 0)
         {
             try
             {
+                var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var request = new TemplateListRequest(){ Id = templateId, CompanyId = companyId };
+
                 var response = await _client.GetTemplateListAsync(request);
                 return Ok(response.Items);
             }
@@ -37,7 +43,7 @@ namespace TaskTracker.Gateway.Controllers
             }
         }
 
-        [HttpPost("template")]
+        [HttpPost("{template}")]
         public async Task<IActionResult> CreateTemplate(CreateTemplateRequest template)
         {
             try
@@ -55,7 +61,7 @@ namespace TaskTracker.Gateway.Controllers
                 return StatusCode(500, new { message = $"An unexpected error occurred: {ex.Message}" });
             }
         }
-        [HttpPut("template")]
+        [HttpPut("{template}")]
         public async Task<IActionResult> UpdateTemplate(UpdateTemplateRequest template)
         {
             try
@@ -74,11 +80,12 @@ namespace TaskTracker.Gateway.Controllers
             }
         }
 
-        [HttpDelete("template")]
-        public async Task<IActionResult> DeleteTemplate(DeleteTemplateRequest template)
+        [HttpDelete("{templateId}")]
+        public async Task<IActionResult> DeleteTemplate(long templateId)
         {
             try
             {
+                var template = new DeleteTemplateRequest() { Id = templateId };
                 var response = await _client.DeleteTemplateAsync(template);
                 return Ok(response.Success);
             }
