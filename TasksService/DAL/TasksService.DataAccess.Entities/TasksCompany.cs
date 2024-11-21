@@ -4,9 +4,11 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Attributes;
 
 namespace TasksService.DataAccess.Entities
 {
+    [Guid("487F0429-2D9A-4903-BF93-85A78C8B7A01")]
     public partial class TasksCompany
     {
         [Key]

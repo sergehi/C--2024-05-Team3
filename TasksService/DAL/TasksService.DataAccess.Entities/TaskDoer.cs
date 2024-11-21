@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using Common.Attributes;
 
 namespace TasksService.DataAccess.Entities;
-
+[Guid("A5214682-A8BB-4962-AE91-F4806CCA3E41")]
 public partial class TaskDoer
 {
     public long NodeId { get; set; }

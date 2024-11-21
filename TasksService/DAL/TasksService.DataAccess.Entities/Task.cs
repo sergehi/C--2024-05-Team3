@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Common.Attributes;
 
 namespace TasksService.DataAccess.Entities;
-
+[Guid("4CAC88FE-A8CD-4AD3-B42E-A118721272D0")]
 public partial class Task
 {
     [Key]

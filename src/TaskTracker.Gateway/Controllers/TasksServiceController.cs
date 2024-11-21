@@ -3,10 +3,12 @@ using Grpc.Core;
 using TaskTracker.Gateway.Helpers;
 using TasksServiceProto;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TaskTracker.Gateway.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("[controller]")]
     [ApiExplorerSettings(GroupName = "tasksservice")]
     public class TasksServiceController : ControllerBase

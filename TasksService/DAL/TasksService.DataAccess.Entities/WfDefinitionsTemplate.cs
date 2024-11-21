@@ -4,9 +4,11 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Attributes;
 
 namespace TasksService.DataAccess.Entities
 {
+    [Guid("0DFD4354-6983-42DE-9CEB-02B4E30AA30B")]
     public partial class WfDefinitionsTemplate
     {
         [Key]
