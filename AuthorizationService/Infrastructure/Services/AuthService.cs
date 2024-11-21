@@ -9,6 +9,7 @@ using AuthorizationService.Shared.DTOs;
 using Common;
 using Newtonsoft.Json;
 using Common.Attributes;
+using System.Diagnostics;
 
 namespace AuthorizationService.Infrastructure.Services
 {
@@ -42,8 +43,14 @@ namespace AuthorizationService.Infrastructure.Services
                 user.PasswordHash = _passwordHasher.HashPassword(user, registerRequest.Password);
 
                 await _userRepository.CreateAsync(user);
-
-                RabbitMQService<User>.SendToRabbit(user, LoggerService.ELogAction.LaCreate, user.Id.ToString());
+                try
+                {
+                    RabbitMQService<User>.SendToRabbit(user, LoggerService.ELogAction.LaCreate, user.Id.ToString());
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex.Message);
+                }
             }
             catch (RpcException)
             {
