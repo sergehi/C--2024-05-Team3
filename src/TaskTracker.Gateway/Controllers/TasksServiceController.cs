@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Grpc.Core;
 using TaskTracker.Gateway.Helpers;
 using TasksServiceProto;
+using System.Security.Claims;
 
 namespace TaskTracker.Gateway.Controllers
 {
@@ -22,6 +23,8 @@ namespace TaskTracker.Gateway.Controllers
         {
             try
             {
+                var creatorId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                createCompanyRequest.CreatorId = creatorId;
                 var response = await _client.CreateCompanyAsync(createCompanyRequest);
                 return Ok(response);
             }
