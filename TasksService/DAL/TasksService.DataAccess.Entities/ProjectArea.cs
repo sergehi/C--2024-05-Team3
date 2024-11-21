@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using Common.Attributes;
 
 namespace TasksService.DataAccess.Entities;
-
+[Guid("4C05D83E-B9A1-43C5-8352-537B8FF79117")]
 public partial class ProjectArea
 {
     public long Id { get; set; }

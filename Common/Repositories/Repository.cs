@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
+using System.Diagnostics;
 using System.Linq.Expressions;
 
 namespace Common.Repositories;
@@ -36,7 +37,7 @@ public abstract class Repository<T, TPrimaryKey>
     {
         return (await GetAll(noTracking).ToListAsync(cancellationToken)).AsQueryable();
     }
-    public virtual IQueryable<T> GetWhere(Expression<Func<T, bool>> predicate, Func<IQueryable<T>, IIncludableQueryable<T, 
+    public virtual IQueryable<T> GetWhere(Expression<Func<T, bool>> predicate, Func<IQueryable<T>, IIncludableQueryable<T,
         object>>? includes = null, bool noTracking = false)
     {
         var query = Context.Set<T>().Where(predicate);
@@ -44,7 +45,7 @@ public abstract class Repository<T, TPrimaryKey>
             query = includes(query);
         return noTracking ? query.AsNoTracking() : query;
     }
-    public virtual async Task<IQueryable<T>> GetWhereAsync(Expression<Func<T, bool>> predicate, Func<IQueryable<T>, 
+    public virtual async Task<IQueryable<T>> GetWhereAsync(Expression<Func<T, bool>> predicate, Func<IQueryable<T>,
         IIncludableQueryable<T, object>>? includes = null, bool noTracking = false)
     {
         return (await GetWhere(predicate, includes, noTracking).ToArrayAsync()).AsQueryable();
@@ -105,6 +106,7 @@ public abstract class Repository<T, TPrimaryKey>
         }
         catch (Exception ex)
         {
+            Debug.WriteLine(ex.Message);
             transaction.Rollback();
             throw;
         }
@@ -119,6 +121,7 @@ public abstract class Repository<T, TPrimaryKey>
         }
         catch (Exception ex)
         {
+            Debug.WriteLine(ex.Message);
             transaction.Rollback();
             throw;
         }

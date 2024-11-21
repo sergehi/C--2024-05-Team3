@@ -5,9 +5,11 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Attributes;
 
 namespace TasksService.DataAccess.Entities
 {
+    [Guid("4654B1E9-F62F-4886-ADCD-5230904541AC")]
     public partial class WfNodesTemplate
     {
         [Key]
@@ -20,7 +22,6 @@ namespace TasksService.DataAccess.Entities
         public virtual ICollection<WfEdgesTemplate> WfedgesTemplNodeToNavigations { get; set; } = new List<WfEdgesTemplate>();
         public bool Terminating { get; set; }
         public long? IconId { get; set; }
-
         [NotMapped]
         public long InternalNum { get; set; } // Внутренний номер для сопоставления объектов приходящих по grpc
 

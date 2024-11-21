@@ -5,9 +5,11 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Attributes;
 
 namespace TasksService.DataAccess.Entities
 {
+    [Guid("12243B33-6EF5-4BDA-BBC0-B7406D409BA4")]
     public partial class WfEdgesTemplate
     {
         [Key]

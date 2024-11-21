@@ -1,4 +1,5 @@
 ﻿using ChatProto;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TestGrpcService1;
@@ -6,6 +7,7 @@ using TestGrpcService1;
 namespace TaskTracker.Gateway.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("chatservice/[controller]")]
     [ApiExplorerSettings(GroupName = "chatservice")]
     public class ConversationController : ControllerBase
