@@ -1,5 +1,5 @@
-﻿using System.Security.Claims;
-using Grpc.Core;
+﻿using Grpc.Core;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -11,26 +11,28 @@ namespace TaskTracker.Gateway.Controllers
     [ApiController]
     [Authorize]
     [Route("[controller]")]
-    [ApiExplorerSettings(GroupName = "tasksservice templates")]
-    public class TemplatesController : ControllerBase
+    [ApiExplorerSettings(GroupName = "tasksservice project areas")]
+    public class AreasController : ControllerBase
     {
         private readonly TasksServiceProto.TasksServiceProto.TasksServiceProtoClient _client;
 
-        public TemplatesController(TasksServiceProto.TasksServiceProto.TasksServiceProtoClient client)
+        public AreasController(TasksServiceProto.TasksServiceProto.TasksServiceProtoClient client)
         {
             _client = client;
         }
 
-        [HttpGet("{templateId?}/{companyId?}")]
-        public async Task<IActionResult> GetTemplateList(long templateId = 0, long companyId = 0)
+
+
+        //rpc GetProjectAreas(ProjectAreasRequest)  returns(ProjectAreasReply);
+        [HttpGet("{projId}/{areaId?}")]
+        public async Task<IActionResult> GetProjectAreas(long projId, long Id = 0)
         {
             try
             {
                 var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                var request = new TemplateListRequest(){ Id = templateId, CompanyId = companyId };
-
-                var response = await _client.GetTemplateListAsync(request);
-                return Ok(response.Items);
+                var request = new ProjectAreasRequest() { ProjectId = projId,  AreaId = Id };
+                var response = await _client.GetProjectAreasAsync(request);
+                return Ok(response.Areas);
             }
             catch (RpcException ex)
             {
@@ -43,12 +45,15 @@ namespace TaskTracker.Gateway.Controllers
             }
         }
 
-        [HttpPost("{template}")]
-        public async Task<IActionResult> CreateTemplate(CreateTemplateRequest template)
+        //rpc CreateProjectArea(CreateProjectAreaRequest)  returns(PkMessage);
+        [HttpPost("{projId}/{name}/{description}")]
+        public async Task<IActionResult> CreateProjectArea(long projId, string name, string description)
         {
             try
             {
-                var response = await _client.CreateTemplateAsync(template);
+                var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var request = new CreateProjectAreaRequest() { UserId = currentUserId, Area = new ProjectArea() { Id = 0, ProjectId = projId, Name = name, Description = description}};
+                var response = await _client.CreateProjectAreaAsync(request);
                 return Ok(response.Id);
             }
             catch (RpcException ex)
@@ -63,12 +68,15 @@ namespace TaskTracker.Gateway.Controllers
         }
 
 
-        [HttpPut("{template}")]
-        public async Task<IActionResult> UpdateTemplate(UpdateTemplateRequest template)
+        //rpc ModifyProjectArea(ModifyProjectAreaRequest)  returns(BoolReply);
+        [HttpPut("{id}/{projId}/{name}/{description}")]
+        public async Task<IActionResult> ModifyProjectArea(long id, long projId, string name, string description)
         {
             try
             {
-                var response = await _client.UpdateTemplateAsync(template);
+                var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var request = new ModifyProjectAreaRequest() { UserId = currentUserId, ChangeFlags = 0, Area = new ProjectArea() { Id = id, ProjectId = projId, Name = name, Description = description } };
+                var response = await _client.ModifyProjectAreaAsync(request);
                 return Ok(response.Success);
             }
             catch (RpcException ex)
@@ -82,13 +90,15 @@ namespace TaskTracker.Gateway.Controllers
             }
         }
 
-        [HttpDelete("{templateId}")]
-        public async Task<IActionResult> DeleteTemplate(long templateId)
+        //rpc DeleteProjectArea(DeleteProjectAreaRequest)  returns(BoolReply);
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteProjectArea(long id)
         {
             try
             {
-                var template = new DeleteTemplateRequest() { Id = templateId };
-                var response = await _client.DeleteTemplateAsync(template);
+                var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var template = new DeleteProjectAreaRequest() { AreaId = id, UserId = currentUserId };
+                var response = await _client.DeleteProjectAreaAsync(template);
                 return Ok(response.Success);
             }
             catch (RpcException ex)

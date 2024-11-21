@@ -1,5 +1,5 @@
-﻿using System.Security.Claims;
-using Grpc.Core;
+﻿using Grpc.Core;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -11,26 +11,26 @@ namespace TaskTracker.Gateway.Controllers
     [ApiController]
     [Authorize]
     [Route("[controller]")]
-    [ApiExplorerSettings(GroupName = "tasksservice templates")]
-    public class TemplatesController : ControllerBase
+    [ApiExplorerSettings(GroupName = "tasksservice companies")]
+    public class CompanyController : ControllerBase
     {
         private readonly TasksServiceProto.TasksServiceProto.TasksServiceProtoClient _client;
 
-        public TemplatesController(TasksServiceProto.TasksServiceProto.TasksServiceProtoClient client)
+        public CompanyController(TasksServiceProto.TasksServiceProto.TasksServiceProtoClient client)
         {
             _client = client;
         }
 
-        [HttpGet("{templateId?}/{companyId?}")]
-        public async Task<IActionResult> GetTemplateList(long templateId = 0, long companyId = 0)
+        //rpc GetCompanies(CompanyRequest) returns(CompaniesReply);
+        [HttpGet("{companyId?}")]
+        public async Task<IActionResult> GetCompanies(long companyId = 0)
         {
             try
             {
                 var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                var request = new TemplateListRequest(){ Id = templateId, CompanyId = companyId };
-
-                var response = await _client.GetTemplateListAsync(request);
-                return Ok(response.Items);
+                var request = new CompanyRequest() { Id =  companyId};
+                var response = await _client.GetCompaniesAsync(request);
+                return Ok(response.Companies);
             }
             catch (RpcException ex)
             {
@@ -43,12 +43,15 @@ namespace TaskTracker.Gateway.Controllers
             }
         }
 
-        [HttpPost("{template}")]
-        public async Task<IActionResult> CreateTemplate(CreateTemplateRequest template)
+        //rpc CreateCompany(CreateCompanyRequest) returns(PkMessage);
+        [HttpPost("{name}/{description}")]
+        public async Task<IActionResult> CreateCompany(string name, string description)
         {
             try
             {
-                var response = await _client.CreateTemplateAsync(template);
+                var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var request = new CreateCompanyRequest() {  CreatorId = currentUserId, Name = name, Description = description };
+                var response = await _client.CreateCompanyAsync(request);
                 return Ok(response.Id);
             }
             catch (RpcException ex)
@@ -62,13 +65,15 @@ namespace TaskTracker.Gateway.Controllers
             }
         }
 
-
-        [HttpPut("{template}")]
-        public async Task<IActionResult> UpdateTemplate(UpdateTemplateRequest template)
+        //rpc ModifyCompany(ModifyCompanyRequest) returns(BoolReply);
+        [HttpPut("{companyId}/{name}/{description}")]
+        public async Task<IActionResult> ModifyCompany(long companyId, string name, string description)
         {
             try
             {
-                var response = await _client.UpdateTemplateAsync(template);
+                var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var request = new ModifyCompanyRequest() { UserId = currentUserId, ChangeFlags = 0, Id = companyId, Name = name, Description = description  };
+                var response = await _client.ModifyCompanyAsync(request);
                 return Ok(response.Success);
             }
             catch (RpcException ex)
@@ -82,13 +87,15 @@ namespace TaskTracker.Gateway.Controllers
             }
         }
 
-        [HttpDelete("{templateId}")]
-        public async Task<IActionResult> DeleteTemplate(long templateId)
+        //rpc DeleteCompany(DeleteCompanyRequest) returns(BoolReply);
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteCompany(long id)
         {
             try
             {
-                var template = new DeleteTemplateRequest() { Id = templateId };
-                var response = await _client.DeleteTemplateAsync(template);
+                var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var template = new DeleteCompanyRequest() { CompanyId = id, UserId = currentUserId };
+                var response = await _client.DeleteCompanyAsync(template);
                 return Ok(response.Success);
             }
             catch (RpcException ex)
@@ -101,6 +108,8 @@ namespace TaskTracker.Gateway.Controllers
                 return StatusCode(500, new { message = $"An unexpected error occurred: {ex.Message}" });
             }
         }
+
+
 
     }
 }

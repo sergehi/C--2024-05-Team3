@@ -1,5 +1,5 @@
-﻿using System.Security.Claims;
-using Grpc.Core;
+﻿using Grpc.Core;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -11,26 +11,25 @@ namespace TaskTracker.Gateway.Controllers
     [ApiController]
     [Authorize]
     [Route("[controller]")]
-    [ApiExplorerSettings(GroupName = "tasksservice templates")]
-    public class TemplatesController : ControllerBase
+    [ApiExplorerSettings(GroupName = "tasksservice company projects")]
+    public class ProjectsController : ControllerBase
     {
         private readonly TasksServiceProto.TasksServiceProto.TasksServiceProtoClient _client;
-
-        public TemplatesController(TasksServiceProto.TasksServiceProto.TasksServiceProtoClient client)
+        public ProjectsController(TasksServiceProto.TasksServiceProto.TasksServiceProtoClient client)
         {
             _client = client;
         }
 
-        [HttpGet("{templateId?}/{companyId?}")]
-        public async Task<IActionResult> GetTemplateList(long templateId = 0, long companyId = 0)
+        //rpc GetCompanyProjects(CompanyProjectsRequest) returns(CompanyProjectsReply);
+        [HttpGet("{companyId}/{projId?}")]
+        public async Task<IActionResult> GetCompanyProjects(long companyId, long projId = 0)
         {
             try
             {
                 var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                var request = new TemplateListRequest(){ Id = templateId, CompanyId = companyId };
-
-                var response = await _client.GetTemplateListAsync(request);
-                return Ok(response.Items);
+                var request = new CompanyProjectsRequest() { CompanyId = companyId, ProjectId = projId };
+                var response = await _client.GetCompanyProjectsAsync(request);
+                return Ok(response.Projects);
             }
             catch (RpcException ex)
             {
@@ -43,12 +42,17 @@ namespace TaskTracker.Gateway.Controllers
             }
         }
 
-        [HttpPost("{template}")]
-        public async Task<IActionResult> CreateTemplate(CreateTemplateRequest template)
+
+
+        //rpc CreateCompanyProject(CreateProjectRequest) returns(PkMessage);
+        [HttpPost("{companyId}/{name}/{description}")]
+        public async Task<IActionResult> CreateCompanyProject(long companyId, string name, string description)
         {
             try
             {
-                var response = await _client.CreateTemplateAsync(template);
+                var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var request = new CreateProjectRequest() {  UserId = currentUserId,  Project = new  CompanyProject() { Id = 0, CompanyId = companyId, Name = name, Description = description } };
+                var response = await _client.CreateCompanyProjectAsync(request);
                 return Ok(response.Id);
             }
             catch (RpcException ex)
@@ -62,13 +66,15 @@ namespace TaskTracker.Gateway.Controllers
             }
         }
 
-
-        [HttpPut("{template}")]
-        public async Task<IActionResult> UpdateTemplate(UpdateTemplateRequest template)
+        //rpc ModifyCompanyProject(ModifyProjectRequest) returns(BoolReply);
+        [HttpPut("{id}/{companyId}/{name}/{description}")]
+        public async Task<IActionResult> ModifyCompanyProject(long id, long companyId, string name, string description)
         {
             try
             {
-                var response = await _client.UpdateTemplateAsync(template);
+                var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var request = new ModifyProjectRequest() { UserId = currentUserId, ChangeFlags = 0, Project = new CompanyProject () { Id = id, CompanyId = companyId, Name = name, Description = description } };
+                var response = await _client.ModifyCompanyProjectAsync(request);
                 return Ok(response.Success);
             }
             catch (RpcException ex)
@@ -82,13 +88,15 @@ namespace TaskTracker.Gateway.Controllers
             }
         }
 
-        [HttpDelete("{templateId}")]
-        public async Task<IActionResult> DeleteTemplate(long templateId)
+        //rpc DeleteCompanyProject(DeleteProjectRequest) returns(BoolReply);
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteCompanyProject(long id)
         {
             try
             {
-                var template = new DeleteTemplateRequest() { Id = templateId };
-                var response = await _client.DeleteTemplateAsync(template);
+                var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var template = new DeleteProjectRequest() { ProjectId = id, UserId = currentUserId};
+                var response = await _client.DeleteCompanyProjectAsync(template);
                 return Ok(response.Success);
             }
             catch (RpcException ex)
@@ -101,6 +109,8 @@ namespace TaskTracker.Gateway.Controllers
                 return StatusCode(500, new { message = $"An unexpected error occurred: {ex.Message}" });
             }
         }
+
+
 
     }
 }
