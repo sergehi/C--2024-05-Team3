@@ -16,7 +16,6 @@
 <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj" />
     <ProjectReference Include="..\..\Common\Common.csproj" />
-    <ProjectReference Include="..\..\Logger\LoggerService\LoggerService.csproj" />
   </ItemGroup>
 
 </Project>

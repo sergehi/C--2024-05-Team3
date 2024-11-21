@@ -7,11 +7,9 @@
   </PropertyGroup>
 
 <ItemGroup>
-  <ProjectReference Include="..\..\Logger\BLL\Logger.BusinessLogic.Services.Abstractions\Logger.BusinessLogic.Services.Abstractions.csproj" />
-  <ProjectReference Include="..\..\Logger\BLL\Logger.BusinessLogic.DTO\Logger.BusinessLogic.DTO.csproj" />
-  <ProjectReference Include="..\..\Logger\DAL\Logger.DataAccess.Entities\Logger.DataAccess.Entities.csproj" />
   <ProjectReference Include="..\Shared\Shared.csproj" />
   <ProjectReference Include="..\Core\Core.csproj" />
+  <ProjectReference Include="../../Common/Common.csproj" />
 </ItemGroup>
 
 <ItemGroup>

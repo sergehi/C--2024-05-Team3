@@ -6,6 +6,9 @@ using AutoMapper;
 using System.Security.Claims;
 using AuthorizationService.Shared.Protos;
 using AuthorizationService.Shared.DTOs;
+using Common;
+using Newtonsoft.Json;
+using Common.Attributes;
 
 namespace AuthorizationService.Infrastructure.Services
 {
@@ -39,6 +42,18 @@ namespace AuthorizationService.Infrastructure.Services
                 user.PasswordHash = _passwordHasher.HashPassword(user, registerRequest.Password);
 
                 await _userRepository.CreateAsync(user);
+
+                LoggerService.CreatingLogModel creatingLogModel = new LoggerService.CreatingLogModel
+                {
+                    Action = LoggerService.ELogAction.LaCreate,
+                    Entity = JsonConvert.SerializeObject(user),
+                    EntityPk = user.Id.ToString(),
+                    EntityType = Attribute.GetCustomAttribute(user.GetType(), typeof(GuidAttribute))!.ToString(),
+                    Time = DateTime.UtcNow.Ticks,
+                    UserId = user.Id.ToString()
+                };
+
+                RabbitMQService.SendToRabbit(creatingLogModel);
             }
             catch (RpcException)
             {
