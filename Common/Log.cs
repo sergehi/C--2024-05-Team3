@@ -9,51 +9,47 @@ using pb = global::Google.Protobuf;
 using pbc = global::Google.Protobuf.Collections;
 using pbr = global::Google.Protobuf.Reflection;
 using scg = global::System.Collections.Generic;
-namespace LoggerService
-{
+namespace LoggerService {
 
   /// <summary>Holder for reflection information generated from Protos/Log.proto</summary>
-  public static partial class LogReflection
-  {
+  public static partial class LogReflection {
 
     #region Descriptor
     /// <summary>File descriptor for Protos/Log.proto</summary>
-    public static pbr::FileDescriptor Descriptor
-    {
+    public static pbr::FileDescriptor Descriptor {
       get { return descriptor; }
     }
     private static pbr::FileDescriptor descriptor;
 
-    static LogReflection()
-    {
+    static LogReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "ChBQcm90b3MvTG9nLnByb3RvEgZMb2dfdjEiuQEKDkZpbHRlckxvZ01vZGVs",
             "EhIKCmJlZ2luX3RpbWUYASABKAMSEAoIZW5kX3RpbWUYAiABKAMSIgoGYWN0",
             "aW9uGAMgASgOMhIuTG9nX3YxLkVMb2dBY3Rpb24SDwoHdXNlcl9pZBgEIAEo",
             "CRITCgtlbnRpdHlfdHlwZRgFIAEoCRIRCgllbnRpdHlfcGsYBiABKAkSDAoE",
-            "cGFnZRgHIAEoBRIWCg5pdGVtc19wZXJfcGFnZRgIIAEoBSKNAQoQQ3JlYXRp",
+            "cGFnZRgHIAEoBRIWCg5pdGVtc19wZXJfcGFnZRgIIAEoBSKhAQoQQ3JlYXRp",
             "bmdMb2dNb2RlbBIMCgR0aW1lGAEgASgDEiIKBmFjdGlvbhgCIAEoDjISLkxv",
             "Z192MS5FTG9nQWN0aW9uEg8KB3VzZXJfaWQYAyABKAkSEwoLZW50aXR5X3R5",
-            "cGUYBCABKAkSEQoJZW50aXR5X3BrGAUgASgJEg4KBmVudGl0eRgGIAEoCSI0",
-            "CgxGaWx0ZXJQZXJpb2QSEgoKYmVnaW5fdGltZRgBIAEoAxIQCghlbmRfdGlt",
-            "ZRgCIAEoAyKQAQoHTG9nSXRlbRIKCgJpZBgBIAEoAxIMCgR0aW1lGAIgASgD",
-            "EiIKBmFjdGlvbhgDIAEoDjISLkxvZ192MS5FTG9nQWN0aW9uEg8KB3VzZXJf",
-            "aWQYBCABKAkSEwoLZW50aXR5X3R5cGUYBSABKAkSEQoJZW50aXR5X3BrGAYg",
-            "ASgJEg4KBmVudGl0eRgHIAEoCSIHCgVFbXB0eSIpCgdMb2dMaXN0Eh4KBWl0",
-            "ZW1zGAEgAygLMg8uTG9nX3YxLkxvZ0l0ZW0iEwoFTG9nSWQSCgoCaWQYASAB",
-            "KAMqRgoKRUxvZ0FjdGlvbhILCgdMQV9OT05FEAASDQoJTEFfQ1JFQVRFEAES",
-            "DQoJTEFfVVBEQVRFEAISDQoJTEFfREVMRVRFEAMyswEKA0xvZxI3CgxHZXRM",
-            "b2dzQXN5bmMSFi5Mb2dfdjEuRmlsdGVyTG9nTW9kZWwaDy5Mb2dfdjEuTG9n",
-            "TGlzdBI8ChFHZXRQYWdlZExvZ3NBc3luYxIWLkxvZ192MS5GaWx0ZXJMb2dN",
-            "b2RlbBoPLkxvZ192MS5Mb2dMaXN0EjUKDkRlbGV0ZUxvZ0FzeW5jEhQuTG9n",
-            "X3YxLkZpbHRlclBlcmlvZBoNLkxvZ192MS5FbXB0eUIQqgINTG9nZ2VyU2Vy",
-            "dmljZWIGcHJvdG8z"));
+            "cGUYBCABKAkSEQoJZW50aXR5X3BrGAUgASgJEg4KBmVudGl0eRgGIAEoCRIS",
+            "CgpyZWNpcGllbnRzGAcgAygJIjQKDEZpbHRlclBlcmlvZBISCgpiZWdpbl90",
+            "aW1lGAEgASgDEhAKCGVuZF90aW1lGAIgASgDIpABCgdMb2dJdGVtEgoKAmlk",
+            "GAEgASgDEgwKBHRpbWUYAiABKAMSIgoGYWN0aW9uGAMgASgOMhIuTG9nX3Yx",
+            "LkVMb2dBY3Rpb24SDwoHdXNlcl9pZBgEIAEoCRITCgtlbnRpdHlfdHlwZRgF",
+            "IAEoCRIRCgllbnRpdHlfcGsYBiABKAkSDgoGZW50aXR5GAcgASgJIgcKBUVt",
+            "cHR5IikKB0xvZ0xpc3QSHgoFaXRlbXMYASADKAsyDy5Mb2dfdjEuTG9nSXRl",
+            "bSITCgVMb2dJZBIKCgJpZBgBIAEoAypGCgpFTG9nQWN0aW9uEgsKB0xBX05P",
+            "TkUQABINCglMQV9DUkVBVEUQARINCglMQV9VUERBVEUQAhINCglMQV9ERUxF",
+            "VEUQAzKzAQoDTG9nEjcKDEdldExvZ3NBc3luYxIWLkxvZ192MS5GaWx0ZXJM",
+            "b2dNb2RlbBoPLkxvZ192MS5Mb2dMaXN0EjwKEUdldFBhZ2VkTG9nc0FzeW5j",
+            "EhYuTG9nX3YxLkZpbHRlckxvZ01vZGVsGg8uTG9nX3YxLkxvZ0xpc3QSNQoO",
+            "RGVsZXRlTG9nQXN5bmMSFC5Mb2dfdjEuRmlsdGVyUGVyaW9kGg0uTG9nX3Yx",
+            "LkVtcHR5QhCqAg1Mb2dnZXJTZXJ2aWNlYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
-          new pbr::GeneratedClrTypeInfo(new[] { typeof(global::LoggerService.ELogAction), }, null, new pbr::GeneratedClrTypeInfo[] {
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::LoggerService.ELogAction), }, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::LoggerService.FilterLogModel), global::LoggerService.FilterLogModel.Parser, new[]{ "BeginTime", "EndTime", "Action", "UserId", "EntityType", "EntityPk", "Page", "ItemsPerPage" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::LoggerService.CreatingLogModel), global::LoggerService.CreatingLogModel.Parser, new[]{ "Time", "Action", "UserId", "EntityType", "EntityPk", "Entity" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::LoggerService.CreatingLogModel), global::LoggerService.CreatingLogModel.Parser, new[]{ "Time", "Action", "UserId", "EntityType", "EntityPk", "Entity", "Recipients" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::LoggerService.FilterPeriod), global::LoggerService.FilterPeriod.Parser, new[]{ "BeginTime", "EndTime" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::LoggerService.LogItem), global::LoggerService.LogItem.Parser, new[]{ "Id", "Time", "Action", "UserId", "EntityType", "EntityPk", "Entity" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::LoggerService.Empty), global::LoggerService.Empty.Parser, null, null, null, null, null),
@@ -65,8 +61,7 @@ namespace LoggerService
 
   }
   #region Enums
-  public enum ELogAction
-  {
+  public enum ELogAction {
     [pbr::OriginalName("LA_NONE")] LaNone = 0,
     [pbr::OriginalName("LA_CREATE")] LaCreate = 1,
     [pbr::OriginalName("LA_UPDATE")] LaUpdate = 2,
@@ -78,9 +73,9 @@ namespace LoggerService
   #region Messages
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class FilterLogModel : pb::IMessage<FilterLogModel>
-#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
-#endif
+  #endif
   {
     private static readonly pb::MessageParser<FilterLogModel> _parser = new pb::MessageParser<FilterLogModel>(() => new FilterLogModel());
     private pb::UnknownFieldSet _unknownFields;
@@ -90,22 +85,19 @@ namespace LoggerService
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor
-    {
+    public static pbr::MessageDescriptor Descriptor {
       get { return global::LoggerService.LogReflection.Descriptor.MessageTypes[0]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor
-    {
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
       get { return Descriptor; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public FilterLogModel()
-    {
+    public FilterLogModel() {
       OnConstruction();
     }
 
@@ -113,8 +105,7 @@ namespace LoggerService
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public FilterLogModel(FilterLogModel other) : this()
-    {
+    public FilterLogModel(FilterLogModel other) : this() {
       beginTime_ = other.beginTime_;
       endTime_ = other.endTime_;
       action_ = other.action_;
@@ -128,8 +119,7 @@ namespace LoggerService
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public FilterLogModel Clone()
-    {
+    public FilterLogModel Clone() {
       return new FilterLogModel(this);
     }
 
@@ -138,11 +128,9 @@ namespace LoggerService
     private long beginTime_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public long BeginTime
-    {
+    public long BeginTime {
       get { return beginTime_; }
-      set
-      {
+      set {
         beginTime_ = value;
       }
     }
@@ -152,11 +140,9 @@ namespace LoggerService
     private long endTime_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public long EndTime
-    {
+    public long EndTime {
       get { return endTime_; }
-      set
-      {
+      set {
         endTime_ = value;
       }
     }
@@ -166,11 +152,9 @@ namespace LoggerService
     private global::LoggerService.ELogAction action_ = global::LoggerService.ELogAction.LaNone;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::LoggerService.ELogAction Action
-    {
+    public global::LoggerService.ELogAction Action {
       get { return action_; }
-      set
-      {
+      set {
         action_ = value;
       }
     }
@@ -180,11 +164,9 @@ namespace LoggerService
     private string userId_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public string UserId
-    {
+    public string UserId {
       get { return userId_; }
-      set
-      {
+      set {
         userId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
@@ -194,11 +176,9 @@ namespace LoggerService
     private string entityType_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public string EntityType
-    {
+    public string EntityType {
       get { return entityType_; }
-      set
-      {
+      set {
         entityType_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
@@ -208,11 +188,9 @@ namespace LoggerService
     private string entityPk_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public string EntityPk
-    {
+    public string EntityPk {
       get { return entityPk_; }
-      set
-      {
+      set {
         entityPk_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
@@ -222,11 +200,9 @@ namespace LoggerService
     private int page_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int Page
-    {
+    public int Page {
       get { return page_; }
-      set
-      {
+      set {
         page_ = value;
       }
     }
@@ -236,32 +212,26 @@ namespace LoggerService
     private int itemsPerPage_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int ItemsPerPage
-    {
+    public int ItemsPerPage {
       get { return itemsPerPage_; }
-      set
-      {
+      set {
         itemsPerPage_ = value;
       }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other)
-    {
+    public override bool Equals(object other) {
       return Equals(other as FilterLogModel);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(FilterLogModel other)
-    {
-      if (ReferenceEquals(other, null))
-      {
+    public bool Equals(FilterLogModel other) {
+      if (ReferenceEquals(other, null)) {
         return false;
       }
-      if (ReferenceEquals(other, this))
-      {
+      if (ReferenceEquals(other, this)) {
         return true;
       }
       if (BeginTime != other.BeginTime) return false;
@@ -277,8 +247,7 @@ namespace LoggerService
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode()
-    {
+    public override int GetHashCode() {
       int hash = 1;
       if (BeginTime != 0L) hash ^= BeginTime.GetHashCode();
       if (EndTime != 0L) hash ^= EndTime.GetHashCode();
@@ -288,8 +257,7 @@ namespace LoggerService
       if (EntityPk.Length != 0) hash ^= EntityPk.GetHashCode();
       if (Page != 0) hash ^= Page.GetHashCode();
       if (ItemsPerPage != 0) hash ^= ItemsPerPage.GetHashCode();
-      if (_unknownFields != null)
-      {
+      if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
       return hash;
@@ -297,18 +265,16 @@ namespace LoggerService
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString()
-    {
+    public override string ToString() {
       return pb::JsonFormatter.ToDiagnosticString(this);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output)
-    {
-#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
-#else
+    #else
       if (BeginTime != 0L) {
         output.WriteRawTag(8);
         output.WriteInt64(BeginTime);
@@ -344,100 +310,80 @@ namespace LoggerService
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
-#endif
+    #endif
     }
 
-#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output)
-    {
-      if (BeginTime != 0L)
-      {
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (BeginTime != 0L) {
         output.WriteRawTag(8);
         output.WriteInt64(BeginTime);
       }
-      if (EndTime != 0L)
-      {
+      if (EndTime != 0L) {
         output.WriteRawTag(16);
         output.WriteInt64(EndTime);
       }
-      if (Action != global::LoggerService.ELogAction.LaNone)
-      {
+      if (Action != global::LoggerService.ELogAction.LaNone) {
         output.WriteRawTag(24);
-        output.WriteEnum((int)Action);
+        output.WriteEnum((int) Action);
       }
-      if (UserId.Length != 0)
-      {
+      if (UserId.Length != 0) {
         output.WriteRawTag(34);
         output.WriteString(UserId);
       }
-      if (EntityType.Length != 0)
-      {
+      if (EntityType.Length != 0) {
         output.WriteRawTag(42);
         output.WriteString(EntityType);
       }
-      if (EntityPk.Length != 0)
-      {
+      if (EntityPk.Length != 0) {
         output.WriteRawTag(50);
         output.WriteString(EntityPk);
       }
-      if (Page != 0)
-      {
+      if (Page != 0) {
         output.WriteRawTag(56);
         output.WriteInt32(Page);
       }
-      if (ItemsPerPage != 0)
-      {
+      if (ItemsPerPage != 0) {
         output.WriteRawTag(64);
         output.WriteInt32(ItemsPerPage);
       }
-      if (_unknownFields != null)
-      {
+      if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
     }
-#endif
+    #endif
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize()
-    {
+    public int CalculateSize() {
       int size = 0;
-      if (BeginTime != 0L)
-      {
+      if (BeginTime != 0L) {
         size += 1 + pb::CodedOutputStream.ComputeInt64Size(BeginTime);
       }
-      if (EndTime != 0L)
-      {
+      if (EndTime != 0L) {
         size += 1 + pb::CodedOutputStream.ComputeInt64Size(EndTime);
       }
-      if (Action != global::LoggerService.ELogAction.LaNone)
-      {
-        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int)Action);
+      if (Action != global::LoggerService.ELogAction.LaNone) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Action);
       }
-      if (UserId.Length != 0)
-      {
+      if (UserId.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(UserId);
       }
-      if (EntityType.Length != 0)
-      {
+      if (EntityType.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(EntityType);
       }
-      if (EntityPk.Length != 0)
-      {
+      if (EntityPk.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(EntityPk);
       }
-      if (Page != 0)
-      {
+      if (Page != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(Page);
       }
-      if (ItemsPerPage != 0)
-      {
+      if (ItemsPerPage != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(ItemsPerPage);
       }
-      if (_unknownFields != null)
-      {
+      if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
       return size;
@@ -445,42 +391,32 @@ namespace LoggerService
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(FilterLogModel other)
-    {
-      if (other == null)
-      {
+    public void MergeFrom(FilterLogModel other) {
+      if (other == null) {
         return;
       }
-      if (other.BeginTime != 0L)
-      {
+      if (other.BeginTime != 0L) {
         BeginTime = other.BeginTime;
       }
-      if (other.EndTime != 0L)
-      {
+      if (other.EndTime != 0L) {
         EndTime = other.EndTime;
       }
-      if (other.Action != global::LoggerService.ELogAction.LaNone)
-      {
+      if (other.Action != global::LoggerService.ELogAction.LaNone) {
         Action = other.Action;
       }
-      if (other.UserId.Length != 0)
-      {
+      if (other.UserId.Length != 0) {
         UserId = other.UserId;
       }
-      if (other.EntityType.Length != 0)
-      {
+      if (other.EntityType.Length != 0) {
         EntityType = other.EntityType;
       }
-      if (other.EntityPk.Length != 0)
-      {
+      if (other.EntityPk.Length != 0) {
         EntityPk = other.EntityPk;
       }
-      if (other.Page != 0)
-      {
+      if (other.Page != 0) {
         Page = other.Page;
       }
-      if (other.ItemsPerPage != 0)
-      {
+      if (other.ItemsPerPage != 0) {
         ItemsPerPage = other.ItemsPerPage;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
@@ -488,11 +424,10 @@ namespace LoggerService
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input)
-    {
-#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       input.ReadRawMessage(this);
-#else
+    #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
       if ((tag & 7) == 4) {
@@ -537,79 +472,67 @@ namespace LoggerService
           }
         }
       }
-#endif
+    #endif
     }
 
-#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input)
-    {
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
       uint tag;
-      while ((tag = input.ReadTag()) != 0)
-      {
-        if ((tag & 7) == 4)
-        {
-          // Abort on any end group tag.
-          return;
-        }
-        switch (tag)
-        {
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
-          case 8:
-            {
-              BeginTime = input.ReadInt64();
-              break;
-            }
-          case 16:
-            {
-              EndTime = input.ReadInt64();
-              break;
-            }
-          case 24:
-            {
-              Action = (global::LoggerService.ELogAction)input.ReadEnum();
-              break;
-            }
-          case 34:
-            {
-              UserId = input.ReadString();
-              break;
-            }
-          case 42:
-            {
-              EntityType = input.ReadString();
-              break;
-            }
-          case 50:
-            {
-              EntityPk = input.ReadString();
-              break;
-            }
-          case 56:
-            {
-              Page = input.ReadInt32();
-              break;
-            }
-          case 64:
-            {
-              ItemsPerPage = input.ReadInt32();
-              break;
-            }
+          case 8: {
+            BeginTime = input.ReadInt64();
+            break;
+          }
+          case 16: {
+            EndTime = input.ReadInt64();
+            break;
+          }
+          case 24: {
+            Action = (global::LoggerService.ELogAction) input.ReadEnum();
+            break;
+          }
+          case 34: {
+            UserId = input.ReadString();
+            break;
+          }
+          case 42: {
+            EntityType = input.ReadString();
+            break;
+          }
+          case 50: {
+            EntityPk = input.ReadString();
+            break;
+          }
+          case 56: {
+            Page = input.ReadInt32();
+            break;
+          }
+          case 64: {
+            ItemsPerPage = input.ReadInt32();
+            break;
+          }
         }
       }
     }
-#endif
+    #endif
 
   }
 
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class CreatingLogModel : pb::IMessage<CreatingLogModel>
-#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
-#endif
+  #endif
   {
     private static readonly pb::MessageParser<CreatingLogModel> _parser = new pb::MessageParser<CreatingLogModel>(() => new CreatingLogModel());
     private pb::UnknownFieldSet _unknownFields;
@@ -619,22 +542,19 @@ namespace LoggerService
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor
-    {
+    public static pbr::MessageDescriptor Descriptor {
       get { return global::LoggerService.LogReflection.Descriptor.MessageTypes[1]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor
-    {
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
       get { return Descriptor; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public CreatingLogModel()
-    {
+    public CreatingLogModel() {
       OnConstruction();
     }
 
@@ -642,21 +562,20 @@ namespace LoggerService
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public CreatingLogModel(CreatingLogModel other) : this()
-    {
+    public CreatingLogModel(CreatingLogModel other) : this() {
       time_ = other.time_;
       action_ = other.action_;
       userId_ = other.userId_;
       entityType_ = other.entityType_;
       entityPk_ = other.entityPk_;
       entity_ = other.entity_;
+      recipients_ = other.recipients_.Clone();
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public CreatingLogModel Clone()
-    {
+    public CreatingLogModel Clone() {
       return new CreatingLogModel(this);
     }
 
@@ -665,11 +584,9 @@ namespace LoggerService
     private long time_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public long Time
-    {
+    public long Time {
       get { return time_; }
-      set
-      {
+      set {
         time_ = value;
       }
     }
@@ -679,11 +596,9 @@ namespace LoggerService
     private global::LoggerService.ELogAction action_ = global::LoggerService.ELogAction.LaNone;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::LoggerService.ELogAction Action
-    {
+    public global::LoggerService.ELogAction Action {
       get { return action_; }
-      set
-      {
+      set {
         action_ = value;
       }
     }
@@ -693,11 +608,9 @@ namespace LoggerService
     private string userId_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public string UserId
-    {
+    public string UserId {
       get { return userId_; }
-      set
-      {
+      set {
         userId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
@@ -707,11 +620,9 @@ namespace LoggerService
     private string entityType_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public string EntityType
-    {
+    public string EntityType {
       get { return entityType_; }
-      set
-      {
+      set {
         entityType_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
@@ -721,11 +632,9 @@ namespace LoggerService
     private string entityPk_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public string EntityPk
-    {
+    public string EntityPk {
       get { return entityPk_; }
-      set
-      {
+      set {
         entityPk_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
@@ -735,32 +644,38 @@ namespace LoggerService
     private string entity_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public string Entity
-    {
+    public string Entity {
       get { return entity_; }
-      set
-      {
+      set {
         entity_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
+    /// <summary>Field number for the "recipients" field.</summary>
+    public const int RecipientsFieldNumber = 7;
+    private static readonly pb::FieldCodec<string> _repeated_recipients_codec
+        = pb::FieldCodec.ForString(58);
+    private pbc::RepeatedField<string> recipients_ = new pbc::RepeatedField<string>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other)
-    {
+    public pbc::RepeatedField<string> Recipients {
+      get { return recipients_; }
+            set { recipients_ = value; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
       return Equals(other as CreatingLogModel);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(CreatingLogModel other)
-    {
-      if (ReferenceEquals(other, null))
-      {
+    public bool Equals(CreatingLogModel other) {
+      if (ReferenceEquals(other, null)) {
         return false;
       }
-      if (ReferenceEquals(other, this))
-      {
+      if (ReferenceEquals(other, this)) {
         return true;
       }
       if (Time != other.Time) return false;
@@ -769,13 +684,13 @@ namespace LoggerService
       if (EntityType != other.EntityType) return false;
       if (EntityPk != other.EntityPk) return false;
       if (Entity != other.Entity) return false;
+      if(!recipients_.Equals(other.recipients_)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode()
-    {
+    public override int GetHashCode() {
       int hash = 1;
       if (Time != 0L) hash ^= Time.GetHashCode();
       if (Action != global::LoggerService.ELogAction.LaNone) hash ^= Action.GetHashCode();
@@ -783,8 +698,8 @@ namespace LoggerService
       if (EntityType.Length != 0) hash ^= EntityType.GetHashCode();
       if (EntityPk.Length != 0) hash ^= EntityPk.GetHashCode();
       if (Entity.Length != 0) hash ^= Entity.GetHashCode();
-      if (_unknownFields != null)
-      {
+      hash ^= recipients_.GetHashCode();
+      if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
       return hash;
@@ -792,18 +707,16 @@ namespace LoggerService
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString()
-    {
+    public override string ToString() {
       return pb::JsonFormatter.ToDiagnosticString(this);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output)
-    {
-#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
-#else
+    #else
       if (Time != 0L) {
         output.WriteRawTag(8);
         output.WriteInt64(Time);
@@ -828,85 +741,72 @@ namespace LoggerService
         output.WriteRawTag(50);
         output.WriteString(Entity);
       }
+      recipients_.WriteTo(output, _repeated_recipients_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
-#endif
+    #endif
     }
 
-#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output)
-    {
-      if (Time != 0L)
-      {
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (Time != 0L) {
         output.WriteRawTag(8);
         output.WriteInt64(Time);
       }
-      if (Action != global::LoggerService.ELogAction.LaNone)
-      {
+      if (Action != global::LoggerService.ELogAction.LaNone) {
         output.WriteRawTag(16);
-        output.WriteEnum((int)Action);
+        output.WriteEnum((int) Action);
       }
-      if (UserId.Length != 0)
-      {
+      if (UserId.Length != 0) {
         output.WriteRawTag(26);
         output.WriteString(UserId);
       }
-      if (EntityType.Length != 0)
-      {
+      if (EntityType.Length != 0) {
         output.WriteRawTag(34);
         output.WriteString(EntityType);
       }
-      if (EntityPk.Length != 0)
-      {
+      if (EntityPk.Length != 0) {
         output.WriteRawTag(42);
         output.WriteString(EntityPk);
       }
-      if (Entity.Length != 0)
-      {
+      if (Entity.Length != 0) {
         output.WriteRawTag(50);
         output.WriteString(Entity);
       }
-      if (_unknownFields != null)
-      {
+      recipients_.WriteTo(ref output, _repeated_recipients_codec);
+      if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
     }
-#endif
+    #endif
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize()
-    {
+    public int CalculateSize() {
       int size = 0;
-      if (Time != 0L)
-      {
+      if (Time != 0L) {
         size += 1 + pb::CodedOutputStream.ComputeInt64Size(Time);
       }
-      if (Action != global::LoggerService.ELogAction.LaNone)
-      {
-        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int)Action);
+      if (Action != global::LoggerService.ELogAction.LaNone) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Action);
       }
-      if (UserId.Length != 0)
-      {
+      if (UserId.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(UserId);
       }
-      if (EntityType.Length != 0)
-      {
+      if (EntityType.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(EntityType);
       }
-      if (EntityPk.Length != 0)
-      {
+      if (EntityPk.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(EntityPk);
       }
-      if (Entity.Length != 0)
-      {
+      if (Entity.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Entity);
       }
-      if (_unknownFields != null)
-      {
+      size += recipients_.CalculateSize(_repeated_recipients_codec);
+      if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
       return size;
@@ -914,46 +814,38 @@ namespace LoggerService
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(CreatingLogModel other)
-    {
-      if (other == null)
-      {
+    public void MergeFrom(CreatingLogModel other) {
+      if (other == null) {
         return;
       }
-      if (other.Time != 0L)
-      {
+      if (other.Time != 0L) {
         Time = other.Time;
       }
-      if (other.Action != global::LoggerService.ELogAction.LaNone)
-      {
+      if (other.Action != global::LoggerService.ELogAction.LaNone) {
         Action = other.Action;
       }
-      if (other.UserId.Length != 0)
-      {
+      if (other.UserId.Length != 0) {
         UserId = other.UserId;
       }
-      if (other.EntityType.Length != 0)
-      {
+      if (other.EntityType.Length != 0) {
         EntityType = other.EntityType;
       }
-      if (other.EntityPk.Length != 0)
-      {
+      if (other.EntityPk.Length != 0) {
         EntityPk = other.EntityPk;
       }
-      if (other.Entity.Length != 0)
-      {
+      if (other.Entity.Length != 0) {
         Entity = other.Entity;
       }
+      recipients_.Add(other.recipients_);
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input)
-    {
-#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       input.ReadRawMessage(this);
-#else
+    #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
       if ((tag & 7) == 4) {
@@ -988,71 +880,69 @@ namespace LoggerService
             Entity = input.ReadString();
             break;
           }
+          case 58: {
+            recipients_.AddEntriesFrom(input, _repeated_recipients_codec);
+            break;
+          }
         }
       }
-#endif
+    #endif
     }
 
-#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input)
-    {
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
       uint tag;
-      while ((tag = input.ReadTag()) != 0)
-      {
-        if ((tag & 7) == 4)
-        {
-          // Abort on any end group tag.
-          return;
-        }
-        switch (tag)
-        {
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
-          case 8:
-            {
-              Time = input.ReadInt64();
-              break;
-            }
-          case 16:
-            {
-              Action = (global::LoggerService.ELogAction)input.ReadEnum();
-              break;
-            }
-          case 26:
-            {
-              UserId = input.ReadString();
-              break;
-            }
-          case 34:
-            {
-              EntityType = input.ReadString();
-              break;
-            }
-          case 42:
-            {
-              EntityPk = input.ReadString();
-              break;
-            }
-          case 50:
-            {
-              Entity = input.ReadString();
-              break;
-            }
+          case 8: {
+            Time = input.ReadInt64();
+            break;
+          }
+          case 16: {
+            Action = (global::LoggerService.ELogAction) input.ReadEnum();
+            break;
+          }
+          case 26: {
+            UserId = input.ReadString();
+            break;
+          }
+          case 34: {
+            EntityType = input.ReadString();
+            break;
+          }
+          case 42: {
+            EntityPk = input.ReadString();
+            break;
+          }
+          case 50: {
+            Entity = input.ReadString();
+            break;
+          }
+          case 58: {
+            recipients_.AddEntriesFrom(ref input, _repeated_recipients_codec);
+            break;
+          }
         }
       }
     }
-#endif
+    #endif
 
   }
 
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class FilterPeriod : pb::IMessage<FilterPeriod>
-#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
-#endif
+  #endif
   {
     private static readonly pb::MessageParser<FilterPeriod> _parser = new pb::MessageParser<FilterPeriod>(() => new FilterPeriod());
     private pb::UnknownFieldSet _unknownFields;
@@ -1062,22 +952,19 @@ namespace LoggerService
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor
-    {
+    public static pbr::MessageDescriptor Descriptor {
       get { return global::LoggerService.LogReflection.Descriptor.MessageTypes[2]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor
-    {
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
       get { return Descriptor; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public FilterPeriod()
-    {
+    public FilterPeriod() {
       OnConstruction();
     }
 
@@ -1085,8 +972,7 @@ namespace LoggerService
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public FilterPeriod(FilterPeriod other) : this()
-    {
+    public FilterPeriod(FilterPeriod other) : this() {
       beginTime_ = other.beginTime_;
       endTime_ = other.endTime_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
@@ -1094,8 +980,7 @@ namespace LoggerService
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public FilterPeriod Clone()
-    {
+    public FilterPeriod Clone() {
       return new FilterPeriod(this);
     }
 
@@ -1104,11 +989,9 @@ namespace LoggerService
     private long beginTime_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public long BeginTime
-    {
+    public long BeginTime {
       get { return beginTime_; }
-      set
-      {
+      set {
         beginTime_ = value;
       }
     }
@@ -1118,32 +1001,26 @@ namespace LoggerService
     private long endTime_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public long EndTime
-    {
+    public long EndTime {
       get { return endTime_; }
-      set
-      {
+      set {
         endTime_ = value;
       }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other)
-    {
+    public override bool Equals(object other) {
       return Equals(other as FilterPeriod);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(FilterPeriod other)
-    {
-      if (ReferenceEquals(other, null))
-      {
+    public bool Equals(FilterPeriod other) {
+      if (ReferenceEquals(other, null)) {
         return false;
       }
-      if (ReferenceEquals(other, this))
-      {
+      if (ReferenceEquals(other, this)) {
         return true;
       }
       if (BeginTime != other.BeginTime) return false;
@@ -1153,13 +1030,11 @@ namespace LoggerService
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode()
-    {
+    public override int GetHashCode() {
       int hash = 1;
       if (BeginTime != 0L) hash ^= BeginTime.GetHashCode();
       if (EndTime != 0L) hash ^= EndTime.GetHashCode();
-      if (_unknownFields != null)
-      {
+      if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
       return hash;
@@ -1167,18 +1042,16 @@ namespace LoggerService
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString()
-    {
+    public override string ToString() {
       return pb::JsonFormatter.ToDiagnosticString(this);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output)
-    {
-#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
-#else
+    #else
       if (BeginTime != 0L) {
         output.WriteRawTag(8);
         output.WriteInt64(BeginTime);
@@ -1190,46 +1063,38 @@ namespace LoggerService
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
-#endif
+    #endif
     }
 
-#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output)
-    {
-      if (BeginTime != 0L)
-      {
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (BeginTime != 0L) {
         output.WriteRawTag(8);
         output.WriteInt64(BeginTime);
       }
-      if (EndTime != 0L)
-      {
+      if (EndTime != 0L) {
         output.WriteRawTag(16);
         output.WriteInt64(EndTime);
       }
-      if (_unknownFields != null)
-      {
+      if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
     }
-#endif
+    #endif
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize()
-    {
+    public int CalculateSize() {
       int size = 0;
-      if (BeginTime != 0L)
-      {
+      if (BeginTime != 0L) {
         size += 1 + pb::CodedOutputStream.ComputeInt64Size(BeginTime);
       }
-      if (EndTime != 0L)
-      {
+      if (EndTime != 0L) {
         size += 1 + pb::CodedOutputStream.ComputeInt64Size(EndTime);
       }
-      if (_unknownFields != null)
-      {
+      if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
       return size;
@@ -1237,18 +1102,14 @@ namespace LoggerService
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(FilterPeriod other)
-    {
-      if (other == null)
-      {
+    public void MergeFrom(FilterPeriod other) {
+      if (other == null) {
         return;
       }
-      if (other.BeginTime != 0L)
-      {
+      if (other.BeginTime != 0L) {
         BeginTime = other.BeginTime;
       }
-      if (other.EndTime != 0L)
-      {
+      if (other.EndTime != 0L) {
         EndTime = other.EndTime;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
@@ -1256,11 +1117,10 @@ namespace LoggerService
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input)
-    {
-#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       input.ReadRawMessage(this);
-#else
+    #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
       if ((tag & 7) == 4) {
@@ -1281,49 +1141,43 @@ namespace LoggerService
           }
         }
       }
-#endif
+    #endif
     }
 
-#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input)
-    {
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
       uint tag;
-      while ((tag = input.ReadTag()) != 0)
-      {
-        if ((tag & 7) == 4)
-        {
-          // Abort on any end group tag.
-          return;
-        }
-        switch (tag)
-        {
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
-          case 8:
-            {
-              BeginTime = input.ReadInt64();
-              break;
-            }
-          case 16:
-            {
-              EndTime = input.ReadInt64();
-              break;
-            }
+          case 8: {
+            BeginTime = input.ReadInt64();
+            break;
+          }
+          case 16: {
+            EndTime = input.ReadInt64();
+            break;
+          }
         }
       }
     }
-#endif
+    #endif
 
   }
 
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class LogItem : pb::IMessage<LogItem>
-#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
-#endif
+  #endif
   {
     private static readonly pb::MessageParser<LogItem> _parser = new pb::MessageParser<LogItem>(() => new LogItem());
     private pb::UnknownFieldSet _unknownFields;
@@ -1333,22 +1187,19 @@ namespace LoggerService
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor
-    {
+    public static pbr::MessageDescriptor Descriptor {
       get { return global::LoggerService.LogReflection.Descriptor.MessageTypes[3]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor
-    {
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
       get { return Descriptor; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LogItem()
-    {
+    public LogItem() {
       OnConstruction();
     }
 
@@ -1356,8 +1207,7 @@ namespace LoggerService
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LogItem(LogItem other) : this()
-    {
+    public LogItem(LogItem other) : this() {
       id_ = other.id_;
       time_ = other.time_;
       action_ = other.action_;
@@ -1370,8 +1220,7 @@ namespace LoggerService
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LogItem Clone()
-    {
+    public LogItem Clone() {
       return new LogItem(this);
     }
 
@@ -1380,11 +1229,9 @@ namespace LoggerService
     private long id_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public long Id
-    {
+    public long Id {
       get { return id_; }
-      set
-      {
+      set {
         id_ = value;
       }
     }
@@ -1394,11 +1241,9 @@ namespace LoggerService
     private long time_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public long Time
-    {
+    public long Time {
       get { return time_; }
-      set
-      {
+      set {
         time_ = value;
       }
     }
@@ -1408,11 +1253,9 @@ namespace LoggerService
     private global::LoggerService.ELogAction action_ = global::LoggerService.ELogAction.LaNone;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::LoggerService.ELogAction Action
-    {
+    public global::LoggerService.ELogAction Action {
       get { return action_; }
-      set
-      {
+      set {
         action_ = value;
       }
     }
@@ -1422,11 +1265,9 @@ namespace LoggerService
     private string userId_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public string UserId
-    {
+    public string UserId {
       get { return userId_; }
-      set
-      {
+      set {
         userId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
@@ -1436,11 +1277,9 @@ namespace LoggerService
     private string entityType_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public string EntityType
-    {
+    public string EntityType {
       get { return entityType_; }
-      set
-      {
+      set {
         entityType_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
@@ -1450,11 +1289,9 @@ namespace LoggerService
     private string entityPk_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public string EntityPk
-    {
+    public string EntityPk {
       get { return entityPk_; }
-      set
-      {
+      set {
         entityPk_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
@@ -1464,32 +1301,26 @@ namespace LoggerService
     private string entity_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public string Entity
-    {
+    public string Entity {
       get { return entity_; }
-      set
-      {
+      set {
         entity_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other)
-    {
+    public override bool Equals(object other) {
       return Equals(other as LogItem);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(LogItem other)
-    {
-      if (ReferenceEquals(other, null))
-      {
+    public bool Equals(LogItem other) {
+      if (ReferenceEquals(other, null)) {
         return false;
       }
-      if (ReferenceEquals(other, this))
-      {
+      if (ReferenceEquals(other, this)) {
         return true;
       }
       if (Id != other.Id) return false;
@@ -1504,8 +1335,7 @@ namespace LoggerService
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode()
-    {
+    public override int GetHashCode() {
       int hash = 1;
       if (Id != 0L) hash ^= Id.GetHashCode();
       if (Time != 0L) hash ^= Time.GetHashCode();
@@ -1514,8 +1344,7 @@ namespace LoggerService
       if (EntityType.Length != 0) hash ^= EntityType.GetHashCode();
       if (EntityPk.Length != 0) hash ^= EntityPk.GetHashCode();
       if (Entity.Length != 0) hash ^= Entity.GetHashCode();
-      if (_unknownFields != null)
-      {
+      if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
       return hash;
@@ -1523,18 +1352,16 @@ namespace LoggerService
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString()
-    {
+    public override string ToString() {
       return pb::JsonFormatter.ToDiagnosticString(this);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output)
-    {
-#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
-#else
+    #else
       if (Id != 0L) {
         output.WriteRawTag(8);
         output.WriteInt64(Id);
@@ -1566,91 +1393,73 @@ namespace LoggerService
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
-#endif
+    #endif
     }
 
-#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output)
-    {
-      if (Id != 0L)
-      {
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (Id != 0L) {
         output.WriteRawTag(8);
         output.WriteInt64(Id);
       }
-      if (Time != 0L)
-      {
+      if (Time != 0L) {
         output.WriteRawTag(16);
         output.WriteInt64(Time);
       }
-      if (Action != global::LoggerService.ELogAction.LaNone)
-      {
+      if (Action != global::LoggerService.ELogAction.LaNone) {
         output.WriteRawTag(24);
-        output.WriteEnum((int)Action);
+        output.WriteEnum((int) Action);
       }
-      if (UserId.Length != 0)
-      {
+      if (UserId.Length != 0) {
         output.WriteRawTag(34);
         output.WriteString(UserId);
       }
-      if (EntityType.Length != 0)
-      {
+      if (EntityType.Length != 0) {
         output.WriteRawTag(42);
         output.WriteString(EntityType);
       }
-      if (EntityPk.Length != 0)
-      {
+      if (EntityPk.Length != 0) {
         output.WriteRawTag(50);
         output.WriteString(EntityPk);
       }
-      if (Entity.Length != 0)
-      {
+      if (Entity.Length != 0) {
         output.WriteRawTag(58);
         output.WriteString(Entity);
       }
-      if (_unknownFields != null)
-      {
+      if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
     }
-#endif
+    #endif
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize()
-    {
+    public int CalculateSize() {
       int size = 0;
-      if (Id != 0L)
-      {
+      if (Id != 0L) {
         size += 1 + pb::CodedOutputStream.ComputeInt64Size(Id);
       }
-      if (Time != 0L)
-      {
+      if (Time != 0L) {
         size += 1 + pb::CodedOutputStream.ComputeInt64Size(Time);
       }
-      if (Action != global::LoggerService.ELogAction.LaNone)
-      {
-        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int)Action);
+      if (Action != global::LoggerService.ELogAction.LaNone) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Action);
       }
-      if (UserId.Length != 0)
-      {
+      if (UserId.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(UserId);
       }
-      if (EntityType.Length != 0)
-      {
+      if (EntityType.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(EntityType);
       }
-      if (EntityPk.Length != 0)
-      {
+      if (EntityPk.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(EntityPk);
       }
-      if (Entity.Length != 0)
-      {
+      if (Entity.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Entity);
       }
-      if (_unknownFields != null)
-      {
+      if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
       return size;
@@ -1658,38 +1467,29 @@ namespace LoggerService
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(LogItem other)
-    {
-      if (other == null)
-      {
+    public void MergeFrom(LogItem other) {
+      if (other == null) {
         return;
       }
-      if (other.Id != 0L)
-      {
+      if (other.Id != 0L) {
         Id = other.Id;
       }
-      if (other.Time != 0L)
-      {
+      if (other.Time != 0L) {
         Time = other.Time;
       }
-      if (other.Action != global::LoggerService.ELogAction.LaNone)
-      {
+      if (other.Action != global::LoggerService.ELogAction.LaNone) {
         Action = other.Action;
       }
-      if (other.UserId.Length != 0)
-      {
+      if (other.UserId.Length != 0) {
         UserId = other.UserId;
       }
-      if (other.EntityType.Length != 0)
-      {
+      if (other.EntityType.Length != 0) {
         EntityType = other.EntityType;
       }
-      if (other.EntityPk.Length != 0)
-      {
+      if (other.EntityPk.Length != 0) {
         EntityPk = other.EntityPk;
       }
-      if (other.Entity.Length != 0)
-      {
+      if (other.Entity.Length != 0) {
         Entity = other.Entity;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
@@ -1697,11 +1497,10 @@ namespace LoggerService
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input)
-    {
-#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       input.ReadRawMessage(this);
-#else
+    #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
       if ((tag & 7) == 4) {
@@ -1742,74 +1541,63 @@ namespace LoggerService
           }
         }
       }
-#endif
+    #endif
     }
 
-#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input)
-    {
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
       uint tag;
-      while ((tag = input.ReadTag()) != 0)
-      {
-        if ((tag & 7) == 4)
-        {
-          // Abort on any end group tag.
-          return;
-        }
-        switch (tag)
-        {
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
-          case 8:
-            {
-              Id = input.ReadInt64();
-              break;
-            }
-          case 16:
-            {
-              Time = input.ReadInt64();
-              break;
-            }
-          case 24:
-            {
-              Action = (global::LoggerService.ELogAction)input.ReadEnum();
-              break;
-            }
-          case 34:
-            {
-              UserId = input.ReadString();
-              break;
-            }
-          case 42:
-            {
-              EntityType = input.ReadString();
-              break;
-            }
-          case 50:
-            {
-              EntityPk = input.ReadString();
-              break;
-            }
-          case 58:
-            {
-              Entity = input.ReadString();
-              break;
-            }
+          case 8: {
+            Id = input.ReadInt64();
+            break;
+          }
+          case 16: {
+            Time = input.ReadInt64();
+            break;
+          }
+          case 24: {
+            Action = (global::LoggerService.ELogAction) input.ReadEnum();
+            break;
+          }
+          case 34: {
+            UserId = input.ReadString();
+            break;
+          }
+          case 42: {
+            EntityType = input.ReadString();
+            break;
+          }
+          case 50: {
+            EntityPk = input.ReadString();
+            break;
+          }
+          case 58: {
+            Entity = input.ReadString();
+            break;
+          }
         }
       }
     }
-#endif
+    #endif
 
   }
 
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class Empty : pb::IMessage<Empty>
-#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
-#endif
+  #endif
   {
     private static readonly pb::MessageParser<Empty> _parser = new pb::MessageParser<Empty>(() => new Empty());
     private pb::UnknownFieldSet _unknownFields;
@@ -1819,22 +1607,19 @@ namespace LoggerService
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor
-    {
+    public static pbr::MessageDescriptor Descriptor {
       get { return global::LoggerService.LogReflection.Descriptor.MessageTypes[4]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor
-    {
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
       get { return Descriptor; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public Empty()
-    {
+    public Empty() {
       OnConstruction();
     }
 
@@ -1842,35 +1627,29 @@ namespace LoggerService
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public Empty(Empty other) : this()
-    {
+    public Empty(Empty other) : this() {
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public Empty Clone()
-    {
+    public Empty Clone() {
       return new Empty(this);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other)
-    {
+    public override bool Equals(object other) {
       return Equals(other as Empty);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(Empty other)
-    {
-      if (ReferenceEquals(other, null))
-      {
+    public bool Equals(Empty other) {
+      if (ReferenceEquals(other, null)) {
         return false;
       }
-      if (ReferenceEquals(other, this))
-      {
+      if (ReferenceEquals(other, this)) {
         return true;
       }
       return Equals(_unknownFields, other._unknownFields);
@@ -1878,11 +1657,9 @@ namespace LoggerService
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode()
-    {
+    public override int GetHashCode() {
       int hash = 1;
-      if (_unknownFields != null)
-      {
+      if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
       return hash;
@@ -1890,43 +1667,37 @@ namespace LoggerService
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString()
-    {
+    public override string ToString() {
       return pb::JsonFormatter.ToDiagnosticString(this);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output)
-    {
-#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
-#else
+    #else
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
-#endif
+    #endif
     }
 
-#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output)
-    {
-      if (_unknownFields != null)
-      {
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
     }
-#endif
+    #endif
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize()
-    {
+    public int CalculateSize() {
       int size = 0;
-      if (_unknownFields != null)
-      {
+      if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
       return size;
@@ -1934,10 +1705,8 @@ namespace LoggerService
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(Empty other)
-    {
-      if (other == null)
-      {
+    public void MergeFrom(Empty other) {
+      if (other == null) {
         return;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
@@ -1945,11 +1714,10 @@ namespace LoggerService
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input)
-    {
-#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       input.ReadRawMessage(this);
-#else
+    #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
       if ((tag & 7) == 4) {
@@ -1962,39 +1730,35 @@ namespace LoggerService
             break;
         }
       }
-#endif
+    #endif
     }
 
-#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input)
-    {
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
       uint tag;
-      while ((tag = input.ReadTag()) != 0)
-      {
-        if ((tag & 7) == 4)
-        {
-          // Abort on any end group tag.
-          return;
-        }
-        switch (tag)
-        {
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
         }
       }
     }
-#endif
+    #endif
 
   }
 
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class LogList : pb::IMessage<LogList>
-#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
-#endif
+  #endif
   {
     private static readonly pb::MessageParser<LogList> _parser = new pb::MessageParser<LogList>(() => new LogList());
     private pb::UnknownFieldSet _unknownFields;
@@ -2004,22 +1768,19 @@ namespace LoggerService
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor
-    {
+    public static pbr::MessageDescriptor Descriptor {
       get { return global::LoggerService.LogReflection.Descriptor.MessageTypes[5]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor
-    {
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
       get { return Descriptor; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LogList()
-    {
+    public LogList() {
       OnConstruction();
     }
 
@@ -2027,16 +1788,14 @@ namespace LoggerService
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LogList(LogList other) : this()
-    {
+    public LogList(LogList other) : this() {
       items_ = other.items_.Clone();
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LogList Clone()
-    {
+    public LogList Clone() {
       return new LogList(this);
     }
 
@@ -2047,42 +1806,35 @@ namespace LoggerService
     private readonly pbc::RepeatedField<global::LoggerService.LogItem> items_ = new pbc::RepeatedField<global::LoggerService.LogItem>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public pbc::RepeatedField<global::LoggerService.LogItem> Items
-    {
+    public pbc::RepeatedField<global::LoggerService.LogItem> Items {
       get { return items_; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other)
-    {
+    public override bool Equals(object other) {
       return Equals(other as LogList);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(LogList other)
-    {
-      if (ReferenceEquals(other, null))
-      {
+    public bool Equals(LogList other) {
+      if (ReferenceEquals(other, null)) {
         return false;
       }
-      if (ReferenceEquals(other, this))
-      {
+      if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (!items_.Equals(other.items_)) return false;
+      if(!items_.Equals(other.items_)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode()
-    {
+    public override int GetHashCode() {
       int hash = 1;
       hash ^= items_.GetHashCode();
-      if (_unknownFields != null)
-      {
+      if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
       return hash;
@@ -2090,46 +1842,40 @@ namespace LoggerService
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString()
-    {
+    public override string ToString() {
       return pb::JsonFormatter.ToDiagnosticString(this);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output)
-    {
-#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
-#else
+    #else
       items_.WriteTo(output, _repeated_items_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
-#endif
+    #endif
     }
 
-#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output)
-    {
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
       items_.WriteTo(ref output, _repeated_items_codec);
-      if (_unknownFields != null)
-      {
+      if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
     }
-#endif
+    #endif
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize()
-    {
+    public int CalculateSize() {
       int size = 0;
       size += items_.CalculateSize(_repeated_items_codec);
-      if (_unknownFields != null)
-      {
+      if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
       return size;
@@ -2137,10 +1883,8 @@ namespace LoggerService
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(LogList other)
-    {
-      if (other == null)
-      {
+    public void MergeFrom(LogList other) {
+      if (other == null) {
         return;
       }
       items_.Add(other.items_);
@@ -2149,11 +1893,10 @@ namespace LoggerService
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input)
-    {
-#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       input.ReadRawMessage(this);
-#else
+    #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
       if ((tag & 7) == 4) {
@@ -2170,44 +1913,39 @@ namespace LoggerService
           }
         }
       }
-#endif
+    #endif
     }
 
-#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input)
-    {
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
       uint tag;
-      while ((tag = input.ReadTag()) != 0)
-      {
-        if ((tag & 7) == 4)
-        {
-          // Abort on any end group tag.
-          return;
-        }
-        switch (tag)
-        {
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
-          case 10:
-            {
-              items_.AddEntriesFrom(ref input, _repeated_items_codec);
-              break;
-            }
+          case 10: {
+            items_.AddEntriesFrom(ref input, _repeated_items_codec);
+            break;
+          }
         }
       }
     }
-#endif
+    #endif
 
   }
 
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class LogId : pb::IMessage<LogId>
-#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
-#endif
+  #endif
   {
     private static readonly pb::MessageParser<LogId> _parser = new pb::MessageParser<LogId>(() => new LogId());
     private pb::UnknownFieldSet _unknownFields;
@@ -2217,22 +1955,19 @@ namespace LoggerService
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor
-    {
+    public static pbr::MessageDescriptor Descriptor {
       get { return global::LoggerService.LogReflection.Descriptor.MessageTypes[6]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor
-    {
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
       get { return Descriptor; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LogId()
-    {
+    public LogId() {
       OnConstruction();
     }
 
@@ -2240,16 +1975,14 @@ namespace LoggerService
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LogId(LogId other) : this()
-    {
+    public LogId(LogId other) : this() {
       id_ = other.id_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LogId Clone()
-    {
+    public LogId Clone() {
       return new LogId(this);
     }
 
@@ -2258,32 +1991,26 @@ namespace LoggerService
     private long id_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public long Id
-    {
+    public long Id {
       get { return id_; }
-      set
-      {
+      set {
         id_ = value;
       }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other)
-    {
+    public override bool Equals(object other) {
       return Equals(other as LogId);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(LogId other)
-    {
-      if (ReferenceEquals(other, null))
-      {
+    public bool Equals(LogId other) {
+      if (ReferenceEquals(other, null)) {
         return false;
       }
-      if (ReferenceEquals(other, this))
-      {
+      if (ReferenceEquals(other, this)) {
         return true;
       }
       if (Id != other.Id) return false;
@@ -2292,12 +2019,10 @@ namespace LoggerService
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode()
-    {
+    public override int GetHashCode() {
       int hash = 1;
       if (Id != 0L) hash ^= Id.GetHashCode();
-      if (_unknownFields != null)
-      {
+      if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
       return hash;
@@ -2305,18 +2030,16 @@ namespace LoggerService
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString()
-    {
+    public override string ToString() {
       return pb::JsonFormatter.ToDiagnosticString(this);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output)
-    {
-#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
-#else
+    #else
       if (Id != 0L) {
         output.WriteRawTag(8);
         output.WriteInt64(Id);
@@ -2324,37 +2047,31 @@ namespace LoggerService
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
-#endif
+    #endif
     }
 
-#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output)
-    {
-      if (Id != 0L)
-      {
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (Id != 0L) {
         output.WriteRawTag(8);
         output.WriteInt64(Id);
       }
-      if (_unknownFields != null)
-      {
+      if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
     }
-#endif
+    #endif
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize()
-    {
+    public int CalculateSize() {
       int size = 0;
-      if (Id != 0L)
-      {
+      if (Id != 0L) {
         size += 1 + pb::CodedOutputStream.ComputeInt64Size(Id);
       }
-      if (_unknownFields != null)
-      {
+      if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
       return size;
@@ -2362,14 +2079,11 @@ namespace LoggerService
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(LogId other)
-    {
-      if (other == null)
-      {
+    public void MergeFrom(LogId other) {
+      if (other == null) {
         return;
       }
-      if (other.Id != 0L)
-      {
+      if (other.Id != 0L) {
         Id = other.Id;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
@@ -2377,11 +2091,10 @@ namespace LoggerService
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input)
-    {
-#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       input.ReadRawMessage(this);
-#else
+    #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
       if ((tag & 7) == 4) {
@@ -2398,36 +2111,31 @@ namespace LoggerService
           }
         }
       }
-#endif
+    #endif
     }
 
-#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input)
-    {
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
       uint tag;
-      while ((tag = input.ReadTag()) != 0)
-      {
-        if ((tag & 7) == 4)
-        {
-          // Abort on any end group tag.
-          return;
-        }
-        switch (tag)
-        {
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
-          case 8:
-            {
-              Id = input.ReadInt64();
-              break;
-            }
+          case 8: {
+            Id = input.ReadInt64();
+            break;
+          }
         }
       }
     }
-#endif
+    #endif
 
   }
 

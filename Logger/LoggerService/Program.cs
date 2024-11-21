@@ -13,7 +13,11 @@ var app = builder.Build();
 app.MapGrpcService<LogService>();
 
 var rabbit = app.Services.GetService<RabbitService>();
-rabbit?.StartListening();
+if (rabbit != null)
+{
+    rabbit.GatewayServiceUrl = Environment.GetEnvironmentVariable("ConnectionStrings__GatewayServiceUrl");
+    rabbit.StartListening();
+}
 
 app.MapGet("/", () => "Communication with gRPC endpoints must be made through a gRPC client.");
 app.Run();

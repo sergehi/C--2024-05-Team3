@@ -1,5 +1,7 @@
-﻿using RabbitMQ.Client;
+﻿using Microsoft.AspNetCore.SignalR.Client;
+using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
+using Newtonsoft.Json;
 
 namespace LoggerService.Services
 {
@@ -8,7 +10,8 @@ namespace LoggerService.Services
         private readonly IConfiguration _configuration;
         private readonly RabbitMqMessageHandler _messageHandler;
         private IModel? _channel;
-        
+
+        public string? GatewayServiceUrl;
 
 
         public RabbitService(IConfiguration configuration, RabbitMqMessageHandler messageHandler)
@@ -39,6 +42,16 @@ namespace LoggerService.Services
             _channel.QueueDeclare(queueName, true, false, false, null);
             _channel.QueueBind(queueName, exchangeName, routingKey);
             var consumer = new EventingBasicConsumer(_channel);
+            _messageHandler.Connection = new HubConnectionBuilder()
+                .WithUrl($"https://{GatewayServiceUrl}/notifyhub", options => 
+                { 
+                    options.Headers.Add("userId", Guid.Empty.ToString()); 
+                })
+                .WithAutomaticReconnect()
+                .AddJsonProtocol()
+                .Build();
+            _messageHandler.Connection.StartAsync().Wait();
+
             consumer.Received += async (sender, e) =>
             {
                 try

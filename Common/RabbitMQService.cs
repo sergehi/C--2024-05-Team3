@@ -34,7 +34,7 @@ namespace Common
             }
         }
 
-        public static void SendToRabbit<T>(T item, ELogAction action, string logCreatorId) where T : class
+        public static void SendToRabbit<T>(T item, ELogAction action, string logCreatorId, List<string> recipients) where T : class
         {
             try
             {
@@ -50,6 +50,7 @@ namespace Common
                     UserId = logCreatorId,
                     Time = DateTime.UtcNow.Ticks
                 };
+                creatingLogModel.Recipients.AddRange(recipients);
 
                 if (_connection == null)
                 {

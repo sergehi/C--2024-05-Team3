@@ -4,6 +4,8 @@ using System.Text.Json;
 using System.Text;
 using RabbitMQ.Client.Events;
 using AutoMapper;
+using Microsoft.AspNetCore.SignalR;
+using Microsoft.AspNetCore.SignalR.Client;
 
 namespace LoggerService.Services
 {
@@ -12,6 +14,8 @@ namespace LoggerService.Services
         private readonly IServiceScopeFactory _serviceScopeFactory;
         private readonly IMapper _mapper;
         private readonly ILogger<LogService> _logger;
+
+        public HubConnection? Connection;
 
         public RabbitMqMessageHandler(IServiceScopeFactory serviceScopeFactory, IMapper mapper, ILogger<LogService> logger)
         {
@@ -30,6 +34,7 @@ namespace LoggerService.Services
                     var creatingLog = JsonSerializer.Deserialize<CreatingLogModel>(Encoding.UTF8.GetString(e.Body.ToArray()));
                     CreateLogDTO dto = _mapper.Map<CreateLogDTO>(creatingLog);
                     _ = await service.CreateAsync(dto);
+                    Connection?.InvokeAsync("SendMessage", message);
                 }
                 catch (Exception ex)
                 {

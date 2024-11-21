@@ -24,6 +24,7 @@
 // await connection.InvokeAsync("SendMessage", message);
 //
 using System.Collections.Concurrent;
+using System.Threading;
 using Common.SignalR;
 using Microsoft.AspNetCore.SignalR;
 
@@ -42,20 +43,37 @@ namespace TaskTracker.Gateway.Controllers
             try
             {
                 // Получаем идентификатор пользователя (например, из контекста)
-                string? userId = Context.UserIdentifier; // или другой способ получения идентификатора пользователя
-                if (null != userId)
+                HttpContext? http_context = Context.GetHttpContext();
+
+                string? strid = "";
+                if (http_context is not null)
+                {
+                    HttpRequest? http_req = http_context.Request;
+                    if (http_req is not null)
+                    {
+                        IHeaderDictionary headers = http_req.Headers;
+                        if (headers is not null && headers.ContainsKey("userId"))
+                            strid = headers["userId"];
+                    }
+                }
+                if (strid is null)
+                    throw new Exception("Invalid user");
+                
+                var guid = Guid.Parse(strid);
+                if (guid != Guid.Empty)
                 {
                     // Создаем новый объект UserConnection
                     var userConnection = new UserConnection
                     {
                         ConnectionId = Context.ConnectionId,
-                        UserId = new Guid(userId)
+                        UserId = guid
                     };
 
                     // Добавляем соединение в словарь
-                    _connections[userId] = userConnection;
+                    _connections[strid] = userConnection;
                 }
                 return base.OnConnectedAsync();
+                
 
             }
             catch (Exception)
@@ -112,5 +130,27 @@ namespace TaskTracker.Gateway.Controllers
             }
             return foundRecipients;
         }
+
+        /// <summary>
+        /// Послать всем подключенным
+        /// </summary>
+        /// <param name="message"></param>
+        /// <returns></returns>
+        public async Task SendBroadcastMessage(SignalMessage message)
+        {
+            try
+            {
+                // Делаем копию для отправки что бы очистить список получателей - не надо их по сети гонять
+                var messageToSend = message.Clone() as SignalMessage;
+                messageToSend?.Recipients.Clear();
+                await Clients.All.SendAsync("MessageForClient", messageToSend);
+
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
     }
 }
