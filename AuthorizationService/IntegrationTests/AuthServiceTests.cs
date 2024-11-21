@@ -147,26 +147,6 @@ namespace AuthorizationService.IntegrationTests
             return result;
         }
 
-        private Empty ValidateToken()
-        {
-            if (_gRPCServiceClient == null)
-            {
-                throw new InvalidOperationException("gRPC client is not initialized.");
-            }
-
-            return _gRPCServiceClient.ValidateToken(_validateTokenRequest);
-        }
-
-        private ExtendTokenResponse ExtendToken()
-        {
-            if (_gRPCServiceClient == null)
-            {
-                throw new InvalidOperationException("gRPC client is not initialized.");
-            }
-
-            return _gRPCServiceClient.ExtendToken(_extendTokenRequest);
-        }
-
         private void CreateRegisterRequest()
         {
             _registerRequest = new RegisterRequest

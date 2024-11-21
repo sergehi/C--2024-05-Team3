@@ -43,17 +43,7 @@ namespace AuthorizationService.Infrastructure.Services
 
                 await _userRepository.CreateAsync(user);
 
-                LoggerService.CreatingLogModel creatingLogModel = new LoggerService.CreatingLogModel
-                {
-                    Action = LoggerService.ELogAction.LaCreate,
-                    Entity = JsonConvert.SerializeObject(user),
-                    EntityPk = user.Id.ToString(),
-                    EntityType = Attribute.GetCustomAttribute(user.GetType(), typeof(GuidAttribute))!.ToString(),
-                    Time = DateTime.UtcNow.Ticks,
-                    UserId = user.Id.ToString()
-                };
-
-                RabbitMQService.SendToRabbit(creatingLogModel);
+                RabbitMQService<User>.SendToRabbit(user, LoggerService.ELogAction.LaCreate, user.Id.ToString());
             }
             catch (RpcException)
             {
