@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using Common;
 using Common.Rpc;
 using Grpc.Core;
 using Microsoft.EntityFrameworkCore;
@@ -35,6 +36,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
                     var newItem = new Urgency() { Name = name, Description = description };
                     dbContext.Urgencies.Add(newItem);
                     await dbContext.SaveChangesAsync();
+                    RabbitMQService.SendToRabbit(newItem, LoggerService.ELogAction.LaCreate, userId.ToString(), new List<string>() { Guid.Empty.ToString() });
                     return newItem.Id;
                 }
             }
@@ -57,6 +59,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
 
                     dbContext.Urgencies.Remove(foundUrgcy);
                     await dbContext.SaveChangesAsync();
+                    RabbitMQService.SendToRabbit(foundUrgcy, LoggerService.ELogAction.LaDelete, userId.ToString(), new List<string>() { Guid.Empty.ToString() });
                     return true;
                 }
             }
@@ -100,6 +103,8 @@ namespace TasksService.DataAccess.Repositories.Implementations
                     dbContext.Urgencies.Attach(urgency);
                     dbContext.Entry(urgency).State = EntityState.Modified;
                     await dbContext.SaveChangesAsync();
+                    RabbitMQService.SendToRabbit(urgency, LoggerService.ELogAction.LaUpdate, userId.ToString(), new List<string>() { Guid.Empty.ToString() });
+
                 }
                 return true;
             }

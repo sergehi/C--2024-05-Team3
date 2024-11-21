@@ -21,5 +21,8 @@ namespace TasksService.DataAccess.Repositories.Abstractions
         Task<bool> RegisterDeleteTask(Guid UserId, long TaskId, string OldValue, string NewValue);
         Task<bool> RegisterCreateTask(Guid UserId, long TaskId, string NewValue);
 
+        Task<List<string>> GetCompanyEmployees(Guid UserId, long CompanyId);
+        Task<List<string>> GetProjectEmployees(Guid UserId, long ProjectId);
+
     }
 }

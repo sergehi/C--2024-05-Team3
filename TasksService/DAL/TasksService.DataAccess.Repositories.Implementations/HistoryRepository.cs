@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Linq;
+using System.Net.WebSockets;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -118,5 +119,48 @@ namespace TasksService.DataAccess.Repositories.Implementations
                 throw new RpcExceptionEx(new Status(StatusCode.Cancelled, ex.Message), "Произошла ошибка при попытке регистрации действий для истории", ex.StackTrace ?? "");
             }
         }
+
+        public async Task<List<string>> GetCompanyEmployees(Guid UserId, long CompanyId)
+        {
+            try
+            { 
+                using (var dbContext = new TasksDbContext(_configuration))
+                {
+                    var res = await dbContext.CompanyEmployees.Where(u => u.CompanyId == CompanyId && u.EmployeeId == UserId).ToListAsync();
+                    if (res.Any())
+                        return await dbContext.CompanyEmployees
+                            .Where(u => u.CompanyId == CompanyId)
+                            .Select(x => x.EmployeeId.ToString())
+                            .ToListAsync();
+                }
+                return new List<string>();
+            }
+            catch (Exception ex)
+            {
+                throw new RpcExceptionEx(new Status(StatusCode.Cancelled, ex.Message), "Произошла ошибка при попытке получения работников", ex.StackTrace ?? "");
+            }
+        }
+        public async Task<List<string>> GetProjectEmployees(Guid UserId, long ProjectId)
+        {
+            try
+            {
+                using (var dbContext = new TasksDbContext(_configuration))
+                {
+                    var res = await dbContext.CompanyProjects.Where(u => u.Id  == ProjectId ).ToListAsync();
+                    if (res.Any())
+                        return await dbContext.CompanyEmployees
+                            .Where(u => u.CompanyId == res.First().CompanyId)
+                            .Select(x => x.EmployeeId.ToString())
+                            .ToListAsync();
+                }
+                return new List<string>();
+            }
+            catch (Exception ex)
+            {
+                throw new RpcExceptionEx(new Status(StatusCode.Cancelled, ex.Message), "Произошла ошибка при попытке получения работников", ex.StackTrace ?? "");
+            }
+        }
+
+
     }
 }

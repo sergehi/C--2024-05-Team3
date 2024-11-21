@@ -67,7 +67,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
                     dbContext.Entry(area).State = EntityState.Modified;
                     await dbContext.SaveChangesAsync();
                 }
-                RabbitMQService.SendToRabbit(area, LoggerService.ELogAction.LaUpdate, userId.ToString());
+                RabbitMQService.SendToRabbit(area, LoggerService.ELogAction.LaUpdate, userId.ToString(), await _historyRepo.GetProjectEmployees(userId, area.ProjectId));
                 return true;
             }
             catch (Exception ex)
@@ -84,7 +84,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
                 {
                     dbContext.ProjectAreas.Add(area);
                     await dbContext.SaveChangesAsync();
-                    RabbitMQService.SendToRabbit(area, LoggerService.ELogAction.LaCreate, userId.ToString());
+                    RabbitMQService.SendToRabbit(area, LoggerService.ELogAction.LaCreate, userId.ToString(), await _historyRepo.GetProjectEmployees(userId, area.ProjectId));
                     return area.Id;
                 }
             }
@@ -108,7 +108,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
 
                     dbContext.ProjectAreas.Remove(found);
                     await dbContext.SaveChangesAsync();
-                    RabbitMQService.SendToRabbit(found, LoggerService.ELogAction.LaDelete, userId.ToString());
+                    RabbitMQService.SendToRabbit(found, LoggerService.ELogAction.LaDelete, userId.ToString(), await _historyRepo.GetProjectEmployees(userId, found.ProjectId));
                     return true;
                 }
             }

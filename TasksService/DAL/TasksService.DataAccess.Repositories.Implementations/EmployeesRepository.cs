@@ -40,7 +40,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
                         dbContext.CompanyEmployees.Add(newItem);  
 
                     await dbContext.SaveChangesAsync();
-                    RabbitMQService.SendToRabbit(newItem, LoggerService.ELogAction.LaCreate, creatorId.ToString());
+                    RabbitMQService.SendToRabbit(newItem, LoggerService.ELogAction.LaCreate, creatorId.ToString(), await _historyRepo.GetCompanyEmployees(newUserId, companyId));
                     return true;
                 }
             }
@@ -88,7 +88,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
 
                     dbContext.CompanyEmployees.Remove(foundEmpl);
                     await dbContext.SaveChangesAsync();
-                    RabbitMQService.SendToRabbit(foundEmpl, LoggerService.ELogAction.LaDelete, deleterId.ToString());
+                    RabbitMQService.SendToRabbit(foundEmpl, LoggerService.ELogAction.LaDelete, deleterId.ToString(), await _historyRepo.GetCompanyEmployees(userToDelId, companyId));
                     return true;
                 }
             }

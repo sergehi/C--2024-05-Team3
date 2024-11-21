@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -65,7 +66,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
                     dbContext.Entry(project).State = EntityState.Modified;
                     await dbContext.SaveChangesAsync();
                 }
-                RabbitMQService.SendToRabbit(project, LoggerService.ELogAction.LaUpdate, userId.ToString());
+                RabbitMQService.SendToRabbit(project, LoggerService.ELogAction.LaUpdate, userId.ToString(), await _historyRepo.GetCompanyEmployees(userId, project.CompanyId));
                 return true;
             }
             catch (Exception ex)
@@ -82,7 +83,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
                 {
                     dbContext.CompanyProjects.Add(companyProject);
                     await dbContext.SaveChangesAsync();
-                    RabbitMQService.SendToRabbit(companyProject, LoggerService.ELogAction.LaCreate, userId.ToString());
+                    RabbitMQService.SendToRabbit(companyProject, LoggerService.ELogAction.LaCreate, userId.ToString(), await _historyRepo.GetCompanyEmployees(userId, companyProject.CompanyId));
                     return companyProject.Id;
                 }
             }
@@ -106,7 +107,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
 
                     dbContext.CompanyProjects.Remove(found);
                     await dbContext.SaveChangesAsync();
-                    RabbitMQService.SendToRabbit(found, LoggerService.ELogAction.LaDelete, userId.ToString());
+                    RabbitMQService.SendToRabbit(found, LoggerService.ELogAction.LaDelete, userId.ToString(), await _historyRepo.GetCompanyEmployees(userId, found.CompanyId));
                     return true;
                 }
             }

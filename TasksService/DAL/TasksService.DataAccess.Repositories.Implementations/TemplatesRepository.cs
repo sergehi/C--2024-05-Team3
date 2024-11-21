@@ -93,7 +93,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
                         dbContext.WfdefinitionsTempls.Remove(definition);
                     await dbContext.SaveChangesAsync();
                     if (null != definition)
-                        RabbitMQService.SendToRabbit(definition, LoggerService.ELogAction.LaDelete, userId.ToString());
+                        RabbitMQService.SendToRabbit(definition, LoggerService.ELogAction.LaDelete, userId.ToString(), new List<string>() { Guid.Empty.ToString() });
                 }
                 return true;
             }
@@ -133,7 +133,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
                         dbContext.WfdefinitionsTempls.Add(templateRecord);
                         await dbContext.SaveChangesAsync();
                         transaction.Commit();
-                        RabbitMQService.SendToRabbit(templateRecord, LoggerService.ELogAction.LaCreate, userId.ToString());
+                        RabbitMQService.SendToRabbit(templateRecord, LoggerService.ELogAction.LaCreate, userId.ToString(), new List<string>() { Guid.Empty.ToString() });
                         return templateRecord.Id;
 
                     }
@@ -185,7 +185,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
                         await dbContext.SaveChangesAsync();
                         transaction.Commit();
 
-                        RabbitMQService.SendToRabbit(templateRecord, LoggerService.ELogAction.LaUpdate, userId.ToString());
+                        RabbitMQService.SendToRabbit(templateRecord, LoggerService.ELogAction.LaUpdate, userId.ToString(), new List<string>() { Guid.Empty.ToString() });
                         return templateRecord.Id;
 
                     }

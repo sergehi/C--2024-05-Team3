@@ -61,7 +61,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
                     var newItem = new TasksCompany() { Name = name, Description = description };
                     dbContext.Companies.Add(newItem);
                     await dbContext.SaveChangesAsync();
-                    RabbitMQService.SendToRabbit(newItem, LoggerService.ELogAction.LaCreate, creatorId.ToString());
+                    RabbitMQService.SendToRabbit(newItem, LoggerService.ELogAction.LaCreate, creatorId.ToString(), new List<string>() { Guid.Empty.ToString()});
                     return newItem.Id;
                 }
             }
@@ -82,7 +82,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
                     dbContext.Companies.Attach(company);
                     dbContext.Entry(company).State = EntityState.Modified;
                     await dbContext.SaveChangesAsync();
-                    RabbitMQService.SendToRabbit(company, LoggerService.ELogAction.LaUpdate, userId.ToString());
+                    RabbitMQService.SendToRabbit(company, LoggerService.ELogAction.LaUpdate, userId.ToString(), new List<string>() { Guid.Empty.ToString() });
                 }
 
                 return true;
@@ -91,7 +91,6 @@ namespace TasksService.DataAccess.Repositories.Implementations
             {
                 throw new RpcExceptionEx(new Status(StatusCode.Cancelled, ex.Message), "Произошла ошибка при попытке изменения компании", ex.StackTrace ?? "");
             }
-
         }
 
         public async Task<bool> DeleteCompany(Guid userId, long companyId)
@@ -106,7 +105,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
 
                     dbContext.Companies.Remove(foundComp);
                     await dbContext.SaveChangesAsync();
-                    RabbitMQService.SendToRabbit(foundComp, LoggerService.ELogAction.LaDelete, userId.ToString());
+                    RabbitMQService.SendToRabbit(foundComp, LoggerService.ELogAction.LaDelete, userId.ToString(), new List<string>() { Guid.Empty.ToString() });
                     return true;
                 }
             }
