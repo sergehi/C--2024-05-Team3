@@ -17,7 +17,20 @@ namespace TaskTracker.Gateway.Controllers
         {
             _client = client;
         }
+        //rpc GetTasksList(TasksListRequest) returns(TasksListReply);
+        //rpc GetTask(TaskRequest) returns(TaskFullReply);
+        //rpc CreateTask(CreateTaskRequest) returns(PkMessage);
+        //rpc DeleteTask(DeleteTaskRequest) returns(BoolReply);
+        //rpc GetTaskHistory(PkMessage) returns(TaskHistoryReply);
+        //// Modification
+        //rpc ModifyTaskUrgency(ModifyTaskLongFieldRequest) returns(BoolReply);
+        //rpc ModifyTaskState(ModifyTaskLongFieldRequest) returns(BoolReply);
+        //rpc ModifyTaskName(ModifyTaskTextFieldRequest ) returns(BoolReply);
+        //rpc ModifyTaskDescription(ModifyTaskTextFieldRequest) returns(BoolReply);
+        //rpc ModifyTaskNodeDeadline(ModifyNodeDeadlineRequest) returns(BoolReply);
 
+
+        /*
         [HttpPost("company")]
         public async Task<IActionResult> CreateCompany(CreateCompanyRequest createCompanyRequest)
         {
@@ -38,5 +51,6 @@ namespace TaskTracker.Gateway.Controllers
                 return StatusCode(500, new { message = $"An unexpected error occurred: {ex.Message}" });
             }
         }
+        */
     }
 }
