@@ -28,28 +28,29 @@ namespace LoggerService {
             "EhIKCmJlZ2luX3RpbWUYASABKAMSEAoIZW5kX3RpbWUYAiABKAMSIgoGYWN0",
             "aW9uGAMgASgOMhIuTG9nX3YxLkVMb2dBY3Rpb24SDwoHdXNlcl9pZBgEIAEo",
             "CRITCgtlbnRpdHlfdHlwZRgFIAEoCRIRCgllbnRpdHlfcGsYBiABKAkSDAoE",
-            "cGFnZRgHIAEoBRIWCg5pdGVtc19wZXJfcGFnZRgIIAEoBSKhAQoQQ3JlYXRp",
+            "cGFnZRgHIAEoBRIWCg5pdGVtc19wZXJfcGFnZRgIIAEoBSK2AQoQQ3JlYXRp",
             "bmdMb2dNb2RlbBIMCgR0aW1lGAEgASgDEiIKBmFjdGlvbhgCIAEoDjISLkxv",
             "Z192MS5FTG9nQWN0aW9uEg8KB3VzZXJfaWQYAyABKAkSEwoLZW50aXR5X3R5",
-            "cGUYBCABKAkSEQoJZW50aXR5X3BrGAUgASgJEg4KBmVudGl0eRgGIAEoCRIS",
-            "CgpyZWNpcGllbnRzGAcgAygJIjQKDEZpbHRlclBlcmlvZBISCgpiZWdpbl90",
-            "aW1lGAEgASgDEhAKCGVuZF90aW1lGAIgASgDIpABCgdMb2dJdGVtEgoKAmlk",
-            "GAEgASgDEgwKBHRpbWUYAiABKAMSIgoGYWN0aW9uGAMgASgOMhIuTG9nX3Yx",
-            "LkVMb2dBY3Rpb24SDwoHdXNlcl9pZBgEIAEoCRITCgtlbnRpdHlfdHlwZRgF",
-            "IAEoCRIRCgllbnRpdHlfcGsYBiABKAkSDgoGZW50aXR5GAcgASgJIgcKBUVt",
-            "cHR5IikKB0xvZ0xpc3QSHgoFaXRlbXMYASADKAsyDy5Mb2dfdjEuTG9nSXRl",
-            "bSITCgVMb2dJZBIKCgJpZBgBIAEoAypGCgpFTG9nQWN0aW9uEgsKB0xBX05P",
-            "TkUQABINCglMQV9DUkVBVEUQARINCglMQV9VUERBVEUQAhINCglMQV9ERUxF",
-            "VEUQAzKzAQoDTG9nEjcKDEdldExvZ3NBc3luYxIWLkxvZ192MS5GaWx0ZXJM",
-            "b2dNb2RlbBoPLkxvZ192MS5Mb2dMaXN0EjwKEUdldFBhZ2VkTG9nc0FzeW5j",
-            "EhYuTG9nX3YxLkZpbHRlckxvZ01vZGVsGg8uTG9nX3YxLkxvZ0xpc3QSNQoO",
-            "RGVsZXRlTG9nQXN5bmMSFC5Mb2dfdjEuRmlsdGVyUGVyaW9kGg0uTG9nX3Yx",
-            "LkVtcHR5QhCqAg1Mb2dnZXJTZXJ2aWNlYgZwcm90bzM="));
+            "cGUYBCABKAkSEQoJZW50aXR5X3BrGAUgASgJEg4KBmVudGl0eRgGIAEoCRIT",
+            "CgtlbnRpdHlfbmFtZRgHIAEoCRISCgpyZWNpcGllbnRzGAggAygJIjQKDEZp",
+            "bHRlclBlcmlvZBISCgpiZWdpbl90aW1lGAEgASgDEhAKCGVuZF90aW1lGAIg",
+            "ASgDIpABCgdMb2dJdGVtEgoKAmlkGAEgASgDEgwKBHRpbWUYAiABKAMSIgoG",
+            "YWN0aW9uGAMgASgOMhIuTG9nX3YxLkVMb2dBY3Rpb24SDwoHdXNlcl9pZBgE",
+            "IAEoCRITCgtlbnRpdHlfdHlwZRgFIAEoCRIRCgllbnRpdHlfcGsYBiABKAkS",
+            "DgoGZW50aXR5GAcgASgJIgcKBUVtcHR5IikKB0xvZ0xpc3QSHgoFaXRlbXMY",
+            "ASADKAsyDy5Mb2dfdjEuTG9nSXRlbSITCgVMb2dJZBIKCgJpZBgBIAEoAypG",
+            "CgpFTG9nQWN0aW9uEgsKB0xBX05PTkUQABINCglMQV9DUkVBVEUQARINCglM",
+            "QV9VUERBVEUQAhINCglMQV9ERUxFVEUQAzKzAQoDTG9nEjcKDEdldExvZ3NB",
+            "c3luYxIWLkxvZ192MS5GaWx0ZXJMb2dNb2RlbBoPLkxvZ192MS5Mb2dMaXN0",
+            "EjwKEUdldFBhZ2VkTG9nc0FzeW5jEhYuTG9nX3YxLkZpbHRlckxvZ01vZGVs",
+            "Gg8uTG9nX3YxLkxvZ0xpc3QSNQoORGVsZXRlTG9nQXN5bmMSFC5Mb2dfdjEu",
+            "RmlsdGVyUGVyaW9kGg0uTG9nX3YxLkVtcHR5QhCqAg1Mb2dnZXJTZXJ2aWNl",
+            "YgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::LoggerService.ELogAction), }, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::LoggerService.FilterLogModel), global::LoggerService.FilterLogModel.Parser, new[]{ "BeginTime", "EndTime", "Action", "UserId", "EntityType", "EntityPk", "Page", "ItemsPerPage" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::LoggerService.CreatingLogModel), global::LoggerService.CreatingLogModel.Parser, new[]{ "Time", "Action", "UserId", "EntityType", "EntityPk", "Entity", "Recipients" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::LoggerService.CreatingLogModel), global::LoggerService.CreatingLogModel.Parser, new[]{ "Time", "Action", "UserId", "EntityType", "EntityPk", "Entity", "EntityName", "Recipients" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::LoggerService.FilterPeriod), global::LoggerService.FilterPeriod.Parser, new[]{ "BeginTime", "EndTime" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::LoggerService.LogItem), global::LoggerService.LogItem.Parser, new[]{ "Id", "Time", "Action", "UserId", "EntityType", "EntityPk", "Entity" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::LoggerService.Empty), global::LoggerService.Empty.Parser, null, null, null, null, null),
@@ -569,6 +570,7 @@ namespace LoggerService {
       entityType_ = other.entityType_;
       entityPk_ = other.entityPk_;
       entity_ = other.entity_;
+      entityName_ = other.entityName_;
       recipients_ = other.recipients_.Clone();
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
@@ -651,16 +653,27 @@ namespace LoggerService {
       }
     }
 
+    /// <summary>Field number for the "entity_name" field.</summary>
+    public const int EntityNameFieldNumber = 7;
+    private string entityName_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string EntityName {
+      get { return entityName_; }
+      set {
+        entityName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     /// <summary>Field number for the "recipients" field.</summary>
-    public const int RecipientsFieldNumber = 7;
+    public const int RecipientsFieldNumber = 8;
     private static readonly pb::FieldCodec<string> _repeated_recipients_codec
-        = pb::FieldCodec.ForString(58);
-    private pbc::RepeatedField<string> recipients_ = new pbc::RepeatedField<string>();
+        = pb::FieldCodec.ForString(66);
+    private readonly pbc::RepeatedField<string> recipients_ = new pbc::RepeatedField<string>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public pbc::RepeatedField<string> Recipients {
       get { return recipients_; }
-            set { recipients_ = value; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -684,6 +697,7 @@ namespace LoggerService {
       if (EntityType != other.EntityType) return false;
       if (EntityPk != other.EntityPk) return false;
       if (Entity != other.Entity) return false;
+      if (EntityName != other.EntityName) return false;
       if(!recipients_.Equals(other.recipients_)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -698,6 +712,7 @@ namespace LoggerService {
       if (EntityType.Length != 0) hash ^= EntityType.GetHashCode();
       if (EntityPk.Length != 0) hash ^= EntityPk.GetHashCode();
       if (Entity.Length != 0) hash ^= Entity.GetHashCode();
+      if (EntityName.Length != 0) hash ^= EntityName.GetHashCode();
       hash ^= recipients_.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -741,6 +756,10 @@ namespace LoggerService {
         output.WriteRawTag(50);
         output.WriteString(Entity);
       }
+      if (EntityName.Length != 0) {
+        output.WriteRawTag(58);
+        output.WriteString(EntityName);
+      }
       recipients_.WriteTo(output, _repeated_recipients_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -776,6 +795,10 @@ namespace LoggerService {
         output.WriteRawTag(50);
         output.WriteString(Entity);
       }
+      if (EntityName.Length != 0) {
+        output.WriteRawTag(58);
+        output.WriteString(EntityName);
+      }
       recipients_.WriteTo(ref output, _repeated_recipients_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -804,6 +827,9 @@ namespace LoggerService {
       }
       if (Entity.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Entity);
+      }
+      if (EntityName.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(EntityName);
       }
       size += recipients_.CalculateSize(_repeated_recipients_codec);
       if (_unknownFields != null) {
@@ -835,6 +861,9 @@ namespace LoggerService {
       }
       if (other.Entity.Length != 0) {
         Entity = other.Entity;
+      }
+      if (other.EntityName.Length != 0) {
+        EntityName = other.EntityName;
       }
       recipients_.Add(other.recipients_);
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
@@ -881,6 +910,10 @@ namespace LoggerService {
             break;
           }
           case 58: {
+            EntityName = input.ReadString();
+            break;
+          }
+          case 66: {
             recipients_.AddEntriesFrom(input, _repeated_recipients_codec);
             break;
           }
@@ -928,6 +961,10 @@ namespace LoggerService {
             break;
           }
           case 58: {
+            EntityName = input.ReadString();
+            break;
+          }
+          case 66: {
             recipients_.AddEntriesFrom(ref input, _repeated_recipients_codec);
             break;
           }

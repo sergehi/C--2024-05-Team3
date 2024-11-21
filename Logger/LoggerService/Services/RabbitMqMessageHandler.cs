@@ -6,6 +6,7 @@ using RabbitMQ.Client.Events;
 using AutoMapper;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.AspNetCore.SignalR.Client;
+using Common.SignalR;
 
 namespace LoggerService.Services
 {
@@ -26,6 +27,27 @@ namespace LoggerService.Services
 
         public async Task HandleMessageAsync(object? sender, BasicDeliverEventArgs e)
         {
+            string ActionToString(ELogAction action)
+            {
+                switch (action)
+                {
+                    case ELogAction.LaCreate: return " создана";
+                    case ELogAction.LaUpdate: return " обновлена";
+                    case ELogAction.LaDelete: return " удалена";
+                }
+                return string.Empty;
+            }
+            string TitleToString(ELogAction action)
+            {
+                switch (action)
+                {
+                    case ELogAction.LaCreate: return "Создание";
+                    case ELogAction.LaUpdate: return "Обновление";
+                    case ELogAction.LaDelete: return "Удаление";
+                }
+                return string.Empty;
+            }
+
             using (var scope = _serviceScopeFactory.CreateScope())
             {
                 try
@@ -34,7 +56,21 @@ namespace LoggerService.Services
                     var creatingLog = JsonSerializer.Deserialize<CreatingLogModel>(Encoding.UTF8.GetString(e.Body.ToArray()));
                     CreateLogDTO dto = _mapper.Map<CreateLogDTO>(creatingLog);
                     _ = await service.CreateAsync(dto);
-                    Connection?.InvokeAsync("SendMessage", message);
+                    List<string> users = creatingLog.Recipients.ToList();
+                    if (!users.Any())
+                        return;
+                    var message = new SignalMessage()
+                    {
+                        SenderEntity = Guid.Parse(creatingLog.Entity),
+                        Title = TitleToString(creatingLog.Action),
+                        Body = creatingLog.EntityName + ActionToString(creatingLog.Action),
+                        Recipients = users.Select(user => Guid.Parse(user)).ToList()
+                    };
+                    if (users.Count == 1 && Guid.Parse(users[0]) == Guid.Empty)
+                        Connection?.InvokeAsync("SendBroadcastMessage", message);
+                    else
+                        Connection?.InvokeAsync("SendMessage", message);
+
                 }
                 catch (Exception ex)
                 {

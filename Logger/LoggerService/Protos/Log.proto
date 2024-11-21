@@ -35,7 +35,8 @@ message CreatingLogModel
 	string entity_type = 4;
 	string entity_pk = 5;
 	string entity = 6;
-	repeated string recipients = 7;
+	string entity_name = 7;
+	repeated string recipients = 8;
 }
 
 message FilterPeriod

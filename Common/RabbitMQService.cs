@@ -1,11 +1,10 @@
-using RabbitMQ.Client;
-using System.Text;
-using Newtonsoft.Json;
-using LoggerService;
-using System.Reflection;
-using System.ComponentModel.DataAnnotations;
 using Common.Attributes;
-using System.Linq.Expressions;
+using LoggerService;
+using Newtonsoft.Json;
+using RabbitMQ.Client;
+using System.ComponentModel.DataAnnotations;
+using System.Reflection;
+using System.Text;
 
 namespace Common
 {
@@ -47,6 +46,7 @@ namespace Common
                     Entity = JsonConvert.SerializeObject(item),
                     EntityPk = Attribute.GetCustomAttribute(typeof(T), typeof(KeyAttribute))!.ToString(),
                     EntityType = Attribute.GetCustomAttribute(typeof(T), typeof(GuidAttribute))!.ToString(),
+                    EntityName = Attribute.GetCustomAttribute(typeof(T), typeof(DescriptionAttibute))!.ToString(),
                     UserId = logCreatorId,
                     Time = DateTime.UtcNow.Ticks
                 };
