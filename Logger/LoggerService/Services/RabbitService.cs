@@ -8,6 +8,8 @@ namespace LoggerService.Services
         private readonly IConfiguration _configuration;
         private readonly RabbitMqMessageHandler _messageHandler;
         private IModel? _channel;
+        
+
 
         public RabbitService(IConfiguration configuration, RabbitMqMessageHandler messageHandler)
         {
@@ -17,18 +19,22 @@ namespace LoggerService.Services
 
         public void StartListening()
         {
-            ConnectionFactory factory = new ConnectionFactory()
-            {
-                HostName = _configuration["RmqSettings:Host"],
-                VirtualHost = _configuration["RmqSettings:VHost"],
-                UserName = _configuration["RmqSettings:Login"],
-                Password = _configuration["RmqSettings:Password"]
-            };
-            IConnection connection = factory.CreateConnection();
+            //ConnectionFactory factory = new ConnectionFactory()
+            //{
+            //    HostName = _configuration["RmqSettings:Host"],
+            //    VirtualHost = _configuration["RmqSettings:VHost"],
+            //    UserName = _configuration["RmqSettings:Login"],
+            //    Password = _configuration["RmqSettings:Password"]
+            //};
+            //IConnection connection = factory.CreateConnection();
+            IConnection connection = Common.RabbitMQService.Factory.CreateConnection();
             _channel = connection.CreateModel();
-            string? exchangeName = _configuration["RmqSettings:ExchangeName"];
-            string? queueName = _configuration["RmqSettings:QueueName"];
-            string? routingKey = _configuration["RmqSettings:RoutingKey"];
+            //string? exchangeName = _configuration["RmqSettings:ExchangeName"];
+            //string? queueName = _configuration["RmqSettings:QueueName"];
+            //string? routingKey = _configuration["RmqSettings:RoutingKey"];
+            string? exchangeName = Common.RabbitMQService.ExchangeName;
+            string? queueName = Common.RabbitMQService.QueueName;
+            string? routingKey = Common.RabbitMQService.RoutingKey;
             _channel.ExchangeDeclare(exchangeName, ExchangeType.Direct);
             _channel.QueueDeclare(queueName, true, false, false, null);
             _channel.QueueBind(queueName, exchangeName, routingKey);
