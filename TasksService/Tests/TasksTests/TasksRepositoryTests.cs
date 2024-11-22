@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Moq;
-using NuGet.Frameworks;
 using TasksService.DataAccess.Entities;
 using TasksService.DataAccess.EntityFramework;
 using TasksService.DataAccess.Repositories.Abstractions;
@@ -71,9 +70,9 @@ namespace TasksTests
                 var company = new TasksCompany() { Name = companyName, Description = companyName };
                 _context.Companies.Add(company);
                 await _context.SaveChangesAsync();
-                return company.Id;  
+                return company.Id;
             }
-            catch 
+            catch
             {
             }
             return 0;
@@ -91,12 +90,12 @@ namespace TasksTests
                 var companyId = await createTestCompanyAsync();
                 if (0 == companyId)
                     return 0;
-                
+
                 var found = _context.CompanyEmployees.FirstOrDefault(x => x.CompanyId == companyId && x.EmployeeId == userId);
                 if (null != found)
                     return companyId;
 
-                var company = new CompanyEmployee() {  CompanyId = companyId, EmployeeId = userId };
+                var company = new CompanyEmployee() { CompanyId = companyId, EmployeeId = userId };
                 _context.CompanyEmployees.Add(company);
                 await _context.SaveChangesAsync();
                 return company.CompanyId;
@@ -136,7 +135,7 @@ namespace TasksTests
                     new WfEdgesTemplate(){ Name = "FromFirstToThird",  InternalNum = 4, NodeFrom = 1, NodeTo = 3 }
                 };
 
-            var long_res = await repo.CreateTemplate(Guid.Empty,  "TestTemplate", "Test Template Description", companyId, nodes, edges);
+            var long_res = await repo.CreateTemplate(Guid.Empty, "TestTemplate", "Test Template Description", companyId, nodes, edges);
             return long_res;
         }
 
@@ -326,8 +325,8 @@ namespace TasksTests
                 //var edges = new List<WfNodesTemplate>();
                 var edges = found.WfnodesTempls.SelectMany(b => b.WfedgesTemplNodeFromNavigations)
                           .Concat(found.WfnodesTempls.SelectMany(b => b.WfedgesTemplNodeToNavigations))
-                           .GroupBy(a => a.Id) // Группируем по id
-                            .Select(g => g.First()) // Берем первый элемент из 
+                           .GroupBy(a => a.Id) // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ id
+                            .Select(g => g.First()) // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ 
                           .ToList();
 
                 found.WfnodesTempls.Add(new WfNodesTemplate() { InternalNum = 4, Name = "FourthNode", Description = "Fourth node description", Terminating = true, IconId = 0 });
@@ -335,7 +334,7 @@ namespace TasksTests
                 var bool_res = await repo.UpdateTemplate(Guid.Empty, found.Id, found.Name, found.Description, found.CompanyId, found.WfnodesTempls.ToList(), edges);
                 Assert.True(bool_res);
                 Assert.True(_context.WfnodesTempls.Where(x => x.DefinitionId == long_res).Count() == 4);
-                                
+
 
                 var mov_val = await _context.WfdefinitionsTempls.Where(x => x.Name == found.Name && x.Description == found.Description).ToListAsync();
                 Assert.True(mov_val.Any());
@@ -374,15 +373,24 @@ namespace TasksTests
                 TasksServiceTasks.Task taskToCreate = new TasksServiceTasks.Task()
                 {
                     Name = "TestTask"
-                    , Description = "Test Task"
-                    , CreatorId = Guid.Empty
-                    , DeadlineDate = DateTime.Now.AddDays(1).ToUniversalTime() 
-                    , TemplateId = testTemplateId
-                    , Urgency  = urgencyId
-                    , CompanyId = companyId
-                    , ProjectId  = projectId
-                    , AreaId  = areaId
-                    , CurrentNodeId = 0
+                    ,
+                    Description = "Test Task"
+                    ,
+                    CreatorId = Guid.Empty
+                    ,
+                    DeadlineDate = DateTime.Now.AddDays(1).ToUniversalTime()
+                    ,
+                    TemplateId = testTemplateId
+                    ,
+                    Urgency = urgencyId
+                    ,
+                    CompanyId = companyId
+                    ,
+                    ProjectId = projectId
+                    ,
+                    AreaId = areaId
+                    ,
+                    CurrentNodeId = 0
                 };
                 // Create
                 var taskId = await repo.CreateTask(Guid.Empty, taskToCreate);

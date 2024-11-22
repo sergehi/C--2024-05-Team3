@@ -13,6 +13,18 @@ namespace TaskTracker.Gateway
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            builder.Logging.ClearProviders(); // Очистить существующие провайдеры
+            builder.Logging.AddConsole(); // Добавить логирование в консоль
+            builder.Logging.AddDebug();   // Добавить логирование для отладки
+            builder.Logging.AddFilter("Microsoft.AspNetCore.Server.Kestrel", LogLevel.Debug); // Логирование Kestrel
+            builder.Logging.SetMinimumLevel(LogLevel.Debug); // Установить минимальный уровень логов
+            builder.Services.AddHttpLogging(logging =>
+            {
+                logging.LoggingFields = Microsoft.AspNetCore.HttpLogging.HttpLoggingFields.All;
+                logging.RequestBodyLogLimit = 4096; // Лимит на тело запроса
+                logging.ResponseBodyLogLimit = 4096; // Лимит на тело ответа
+            });
+
             builder.WebHost.ConfigureKestrel(options =>
             {
                 options.ConfigureHttpsDefaults(httpsOptions =>
@@ -116,6 +128,7 @@ namespace TaskTracker.Gateway
                     }
                 });
             }
+            app.UseHttpLogging();
             app.UseHttpsRedirection();
             app.UseRouting();
             app.UseCors("AllowSpecificOrigins");

@@ -1,6 +1,9 @@
 using ChatService.API;
+using Common;
 
 var builder = WebApplication.CreateBuilder(args);
+
+RabbitMQService.Configure(builder.Configuration);
 
 // Add services to the container.
 builder.Services.AddServices(builder.Configuration);

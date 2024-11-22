@@ -7,12 +7,15 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using AuthorizationService.Web.GRPC;
 using AuthorizationService.Core.Profiles;
+using Common;
 
 public class Program
 {
     public static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
+
+        RabbitMQService.Configure(builder.Configuration);
 
         var isTesting = builder.Environment.EnvironmentName == "IntegrationTesting";
 

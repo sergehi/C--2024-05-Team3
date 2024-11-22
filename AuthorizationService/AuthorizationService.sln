@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{EC7C22CD-A7ED-4D60-ADD2-A29134BA4707}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "IntegrationTests\Tests.csproj", "{7B89106A-7B54-4FE3-805A-B3E1847CF8C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IntegrationTests", "IntegrationTests\IntegrationTests.csproj", "{7B89106A-7B54-4FE3-805A-B3E1847CF8C1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests (1)", "ModularTests\Tests.csproj", "{B3F848E7-6161-4CA2-91EB-7A4B0314215C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModularTests", "ModularTests\ModularTests.csproj", "{B3F848E7-6161-4CA2-91EB-7A4B0314215C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web", "Web\Web.csproj", "{DF76B81A-0C12-49CC-965A-FF425FAB9FDB}"
 EndProject

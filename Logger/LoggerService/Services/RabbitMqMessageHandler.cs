@@ -56,21 +56,26 @@ namespace LoggerService.Services
                     var creatingLog = JsonSerializer.Deserialize<CreatingLogModel>(Encoding.UTF8.GetString(e.Body.ToArray()));
                     CreateLogDTO dto = _mapper.Map<CreateLogDTO>(creatingLog);
                     _ = await service.CreateAsync(dto);
-                    List<string> users = creatingLog.Recipients.ToList();
-                    if (!users.Any())
+                    if (creatingLog == null)
+                    {
                         return;
+                    }
+                    List<string> users = creatingLog.Recipients.ToList();
                     var message = new SignalMessage()
                     {
-                        SenderEntity = Guid.Parse(creatingLog.Entity),
+                        SenderEntity = Guid.Parse(creatingLog.EntityType),
                         Title = TitleToString(creatingLog.Action),
                         Body = creatingLog.EntityName + ActionToString(creatingLog.Action),
-                        Recipients = users.Select(user => Guid.Parse(user)).ToList()
+                        Recipients = users.Select(Guid.Parse).ToList()
                     };
-                    if (users.Count == 1 && Guid.Parse(users[0]) == Guid.Empty)
+                    if (users.Count == 0)
+                    {
                         Connection?.InvokeAsync("SendBroadcastMessage", message);
+                    }
                     else
+                    {
                         Connection?.InvokeAsync("SendMessage", message);
-
+                    }
                 }
                 catch (Exception ex)
                 {

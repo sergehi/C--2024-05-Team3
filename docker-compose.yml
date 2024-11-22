@@ -11,42 +11,43 @@ services:
     environment:
       - RABBITMQ_DEFAULT_USER=user
       - RABBITMQ_DEFAULT_PASS=Wwp9NvOlzw
+    networks:
+      - my_app_network
+
   rabbitmqtest:
     image: rabbitmq:3-management
     restart: always
     container_name: rabbitmqtest
     ports:
-      - "5673:5673"
-      - "15673:15673"
+      - "5673:5672"
+      - "15673:15672"
     environment:
       - RABBITMQ_DEFAULT_USER=user
       - RABBITMQ_DEFAULT_PASS=Wwp9NvOlzw
-  authservice:
-    image: authservice:latest
+
+  authorizationservice:
+    image: authorizationservice:latest
     build:
-      context: ./AuthService
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: AuthorizationService/Dockerfile
     ports:
-      - "5248:5248"
+      - "5120:5120"
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=http://+:5248
-      - DOTNET_DataProtection__Path=/app/keys
+      - ASPNETCORE_URLS=http://+:5120
       - RabbitMQ__Host=rabbitmq
-      - RabbitMQ__User=user
-      - RabbitMQ__Password=password
+      - RabbitMQ__Port=5672
+
+  gatewayservice:
+    image: gatewayservice:latest
+    build:
+      context: .
+      dockerfile: src/TaskTracker.Gateway/Dockerfile
+    ports:
+      - "8081:8081"
+    environment:
+      - Kestrel__Endpoints__Https__Url=https://localhost:8081
     volumes:
-      - ./AuthService/keys:/app/keys
-      - ./AuthService/cert.pfx:/app/cert.pfx
-  chatservice:
-    image: chatservice:latest
-    build:
-      dockerfile: src/ChatService/ChatService.API/Dockerfile
-    ports:
-      - "5104:5104"
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=http://+:5104
-      - RabbitMQ__Host=rabbitmq
-      - RabbitMQ__User=user
-      - RabbitMQ__Password=password
+      - ./localhost.pfx:/localhost.pfx
+
+networks:
+  my_app_network:

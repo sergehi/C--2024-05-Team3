@@ -58,7 +58,7 @@ namespace TaskTracker.Gateway.Controllers
                 }
                 if (strid is null)
                     throw new Exception("Invalid user");
-                
+
                 var guid = Guid.Parse(strid);
                 if (guid != Guid.Empty)
                 {
@@ -73,7 +73,7 @@ namespace TaskTracker.Gateway.Controllers
                     _connections[strid] = userConnection;
                 }
                 return base.OnConnectedAsync();
-                
+
 
             }
             catch (Exception)
@@ -144,13 +144,11 @@ namespace TaskTracker.Gateway.Controllers
                 var messageToSend = message.Clone() as SignalMessage;
                 messageToSend?.Recipients.Clear();
                 await Clients.All.SendAsync("MessageForClient", messageToSend);
-
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                Console.WriteLine(ex);
             }
         }
-
     }
 }

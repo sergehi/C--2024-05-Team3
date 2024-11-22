@@ -43,9 +43,9 @@ namespace LoggerService.Services
             _channel.QueueBind(queueName, exchangeName, routingKey);
             var consumer = new EventingBasicConsumer(_channel);
             _messageHandler.Connection = new HubConnectionBuilder()
-                .WithUrl($"https://{GatewayServiceUrl}/notifyhub", options => 
-                { 
-                    options.Headers.Add("userId", Guid.Empty.ToString()); 
+                .WithUrl($"{GatewayServiceUrl}/notifyhub", options =>
+                {
+                    options.Headers.Add("userId", Guid.Empty.ToString());
                 })
                 .WithAutomaticReconnect()
                 .AddJsonProtocol()

@@ -3,8 +3,10 @@ using LoggerService;
 using Newtonsoft.Json;
 using RabbitMQ.Client;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
 using System.Reflection;
 using System.Text;
+using Microsoft.Extensions.Configuration;
 
 namespace Common
 {
@@ -13,44 +15,58 @@ namespace Common
         private static ConnectionFactory? _factory;
         private static IConnection? _connection;
         private static IModel? _channel;
+        private static RabbitMQSettings _rabbitMQSettings = new RabbitMQSettings();
         public static readonly string ExchangeName = "log.direct";
         public static readonly string ExchangeType = "direct";
         public static readonly string QueueName = "log";
         public static readonly string RoutingKey = "";
 
+        public static void Configure(IConfiguration configuration)
+        {
+            configuration.GetSection("RabbitMQ").Bind(_rabbitMQSettings);
+        }
+
         public static ConnectionFactory Factory
         {
             get
             {
-                _factory ??= new ConnectionFactory()
+                _factory = new ConnectionFactory
                 {
-                    HostName = Environment.GetEnvironmentVariable("RabbitMQ__Host"),
-                    UserName = Environment.GetEnvironmentVariable("RabbitMQ__User"),
-                    Password = Environment.GetEnvironmentVariable("RabbitMQ__Password"),
-                    VirtualHost = Environment.GetEnvironmentVariable("RabbitMQ__VirtualHost")
+                    HostName = _rabbitMQSettings.Host,
+                    UserName = _rabbitMQSettings.User,
+                    Password = _rabbitMQSettings.Password,
+                    VirtualHost = _rabbitMQSettings.VirtualHost,
+                    Port = _rabbitMQSettings.Port
                 };
                 return _factory;
             }
         }
 
-        public static void SendToRabbit<T>(T item, ELogAction action, string logCreatorId, List<string> recipients) where T : class
+        public static void SendToRabbit<T>(T item, ELogAction action, string logCreatorId, List<string>? recipients = null) where T : class
         {
             try
             {
                 PropertyInfo keyProperty = typeof(T).GetProperties()
                                       .FirstOrDefault(prop => prop.GetCustomAttributes(typeof(KeyAttribute), false).Any())!;
 
+                var guidAttribute = (GuidAttribute)Attribute.GetCustomAttribute(typeof(T), typeof(GuidAttribute))!;
+                var desciptionAttribute = (DescriptionAttribute)Attribute.GetCustomAttribute(typeof(T), typeof(DescriptionAttribute))!;
+
                 CreatingLogModel creatingLogModel = new CreatingLogModel
                 {
                     Action = action,
                     Entity = JsonConvert.SerializeObject(item),
-                    EntityPk = Attribute.GetCustomAttribute(typeof(T), typeof(KeyAttribute))!.ToString(),
-                    EntityType = Attribute.GetCustomAttribute(typeof(T), typeof(GuidAttribute))!.ToString(),
-                    EntityName = Attribute.GetCustomAttribute(typeof(T), typeof(DescriptionAttibute))!.ToString(),
+                    EntityPk = typeof(T).GetProperties().FirstOrDefault(prop => prop.GetCustomAttributes(typeof(KeyAttribute), false).Any())?.GetValue(item)!.ToString(),
+                    EntityType = guidAttribute.EntityGuid,
+                    EntityName = desciptionAttribute.Text,
                     UserId = logCreatorId,
                     Time = DateTime.UtcNow.Ticks
                 };
-                creatingLogModel.Recipients.AddRange(recipients);
+
+                if (recipients != null)
+                {
+                    creatingLogModel.Recipients.AddRange(recipients);
+                }
 
                 if (_connection == null)
                 {
@@ -63,8 +79,9 @@ namespace Common
                 var body = Encoding.UTF8.GetBytes(message);
                 _channel.BasicPublish(exchange: ExchangeName, routingKey: string.Empty, basicProperties: null, body: body);
             }
-            catch
-            { 
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
             }
         }
     }
