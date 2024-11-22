@@ -10,7 +10,7 @@ namespace TaskTracker.Gateway.Controllers
 {
     [ApiController]
     [Authorize]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiExplorerSettings(GroupName = "tasksservice templates")]
     public class TemplatesController : ControllerBase
     {

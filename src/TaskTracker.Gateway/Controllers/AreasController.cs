@@ -10,7 +10,7 @@ namespace TaskTracker.Gateway.Controllers
 {
     [ApiController]
     [Authorize]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiExplorerSettings(GroupName = "tasksservice project areas")]
     public class AreasController : ControllerBase
     {

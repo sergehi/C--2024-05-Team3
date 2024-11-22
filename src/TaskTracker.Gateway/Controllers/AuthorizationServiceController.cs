@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace TaskTracker.Gateway.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiExplorerSettings(GroupName = "authorizationservice")]
     public class AuthorizationServiceController : ControllerBase
     {
