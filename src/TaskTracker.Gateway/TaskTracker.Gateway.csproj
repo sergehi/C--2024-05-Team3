@@ -28,7 +28,6 @@
 	<ItemGroup>
 		<!-- Настройка для компиляции .proto файлов -->
 		<Protobuf Include="Protos\Chat.proto" GrpcServices="Client" />
-		<Protobuf Include="Protos\Service1.proto" GrpcServices="Client" />
 		<Protobuf Include="../../AuthorizationService/Shared/Protos/auth-proto.proto" GrpcServices="Client,Server" />
 		<Protobuf Include="../../TasksService/TasksService/Protos/tasksService.proto" GrpcServices="Client,Server" />
 	</ItemGroup>

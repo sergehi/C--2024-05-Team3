@@ -1,5 +1,6 @@
 using AuthorizationService.Shared.Protos;
 using ChatProto;
+using Microsoft.AspNetCore.Server.Kestrel.Https;
 using Microsoft.OpenApi.Models;
 using TaskTracker.Gateway.Configutions;
 using TaskTracker.Gateway.Controllers;
@@ -29,7 +30,7 @@ namespace TaskTracker.Gateway
             {
                 options.ConfigureHttpsDefaults(httpsOptions =>
                 {
-                    httpsOptions.SslProtocols = System.Security.Authentication.SslProtocols.Tls12;
+                    httpsOptions.SslProtocols = System.Security.Authentication.SslProtocols.Tls12 | System.Security.Authentication.SslProtocols.Tls13;
                 });
             });
 
@@ -46,18 +47,6 @@ namespace TaskTracker.Gateway
             });
 
             var grpcConfig = builder.Configuration.GetSection("GrpcServices").Get<GrpcServiceConfig>();
-
-            //gRpC services registration
-            builder.Services.AddGrpcClient<Greeter.GreeterClient>(options =>
-            {
-                options.Address = new Uri(grpcConfig.GreeterServiceUrl);
-            })
-            .ConfigurePrimaryHttpMessageHandler(() =>
-            {
-                var handler = new HttpClientHandler();
-                handler.ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
-                return handler;
-            });
 
             builder.Services.AddGrpcClient<Conversation.ConversationClient>(options =>
             {

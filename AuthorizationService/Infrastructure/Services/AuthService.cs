@@ -43,14 +43,8 @@ namespace AuthorizationService.Infrastructure.Services
                 user.PasswordHash = _passwordHasher.HashPassword(user, registerRequest.Password);
 
                 await _userRepository.CreateAsync(user);
-                try
-                {
-                    RabbitMQService.SendToRabbit(user, LoggerService.ELogAction.LaCreate, user.Id.ToString());
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine(ex.Message);
-                }
+
+                RabbitMQService.SendToRabbit(user, LoggerService.ELogAction.LaCreate, user.Id.ToString());
             }
             catch (RpcException)
             {

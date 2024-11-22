@@ -32,7 +32,6 @@ WORKDIR /app
 COPY --from=build /out ./
 
 # Настраиваем порты и переменные среды
-ENV ASPNETCORE_URLS=https://+:5120
 EXPOSE 5120
 
 # Запуск приложения

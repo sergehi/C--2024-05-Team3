@@ -37,6 +37,18 @@ services:
       - RabbitMQ__Host=rabbitmq
       - RabbitMQ__Port=5672
 
+  tasksservice:
+    image: tasksservice:latest
+    build:
+      context: .
+      dockerfile: TasksService/Dockerfile
+    ports:
+      - "7279:7279"
+    environment:
+      - ASPNETCORE_URLS=http://+:7279
+      - RabbitMQ__Host=rabbitmq
+      - RabbitMQ__Port=5672
+
   gatewayservice:
     image: gatewayservice:latest
     build:
@@ -45,7 +57,10 @@ services:
     ports:
       - "8081:8081"
     environment:
-      - Kestrel__Endpoints__Https__Url=https://localhost:8081
+      - Kestrel__Endpoints__Https__Url=https://0.0.0.0:8081
+      - GrpcServices__AuthorizationServiceUrl=http://authorizationservice:5120
+      - GrpcServices__ChatServiceUrl=http://chatservice:7130
+      - GrpcServices__TasksServiceUrl=http://tasksservice:7279
     volumes:
       - ./localhost.pfx:/localhost.pfx
 
