@@ -248,24 +248,26 @@ public partial class TasksDbContext : DbContext
 
             entity.HasOne(d => d.NodeFromNavigation).WithMany(p => p.TaskEdgeNodeFromNavigations)
                 .HasForeignKey(d => d.NodeFrom)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK_tasktransitions_nodes_from");
 
             entity.HasOne(d => d.NodeToNavigation).WithMany(p => p.TaskEdgeNodeToNavigations)
                 .HasForeignKey(d => d.NodeTo)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK_task_transitions_nodes_to");
         });
 
         modelBuilder.Entity<TaskHistory>(entity =>
         {
-            entity
-                .HasNoKey()
-                .ToTable("task_history");
+            
+            entity.HasKey(e => e.Id).HasName("task_history_pk");
+            entity.ToTable("task_history");
 
             entity.HasIndex(e => e.ActionId, "IX_task_history_action_id");
 
-            entity.HasIndex(e => e.TaskId, "IX_task_history_task_id");
+            entity.HasIndex(e => e.TaskId, "IX_task_~istory_task_id");
+
+            entity.Property(e => e.Id).HasColumnName("id");
 
             entity.Property(e => e.ActionDate)
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
@@ -286,9 +288,9 @@ public partial class TasksDbContext : DbContext
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("task_history_task_actions_fk");
 
-            entity.HasOne(d => d.Task).WithMany()
-                .HasForeignKey(d => d.TaskId)
-                .HasConstraintName("task_history_tasks_fk");
+            //entity.HasOne(d => d.Task).WithMany()
+            //    .HasForeignKey(d => d.TaskId)
+            //    .HasConstraintName("task_history_tasks_fk");
         });
 
         modelBuilder.Entity<TaskNode>(entity =>
@@ -312,6 +314,7 @@ public partial class TasksDbContext : DbContext
 
             entity.HasOne(d => d.OwnerTask).WithMany(p => p.Nodes)
                 .HasForeignKey(d => d.OwnerTaskId)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK_nodes_tasks");
         });
 

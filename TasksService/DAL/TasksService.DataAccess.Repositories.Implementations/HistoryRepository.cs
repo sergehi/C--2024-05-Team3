@@ -82,9 +82,43 @@ namespace TasksService.DataAccess.Repositories.Implementations
             return await registerTaskChange(UserId, TaskId, 0, ETaskModifyFlags.TMF_REC_DELETE, OldValue, NewValue);
         }
 
-        public async Task<bool> RegisterCreateTask(Guid UserId, long TaskId, string NewValue)
+        public async Task<bool> RegisterCreateTask(Guid UserId, Entities.Task task, string NewValue)
         {
-            return await registerTaskChange(UserId, TaskId, 0, ETaskModifyFlags.TMF_REC_CREATE, string.Empty, NewValue);
+            return await registerTaskChange(UserId, task, 0, ETaskModifyFlags.TMF_REC_CREATE, string.Empty, NewValue);
+        }
+
+        public async Task<bool> registerTaskChange(Guid UserId, Entities.Task task, long NodeId, ETaskModifyFlags ChangeFlag, string OldValue, string NewValue)
+        {
+            try
+            {
+                if (ChangeFlag == ETaskModifyFlags.TMF_NONE)
+                    return true;
+
+                var taskHistory = new TaskHistory()
+                {
+                    TaskId = task.Id,
+                    //Task = task,
+                    NodeId = NodeId,
+                    UserId = UserId,
+                    ActionValue = NewValue,
+                    OldValue = OldValue
+                };
+                using (var dbContext = new TasksDbContext(_configuration))
+                {
+                    var action = await dbContext.TaskActions.FirstOrDefaultAsync(t => t.ActionId == (long)ChangeFlag);
+                    if (action == null)
+                        throw new Exception($"Не найдено описание действия \"{ChangeFlag}\" в базе данных");
+
+                    taskHistory.ActionId = action.ActionId;
+                    dbContext.TaskHistories.Add(taskHistory);
+                    await dbContext.SaveChangesAsync();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new RpcExceptionEx(new Status(StatusCode.Cancelled, ex.Message), "Произошла ошибка при попытке регистрации действий для истории", ex.StackTrace ?? "");
+            }
         }
 
         public async Task<bool> registerTaskChange(Guid UserId, long TaskId, long NodeId, ETaskModifyFlags ChangeFlag, string OldValue, string NewValue)

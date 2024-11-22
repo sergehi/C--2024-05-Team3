@@ -288,23 +288,6 @@ namespace TasksTests
                 var companyId = await createTestCompanyAsync();
                 long long_res = await createTestTemplate(companyId);
                 // Act & Assert
-                /*
-                var nodes = new List<WfNodesTemplate>()
-                {
-                    new WfNodesTemplate() { InternalNum = 1, Name = "FirstNode", Description = "First node description", Terminating = false, IconId = 0 },
-                    new WfNodesTemplate() { InternalNum = 2, Name = "SecondNode", Description = "Second node description", Terminating = false, IconId = 0 },
-                    new WfNodesTemplate() { InternalNum = 3, Name = "ThirdNode", Description = "Third node description", Terminating = true, IconId = 0 }
-                };
-                var edges = new List<WfEdgesTemplate>()
-                {
-                    new WfEdgesTemplate(){ Name = "FromFirstToSecond", InternalNum = 1, NodeFrom = 1, NodeTo = 2 },
-                    new WfEdgesTemplate(){ Name = "FromSecondToThird", InternalNum = 2, NodeFrom = 2, NodeTo = 3 },
-                    new WfEdgesTemplate(){ Name = "FromSecondToFirst", InternalNum = 3, NodeFrom = 2, NodeTo = 1 },
-                    new WfEdgesTemplate(){ Name = "FromFirstToThird",  InternalNum = 4, NodeFrom = 1, NodeTo = 3 }
-                };
-
-                var long_res = await repo.CreateTemplate("TestTemplate", "Test Template Description", companyId, nodes, edges);
-                */
 
                 Assert.True(long_res > 0);
 
@@ -325,8 +308,8 @@ namespace TasksTests
                 //var edges = new List<WfNodesTemplate>();
                 var edges = found.WfnodesTempls.SelectMany(b => b.WfedgesTemplNodeFromNavigations)
                           .Concat(found.WfnodesTempls.SelectMany(b => b.WfedgesTemplNodeToNavigations))
-                           .GroupBy(a => a.Id) // ���������� �� id
-                            .Select(g => g.First()) // ����� ������ ������� �� 
+                           .GroupBy(a => a.Id) 
+                            .Select(g => g.First()) 
                           .ToList();
 
                 found.WfnodesTempls.Add(new WfNodesTemplate() { InternalNum = 4, Name = "FourthNode", Description = "Fourth node description", Terminating = true, IconId = 0 });
@@ -372,24 +355,15 @@ namespace TasksTests
                 // Create task
                 TasksServiceTasks.Task taskToCreate = new TasksServiceTasks.Task()
                 {
-                    Name = "TestTask"
-                    ,
-                    Description = "Test Task"
-                    ,
-                    CreatorId = Guid.Empty
-                    ,
-                    DeadlineDate = DateTime.Now.AddDays(1).ToUniversalTime()
-                    ,
-                    TemplateId = testTemplateId
-                    ,
-                    Urgency = urgencyId
-                    ,
-                    CompanyId = companyId
-                    ,
-                    ProjectId = projectId
-                    ,
-                    AreaId = areaId
-                    ,
+                    Name = "TestTask",
+                    Description = "Test Task",
+                    CreatorId = Guid.Empty,
+                    DeadlineDate = DateTime.Now.AddDays(1).ToUniversalTime(),
+                    TemplateId = testTemplateId,
+                    Urgency = urgencyId,
+                    CompanyId = companyId,
+                    ProjectId = projectId,
+                    AreaId = areaId,
                     CurrentNodeId = 0
                 };
                 // Create

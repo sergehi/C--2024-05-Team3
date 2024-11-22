@@ -121,7 +121,6 @@ namespace TasksService.DataAccess.Repositories.Implementations
                                 }
                             }
                             await dbContext.SaveChangesAsync();
-                            await _historyRepo.RegisterCreateTask(userId, taskToCreate.Id, taskToCreate.Name);
                             RabbitMQService.SendToRabbit(taskToCreate, LoggerService.ELogAction.LaCreate, userId.ToString(), await _historyRepo.GetCompanyEmployees(userId, taskToCreate.CompanyId));
                             return taskToCreate.Id;
                         }
@@ -133,6 +132,7 @@ namespace TasksService.DataAccess.Repositories.Implementations
                         finally
                         {
                             transaction.Commit();
+                            await _historyRepo.RegisterCreateTask(userId, taskToCreate, taskToCreate.Name);
                         }
                     }
                 }
