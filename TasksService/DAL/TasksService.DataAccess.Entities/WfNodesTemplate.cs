@@ -10,6 +10,7 @@ using Common.Attributes;
 namespace TasksService.DataAccess.Entities
 {
     [Guid("4654B1E9-F62F-4886-ADCD-5230904541AC")]
+    [Description("Шаблон этапа работ")]
     public partial class WfNodesTemplate
     {
         [Key]

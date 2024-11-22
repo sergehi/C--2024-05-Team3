@@ -5,6 +5,7 @@ using Common.Attributes;
 
 namespace TasksService.DataAccess.Entities;
 [Guid("4CAC88FE-A8CD-4AD3-B42E-A118721272D0")]
+[Description("Задача")]
 public partial class Task
 {
     [Key]

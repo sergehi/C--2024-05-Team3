@@ -56,10 +56,42 @@ namespace TasksService.BusinessLogic.Services.Implementations.Mapping
                 .ForMember(dest => dest.Tasks, opt => opt.Ignore());
 
             // Company
+            /*
             CreateMap<CompanyDTO, TasksCompany>()
                 .ForMember(x => x.WfdefinitionsTempls, opt => opt.Ignore())
                 .ForMember(x => x.Tasks, opt => opt.Ignore())
                 .ForMember(x => x.CompanyProjects, opt => opt.Ignore());
+            CreateMap<TasksCompany, CompanyDTO>()
+                .ForMember(x => x.Id, opt => opt.MapFrom(src => src.Id))
+                .ForMember(x => x.Name, opt => opt.MapFrom(src => src.Name))
+                .ForMember(x => x.Description, opt => opt.MapFrom(src => src.Description));
+            */
+            CreateMap<TasksService.DataAccess.Entities.TasksCompany, TasksService.BusinessLogic.DTO.CompanyDTO>();
+
+            CreateMap<CompanyDTO, TasksCompany>()
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id)) // Игнорируем Id, если не нужно его изменять
+                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
+                .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description))
+                .ForMember(dest => dest.CompanyProjects, opt => opt.Ignore()) // Игнорируем зависимые коллекции
+                .ForMember(dest => dest.Tasks, opt => opt.Ignore()) // Игнорируем зависимые коллекции
+                .ForMember(dest => dest.WfdefinitionsTempls, opt => opt.Ignore()); // Игнорируем зависимые коллекции
+
+            CreateMap<TasksService.BusinessLogic.DTO.CompanyProjectDTO, TasksService.DataAccess.Entities.CompanyProject>()
+            .ForMember(dest => dest.Company, opt => opt.Ignore()) // Игнорируем навигационное свойство
+            .ForMember(dest => dest.ProjectAreas, opt => opt.Ignore()) // Игнорируем коллекцию ProjectAreas
+            .ForMember(dest => dest.Tasks, opt => opt.Ignore()); // Игнорируем коллекцию Tasks
+
+            // Сопоставление от CompanyProject к CompanyProjectDTO
+            CreateMap<TasksService.DataAccess.Entities.CompanyProject, TasksService.BusinessLogic.DTO.CompanyProjectDTO>()
+                .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description ?? string.Empty)); // Обработка null
+
+            CreateMap<TasksService.BusinessLogic.DTO.ProjectAreaDTO, TasksService.DataAccess.Entities.ProjectArea>()
+            .ForMember(dest => dest.Project, opt => opt.Ignore()) // Игнорируем навигационное свойство
+            .ForMember(dest => dest.Tasks, opt => opt.Ignore()); // Игнорируем коллекцию Tasks
+
+            // Сопоставление от ProjectArea к ProjectAreaDTO
+            CreateMap<TasksService.DataAccess.Entities.ProjectArea, TasksService.BusinessLogic.DTO.ProjectAreaDTO>()
+                .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description ?? string.Empty)); // Обработка null
 
             ///!!!!!!!!!!!!!!
             CreateMap<TaskDTO, DataAccess.Entities.Task>()

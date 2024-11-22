@@ -8,7 +8,7 @@ public partial class ProjectArea
 {
     public long Id { get; set; }
 
-    public string Name { get; set; } = null!;
+    public string Name { get; set; } = string.Empty;
 
     public long ProjectId { get; set; }
 

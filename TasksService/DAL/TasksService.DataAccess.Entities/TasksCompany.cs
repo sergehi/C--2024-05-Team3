@@ -9,12 +9,13 @@ using Common.Attributes;
 namespace TasksService.DataAccess.Entities
 {
     [Guid("487F0429-2D9A-4903-BF93-85A78C8B7A01")]
+    [Description("Компания")]
     public partial class TasksCompany
     {
         [Key]
         public long Id { get; set; }
 
-        public string Name { get; set; } = null!;
+        public string Name { get; set; } = string.Empty;
 
         public string? Description { get; set; }
 

@@ -10,6 +10,7 @@ using Common.Attributes;
 namespace TasksService.DataAccess.Entities
 {
     [Guid("12243B33-6EF5-4BDA-BBC0-B7406D409BA4")]
+    [Description("Шаблон перехода между этапами")]
     public partial class WfEdgesTemplate
     {
         [Key]

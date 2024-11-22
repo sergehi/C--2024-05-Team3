@@ -9,6 +9,7 @@ using Common.Attributes;
 namespace TasksService.DataAccess.Entities
 {
     [Guid("0DFD4354-6983-42DE-9CEB-02B4E30AA30B")]
+    [Description("Шаблон задачи")]
     public partial class WfDefinitionsTemplate
     {
         [Key]
