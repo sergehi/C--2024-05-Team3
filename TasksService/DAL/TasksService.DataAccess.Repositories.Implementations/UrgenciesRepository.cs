@@ -78,7 +78,10 @@ namespace TasksService.DataAccess.Repositories.Implementations
                 using (var dbContext = new TasksDbContext(_configuration))
                 {
                     if (id == 0)
-                       urgss.AddRange(await dbContext.Urgencies.ToListAsync());
+                    {
+                        var urgs = await dbContext.Urgencies.ToListAsync();
+                        urgss.AddRange(urgs);
+                    }
                     else
                     {
                         var res = await dbContext.Urgencies.Where(u => u.Id == id).ToListAsync();
