@@ -11,7 +11,7 @@ namespace TaskTracker.Gateway.Controllers
     [ApiController]
     [Authorize]
     [Route("api/[controller]")]
-    [ApiExplorerSettings(GroupName = "tasksservice company projects")]
+    [ApiExplorerSettings(GroupName = "tasksservice")]
     public class ProjectsController : ControllerBase
     {
         private readonly TasksServiceProto.TasksServiceProto.TasksServiceProtoClient _client;
@@ -51,7 +51,7 @@ namespace TaskTracker.Gateway.Controllers
             try
             {
                 var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                var request = new CreateProjectRequest() {  UserId = currentUserId,  Project = new  CompanyProject() { Id = 0, CompanyId = companyId, Name = name, Description = description } };
+                var request = new CreateProjectRequest() { UserId = currentUserId, Project = new CompanyProject() { Id = 0, CompanyId = companyId, Name = name, Description = description } };
                 var response = await _client.CreateCompanyProjectAsync(request);
                 return Ok(response.Id);
             }
@@ -73,7 +73,7 @@ namespace TaskTracker.Gateway.Controllers
             try
             {
                 var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                var request = new ModifyProjectRequest() { UserId = currentUserId, ChangeFlags = 0, Project = new CompanyProject () { Id = id, CompanyId = companyId, Name = name, Description = description } };
+                var request = new ModifyProjectRequest() { UserId = currentUserId, ChangeFlags = 0, Project = new CompanyProject() { Id = id, CompanyId = companyId, Name = name, Description = description } };
                 var response = await _client.ModifyCompanyProjectAsync(request);
                 return Ok(response.Success);
             }
@@ -95,7 +95,7 @@ namespace TaskTracker.Gateway.Controllers
             try
             {
                 var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                var template = new DeleteProjectRequest() { ProjectId = id, UserId = currentUserId};
+                var template = new DeleteProjectRequest() { ProjectId = id, UserId = currentUserId };
                 var response = await _client.DeleteCompanyProjectAsync(template);
                 return Ok(response.Success);
             }

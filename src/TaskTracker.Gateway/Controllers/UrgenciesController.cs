@@ -11,7 +11,7 @@ namespace TaskTracker.Gateway.Controllers
     [ApiController]
     [Authorize]
     [Route("api/[controller]")]
-    [ApiExplorerSettings(GroupName = "tasksservice urgencies")]
+    [ApiExplorerSettings(GroupName = "tasksservice")]
     public class UrgenciesController : ControllerBase
     {
         private readonly TasksServiceProto.TasksServiceProto.TasksServiceProtoClient _client;
@@ -50,7 +50,7 @@ namespace TaskTracker.Gateway.Controllers
             try
             {
                 var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                var request = new CreateUrgencyRequest() { UserId = currentUserId, Name = name, Description = description};
+                var request = new CreateUrgencyRequest() { UserId = currentUserId, Name = name, Description = description };
                 var response = await _client.CreateUrgencyAsync(request);
                 return Ok(response.Id);
             }
@@ -73,7 +73,7 @@ namespace TaskTracker.Gateway.Controllers
             try
             {
                 var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                var request = new ModifyUrgencyRequest() { UserId = currentUserId, Urgency = new UrgencyModel() { Id = id, Name = name, Description = description} };
+                var request = new ModifyUrgencyRequest() { UserId = currentUserId, Urgency = new UrgencyModel() { Id = id, Name = name, Description = description } };
                 var response = await _client.ModifyUrgencyAsync(request);
                 return Ok(response.Success);
             }

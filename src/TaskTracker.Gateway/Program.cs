@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Server.Kestrel.Https;
 using Microsoft.OpenApi.Models;
 using TaskTracker.Gateway.Configutions;
 using TaskTracker.Gateway.Controllers;
-using TestGrpcService1; // ���������� ������������ ���� gRPC ��� Service1
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace TaskTracker.Gateway
 {
@@ -24,6 +24,25 @@ namespace TaskTracker.Gateway
                 logging.LoggingFields = Microsoft.AspNetCore.HttpLogging.HttpLoggingFields.All;
                 logging.RequestBodyLogLimit = 4096; // Лимит на тело запроса
                 logging.ResponseBodyLogLimit = 4096; // Лимит на тело ответа
+            });
+
+            builder.Services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = builder.Configuration["Jwt:Issuer"],
+                    ValidAudience = builder.Configuration["Jwt:Audience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+                };
             });
 
             builder.WebHost.ConfigureKestrel(options =>
@@ -85,6 +104,31 @@ namespace TaskTracker.Gateway
 
             builder.Services.AddSwaggerGen(c =>
             {
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.Http,
+                    Scheme = "bearer",
+                    BearerFormat = "JWT",
+                    In = ParameterLocation.Header,
+                    Description = "Введите JWT токен в формате 'Bearer {токен}'"
+                });
+
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            }
+                        },
+                        Array.Empty<string>()
+                    }
+                });
+
                 foreach (var service in swaggerServices)
                 {
                     c.SwaggerDoc(service.Name, new OpenApiInfo { Title = service.Title, Version = service.Version });
@@ -121,6 +165,7 @@ namespace TaskTracker.Gateway
             app.UseHttpsRedirection();
             app.UseRouting();
             app.UseCors("AllowSpecificOrigins");
+            app.UseAuthentication();
             app.UseAuthorization();
             app.MapControllers();
             // Настройка маршрутов для SignalR Hub

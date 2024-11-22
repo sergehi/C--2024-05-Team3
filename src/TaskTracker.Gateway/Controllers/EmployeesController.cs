@@ -11,7 +11,7 @@ namespace TaskTracker.Gateway.Controllers
     [ApiController]
     [Authorize]
     [Route("api/[controller]")]
-    [ApiExplorerSettings(GroupName = "tasksservice company employees")]
+    [ApiExplorerSettings(GroupName = "tasksservice")]
     public class EmployeesController : ControllerBase
     {
         private readonly TasksServiceProto.TasksServiceProto.TasksServiceProtoClient _client;
@@ -30,7 +30,7 @@ namespace TaskTracker.Gateway.Controllers
             try
             {
                 var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                var request = new EmployeesRequest() {  CompanyId = companyId };
+                var request = new EmployeesRequest() { CompanyId = companyId };
                 var response = await _client.GetEmployeesAsync(request);
                 return Ok(response.EmployeeIds);
             }
@@ -52,7 +52,7 @@ namespace TaskTracker.Gateway.Controllers
             try
             {
                 var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                var request = new AddEmployeeRequest() { CreatorId = currentUserId, CompanyId = companyId , NewUserId = newUserId };
+                var request = new AddEmployeeRequest() { CreatorId = currentUserId, CompanyId = companyId, NewUserId = newUserId };
                 var response = await _client.AddEmployeeAsync(request);
                 return Ok(response);
             }
@@ -69,7 +69,7 @@ namespace TaskTracker.Gateway.Controllers
 
         //rpc RemoveEmployee(RemoveEmployeeRequest) returns(BoolReply);
         [HttpDelete("{companyId}/{id}")]
-        public async Task<IActionResult> RemoveEmployee(long companyId, long userId )
+        public async Task<IActionResult> RemoveEmployee(long companyId, long userId)
         {
             try
             {

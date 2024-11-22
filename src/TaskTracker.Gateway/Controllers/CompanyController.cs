@@ -11,7 +11,7 @@ namespace TaskTracker.Gateway.Controllers
     [ApiController]
     [Authorize]
     [Route("api/[controller]")]
-    [ApiExplorerSettings(GroupName = "tasksservice companies")]
+    [ApiExplorerSettings(GroupName = "tasksservice")]
     public class CompanyController : ControllerBase
     {
         private readonly TasksServiceProto.TasksServiceProto.TasksServiceProtoClient _client;
@@ -28,7 +28,7 @@ namespace TaskTracker.Gateway.Controllers
             try
             {
                 var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                var request = new CompanyRequest() { Id =  companyId};
+                var request = new CompanyRequest() { Id = companyId };
                 var response = await _client.GetCompaniesAsync(request);
                 return Ok(response.Companies);
             }
@@ -50,7 +50,7 @@ namespace TaskTracker.Gateway.Controllers
             try
             {
                 var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                var request = new CreateCompanyRequest() {  CreatorId = currentUserId, Name = name, Description = description };
+                var request = new CreateCompanyRequest() { CreatorId = currentUserId, Name = name, Description = description };
                 var response = await _client.CreateCompanyAsync(request);
                 return Ok(response.Id);
             }
@@ -72,7 +72,7 @@ namespace TaskTracker.Gateway.Controllers
             try
             {
                 var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                var request = new ModifyCompanyRequest() { UserId = currentUserId, ChangeFlags = 0, Id = companyId, Name = name, Description = description  };
+                var request = new ModifyCompanyRequest() { UserId = currentUserId, ChangeFlags = 0, Id = companyId, Name = name, Description = description };
                 var response = await _client.ModifyCompanyAsync(request);
                 return Ok(response.Success);
             }

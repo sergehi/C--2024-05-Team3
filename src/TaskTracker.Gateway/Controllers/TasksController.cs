@@ -75,7 +75,7 @@ namespace TaskTracker.Gateway.Controllers
             try
             {
                 var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                var request = new PkMessage() {  Id = taskId };
+                var request = new PkMessage() { Id = taskId };
 
                 var response = await _client.GetTaskHistoryAsync(request);
                 return Ok(response.History);
@@ -100,7 +100,7 @@ namespace TaskTracker.Gateway.Controllers
             try
             {
                 var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                var request = new CreateTaskRequest() { UserId = currentUserId, Task = model};
+                var request = new CreateTaskRequest() { UserId = currentUserId, Task = model };
                 var response = await _client.CreateTaskAsync(request);
                 return Ok(response.Id);
             }
@@ -142,7 +142,7 @@ namespace TaskTracker.Gateway.Controllers
             try
             {
                 var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                var template = new ModifyTaskLongFieldRequest() { UserId = currentUserId, TaskId = taskId, LongValue = urgId};
+                var template = new ModifyTaskLongFieldRequest() { UserId = currentUserId, TaskId = taskId, LongValue = urgId };
                 var response = await _client.ModifyTaskUrgencyAsync(template);
                 return Ok(response.Success);
             }
@@ -185,7 +185,7 @@ namespace TaskTracker.Gateway.Controllers
             try
             {
                 var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                var template = new ModifyTaskTextFieldRequest() { UserId = currentUserId, TaskId = taskId, StrValue = name};
+                var template = new ModifyTaskTextFieldRequest() { UserId = currentUserId, TaskId = taskId, StrValue = name };
                 var response = await _client.ModifyTaskNameAsync(template);
                 return Ok(response.Success);
             }
@@ -229,7 +229,7 @@ namespace TaskTracker.Gateway.Controllers
             try
             {
                 var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                var template = new ModifyNodeDeadlineRequest() { UserId = currentUserId, TaskId = taskId, DateValue = Timestamp.FromDateTime(deadline.ToUniversalTime()), NodeId = 0};
+                var template = new ModifyNodeDeadlineRequest() { UserId = currentUserId, TaskId = taskId, DateValue = Timestamp.FromDateTime(deadline.ToUniversalTime()), NodeId = 0 };
                 var response = await _client.ModifyTaskNodeDeadlineAsync(template);
                 return Ok(response.Success);
             }

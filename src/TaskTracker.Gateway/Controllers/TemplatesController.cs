@@ -11,7 +11,7 @@ namespace TaskTracker.Gateway.Controllers
     [ApiController]
     [Authorize]
     [Route("api/[controller]")]
-    [ApiExplorerSettings(GroupName = "tasksservice templates")]
+    [ApiExplorerSettings(GroupName = "tasksservice")]
     public class TemplatesController : ControllerBase
     {
         private readonly TasksServiceProto.TasksServiceProto.TasksServiceProtoClient _client;
@@ -27,7 +27,7 @@ namespace TaskTracker.Gateway.Controllers
             try
             {
                 var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                var request = new TemplateListRequest(){ Id = templateId, CompanyId = companyId };
+                var request = new TemplateListRequest() { Id = templateId, CompanyId = companyId };
 
                 var response = await _client.GetTemplateListAsync(request);
                 return Ok(response.Items);

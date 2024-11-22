@@ -11,7 +11,7 @@ namespace TaskTracker.Gateway.Controllers
     [ApiController]
     [Authorize]
     [Route("api/[controller]")]
-    [ApiExplorerSettings(GroupName = "tasksservice project areas")]
+    [ApiExplorerSettings(GroupName = "tasksservice")]
     public class AreasController : ControllerBase
     {
         private readonly TasksServiceProto.TasksServiceProto.TasksServiceProtoClient _client;
@@ -30,7 +30,7 @@ namespace TaskTracker.Gateway.Controllers
             try
             {
                 var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                var request = new ProjectAreasRequest() { ProjectId = projId,  AreaId = Id };
+                var request = new ProjectAreasRequest() { ProjectId = projId, AreaId = Id };
                 var response = await _client.GetProjectAreasAsync(request);
                 return Ok(response.Areas);
             }
@@ -52,7 +52,7 @@ namespace TaskTracker.Gateway.Controllers
             try
             {
                 var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                var request = new CreateProjectAreaRequest() { UserId = currentUserId, Area = new ProjectArea() { Id = 0, ProjectId = projId, Name = name, Description = description}};
+                var request = new CreateProjectAreaRequest() { UserId = currentUserId, Area = new ProjectArea() { Id = 0, ProjectId = projId, Name = name, Description = description } };
                 var response = await _client.CreateProjectAreaAsync(request);
                 return Ok(response.Id);
             }

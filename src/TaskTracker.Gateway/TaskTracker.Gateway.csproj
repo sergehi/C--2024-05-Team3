@@ -15,7 +15,7 @@
 		</PackageReference>
 		<PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.1.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="7.0.0" />
 
 		<!-- Пакеты для gRPC клиента и компиляции -->
 		<PackageReference Include="Grpc.Net.ClientFactory" Version="2.67.0" />
