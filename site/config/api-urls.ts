@@ -1,7 +1,7 @@
 const ApiUrls = {
     authorizationService: {
-        login: "https://localhost:8080/authorizationservice/login",
-        register: "https://localhost:8080/authorizationservice/register"
+        login: "https://localhost:8080/api/authorizationservice/login",
+        register: "https://localhost:8080/api/authorizationservice/register"
     },
     signalR: "https://localhost:9090/signalr-hub",
 };

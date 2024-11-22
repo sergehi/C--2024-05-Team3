@@ -5,6 +5,8 @@ using Microsoft.OpenApi.Models;
 using TaskTracker.Gateway.Configutions;
 using TaskTracker.Gateway.Controllers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace TaskTracker.Gateway
 {
@@ -41,7 +43,7 @@ namespace TaskTracker.Gateway
                     ValidateIssuerSigningKey = true,
                     ValidIssuer = builder.Configuration["Jwt:Issuer"],
                     ValidAudience = builder.Configuration["Jwt:Audience"],
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!))
                 };
             });
 
@@ -111,7 +113,7 @@ namespace TaskTracker.Gateway
                     Scheme = "bearer",
                     BearerFormat = "JWT",
                     In = ParameterLocation.Header,
-                    Description = "Введите JWT токен в формате 'Bearer {токен}'"
+                    Description = "Введите JWT токен"
                 });
 
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement
