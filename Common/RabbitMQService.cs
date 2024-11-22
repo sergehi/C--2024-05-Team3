@@ -1,18 +1,18 @@
 using Common.Attributes;
 using LoggerService;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using RabbitMQ.Client;
 using System.ComponentModel.DataAnnotations;
-using System.Diagnostics;
 using System.Reflection;
 using System.Text;
-using Microsoft.Extensions.Configuration;
 
 namespace Common
 {
     public static class RabbitMQService
     {
         private static ConnectionFactory? _factory;
+        private static readonly object _lock = new object();
         private static IConnection? _connection;
         private static IModel? _channel;
         private static RabbitMQSettings _rabbitMQSettings = new RabbitMQSettings();
@@ -30,15 +30,18 @@ namespace Common
         {
             get
             {
-                _factory = new ConnectionFactory
+                lock (_lock)
                 {
-                    HostName = _rabbitMQSettings.Host,
-                    UserName = _rabbitMQSettings.User,
-                    Password = _rabbitMQSettings.Password,
-                    VirtualHost = _rabbitMQSettings.VirtualHost,
-                    Port = _rabbitMQSettings.Port
-                };
-                return _factory;
+                    _factory ??= new ConnectionFactory
+                        {
+                            HostName = _rabbitMQSettings.Host,
+                            UserName = _rabbitMQSettings.User,
+                            Password = _rabbitMQSettings.Password,
+                            VirtualHost = _rabbitMQSettings.VirtualHost,
+                            Port = _rabbitMQSettings.Port
+                        };
+                    return _factory;
+                }
             }
         }
 

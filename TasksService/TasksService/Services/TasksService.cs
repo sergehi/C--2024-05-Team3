@@ -456,7 +456,8 @@ namespace TasksService.Services
             try
             {
                 var result = new CompaniesReply();
-                List<CompanyDTO> comanies = await _service.GetCompanies(request.Id);
+                
+                var comanies = await _service.GetCompanies(request.Id);
                 if (null != comanies)
                     result.Companies.AddRange(comanies.Select(x => _mapper.Map<CompanyModel>(x)));
                 return result;

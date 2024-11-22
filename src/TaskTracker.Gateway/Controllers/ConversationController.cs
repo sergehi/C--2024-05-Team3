@@ -8,7 +8,7 @@ namespace TaskTracker.Gateway.Controllers
 {
     [ApiController]
     [Authorize]
-    [Route("chatservice/[controller]")]
+    [Route("api/chatservice/[controller]")]
     [ApiExplorerSettings(GroupName = "chatservice")]
     public class ConversationController : ControllerBase
     {

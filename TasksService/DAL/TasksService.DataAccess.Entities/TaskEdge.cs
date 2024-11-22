@@ -5,6 +5,7 @@ using Common.Attributes;
 
 namespace TasksService.DataAccess.Entities;
 [Guid("434B765A-935D-4166-B4CE-E909776B202B")]
+[Description("Переход")]
 public partial class TaskEdge
 {
     [Key]

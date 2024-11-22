@@ -71,12 +71,12 @@ public partial class TasksDbContext : DbContext
 
         modelBuilder.Entity<CompanyEmployee>(entity =>
         {
-            entity
-                .HasNoKey()
-                .ToTable("company_employees");
+            entity.HasKey(e => e.Id).HasName("company_employees_pkey");
+            entity.ToTable("company_employees");
 
             entity.HasIndex(e => e.CompanyId, "IX_company_employees_company_id");
 
+            entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.CompanyId).HasColumnName("company_id");
             entity.Property(e => e.EmployeeId).HasColumnName("employee_id");
 

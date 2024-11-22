@@ -11,7 +11,7 @@ namespace TaskTracker.Gateway.Controllers
 {
     [ApiController]
     [Authorize]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiExplorerSettings(GroupName = "tasksservice")]
     public class TasksController : ControllerBase
     {
