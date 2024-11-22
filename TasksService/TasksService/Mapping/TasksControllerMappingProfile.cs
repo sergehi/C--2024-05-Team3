@@ -89,9 +89,20 @@ namespace TasksService.Mapping
             CreateMap<CompanyModel, CompanyDTO>();
             CreateMap<CompanyDTO, CompanyModel>();
 
-            CreateMap<TaskHistoryDTO, TaskHistoryModel>();
-            CreateMap<TaskHistoryModel, TaskHistoryDTO>();
-            
+            CreateMap<TaskHistoryDTO, TaskHistoryModel>()
+                .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserId))
+                .ForMember(dest => dest.ActionDate, opt => opt.MapFrom(src => src.ActionDate))
+                .ForMember(dest => dest.NewValue, opt => opt.MapFrom(src => src.NewValue))
+                .ForMember(dest => dest.OldValue, opt => opt.MapFrom(src => src.OldValue))
+                .ForMember(dest => dest.ValueType, opt => opt.MapFrom(src => src.ValueType))
+                .ForMember(dest => dest.ActionName, opt => opt.MapFrom(src => src.ActionName))
+                .ForMember(dest => dest.ActionString, opt => opt.MapFrom(src => src.ActionString));
+
+            CreateMap<TaskHistoryModel, TaskHistoryDTO>()
+                .ForMember(dest => dest.Id, opt => opt.Ignore())
+                .ForMember(dest => dest.TaskId, opt => opt.Ignore());
+
+
             // Datetime and TimeStamp
             /*
             CreateMap<Timestamp?, DateTime?>()

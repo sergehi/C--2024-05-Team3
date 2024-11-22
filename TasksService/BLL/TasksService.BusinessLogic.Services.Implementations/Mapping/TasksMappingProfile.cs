@@ -55,18 +55,12 @@ namespace TasksService.BusinessLogic.Services.Implementations.Mapping
                 .ForMember(dest => dest.Company, opt => opt.Ignore())
                 .ForMember(dest => dest.Tasks, opt => opt.Ignore());
 
-            // Company
-            /*
-            CreateMap<CompanyDTO, TasksCompany>()
-                .ForMember(x => x.WfdefinitionsTempls, opt => opt.Ignore())
-                .ForMember(x => x.Tasks, opt => opt.Ignore())
-                .ForMember(x => x.CompanyProjects, opt => opt.Ignore());
-            CreateMap<TasksCompany, CompanyDTO>()
-                .ForMember(x => x.Id, opt => opt.MapFrom(src => src.Id))
-                .ForMember(x => x.Name, opt => opt.MapFrom(src => src.Name))
-                .ForMember(x => x.Description, opt => opt.MapFrom(src => src.Description));
-            */
-            CreateMap<TasksService.DataAccess.Entities.TasksCompany, TasksService.BusinessLogic.DTO.CompanyDTO>();
+        
+
+
+
+        // Company
+        CreateMap<TasksService.DataAccess.Entities.TasksCompany, TasksService.BusinessLogic.DTO.CompanyDTO>();
 
             CreateMap<CompanyDTO, TasksCompany>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id)) // Игнорируем Id, если не нужно его изменять
@@ -174,24 +168,66 @@ namespace TasksService.BusinessLogic.Services.Implementations.Mapping
                 .ForMember(dest => dest.UrgencyId, opt => opt.MapFrom(src => src.Urgency))
                 .ForMember(dest => dest.CurrentNode, opt => opt.MapFrom(src => src.CurrentNodeId));
 
-            //CreateMap<TaskNode, TaskNodeDTO>();
-            
+            CreateMap<TaskNode, TaskNodeDTO>()
+                .ForMember(dest => dest.NodeDoers, opt => opt.MapFrom(src => src.TaskDoers != null ? src.TaskDoers.Select(td => td.EmpoyeeId) : new List<Guid>()))
+                .ForMember(dest => dest.TaskId, opt => opt.MapFrom(src => src.OwnerTaskId ?? 0)) // Замените на нужное значение, если OwnerTaskId может быть null
+                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name ?? string.Empty)) // Обработка null
+                .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description ?? string.Empty)); // Обработка null
+
+            // Маппинг из TaskNodeDTO в TaskNode
             CreateMap<TaskNodeDTO, TaskNode>()
+                .ForMember(dest => dest.OwnerTaskId, opt => opt.MapFrom(src => src.TaskId))
+                .ForMember(dest => dest.TaskDoers, opt => opt.Ignore()) // Игнорируем, так как это коллекция, которую нужно будет заполнить отдельно
+                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
+                .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description))
+                .ForMember(dest => dest.Terminating, opt => opt.MapFrom(src => src.Terminating))
                 .ForMember(x => x.OwnerTask, opt => opt.Ignore())
-                .ForMember(x => x.TaskDoers, opt => opt.Ignore())
                 .ForMember(x => x.TaskEdgeNodeFromNavigations, opt => opt.Ignore())
                 .ForMember(x => x.TaskEdgeNodeToNavigations, opt => opt.Ignore())
                 .ForMember(x => x.TemplateId, opt => opt.Ignore())
+                .ForMember(dest => dest.IconId, opt => opt.MapFrom(src => src.IconId));
+
+            /*
+            CreateMap<TaskNodeDTO, TaskNode>()
+                .ForMember(x => x.TaskDoers, opt => opt.Ignore())
                 .ForMember(dest => dest.OwnerTaskId, opt => opt.MapFrom(src => src.TaskId));
+            */
 
 
-            CreateMap< TaskEdgeDTO, TaskEdge>()
+            CreateMap<TaskEdge, TaskEdgeDTO>()
+                        .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name ?? string.Empty)) // Обработка null
+                        .ForMember(dest => dest.NodeFrom, opt => opt.MapFrom(src => src.NodeFrom))
+                        .ForMember(dest => dest.NodeTo, opt => opt.MapFrom(src => src.NodeTo));
+
+            // Маппинг из TaskEdgeDTO в TaskEdge
+            CreateMap<TaskEdgeDTO, TaskEdge>()
+                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
+                .ForMember(dest => dest.NodeFrom, opt => opt.MapFrom(src => src.NodeFrom))
+                .ForMember(dest => dest.NodeTo, opt => opt.MapFrom(src => src.NodeTo))
                 .ForMember(x => x.NodeFromNavigation, opt => opt.Ignore())
                 .ForMember(x => x.NodeToNavigation, opt => opt.Ignore());
-            //CreateMap<TaskEdge, TaskEdgeDTO>();
 
+            CreateMap<TasksService.DataAccess.Entities.TaskHistory, TasksService.BusinessLogic.DTO.TaskHistoryDTO>()
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
+                .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserId))
+                .ForMember(dest => dest.ActionDate, opt => opt.MapFrom(src => Timestamp.FromDateTime(src.ActionDate.ToUniversalTime())))
+                .ForMember(dest => dest.NewValue, opt => opt.MapFrom(src => src.ActionValue))
+                .ForMember(dest => dest.OldValue, opt => opt.MapFrom(src => src.OldValue))
+                .ForMember(dest => dest.ActionName, opt => opt.MapFrom(src => src.Action != null ? src.Action.Name : ""))
+                .ForMember(dest => dest.ValueType, opt => opt.MapFrom(src => src.Action != null ? src.Action.FieldType : 0 ))
+                .ForMember(dest => dest.ActionString, opt => opt.MapFrom(src => src.Action != null ? src.Action.Description : ""));
 
-
+            // Маппинг из TaskHistoryDTO в TaskHistory
+            CreateMap<TasksService.BusinessLogic.DTO.TaskHistoryDTO, TasksService.DataAccess.Entities.TaskHistory>()
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
+                .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserId))
+                .ForMember(dest => dest.ActionDate, opt => opt.MapFrom(src => src.ActionDate.ToDateTime()))
+                .ForMember(dest => dest.ActionValue, opt => opt.MapFrom(src => src.NewValue))
+                .ForMember(dest => dest.OldValue, opt => opt.MapFrom(src => src.OldValue))
+                .ForMember(dest => dest.TaskId, opt => opt.MapFrom(src => src.TaskId))
+                .ForMember(dest => dest.ActionId, opt => opt.Ignore())
+                .ForMember(dest => dest.NodeId, opt => opt.Ignore())
+                .ForMember(dest => dest.Action, opt => opt.Ignore());
         }
 
         private DateTime? ConvertTimestampToDateTime(Timestamp? timestamp)

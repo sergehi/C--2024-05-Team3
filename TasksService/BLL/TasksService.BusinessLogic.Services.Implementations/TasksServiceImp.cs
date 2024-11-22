@@ -354,7 +354,7 @@ namespace TasksService.BusinessLogic.Services.Implementations
                     throw new Exception($"Ошибка при получении списка задач из базы");
                 var nodes = _mapper.Map<List<TaskNodeDTO>>(res.nodes);
                 var edges = _mapper.Map<List<TaskEdgeDTO>>(res.edges);
-                var dtoTask = _mapper.Map<FullTaskInfoDTO>(res);
+                var dtoTask = _mapper.Map<FullTaskInfoDTO>(res.task);
                 dtoTask.Nodes = _mapper.Map <List<TaskNodeDTO>> (nodes);
                 dtoTask.Edges = _mapper.Map<List<TaskEdgeDTO>>(edges); ;
                 return dtoTask;

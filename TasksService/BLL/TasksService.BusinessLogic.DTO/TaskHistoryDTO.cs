@@ -9,6 +9,7 @@ namespace TasksService.BusinessLogic.DTO
 {
     public class TaskHistoryDTO
     {
+        public long Id { get; set; }
         public Guid UserId { get; set; }
         public Timestamp ActionDate { get; set; } = new Timestamp();
         public string? NewValue { get; set; }
@@ -16,6 +17,7 @@ namespace TasksService.BusinessLogic.DTO
         public string? ValueType { get; set; }
         public string ActionName { get; set; } = string.Empty;
         public string ActionString { get; set; } = string.Empty;
+        public long TaskId { get; set; }
     }
 
 }
